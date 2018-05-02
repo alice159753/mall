@@ -35,10 +35,14 @@
             $dataArray['{parent_title}']  = "";
             $dataArray['{parent_no}']     = $row['parent_no'];
 
+            $dataArray['{category_style}'] = 'parent_style';
             if( !empty($row['parent_no']) )
             {
                 $dataArray['{parent_title}'] = $this->getValue("title", "no = ". $row['parent_no']);
+                $dataArray['{category_style}'] = 'children_style';
             }
+
+            $dataArray['{show_checkbox}'] = $row['is_show'] == 'Y' ? 'checked' : '';
 
             return $dataArray;
         }
@@ -59,11 +63,15 @@
 
             $dataArray['parent_no']     = $row['parent_no'];
 
+            $dataArray['category_style'] = '';
             if( !empty($row['parent_no']) )
             {
                 $dataArray['parent_title'] = $this->getValue("title", "no = ". $row['parent_no']);
+                $dataArray['category_style'] = 'children_style';
             }
             
+            $dataArray['show_checkbox'] = $row['is_show'] == 'Y' ? 'checked' : '';
+
             return $dataArray;
         }
 	}

@@ -1,0 +1,330 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>后台管理</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="table">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link href="js/datetimepicker/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="js/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="js/amazeui/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="js/amazeui/css/admin.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+  <!-- start nav -->
+  <!-- end nav -->
+
+
+<div class="am-cf admin-main">
+
+  <!-- start menu -->
+  <!-- end menu -->
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="admin-content-body">
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品</strong> / <small>修改</small></div>
+      </div>
+
+      <hr/>
+
+      <div class="am-g">
+
+        <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+        </div>
+
+<!-- start data -->
+        <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+          <form class="am-form am-form-horizontal" action="product_modify_make.php" method="post" enctype="multipart/form-data" id="form_box">
+
+          <input type="hidden" value="{no}" name="no"/>   
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">分类</label>
+              <div class="am-u-sm-9">
+
+                <select name="category_no" id="category_no">
+
+                <!-- start category -->
+                  <option value="{no}">{title}</option>
+                <!-- end category -->
+
+                </select>
+
+              </div>
+            </div>
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">商品名称</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="title" value="{title}">
+              </div>
+            </div>
+
+
+ <div class="am-form-group">
+              <label for="user-phone" class="am-u-sm-3 am-form-label">商品主图</label>
+              <div class="am-u-sm-9" id="pic_box">
+
+<div style="margin-top:5px;">
+ <input type="file" name="picList[]" style="display: inline;" onchange="pic_upload('picList','fileList', 'show_img')" id="picList">
+</div>
+
+<input type="hidden" name="fileList" id="fileList">
+
+
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="user-phone" class="am-u-sm-3 am-form-label"></label>
+              <div class="am-u-sm-9">
+               <div style="margin-top:5px;">
+                <img src="{pic}" style="width: 150px;height: 150px;" id="show_img"/>
+             </div>
+
+              </div>
+            </div>
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">商品售价(单位：元)</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="shop_price" value="{shop_price}">
+              </div>
+            </div>
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">商品市场价格(单位：元)</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="market_price" value="{market_price}">
+              </div>
+            </div>
+
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">真实销量</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="real_sales" value="{real_sales}">
+              </div>
+            </div>
+
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">虚假销量</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="virtual_sales" value="{virtual_sales}">
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">库存</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="repertory_num" value="{repertory_num}">
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">商品重量(千克)</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="goods_weight" value="{goods_weight}">
+              </div>
+            </div>
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">标签</label>
+              <div class="am-u-sm-9">
+
+               <textarea style="height: 100px;" name="label">{label}</textarea>
+               <p>以英文逗号","分割</p>
+              </div>
+            </div>
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">是否免邮</label>
+              <div class="am-u-sm-9">
+
+                <select name="is_shipping" id="is_shipping">
+                  <option value="Y">是</option>
+                  <option value="N">否</option>
+                </select>
+
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">购买多少数量包邮</label>
+              <div class="am-u-sm-9">
+
+                <input type="text" class="am-input-sm" name="buy_num_shipping" value="{buy_num_shipping}">
+
+              </div>
+            </div>
+
+
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">预售开始时间</label>
+              <div class="am-u-sm-9">
+                
+            <input type="date" class="am-form-field am-input-sm" placeholder="" style="width: 200px;" name="sales_start_date" id="sales_start_date" value="{sales_start_date}">
+
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">预售结束时间</label>
+              <div class="am-u-sm-9">
+
+            <input type="date" class="am-form-field am-input-sm" placeholder="" style="width: 200px;" name="sales_end_date" id="sales_end_date" value="{sales_end_date}">
+
+              </div>
+            </div>
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">是否首页</label>
+              <div class="am-u-sm-9">
+
+                <select name="is_index" id="is_index">
+                  <option value="Y">是</option>
+                  <option value="N">否</option>
+                </select>
+
+              </div>
+            </div>
+
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">是否上线</label>
+              <div class="am-u-sm-9">
+
+                <select name="is_online" id="is_online">
+                  <option value="Y">是</option>
+                  <option value="N">否</option>
+                </select>
+
+              </div>
+            </div>
+
+
+            <div class="am-form-group">
+              <label for="user-phone" class="am-u-sm-3 am-form-label">内容</label>
+              <div class="am-u-sm-9">
+
+                <script class="intro" type="text/plain"  name="content" id="myeditor" style="width:758px;height:300px;">{content}</script>
+
+              </div>
+            </div>
+
+
+
+
+            <div class="am-form-group">
+              <div class="am-u-sm-9 am-u-sm-push-3">
+                <button type="button" class="am-btn am-btn-primary" onclick="form_submit()">保存</button>
+
+                <button type="button" class="am-btn am-btn-primary" onclick="window.history.go(-1)">返回</button>
+
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+<!-- end data -->
+
+  <!-- start footer -->
+  <!-- end footer -->
+
+  </div>
+  <!-- content end -->
+
+</div>
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="js/amazeui/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="js/amazeui/js/amazeui.min.js"></script>
+<script src="js/amazeui/js/app.js"></script>
+<script src="js/common.js"></script>
+
+
+
+<script type="text/javascript" charset="utf-8" src="js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/ueditor/ueditor.all.min.js"></script>
+
+
+<script type="text/javascript" src="js/datetimepicker/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+
+
+
+
+<!-- start data -->
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+        var um4 = UE.getEditor('myeditor');
+
+        $('.intro').val('{content}');
+});
+
+$("input[name='is_through']:radio").each(function(){ if (this.value == "{is_through}") this.checked=true; });
+
+</script>
+<!-- end data -->
+
+
+
+<script type="text/javascript">
+  function form_submit()
+  {
+      var url = $('#form_box').attr('action');
+      var param = $('#form_box').serialize();
+      
+      myAjax(url, param, 'POST');
+  }
+
+</script>
+
+
+<!-- start data -->
+<script type="text/javascript">
+  $("#is_marketing").val('{is_marketing}');
+  $("#is_online").val('{is_online}');
+  $("#category_no").val('{category_no}');
+  $("#is_shipping").val('{is_shipping}');
+  $("#is_index").val('{is_index}');
+
+
+
+</script>
+<!-- end data -->
+
+
+</body>
+</html>

@@ -8,13 +8,6 @@
     include_once(INCLUDE_DIR. "/Role.php");
     ob_clean();
 
-    $order = !empty($_REQUEST["order"]) ? $_REQUEST["order"] : "sort asc";
-    $page = !empty($_REQUEST["page"]) ? $_REQUEST["page"] : 1;
-    $title = !empty($_REQUEST["title"]) ? $_REQUEST["title"] : "";
-    $add_time_min = !empty($_REQUEST["add_time_min"]) ? $_REQUEST["add_time_min"] : "";
-    $add_time_max = !empty($_REQUEST["add_time_max"]) ? $_REQUEST["add_time_max"] : "";
-    $parent_no = isset($_REQUEST["parent_no"]) ? $_REQUEST["parent_no"] : "";
-
     $myMySQL = new MySQL();
     $myMySQL->connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
    
@@ -26,7 +19,7 @@
     include_once("common.inc.php");
 
     //一级分类
-    $rows = $myCategory->getRows("*", "parent_no = 0");
+    $rows = $myCategory->getRows("*", "parent_no = 0 ORDER BY sort ASC");
 
     for($i = 0; isset($rows[$i]); $i++)
     {   
@@ -35,93 +28,27 @@
         $myTemplate->setReplace("parent_no_lists", $dataArray);
     }
 
+    //获得所有的一级分类，然后在获取一级分类下面所有的二级分类
+    $category1 = $rows;
 
-    // search
-    $searchArray = array( "{order}" => $order );
-
-    $searchArray['{title}'] = $title;
-    $searchArray['{add_time_min}'] = $add_time_min;
-    $searchArray['{add_time_max}'] = $add_time_max;
-    $searchArray['{parent_no}'] = $parent_no;
-
-    $myTemplate->setReplace("search", $searchArray);
-
-    $condition = " 1=1 ";
-
-    if ( !empty($title) )
+    $lists = array();
+    for($i = 0; isset($category1[$i]); $i++)
     {
-        $condition .= " AND title like  '%". $title ."%' ";
+        $lists[] = $category1[$i];
+
+        $category2 = $myCategory->getRows("*", "parent_no = ".$category1[$i]['no']." ORDER BY sort ASC");
+
+        foreach ($category2 as $key => $value) 
+        {
+            $lists[] = $value;
+        }
     }
 
-    if ( !empty($add_time_min) )
-    {
-        $condition .= " AND add_time >= '".$add_time_min."'";
-    }
-
-    if ( !empty($add_time_max) )
-    {
-        $condition .= " AND add_time <= '".$add_time_max."'";
-    }
-
-    if (  is_numeric($parent_no) || !empty($parent_no) )
-    {
-        $condition .= " AND parent_no = $parent_no ";
-    }
-
-    // page
-    $page_size = 100;
-
-    $total_count = $myCategory->getCount($condition);
-    $total_page = $myCategory->getPageCount($page_size, $condition);
-
-    $total_page = ($total_page == 0) ? 1 : $total_page;
-    $page = ($total_page < $page) ? $total_page : $page;
-
-    // list
-    $rows = $myCategory->getPage("*", $page, $page_size, $condition ." ORDER BY ". str_replace("-", " ", $order));
-
-    $random = time();
-
-    for($i = 0; isset($rows[$i]); $i++)
+    for($i = 0; isset($lists[$i]); $i++)
     {   
-        $dataArray = $myCategory->getData($rows[$i]);
-
-        unset($_REQUEST['no']);
-        $dataArray["{get}"] = isset($_REQUEST) ? http_build_query($_REQUEST) : "";
+        $dataArray = $myCategory->getData($lists[$i]);
 
         $myTemplate->setReplace("list", $dataArray);
-    }
-
-    // page list
-    $previous_page = $page - 1 < 1 ? 1 : $page - 1;
-    $next_page = $page + 1 > $total_page ? $total_page : $page + 1;
-
-    unset($_REQUEST["page"]);
-
-    $dataArray = array( "{get}"           => isset($_REQUEST) ? http_build_query($_REQUEST) : "",
-                        "{total_count}"   => $total_count,
-                        "{total_page}"    => $total_page,
-                        "{page}"          => $page,
-                        "{previous_page}" => $previous_page,
-                        "{next_page}"     => $next_page,
-                        "{last_page}"     => $total_page );
-
-    $myTemplate->setReplace("page_list", $dataArray);
-
-    for($i = 4; $i > 0; $i--)
-    {
-        if ( $page - $i >= 1 )
-        {
-            $myTemplate->setReplace("previous", array("{previous}" => $page - $i), 2);
-        }
-    }
-
-    for($i = 1; $i <= 4; $i++)
-    {
-        if ( $page + $i <= $total_page )
-        {
-            $myTemplate->setReplace("next", array("{next}" => $page + $i), 2);
-        }
     }
 
     $myTemplate->process();

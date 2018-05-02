@@ -218,3 +218,20 @@ function myAjax(url, param, method, succ_callback, error_callback)
     }
 
   }
+
+  function modify_make_get_value_auto(url, no, field)
+  {
+    if( confirm("确定修改？") )
+    {
+        var queryData = "";
+        
+        var value = $('#'+field+'_'+no).val();
+
+        queryData = "no="+ no+"&"+field+"="+value;
+
+        myAjax(url, queryData, 'POST');
+
+        window.location.reload();
+    }
+
+  }
