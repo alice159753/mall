@@ -1,0 +1,344 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>后台管理</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="table">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="stylesheet" href="js/amazeui/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="js/amazeui/css/admin.css">
+</head>
+
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+
+<!-- start nav -->
+<!-- end nav -->
+
+<div class="am-cf admin-main">
+
+  <!-- start menu -->
+  <!-- end menu -->
+
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="admin-content-body">
+    
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">订单管理</strong> / <small>订单管理</small></div>
+      </div>
+
+      <hr>
+
+      <div class="am-g">
+
+        <div class="am-u-sm-12">
+        <form action="order_info.php" method="get">
+            订单编号:
+            <input type="text" class="am-form-field am-input-sm" name="order_sn" placeholder="订单编号" id="order_sn" style="display: inline;width: 100px">
+
+            下订单用户编号:
+            <input type="text" class="am-form-field am-input-sm" name="user_no" placeholder="下订单用户编号" id="user_no" style="display: inline;width: 100px">
+
+            收货人:
+            <input type="text" class="am-form-field am-input-sm" name="consignee" placeholder="收货人" id="consignee" style="display: inline;width: 100px">
+
+            电话:
+            <input type="text" class="am-form-field am-input-sm" name="mobile" placeholder="电话" id="mobile" style="display: inline;width: 100px">
+
+            渠道ID:
+            <input type="text" class="am-form-field am-input-sm" name="channel_id" placeholder="渠道ID" id="channel_id" style="display: inline;width: 100px">
+            <br/>
+            
+            订单状态
+            <select name="order_status" id="order_status" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
+              <option value="">全部</option>      
+              <option value="0">未确认</option>
+              <option value="1">已确认</option>
+              <option value="2">已取消</option>
+              <option value="3">无效</option>
+              <option value="4">退货</option>
+              <option value="6">申请退款</option>
+              <option value="7">已退款</option>
+            </select>
+
+            配送状态
+            <select name="shipping_status" id="shipping_status" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
+              <option value="">全部</option>      
+              <option value="0">未发货</option>
+              <option value="1">已发货</option>
+              <option value="2">已收货</option>
+              <option value="3">配货</option>
+              <option value="4">退货</option>
+            </select>
+
+
+            支付状态
+            <select name="pay_status" id="pay_status" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
+              <option value="">全部</option>      
+              <option value="0">未付款</option>
+              <option value="1">付款中</option>
+              <option value="2">已付款</option>
+              <option value="3">已退款</option>
+            </select>
+            <br/>
+            
+            评价状态
+            <select name="comment_status" id="comment_status" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
+              <option value="">全部</option>      
+              <option value="0">未评价</option>
+              <option value="1">已评价</option>
+            </select>
+
+
+            支付类型
+            <select name="pay_type" id="pay_type" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
+              <option value="">全部</option>      
+              <option value="1">微信公众号</option>
+            </select>
+
+
+            <br/>
+
+            下单时间
+            <input type="date" class="am-form-field am-input-sm" placeholder="" style="width: 200px;display: inline;" name="add_time_min" id="add_time_min">
+            ~
+            <input type="date" class="am-form-field am-input-sm" placeholder="" style="width: 200px;display: inline;" name="add_time_max" id="add_time_max">
+
+            <input type="submit" value="搜索" class="am-btn am-btn-default" style="display: inline;width: 100px"/>
+
+        </form>
+        </div>
+
+        <br/>
+        <br/>
+
+        <div class="am-u-sm-12 am-u-md-6" style="margin-top: 20px;">
+          <div class="am-btn-toolbar">
+            <div class="am-btn-group am-btn-group-xs">
+              <button type="button" class="am-btn am-btn-default"><a href="order_info_add.php"><span class="am-icon-plus"></span> 新增</a></button>
+              <button type="button" class="am-btn am-btn-default">
+              <a href="javascript:void(0)" onclick="delete_more_make('order_info_delete_more.php')" class="am-text-danger"><span class="am-icon-trash-o"></span> 删除</a></button>
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <div class="am-g">
+        <div class="am-u-sm-12">
+          <form class="am-form">
+            <table class="am-table am-table-striped am-table-hover table-main">
+              <thead>
+              <tr>
+                <th class="table-check">
+                <input type="checkbox" onclick="more_choose(this)" /></th>
+                <th class="table-id">ID</th>
+                <th class="table-title">订单编号</th>
+                <th class="table-title">下单用户ID<br/>下单时间</th>
+                <th class="table-title">收货人</th>
+                <th class="table-title">总金额(元)</th>
+                <th class="table-title">商品金额(元)</th>
+                <th class="table-date">运费(元)</th>
+                <th class="table-date">订单状态<br/>
+                  (订单/配送/支付/评价)
+                </th>
+                <th class="table-date">渠道ID</th>
+                <th class="table-set">操作</th>
+              </tr>
+              </thead>
+              <tbody>
+           <!-- start list -->
+              <tr>
+                <td><input type="checkbox" name="noList[]" value="{no}"/></td>
+                <td>{no}</td>
+                <td>{order_sn}</td>
+                <td>
+                  {nickname}({user_no})
+                  <br/>
+                  {add_time}
+                </td>
+                <td>{consignee}[TEL:{mobile}]<br/>
+                  {country} {province} {city} {district} {address}<br/>
+                  备注:<span style="color:red">{postscript}</span>
+                </td>
+                <td>￥{total_fee}</td>
+                <td>￥{order_fee}</td>
+                <td>￥{shipping_fee}</td>
+                <td>
+                  <span style="color:#3689f0">{order_status_title}</span>/
+                  <span style="color:#f62cf4">{shipping_status_title}</span>/
+                  <span style="color:#68036f">{pay_status_title}</span>/
+                  <span style="color:#06266f">{comment_status_title}</span>
+                </td>
+                <td>{channel_id}</td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                      <a href="order_info_modify.php?no={no}"><span class="am-icon-pencil-square-o"></span> 
+                      编辑</a></button>
+
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <!-- end list -->
+
+              </tbody>
+            </table>
+
+<form name="PageForm" action="order_info.php" method="get">
+<!-- start search -->
+<input type="hidden" name="order" value="{order}">
+<input type="hidden" name="add_time_min" value="{add_time_min}">
+<input type="hidden" name="add_time_max" value="{add_time_max}">
+<input type="hidden" name="order_sn" value="{order_sn}">
+<input type="hidden" name="user_no" value="{user_no}">
+<input type="hidden" name="consignee" value="{consignee}">
+<input type="hidden" name="mobile" value="{mobile}">
+<input type="hidden" name="channel_id" value="{channel_id}">
+<input type="hidden" name="order_status" value="{order_status}">
+<input type="hidden" name="shipping_status" value="{shipping_status}">
+<input type="hidden" name="pay_status" value="{pay_status}">
+<input type="hidden" name="comment_status" value="{comment_status}">
+<input type="hidden" name="pay_type" value="{pay_type}">
+
+<!-- end search -->
+
+<!-- start page_list -->
+
+            <div class="am-cf">
+              共 {total_count} 条记录, 共 {total_page} 页
+              <div class="am-fr">
+
+                <ul class="am-pagination">
+
+                  <li><a href="order_info.php?page=1&{get}">«</a></li>
+
+                  <li><a href="order_info.php?page={previous_page}&{get}">‹</a></li>
+
+                  <!-- start previous -->
+                   <li><a href="order_info.php?page={previous}&{get}">{previous}</a>
+                   </li>
+                  <!-- end previous -->
+
+                  <li><a href="order_info.php?page={page}&{get}">{page}</a></li>
+
+                  <!-- start next -->
+                  <li><a href="order_info.php?page={next}&{get}">{next}</a></li>
+                  <!-- end next -->
+                  <li><a href="order_info.php?page={next_page}&{get}">›</a></li>
+
+                  <li><a href="order_info.php?page={last_page}&{get}">»</a></li>
+
+                </ul>
+
+              </div>
+            </div>
+<!-- end page_list -->
+</form>
+
+        </div>
+
+      </div>
+    </div>
+
+  <!-- start footer -->
+  <!-- end footer -->
+
+
+  </div>
+  <!-- content end -->
+</div>
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="js/amazeui/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="js/amazeui/js/amazeui.min.js"></script>
+<script src="js/amazeui/js/app.js"></script>
+<script src="js/common.js"></script>
+<script type="text/javascript">
+
+  function order_info_delete_more()
+  {
+    var queryData = "";
+
+    var no_list = [];
+
+    $("input[name='noList[]']").each(function (index, domEle) { 
+
+        if( $(this).prop("checked") )
+        {
+          no_list.push($(this).val());
+        }
+    });
+
+    no_list = no_list.join(',');
+
+    queryData = "no_list="+ no_list;
+
+    $.ajax
+     ({
+         url: "order_info_delete_more.php",  
+         data: queryData,
+         type:'post',
+         async: true,
+         dataType: 'text',
+         error: function(){  
+             alert('error');  
+         },  
+         success: function(data)
+         {  
+            if( data == 'ok' )
+            {
+               alert("删除成功!");
+
+               window.location.reload(); //重新加载页面
+            }
+            else
+            {
+              alert(data);
+            }
+         }
+
+     });
+  }
+
+</script>
+
+<!-- start search -->
+<script language="javascript">
+$("#add_time_min").val("{add_time_min}");
+$("#add_time_max").val("{add_time_max}");
+$("#order_sn").val("{order_sn}");
+$("#user_no").val("{user_no}");
+$("#consignee").val("{consignee}");
+$("#mobile").val("{mobile}");
+$("#channel_id").val("{channel_id}");
+$("#order_status").val("{order_status}");
+$("#shipping_status").val("{shipping_status}");
+$("#pay_status").val("{pay_status}");
+$("#comment_status").val("{comment_status}");
+$("#pay_type").val("{pay_type}");
+
+
+</script>
+<!-- end search -->
+
+</body>
+</html>

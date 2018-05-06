@@ -1,0 +1,343 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>后台管理</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="table">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="stylesheet" href="js/amazeui/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="js/amazeui/css/admin.css">
+
+<style type="text/css">
+  .table-strong
+  {
+    font-weight: bold;
+  }
+  .special_price
+  {
+    color:orange;
+    font-weight: bold;
+  }
+  .my-table-bottom
+  {
+    border-top:0px solid #ddd; 
+    border-bottom: 1px solid #ddd;
+  }
+
+</style>
+
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+  <!-- start nav -->
+  <!-- end nav -->
+
+
+<div class="am-cf admin-main">
+
+  <!-- start menu -->
+  <!-- end menu -->
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="admin-content-body">
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">订单查看</strong> / <small>修改</small></div>
+      </div>
+
+      <hr/>
+
+      <div class="am-g">
+
+        <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+        </div>
+
+<!-- start data -->
+        <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+          <form class="am-form am-form-horizontal" action="order_info_modify_make.php" method="post" enctype="multipart/form-data" id="form_box">
+
+          <input type="hidden" value="{no}" name="no"/>   
+
+          <fieldset>
+          <legend>基本信息</legend>
+          <table class="am-table am-table-striped am-table-hover table-main" style="margin-top: -20px">
+            <tr>
+              <td class="table-title table-strong my-table-bottom" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">订单编号:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{order_sn}</td>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">购买用户信息</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;"><a href="user_modify.php?no={user_no}" target="_blank">{nickname}({user_no})</a></td>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">用户渠道ID</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{channel_id}</td>
+
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">第三方支付信息</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;"  colspan="3">{pay_content}</td>
+
+            </tr>
+
+            <tr>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">订单总金额:</td>
+              <td class="special_price" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">￥{total_fee}</td>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">商品金额</td>
+              <td class="special_price" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">￥{order_fee}</td>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">运费</td>
+              <td class="special_price" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">￥{shipping_fee}</td>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">运费模版编号</td>
+              <td class="special_price" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;" colspan="3">
+                <a href="postage_config.php?no={postage_config_no}" target="_blank">{postage_config_no}</a>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">订单创建时间:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{add_time}</td>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">订单确认时间:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{confirm_time}</td>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">订单支付时间:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{pay_time}</td>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">订单配送时间:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{shipping_time}</td>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">订单最后一次修改时间:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{lastmodify}</td>
+            </tr>
+
+            <tr>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">买家留言:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd" colspan="9">
+                <textarea name="postscript" id="postscript">{postscript}</textarea>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">退款申请留言:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd" colspan="9">
+                <textarea name="sales_return_note" id="sales_return_note">{sales_return_note}</textarea>
+
+                <p style="color:red">用户发起退款会在这里留言</p>
+              </td>
+            </tr>
+
+          </table>
+
+         </fieldset>
+
+
+
+          <fieldset>
+          <legend>收货信息</legend>
+          <table class="am-table am-table-striped am-table-hover table-main" style="margin-top: -20px">
+
+            <tr>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">收货人:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{consignee}</td>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">电话:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{mobile}</td>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">地址:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{country} {province} {city} {district} {address}</td>
+            </tr>
+
+            <tr>
+               <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">发货单号:</td>
+               <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;" colspan="5"> 
+                <textarea name="invoice_no" id="invoice_no">{invoice_no}</textarea>
+                <p style="color:red">多个发货单号请用英文字符逗号","隔开</p>
+               </td>
+
+            </tr>
+
+          </table>
+
+         </fieldset>
+
+
+          <fieldset>
+          <legend>商品信息</legend>
+          <table class="am-table am-table-striped am-table-hover table-main" style="margin-top: -20px">
+
+                <th class="table-id">商品编号</th>
+                <th class="table-title">商品名称</th>
+                <th class="table-title">图片</th>
+                <th class="table-title">重量(千克)</th>
+                <th class="table-title">单价(元)</th>
+                <th class="table-title">数量</th>
+                <th class="table-date">合计(元)</th>
+                <th class="table-date">规格编号</th>
+                <th class="table-date">评价类型</th>
+                <th class="table-date">评价内容</th>
+
+
+            <!-- start product -->
+            <tr>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;"><a href="product_modify.php?no={product_no}" target="_blank">{product_no}</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{product_title}</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">
+                <img src="{product_pic}" style="width: 50px;height: 50px" />
+              </td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{product_weight}</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;" class="special_price">￥{shop_price}</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;" class="special_price">￥{buy_num}</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;" class="special_price">￥{total_fee}</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">
+
+                <a href="product_attr_modify.php?no={product_attr_no}" target="_blank">{product_attr_no}</a>
+
+              </td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{comment_type_title}</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{content}</td>
+
+            </tr>
+            <!-- end product -->
+
+
+          </table>
+
+         </fieldset>
+
+
+
+
+          <fieldset>
+          <legend>修改订单</legend>
+          <table class="am-table am-table-striped am-table-hover table-main" style="margin-top: -20px">
+
+            <tr>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">订单状态:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">
+                <select name="order_status" id="order_status" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
+                <option value="0">未确认</option>
+                <option value="1">已确认</option>
+                <option value="2">已取消</option>
+                <option value="3">无效</option>
+                <option value="4">退货</option>
+                <option value="6">申请退款</option>
+                <option value="7">已退款</option>
+                </select>
+              </td>
+
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">配送状态:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">
+                <select name="shipping_status" id="shipping_status" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
+                <option value="0">未发货</option>
+                <option value="1">已发货</option>
+                <option value="2">已收货</option>
+                <option value="3">配货</option>
+                <option value="4">退货</option>
+                </select>
+              </td>
+
+
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">支付状态:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">
+                <select name="pay_status" id="pay_status" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
+                <option value="0">未付款</option>
+                <option value="1">付款中</option>
+                <option value="2">已付款</option>
+                <option value="3">已退款</option>
+                </select>
+              </td>
+
+            </tr>
+
+            <tr>
+              
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">评价状态:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">
+                <select name="comment_status" id="comment_status" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
+                <option value="0">未评价</option>
+                <option value="1">已评价</option>
+                </select>
+              </td>
+
+
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">支付类型:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;" colspan="3">
+                <select name="pay_type" id="pay_type" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
+                <option value="1">微信公众号</option>
+                </select>
+              </td>
+
+            </tr>
+
+            <tr>
+            <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">备注:</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;" colspan="5">
+                <textarea name="pay_note" id="pay_note">{pay_note}</textarea>
+              </td>
+
+            </tr>
+
+          </table>
+         </fieldset>
+
+
+            <input type="hidden" name="no" id="no" value="{no}">
+
+            <div class="am-form-group">
+              <div class="am-u-sm-9 am-u-sm-push-3">
+                <button type="button" class="am-btn am-btn-primary" onclick="form_submit()">保存</button>
+
+                <button type="button" class="am-btn am-btn-primary" onclick="window.history.go(-1)">返回</button>
+
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+<!-- end data -->
+
+  <!-- start footer -->
+  <!-- end footer -->
+
+  </div>
+  <!-- content end -->
+
+</div>
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="js/amazeui/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="js/amazeui/js/amazeui.min.js"></script>
+<script src="js/amazeui/js/app.js"></script>
+<script src="js/common.js"></script>
+
+<script type="text/javascript">
+  function form_submit()
+  {
+      var url = $('#form_box').attr('action');
+      var param = $('#form_box').serialize();
+      
+      myAjax(url, param, 'POST');
+  }
+
+  function write_sn(order_no)
+  {
+      window.location.href = '';
+  }
+</script>
+
+<!-- start data -->
+<script type="text/javascript">
+  $("#order_status").val('{order_status}');
+  $("#shipping_status").val('{shipping_status}');
+  $("#pay_status").val('{pay_status}');
+  $("#comment_status").val('{comment_status}');
+  $("#pay_type").val('{pay_type}');
+
+</script>
+<!-- end data -->
+
+
+
+
+</body>
+</html>

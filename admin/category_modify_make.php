@@ -9,10 +9,7 @@
 
     // request
     $no    = isset($_REQUEST["no"]) ? $_REQUEST["no"] : 0;
-    $title = !empty($_REQUEST["title"]) ? trim($_REQUEST["title"]) : "" ;
     $fileList = !empty($_REQUEST["fileList"]) ? trim($_REQUEST["fileList"]) : "" ;
-    $is_show = !empty($_REQUEST["is_show"]) ? trim($_REQUEST["is_show"]) : "" ;
-    $parent_no = !empty($_REQUEST["parent_no"]) ? trim($_REQUEST["parent_no"]) : "0" ;
 
     if ( $no == 0 )
     {
@@ -40,11 +37,10 @@
        Output::error('标题不能重复！',array(), 1);
     }
 
-    $dataArray = array();
-    $dataArray['title']       = $title;
+    unset($_REQUEST['fileList']);
+
+    $dataArray = $_REQUEST;
     $dataArray['update_time'] = 'now()';
-    $dataArray['is_show']     = $is_show;
-    $dataArray['parent_no']   = $parent_no;
 
     if( !empty($fileList) )
     {

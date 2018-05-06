@@ -144,6 +144,21 @@ function myAjax(url, param, method, succ_callback, error_callback)
       }
   }
 
+  function restore_one_make(url, no)
+  {
+      if( confirm("确定还原？") )
+      {
+
+        queryData = "no="+ no;
+
+        myAjax(url, queryData, 'POST');
+
+        window.location.reload();
+
+      }
+  }
+
+
   function modify_one_make(url, no)
   {
       if( confirm("确定修改？") )
@@ -155,6 +170,11 @@ function myAjax(url, param, method, succ_callback, error_callback)
 
         window.location.reload();
 
+      }
+      else
+      {
+        event.stopPropagation();
+        event.preventDefault();
       }
   }
 
@@ -235,3 +255,25 @@ function myAjax(url, param, method, succ_callback, error_callback)
     }
 
   }
+
+  function change2(url, field, box)
+  {
+      $.ajax
+     ({
+         url: url,  
+         data: field+"="+$("#"+field).val(),
+         type:'post',
+         async: false,
+         dataType: 'text',
+         error: function(){  
+             alert('error');  
+         },  
+         success: function(data)
+         {  
+            $("#"+box).html(data);
+         }
+     });
+  }
+
+
+

@@ -5,14 +5,14 @@
     ob_start();
     include_once(INCLUDE_DIR. "/JavaScript.php");
     include_once(INCLUDE_DIR. "/Category.php");
-    include_once(INCLUDE_DIR. "/Role.php");
+    include_once(INCLUDE_DIR. "/Product.php");
     ob_clean();
 
     $myMySQL = new MySQL();
     $myMySQL->connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
    
     $myCategory = new Category($myMySQL);
-    $myRole = new Role($myMySQL);
+    $myProduct = new Product($myMySQL);
 
     $myTemplate = new Template(TEMPLATE_DIR ."/category.html");
 
@@ -47,6 +47,18 @@
     for($i = 0; isset($lists[$i]); $i++)
     {   
         $dataArray = $myCategory->getData($lists[$i]);
+
+        $dataArray['{product_num}'] = 0;
+
+        //获得商品数量
+        if( $lists[$i]['parent_no'] == 0 )
+        {   
+            $dataArray['{product_num}'] = $myProduct->getCount("category_no_1 = ". $lists[$i]['no']);
+        }
+        else
+        {   
+            $dataArray['{product_num}'] = $myProduct->getCount("category_no_2 = ". $lists[$i]['no']);
+        }
 
         $myTemplate->setReplace("list", $dataArray);
     }

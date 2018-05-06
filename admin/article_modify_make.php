@@ -12,6 +12,8 @@
 
     // request
     $no    = isset($_REQUEST["no"]) ? $_REQUEST["no"] : 0;
+    $fileList = !empty($_REQUEST["fileList"]) ? trim($_REQUEST["fileList"]) : "" ;
+    $title = !empty($_REQUEST["title"]) ? trim($_REQUEST["title"]) : "" ;
 
     if ( $no == 0 )
     {

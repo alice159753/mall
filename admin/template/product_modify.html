@@ -13,6 +13,9 @@
   <link href="js/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
   <link rel="stylesheet" href="js/amazeui/css/amazeui.min.css"/>
   <link rel="stylesheet" href="js/amazeui/css/admin.css">
+  <link rel="stylesheet" href="js/select2/select2.min.css">
+  <link rel="stylesheet" href="js/amazeui/css/uploadfile.css">
+
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -50,10 +53,13 @@
           <input type="hidden" value="{no}" name="no"/>   
 
             <div class="am-form-group">
-              <label for="admin-name" class="am-u-sm-3 am-form-label">分类</label>
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+                <span style="color: red">*</span>
+                一级分类
+              </label>
               <div class="am-u-sm-9">
 
-                <select name="category_no" id="category_no">
+                <select name="category_no_1" id="category_no_1" onchange="change2('category_no_2.ajax.php', 'category_no_1', 'category_no_2');">
 
                 <!-- start category -->
                   <option value="{no}">{title}</option>
@@ -64,17 +70,136 @@
               </div>
             </div>
 
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+                <span style="color: red">*</span>
+                二级分类
+              </label>
+              <div class="am-u-sm-9">
+
+                <select name="category_no_2" id="category_no_2">
+
+                </select>
+
+              </div>
+            </div>
+
 
             <div class="am-form-group">
-              <label for="admin-name" class="am-u-sm-3 am-form-label">商品名称</label>
+              <label for="user-phone" class="am-u-sm-3 am-form-label">
+                <span style="color: red">*</span>
+              商品类型</label>
+              <div class="am-u-sm-9">
+                <input type="radio" name="product_type"  value="1" checked="true" /> 实物商品
+                <input type="radio" name="product_type" value="2"/> 虚拟商品
+                <input type="radio" name="product_type" value="3"/> 电子卡券
+                <input type="radio" name="product_type" value="4"/> 酒店商品
+                <input type="radio" name="product_type" value="5"/> 蛋糕烘培
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+                <span style="color: red">*</span>
+                商品品牌
+              </label>
+              <div class="am-u-sm-9">
+
+                <select name="brand_no" id="brand_no" >
+                <!-- start brand -->
+                  <option value="{no}">{title}</option>
+                <!-- end brand -->
+                </select>
+
+              </div>
+            </div>
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+                <span style="color: red">*</span>
+                商品名称</label>
               <div class="am-u-sm-9">
                 <input type="text" class="am-input-sm" name="title" value="{title}">
               </div>
             </div>
 
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+                <span style="color: red">*</span>
+              商品货号</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="product_sn" value="{product_sn}">
+              </div>
+            </div>
 
- <div class="am-form-group">
-              <label for="user-phone" class="am-u-sm-3 am-form-label">商品主图</label>
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">商品简介
+              </label>
+              <div class="am-u-sm-9">
+               <textarea style="height: 100px;" name="description">{description}</textarea>
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+                分享简介
+              </label>
+              <div class="am-u-sm-9">
+               <textarea style="height: 100px;" name="share_content">{share_content}</textarea>
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">卖点</label>
+              <div class="am-u-sm-9">
+               <textarea style="height: 100px;" name="selling_points">{selling_points}</textarea>
+              </div>
+            </div>
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+               <span style="color: red">*</span>
+                商品售价(单位：元)</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="sale_price" value="{sale_price}">
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">划线价(单位：元)</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="lineation_price" value="{lineation_price}">
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">会员价(单位：元)</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="member_price" value="{member_price}">
+              </div>
+            </div>
+
+           <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">成本价(单位：元)</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="cost_price" value="{cost_price}">
+              </div>
+            </div>
+
+          <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">赠送积分</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="give_integral" value="{give_integral}">
+              </div>
+            </div>
+
+
+            <div class="am-form-group">
+              <label for="user-phone" class="am-u-sm-3 am-form-label">
+              <span style="color: red">*</span>                 
+              商品主图</label>
               <div class="am-u-sm-9" id="pic_box">
 
 <div style="margin-top:5px;">
@@ -82,7 +207,6 @@
 </div>
 
 <input type="hidden" name="fileList" id="fileList">
-
 
               </div>
             </div>
@@ -99,20 +223,13 @@
 
 
             <div class="am-form-group">
-              <label for="admin-name" class="am-u-sm-3 am-form-label">商品售价(单位：元)</label>
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+               <span style="color: red">*</span>
+              库存</label>
               <div class="am-u-sm-9">
-                <input type="text" class="am-input-sm" name="shop_price" value="{shop_price}">
+                <input type="text" class="am-input-sm" name="repertory_num" value="{repertory_num}">
               </div>
             </div>
-
-
-            <div class="am-form-group">
-              <label for="admin-name" class="am-u-sm-3 am-form-label">商品市场价格(单位：元)</label>
-              <div class="am-u-sm-9">
-                <input type="text" class="am-input-sm" name="market_price" value="{market_price}">
-              </div>
-            </div>
-
 
 
             <div class="am-form-group">
@@ -122,8 +239,6 @@
               </div>
             </div>
 
-
-
             <div class="am-form-group">
               <label for="admin-name" class="am-u-sm-3 am-form-label">虚假销量</label>
               <div class="am-u-sm-9">
@@ -132,47 +247,48 @@
             </div>
 
             <div class="am-form-group">
-              <label for="admin-name" class="am-u-sm-3 am-form-label">库存</label>
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+               <span style="color: red">*</span>
+              商品重量</label>
               <div class="am-u-sm-9">
-                <input type="text" class="am-input-sm" name="repertory_num" value="{repertory_num}">
-              </div>
-            </div>
+                <input type="text" class="am-input-sm" name="product_weight" value="{product_weight}" style="width: 150px;display: inline-block;">
 
-            <div class="am-form-group">
-              <label for="admin-name" class="am-u-sm-3 am-form-label">商品重量(千克)</label>
-              <div class="am-u-sm-9">
-                <input type="text" class="am-input-sm" name="goods_weight" value="{goods_weight}">
-              </div>
-            </div>
-
-
-            <div class="am-form-group">
-              <label for="admin-name" class="am-u-sm-3 am-form-label">标签</label>
-              <div class="am-u-sm-9">
-
-               <textarea style="height: 100px;" name="label">{label}</textarea>
-               <p>以英文逗号","分割</p>
-              </div>
-            </div>
-
-
-            <div class="am-form-group">
-              <label for="admin-name" class="am-u-sm-3 am-form-label">是否免邮</label>
-              <div class="am-u-sm-9">
-
-                <select name="is_shipping" id="is_shipping">
-                  <option value="Y">是</option>
-                  <option value="N">否</option>
+                <select name="product_weight_ceil" style="width: 100px;display: inline-block;" id="product_weight_ceil">
+                  <option value="kg">千克</option>
+                  <option value="g">克</option>
                 </select>
 
               </div>
             </div>
 
             <div class="am-form-group">
-              <label for="admin-name" class="am-u-sm-3 am-form-label">购买多少数量包邮</label>
+              <label for="admin-name" class="am-u-sm-3 am-form-label">标签</label>
               <div class="am-u-sm-9">
+               <textarea style="height: 100px;" name="label">{label}</textarea>
+               <p>以英文逗号","分割</p>
+              </div>
+            </div>
 
-                <input type="text" class="am-input-sm" name="buy_num_shipping" value="{buy_num_shipping}">
+
+           <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+               <span style="color: red">*</span>
+              快递运费</label>
+              <div class="am-u-sm-9">
+                <input type="radio" class="am-input-sm" name="postage_price_type" value="1" checked="true"> 
+                统一邮费(元) 
+                <input type="text" class="am-input-sm" name="postage_price" value="0" style="display: inline-block;width: 100px">
+                <br/>
+                <input type="radio" class="am-input-sm" name="postage_price_type" value="2"> 
+                运费模版 &nbsp;&nbsp;&nbsp;&nbsp;
+
+                <select name="postage_no" id="postage_no" style="display: inline-block;width: 200px">
+                <!-- start postage_config -->
+                  <option value="{no}">{title}</option>
+                <!-- end postage_config -->
+                </select>
+
+
 
               </div>
             </div>
@@ -180,10 +296,10 @@
 
 
 
-            <div class="am-form-group">
+            <div  class="am-form-group">
               <label for="admin-name" class="am-u-sm-3 am-form-label">预售开始时间</label>
               <div class="am-u-sm-9">
-                
+
             <input type="date" class="am-form-field am-input-sm" placeholder="" style="width: 200px;" name="sales_start_date" id="sales_start_date" value="{sales_start_date}">
 
               </div>
@@ -198,15 +314,65 @@
               </div>
             </div>
 
-
             <div class="am-form-group">
-              <label for="admin-name" class="am-u-sm-3 am-form-label">是否首页</label>
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+               <span style="color: red">*</span>
+              是否上架</label>
               <div class="am-u-sm-9">
-
-                <select name="is_index" id="is_index">
-                  <option value="Y">是</option>
-                  <option value="N">否</option>
+                <select name="is_online">
+                  <option value="1">是</option>
+                  <option value="0">否</option>
                 </select>
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="user-phone" class="am-u-sm-3 am-form-label">商品图文简介
+                <p class="add_notice">(小程序无需填写)</p>
+              </label>
+              <div class="am-u-sm-9">
+                <script class="intro" type="text/plain"  name="content" id="myeditor" style="width:758px;height:300px;"></script>
+              </div>
+            </div>
+
+
+             <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">商品图</label>
+              <div class="am-u-sm-9">
+
+                <div id="product_picture_box" class="controls product_picture_box">
+                <div class="ncsc-product-default-pic">
+                    <div class="productpic-uplaod" style="padding: 15px;">
+                        <div class="img-box" style="min-height:160px;">
+
+    <!-- start product_img -->
+                <div class="upload-thumb draggable-element" style="visibility: visible;">
+                  <img src="{img_url}">
+                  <input type="hidden" class="upload_img_id" name="product_img[]" value="{img_url}">
+                  <div class="black-bg hide" style="display: none;">
+                    <div class="off-box">×</div>
+                  </div>
+                </div>
+   <!-- end product_img -->
+
+
+                        </div>
+                        <div class="clear"></div>
+                        <span class="img-error">最少需要一张图片作为商品图</span>
+                        <p class="hint">上传商品图,支持同时上传多张图片,多张图片之间可随意调整位置；支持jpg、gif、png格式</p>
+                        <div class="handle">
+                            <div class="ncsc-upload-btn">
+                                <a href="javascript:void(0);">
+                                    <span>
+                                        <input style="cursor:pointer;font-size:0;" type="file" id="fileupload" hidefocus="true" class="input-file" name="file_upload" multiple="multiple">
+                                    </span>
+                                    <p>图片上传</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
 
               </div>
             </div>
@@ -214,28 +380,44 @@
 
 
             <div class="am-form-group">
-              <label for="admin-name" class="am-u-sm-3 am-form-label">是否上线</label>
+              <label for="admin-name" class="am-u-sm-3 am-form-label">商品详情图</label>
               <div class="am-u-sm-9">
 
-                <select name="is_online" id="is_online">
-                  <option value="Y">是</option>
-                  <option value="N">否</option>
-                </select>
+                <div id="product_picture_box_wap" class="controls product_picture_box">
+                <div class="ncsc-product-default-pic">
+                    <div class="productpic-uplaod" style="padding: 15px;">
+                        <div class="img-box" style="min-height:160px;">
+
+    <!-- start product_img_detail -->
+                <div class="upload-thumb draggable-element" style="visibility: visible;">
+                  <img src="{img_url}">
+                  <input type="hidden" class="upload_img_id" name="product_img_detail[]" value="{img_url}">
+                  <div class="black-bg hide" style="display: none;">
+                    <div class="off-box">×</div>
+                  </div>
+                </div>
+   <!-- end product_img_detail -->
+
+                        </div>
+                        <div class="clear"></div>
+                        <span class="img-error">最少需要一张图片作为商品详情图</span>
+                        <p class="hint">上传商品详情图,支持同时上传多张图片,多张图片之间可随意调整位置；支持jpg、gif、png格式</p>
+                        <div class="handle">
+                            <div class="ncsc-upload-btn">
+                                <a href="javascript:void(0);">
+                                    <span>
+                                        <input style="cursor:pointer;font-size:0;" type="file" id="fileupload_wap" hidefocus="true" class="input-file" name="file_upload" multiple="multiple">
+                                    </span>
+                                    <p>图片上传</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
 
               </div>
             </div>
-
-
-            <div class="am-form-group">
-              <label for="user-phone" class="am-u-sm-3 am-form-label">内容</label>
-              <div class="am-u-sm-9">
-
-                <script class="intro" type="text/plain"  name="content" id="myeditor" style="width:758px;height:300px;">{content}</script>
-
-              </div>
-            </div>
-
-
 
 
             <div class="am-form-group">
@@ -281,6 +463,13 @@
 <script type="text/javascript" src="js/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 
 
+<script type="text/javascript" src="js/select2/select2.min.js"></script>
+
+<script src="js/uploadfile/jquery-ui.min.js"></script>
+<script src="js/uploadfile/ajax_file_upload.js"></script>
+<script src="js/uploadfile/drag-arrange.js"></script>
+<script src="js/uploadfile/jquery.fileupload.js"></script>
+<script src="js/uploadfile/jquery.ui.widget.js"></script>
 
 
 <!-- start data -->
@@ -288,16 +477,52 @@
 
 $(document).ready(function()
 {
-        var um4 = UE.getEditor('myeditor');
 
-        $('.intro').val('{content}');
+      var um4 = UE.getEditor('myeditor');
+
+      $('.intro').val('{content}');
+
+       $('#category_no_1').select2();
+
+       $('#brand_no').select2();
+
+       $('#postage_no').select2();
+
+var category_no_1 = $("#category_no_1").select2();
+category_no_1.val("{category_no_1}").trigger("change");
+category_no_1.change();
+
+var brand_no = $("#brand_no").select2();
+brand_no.val("{brand_no}").trigger("change");
+brand_no.change();
+
+var postage_no = $("#postage_no").select2();
+postage_no.val("{postage_no}").trigger("change");
+postage_no.change();
+
+       change2('category_no_2.ajax.php', 'category_no_1', 'category_no_2');
+
+$("input[name='product_type']:radio").each(function(){ if (this.value == "{product_type}") this.checked=true; });
+
+$("#is_online").val('{is_online}');
+$("#product_weight_ceil").val('{product_weight_ceil}');
+$("#category_no_2").val('{category_no_2}');
+
+
+
+
+
+
+
 });
 
-$("input[name='is_through']:radio").each(function(){ if (this.value == "{is_through}") this.checked=true; });
+
+
+
+
 
 </script>
 <!-- end data -->
-
 
 
 <script type="text/javascript">
@@ -312,18 +537,166 @@ $("input[name='is_through']:radio").each(function(){ if (this.value == "{is_thro
 </script>
 
 
-<!-- start data -->
-<script type="text/javascript">
-  $("#is_marketing").val('{is_marketing}');
-  $("#is_online").val('{is_online}');
-  $("#category_no").val('{category_no}');
-  $("#is_shipping").val('{is_shipping}');
-  $("#is_index").val('{is_index}');
 
+<script type="text/javascript">
+
+$(function() {
+    //给图片更换位置事件
+    $('.draggable-element').arrangeable();
+    
+
+    //电脑
+    $('#fileupload').fileupload({
+        url: "img_upload_more.ajax.php",
+        dataType: 'json',
+        formData:'',
+        add: function (e,data) {
+            $("#product_picture_box .img-error").hide();
+            $("#product_picture_box #default_uploadimg").remove();
+            //显示上传图片框
+            var html = "";
+            $.each(data.files, function (index, file) {
+                html +='<div class="upload-thumb draggable-element"  nstype="1">'; 
+                html +='<img nstype="product_image" src="/admin/images/uoload_ing.gif">';  
+                html +='<input type="hidden"  class="upload_img_id" nstype="product_image" name="product_img[]" value="">'; 
+                html +='<div class="black-bg hide">'; 
+                html +='<div class="off-box">&times;</div>'; 
+                html +='</div>'; 
+                html +='</div>'; 
+            });
+
+            $(html).appendTo('#product_picture_box .img-box');
+
+            //模块可拖动事件
+            $('#product_picture_box .draggable-element').arrangeable();
+
+            data.submit();      
+        },
+        done: function (e,data) {
+
+            var param = data.result.result;
+            console.log(param);
+
+            $this = $('#product_picture_box div[nstype="1"]');
+           if(param.status.code == 0){
+                $this.removeAttr("nstype");
+                $this.children("img").attr("src",param.data.url);
+                $this.children("input[type='hidden']").val(param.data.url);              
+            }
+            else
+            {
+                $this.remove();
+
+                if($("#product_picture_box .img-box .upload-thumb").length == 0)
+                {
+                    var  img_html ='<div class="upload-thumb" id="default_uploadimg">';
+                         img_html +='<img src="/admin/images/default.gif">';
+                         img_html +='</div>';
+
+                    $("#product_picture_box .img-box").append(img_html);
+                }
+
+                $("#product_picture_box .img-error").html("请检查您的上传参数配置或上传的文件是否有误").show();                
+            }
+        }      
+    });
+
+
+    //手机
+    $('#fileupload_wap').fileupload({
+        url: "img_upload_more.ajax.php",
+        dataType: 'json',
+        formData:'',
+        add: function (e,data) {
+            $("#product_picture_box_wap .img-error").hide();
+            $("#product_picture_box_wap #default_uploadimg").remove();
+            //显示上传图片框
+            var html = "";
+            $.each(data.files, function (index, file) {
+                html +='<div class="upload-thumb draggable-element"  nstype="1">'; 
+                html +='<img nstype="product_image" src="/admin/images/uoload_ing.gif">';  
+                html +='<input type="hidden"  class="upload_img_id" nstype="product_image" name="product_img_detail[]" value="">'; 
+                html +='<div class="black-bg hide">'; 
+                html +='<div class="off-box">&times;</div>'; 
+                html +='</div>'; 
+                html +='</div>'; 
+            });
+
+            $(html).appendTo('#product_picture_box_wap .img-box');
+
+            //模块可拖动事件
+            $('#product_picture_box_wap .draggable-element').arrangeable();
+
+            data.submit();      
+        },
+        done: function (e,data) {
+
+            var param = data.result.result;
+            console.log(param);
+
+            $this = $('#product_picture_box_wap div[nstype="1"]');
+           if(param.status.code == 0){
+                $this.removeAttr("nstype");
+                $this.children("img").attr("src",param.data.url);
+                $this.children("input[type='hidden']").val(param.data.url);              
+            }
+            else
+            {
+                $this.remove();
+
+                if($("#product_picture_box_wap .img-box .upload-thumb").length == 0)
+                {
+                    var  img_html ='<div class="upload-thumb" id="default_uploadimg">';
+                         img_html +='<img src="/admin/images/default.gif">';
+                         img_html +='</div>';
+
+                    $("#product_picture_box_wap .img-box").append(img_html);
+                }
+
+                $("#product_picture_box_wap .img-error").html("请检查您的上传参数配置或上传的文件是否有误").show();                
+            }
+        }      
+    });
+    
+  
+    //图片幕布出现
+    $(".draggable-element").live('mouseenter',function(){  
+          $(this).children(".black-bg").show();
+    });
+    //图片幕布消失
+    $(".draggable-element").live('mouseleave',function(){       
+      $(this).children(".black-bg").hide();
+    });
+    
+  //sku图片幕布出现
+    $(".sku-draggable-element").live('mouseenter',function(){  
+          $(this).children(".black-bg").show();
+    });
+    //sku图片幕布消失
+    $(".sku-draggable-element").live('mouseleave',function(){       
+      $(this).children(".black-bg").hide();
+    });
+    
+    //删除页面图片元素
+    $(".off-box").live('click',function(){ 
+        if($(".img-box .upload-thumb").length == 1){
+            var html = "";
+            html +='<div class="upload-thumb" id="default_uploadimg">';
+            html +='<img nstype="product_image" src="/public/admin/images/album/default_product_image_240.gif">';
+            html +='<input type="hidden" name="image_path" id="image_path" nstype="product_image" value="">';      
+            html +='</div>';
+            $(html).appendTo('.img-box');
+        }
+        $(this).parent().parent().remove();           
+    });
+
+});
 
 
 </script>
-<!-- end data -->
+
+
+
 
 
 </body>

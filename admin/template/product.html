@@ -12,6 +12,8 @@
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <link rel="stylesheet" href="js/amazeui/css/amazeui.min.css"/>
   <link rel="stylesheet" href="js/amazeui/css/admin.css">
+  <link rel="stylesheet" href="js/select2/select2.min.css">
+
 </head>
 
 
@@ -52,23 +54,36 @@
       <div class="am-g">
 
         <div class="am-u-sm-12">
-        <form action="product.php" method="get">
+        <form action="product.php" method="get" id="form_box">
 
             商品id
             <input type="text" class="am-form-field am-input-sm" name="product_id" id="product_id" style="display: inline;width: 200px">
+
+            一级分类
+            <select name="category_no_1" id="category_no_1" class="am-form-field am-input-sm" style="width: 200px;display: inline;" onchange="change2('category_no_2.ajax.php', 'category_no_1', 'category_no_2');">
+              <option value=""></option>
+            <!-- start category_no -->
+              <option value="{no}">{title}</option>
+            <!-- end category_no -->
+            </select>
+
+
+            二级分类
+            <select name="category_no_2" id="category_no_2" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
+
+              <option value=""></option>
+          
+
+
+            </select>
+
+
+            <br/>
 
             商品标题
             <input type="text" class="am-form-field am-input-sm" name="title" id="title" style="display: inline;width: 200px">
 
 
-            是否首页
-            <select name="is_index" id="is_index" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
-              <option value=""></option>
-              <option value="Y">是</option>
-              <option value="N">否</option>
-            </select>
-
-            <br/>
             排&nbsp;&nbsp;&nbsp;序
             <select name="order" id="order" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
               <option value="no-desc">ID降序</option>      
@@ -82,19 +97,11 @@
             是否上线
             <select name="is_online" id="is_online" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
               <option value=""></option>
-              <option value="Y">是</option>
-              <option value="N">否</option>
+              <option value="1">是</option>
+              <option value="0">否</option>
             </select>
 
-            分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类
-            <select name="category_no" id="category_no" class="am-form-field am-input-sm" style="width: 200px;display: inline;">
-              <option value=""></option>
-            <!-- start category_no -->
-              <option value="{no}">{title}</option>
-            <!-- end category_no -->
-            </select>
-
-
+    
 
             <br/>
 
@@ -103,9 +110,8 @@
             ~
             <input type="date" class="am-form-field am-input-sm" placeholder="" style="width: 200px;display: inline;" name="add_time_max" id="add_time_max">
             
-            <input type="submit" value="搜索" class="am-btn am-btn-default" style="display: inline;width: 100px"/>
 
-
+<button type="button" class="am-btn am-btn-default am-text-primary" onclick="$('#form_box').submit()"><span class="am-icon-search"></span> 搜索</button>
 
         </form>
         </div>
@@ -119,7 +125,7 @@
               <button type="button" class="am-btn am-btn-default"><a href="product_add.php"><span class="am-icon-plus"></span> 新增</a></button>
 
               <button type="button" class="am-btn am-btn-default">
-              <a href="javascript:void(0)" onclick="delete_more_make('product_delete_more.php')" class="am-text-danger"><span class="am-icon-trash-o"></span> 删除</a></button>
+              <a href="javascript:void(0)" onclick="delete_more_make('product_recycle_bin_more.php')" class="am-text-danger"><span class="am-icon-trash-o"></span> 删除</a></button>
 
               <button type="button" class="am-btn am-btn-default"><a href="javascript:;" onclick="modify_make('product_online.php', 'is_online', 'Y')"><span class="am-icon-plus"></span> 上线</a></button>
 
@@ -146,16 +152,10 @@
                 <th class="table-title">上/下线</th>
                 <th class="table-title">商品名称</th>
                 <th class="table-title">商品主图</th>
+                <th class="table-title">商品货号</th>
                 <th class="table-title">售价(元)</th>
-                <th class="table-title">市场价(元)</th>
                 <th class="table-title">真实销量</th>
-                <th class="table-title">库存</th>
                 <th class="table-title">点击数量</th>
-                <th class="table-title">商品重量(千克)</th>
-                <th class="table-title">是否免邮</th>
-                <th class="table-title">是否首页</th>
-                <th class="table-title">购买多少数量包邮</th>
-                <th class="table-date">预售开始时间<br/>预售结束时间</th>
                 <th class="table-date">添加时间<br/>修改时间</th>
                 <th class="table-set">操作</th>
               </tr>
@@ -166,28 +166,26 @@
                 <td><input type="checkbox" name="noList[]" value="{no}"/></td>
                 <td>{no}</td>
                 <td>
-                <a href="cagegory_modify.php?no={category_no}">{category_title}</a>
+                <a href="cagegory_modify.php?no={category_no}">{category_no_1_title}/{category_no_2_title}</a>
                 </td>
-                <td style="color: red;font-weight: bold;">{is_online_title}</td>
+                <td>
+                    <div class="inner">
+                      <label class="m-switch" title="上线/下线">
+                        <input type="checkbox" class="m-switch-input" value="Y" {online_checkbox} onclick="modify_one_make('product_online.php', {no})">
+                        <span class="m-switch-helper"></span>
+                      </label>
+                    </div>
+                </td>
                 <td>
                 {title}
                 </td>
                 <td>
                 <img src="{pic}" style="width: 50px;height: 50px" />
                 </td>
-                <td><span class="special">{shop_price}</span></td>
-                <td><span class="special">{market_price}</span></td>
+                <td>{product_sn}</td>
+                <td><span class="special">{sale_price}</span></td>
                 <td><span class="special">{real_sales}</span></td>
-                <td><span class="special">{repertory_num}</span></td>
-                <td>{click_num}</td>
-                <td>{goods_weight}</td>
-                <td>{is_shipping_title}</td>
-                <td>{is_index_title}</td>
-                <td>{buy_num_shipping}</td>
-                <td>
-                <span style="color: #4c036e;font-weight: bold;">{sales_start_date}</span><br/>
-                <span style="color: #B165d4;font-weight: bold;">{sales_end_date}</span>
-                </td>
+                <td>{total_click_num}</td>
                 <td>
                 <span style="color: #4c036e;font-weight: bold;">{add_time}</span><br/>
                 <span style="color: #B165d4;font-weight: bold;">{update_time}</span>
@@ -197,25 +195,10 @@
                     <div class="am-btn-group am-btn-group-xs">
 
                       <button class="am-btn am-btn-default am-btn-xs am-text-secondary">
-                      <a href="{product_url}" target="_blank"><span class="am-icon-file"></span> 
-                      查看</a></button>
-
-
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary">
                       <a href="product_modify.php?no={no}"><span class="am-icon-pencil-square-o"></span> 
                       编辑</a></button>
 
-                      <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><a href="javascript:;" onclick="delete_one_make('product_delete.php', {no})" class="am-text-danger"><span class="am-icon-trash-o"></span>&nbsp;&nbsp;删除</a></button>
-
-
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary">
-                      <a href="product_img.php?product_no={no}"><span class="am-icon-photo"></span> 
-                      图片</a></button>
-
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary">
-                      <a href="product_attr.php?product_no={no}"><span class="am-icon-photo"></span> 
-                      规格</a></button>
-
+                      <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><a href="javascript:;" onclick="delete_one_make('product_recycle_bin.php', {no})" class="am-text-danger"><span class="am-icon-trash-o"></span>&nbsp;&nbsp;删除</a></button>
 
                     </div>
                   </div>
@@ -234,8 +217,8 @@
 <input type="hidden" name="add_time_max" value="{add_time_max}">
 <input type="hidden" name="is_online" value="{is_online}">
 <input type="hidden" name="title" value="{title}">
-<input type="hidden" name="category_no" value="{category_no}">
-<input type="hidden" name="is_index" value="{is_index}">
+<input type="hidden" name="category_no_1" value="{category_no_1}">
+<input type="hidden" name="category_no_2" value="{category_no_2}">
 
 <!-- end search -->
 
@@ -292,17 +275,34 @@
 <script src="js/amazeui/js/app.js"></script>
 <script src="js/common.js"></script>
 
+<script type="text/javascript" src="js/select2/select2.min.js"></script>
 
 <!-- start search -->
 <script language="javascript">
+
+$(document).ready(function()
+{
+       $('#category_no_1').select2();
+
+var category_no_1 = $("#category_no_1").select2();
+category_no_1.val("{category_no_1}").trigger("change");
+category_no_1.change();
+
+       change2('category_no_2.ajax.php', 'category_no_1', 'category_no_2');
+
 $("#product_id").val("{product_id}");
 $("#add_time_min").val("{add_time_min}");
 $("#add_time_max").val("{add_time_max}");
 $("#order").val("{order}");
 $("#is_online").val("{is_online}");
 $("#title").val("{title}");
-$("#category_no").val("{category_no}");
-$("#is_index").val("{is_index}");
+
+$("#category_no_2").val('{category_no_2}');
+
+});
+
+
+
 
 </script>
 <!-- end search -->

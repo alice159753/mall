@@ -1,0 +1,153 @@
+.upload-thumb.draggable-element 
+{
+    height: 147px !important;
+    line-height: 147px !important;
+    text-align: center;
+}
+
+.upload-thumb 
+{
+    display: block !important;
+    float: left;
+    width: 147px !important;
+    height: 147px !important;
+    position: relative;
+}
+.upload-thumb.draggable-element img {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: auto !important;
+    width: auto !important;
+}
+.upload-thumb img {
+    width: 100%;
+    height: 100%;
+}
+
+input, textarea {
+    font-size: 12px;
+    font-family: Helvetica, STHeiti, "Microsoft YaHei", Verdana, Arial,
+ Tahoma, sans-serif;
+}
+
+.black-bg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.3);
+}
+.off-box, .sku-off-box {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    right: 0;
+    top: 0;
+    line-height: 18px;
+    background-color: #FFF;
+    cursor: pointer;
+    text-align: center;
+}
+.img-error {
+    color: red;
+    line-height: 25px;
+    display: none;
+}
+.hint {
+    font-size: 12px;
+    line-height: 16px;
+    color: #BBB;
+    margin-top: 10px;
+}
+.ncsc-goods-default-pic .goodspic-uplaod .handle {
+    height: 30px;
+    margin: 10px 0;
+}
+.ncsc-upload-btn {
+    display: inline-block;
+    margin: 0 5px 0;
+    vertical-align: middle;
+}
+.ncsc-upload-btn, .upload-btn {
+    vertical-align: top;
+    width: 80px;
+    height: 30px;
+    margin: 10px 5px 0 0;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+a:link, a:active {
+    text-decoration: none;
+    outline: none;
+}
+.ncsc-btn {
+    font: normal 12px/20px "microsoft yahei";
+    text-decoration: none;
+    color: #777;
+    background-color: #F5F5F5;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    height: 20px;
+    padding: 4px 10px;
+    border: solid 1px;
+    border-color: #DCDCDC #DCDCDC #B3B3B3 #DCDCDC;
+    cursor: pointer;
+}
+
+.goods_picture_box
+{
+    background-color:#FFF;
+    border: 1px solid #E9E9E9;
+    font-size: 12px;
+    line-height: 30px;
+    vertical-align: top;
+    letter-spacing: normal;
+    word-spacing: normal;
+    display: inline-block;
+    width: 100%;
+    padding: 8px 0 8px 1%;
+    border-left: solid 1px #e5e5e5;
+    min-height: 30px;
+}
+
+.ncsc-upload-btn .input-file, .upload-btn .input-file {
+    width: 80px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    border: none 0;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    cursor: pointer;
+}
+.ncsc-upload-btn span, .upload-btn span {
+    width: 80px;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    top: 20px;
+    z-index: 2;
+    cursor: pointer;
+}
+.ncsc-upload-btn p, .upload-btn p {
+    font-size: 12px;
+    line-height: 20px;
+    background-color: #F5F5F5;
+    text-align: center;
+    color: #666;
+    width: 78px;
+    height: 30px;
+    padding: 4px 0;
+    border: solid 1px;
+    border-color: #DCDCDC #DCDCDC #B3B3B3 #DCDCDC;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 1;
+}

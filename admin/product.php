@@ -14,10 +14,11 @@
     $product_id = !empty($_REQUEST["product_id"]) ? $_REQUEST["product_id"] : "";
     $add_time_min = !empty($_REQUEST["add_time_min"]) ? $_REQUEST["add_time_min"] : "";
     $add_time_max = !empty($_REQUEST["add_time_max"]) ? $_REQUEST["add_time_max"] : "";
-    $is_online = !empty($_REQUEST["is_online"]) ? $_REQUEST["is_online"] : "";
+    $is_online = isset($_REQUEST["is_online"]) ? $_REQUEST["is_online"] : "";
     $title = !empty($_REQUEST["title"]) ? $_REQUEST["title"] : "";
-    $category_no = !empty($_REQUEST["category_no"]) ? $_REQUEST["category_no"] : "";
-    $is_index = !empty($_REQUEST["is_index"]) ? $_REQUEST["is_index"] : "";
+    $category_no_1 = !empty($_REQUEST["category_no_1"]) ? $_REQUEST["category_no_1"] : "";
+    $category_no_2 = !empty($_REQUEST["category_no_2"]) ? $_REQUEST["category_no_2"] : "";
+
 
     $myMySQL = new MySQL();
     $myMySQL->connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -33,38 +34,41 @@
     // search
     $searchArray = array( "{order}" => $order );
 
-    $searchArray['{product_id}']   = $product_id;
-    $searchArray['{add_time_min}'] = $add_time_min;
-    $searchArray['{add_time_max}'] = $add_time_max;
-    $searchArray['{is_online}']    = $is_online;
-    $searchArray['{title}']        = $title;
-    $searchArray['{category_no}']  = $category_no;
-    $searchArray['{is_index}']     = $is_index;
+    $searchArray['{product_id}']    = $product_id;
+    $searchArray['{add_time_min}']  = $add_time_min;
+    $searchArray['{add_time_max}']  = $add_time_max;
+    $searchArray['{is_online}']     = $is_online;
+    $searchArray['{title}']         = $title;
+    $searchArray['{category_no_1}'] = $category_no_1;
+    $searchArray['{category_no_2}'] = $category_no_2;
 
     $myTemplate->setReplace("search", $searchArray);
 
 
-    $rows = $myCategory->getRows("*", "1=1");
+    $rows = $myCategory->getRows("*", "parent_no = 0");
 
     for($i = 0; isset($rows[$i]); $i++)
     {
-        $dataArray = array();
-        $dataArray['{no}'] = $rows[$i]['no'];
-        $dataArray['{title}'] = $rows[$i]['title'];
+        $dataArray = $myCategory->getData($rows[$i]);
 
         $myTemplate->setReplace("category_no", $dataArray);
     }
 
-    $condition = " 1=1 ";
+    $condition = " is_delete = 0 ";
 
     if ( !empty($title) )
     {
         $condition .= " AND title like '%$title%' ";
     }
 
-    if ( !empty($is_index) )
+    if ( !empty($category_no_1) )
     {
-        $condition .= " AND is_index =  '$is_index' ";
+        $condition .= " AND category_no_1 =  '$category_no_1' ";
+    }
+
+    if ( !empty($category_no_2) )
+    {
+        $condition .= " AND category_no_2 =  $category_no_2 ";
     }
 
     if ( !empty($product_id) )
@@ -72,7 +76,7 @@
         $condition .= " AND product_id =  '$product_id' ";
     }
 
-    if ( !empty($is_online) )
+    if ( is_numeric($is_online) )
     {
         $condition .= " AND is_online =  '$is_online' ";
     }
@@ -87,11 +91,6 @@
         $condition .= " AND add_time <= '".$add_time_max."'";
     }
 
-
-    if ( !empty($category_no) )
-    {
-        $condition .= " AND category_no =  $category_no ";
-    }
 
     // page
     $page_size = 100;
