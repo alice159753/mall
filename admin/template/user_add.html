@@ -11,6 +11,7 @@
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <link rel="stylesheet" href="js/amazeui/css/amazeui.min.css"/>
   <link rel="stylesheet" href="js/amazeui/css/admin.css">
+  <link rel="stylesheet" href="js/select2/select2.min.css">
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -43,6 +44,24 @@
 
         <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
           <form class="am-form am-form-horizontal" action="user_add_make.php" method="post" enctype="multipart/form-data" id="form_box">
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+                客户标签
+              </label>
+              <div class="am-u-sm-9">
+
+                <select name="user_label_no" id="user_label_no">
+
+                <!-- start user_label -->
+                  <option value="{no}">{title}</option>
+                <!-- end user_label -->
+
+                </select>
+
+              </div>
+            </div>
+
 
             <div class="am-form-group">
               <label for="user-name" class="am-u-sm-3 am-form-label">昵称</label>
@@ -152,6 +171,9 @@
 <script src="js/amazeui/js/amazeui.min.js"></script>
 <script src="js/amazeui/js/app.js"></script>
 <script src="js/common.js"></script>
+<script type="text/javascript" src="js/select2/select2.min.js"></script>
+
+
 
 <script type="text/javascript">
   function form_submit()
@@ -161,6 +183,16 @@
       
       myAjax(url, param, 'POST');
   }
+
+
+    //获取二级分类
+  $(document).ready(function(){
+
+     $('#user_label_no').select2();
+
+  });
+
+
 
 </script>
 

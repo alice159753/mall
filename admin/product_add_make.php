@@ -37,10 +37,12 @@
     if( $product_weight_ceil == 'kg' )
     {
         $dataArray['product_weight_kg'] = $product_weight;
+        $dataArray['product_weight_g'] = 0;
     }
 
     if( $product_weight_ceil == 'g' )
     {
+        $dataArray['product_weight_kg'] = 0;
         $dataArray['product_weight_g'] = $product_weight;
     }
 

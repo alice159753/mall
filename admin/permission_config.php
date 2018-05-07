@@ -42,6 +42,15 @@ $permission_config['menu_product']['data'][] = array('title' => '商品规格删
 $permission_config['menu_product']['data'][] = array('title' => '商品回收站',         'php'=> 'product_recycle_bin_lists.php',             'display' => 'block');
 
 
+
+$permission_config['menu_product']['data'][] = array('title' => '商品属性',         'php'=> 'product_attr.php',             'display' => 'none');
+$permission_config['menu_product']['data'][] = array('title' => '商品属性新增',     'php'=> 'product_attr_add.php',         'display' => 'none');
+$permission_config['menu_product']['data'][] = array('title' => '商品属性修改',     'php'=> 'product_attr_modify.php',      'display' => 'none');
+$permission_config['menu_product']['data'][] = array('title' => '商品属性删除',     'php'=> 'product_attr_delete.php',      'display' => 'none');
+$permission_config['menu_product']['data'][] = array('title' => '商品属性删除更多', 'php'=> 'product_attr_delete_more.php', 'display' => 'none');
+
+
+
 $permission_config['menu_order']['title'] = '订单';
 
 $permission_config['menu_order']['data'][] = array('title' => '订单管理',         'php'=> 'order_info.php',             'display' => 'block');
@@ -65,6 +74,33 @@ $permission_config['menu_user']['data'][] = array('title' => '客户地址', 'ph
 $permission_config['menu_user']['data'][] = array('title' => '客户第三方信息',         'php'=> 'open_user.php',             'display' => 'block');
 $permission_config['menu_user']['data'][] = array('title' => '客户第三方信息删除',     'php'=> 'open_user_delete.php',      'display' => 'none');
 $permission_config['menu_user']['data'][] = array('title' => '客户管理删除更多', 'php'=> 'open_user_delete_more.php', 'display' => 'none');
+
+
+$permission_config['menu_user']['data'][] = array('title' => '标签管理',         'php'=> 'user_label.php',             'display' => 'block');
+$permission_config['menu_user']['data'][] = array('title' => '标签管理新增',     'php'=> 'user_label_add.php',         'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '标签管理修改',     'php'=> 'user_label_modify.php',      'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '标签管理删除',     'php'=> 'user_label_delete.php',      'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '标签管理删除更多', 'php'=> 'user_label_delete_more.php', 'display' => 'none');
+
+
+
+
+$permission_config['menu_marketing']['title'] = '营销';
+
+
+$permission_config['menu_marketing']['data'][] = array('title' => '会员卡',         'php'=> 'user_cards.php',             'display' => 'block');
+$permission_config['menu_marketing']['data'][] = array('title' => '会员卡新增',     'php'=> 'user_cards_add.php',         'display' => 'none');
+$permission_config['menu_marketing']['data'][] = array('title' => '会员卡修改',     'php'=> 'user_cards_modify.php',      'display' => 'none');
+$permission_config['menu_marketing']['data'][] = array('title' => '会员卡删除',     'php'=> 'user_cards_delete.php',      'display' => 'none');
+$permission_config['menu_marketing']['data'][] = array('title' => '会员卡删除更多', 'php'=> 'user_cards_delete_more.php', 'display' => 'none');
+
+
+$permission_config['menu_marketing']['data'][] = array('title' => '优惠券',         'php'=> 'discount_coupon.php',             'display' => 'block');
+$permission_config['menu_marketing']['data'][] = array('title' => '优惠券新增',     'php'=> 'discount_coupon_add.php',         'display' => 'none');
+$permission_config['menu_marketing']['data'][] = array('title' => '优惠券修改',     'php'=> 'discount_coupon_modify.php',      'display' => 'none');
+$permission_config['menu_marketing']['data'][] = array('title' => '优惠券删除',     'php'=> 'discount_coupon_delete.php',      'display' => 'none');
+$permission_config['menu_marketing']['data'][] = array('title' => '优惠券删除更多', 'php'=> 'discount_coupon_delete_more.php', 'display' => 'none');
+
 
 
 

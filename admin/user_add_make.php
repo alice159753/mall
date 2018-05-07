@@ -9,15 +9,9 @@
     include_once(INCLUDE_DIR. "/Password.php");
     ob_clean();
 
-    $nickname = !empty($_REQUEST["nickname"]) ? trim($_REQUEST["nickname"]) : "" ;
-    $phone = !empty($_REQUEST["phone"]) ? trim($_REQUEST["phone"]) : "" ;
-    $sex = !empty($_REQUEST["sex"]) ? trim($_REQUEST["sex"]) : 0 ;
-    $reg_ip = !empty($_REQUEST["reg_ip"]) ? trim($_REQUEST["reg_ip"]) : "" ;
-    $password = !empty($_REQUEST["password"]) ? trim($_REQUEST["password"]) : "" ;
-    $grade = !empty($_REQUEST["grade"]) ? trim($_REQUEST["grade"]) : "" ;
-    $signature = !empty($_REQUEST["signature"]) ? trim($_REQUEST["signature"]) : "" ;
     $fileList = !empty($_REQUEST["fileList"]) ? trim($_REQUEST["fileList"]) : "" ;
-    $email = !empty($_REQUEST["email"]) ? trim($_REQUEST["email"]) : "" ;
+    $password = !empty($_REQUEST["password"]) ? trim($_REQUEST["password"]) : "" ;
+    $phone = !empty($_REQUEST["phone"]) ? trim($_REQUEST["phone"]) : "" ;
 
 
     $myMySQL = new MySQL();
@@ -25,24 +19,21 @@
 
     $myUser = new User($myMySQL);
 
-    $condition = "phone = '". $phone ."'";
-
-    if( $myUser->getCount($condition) >= 1 )
+    if( !empty($phone) )
     {
-        JavaScript::alertAndRedirect("电话不能重复！", "user_add.php?r=".time());
-        exit;
+        $condition = "phone = '". $phone ."'";
+
+        if( $myUser->getCount($condition) >= 1 )
+        {
+            Output::error('电话不能重复！', array(), 1);
+        }
     }
 
-    $dataArray               = array();
-    $dataArray['nickname']   = $nickname;
-    $dataArray['phone']      = $phone;
-    $dataArray['sex']        = $sex;
-    $dataArray['reg_ip']     = $reg_ip;
-    $dataArray['grade']      = $grade;
+    unset($_REQUEST['fileList']);
+
+    $dataArray = $_REQUEST;
     $dataArray['add_time']   = 'now()';
-    $dataArray['signature']  = $signature;
     $dataArray['headimgurl'] = $fileList;
-    $dataArray['email']      = $email;
 
     $salt = Password::getSlat(32);
     $dataArray["password_salt"] = $salt;

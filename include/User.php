@@ -241,7 +241,6 @@ class User extends Table
             $dataArray['{user_name}']       = $row['nickname'];
             $dataArray['{sex}']             = $row['sex'];
             $dataArray['{sex_title}']       = $sexMap[ $row['sex'] ];
-            $dataArray['{grade}']           = $row['grade'];
             $dataArray['{rank}']            = $row['rank'] < 1 ? 1 : $row['rank'];
             $dataArray['{headimgurl}']      = empty($row['headimgurl']) ? '/images/default_user.png' : $row['headimgurl'];
             $dataArray['{signature}']       = empty($row['signature']) ? '这个家伙很懒，什么都没留下' : $row['signature'];
@@ -253,6 +252,7 @@ class User extends Table
             $dataArray['{update_time}']     = $row['update_time'];
             $dataArray['{email}']           = $row['email'];
             $dataArray['{channel_id}']      = $row['channel_id'];
+            $dataArray['{user_label_no}']   = $row['user_label_no'];
 
             return $dataArray;
         }

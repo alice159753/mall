@@ -5,6 +5,7 @@
     ob_start();
     include_once(INCLUDE_DIR. "/JavaScript.php");
     include_once(INCLUDE_DIR. "/User.php");
+    include_once(INCLUDE_DIR. "/UserLabel.php");
     ob_clean();
 
     $order = !empty($_REQUEST["order"]) ? $_REQUEST["order"] : "no desc";
@@ -15,12 +16,14 @@
     $add_time_min = !empty($_REQUEST["add_time_min"]) ? $_REQUEST["add_time_min"] : "";
     $add_time_max = !empty($_REQUEST["add_time_max"]) ? $_REQUEST["add_time_max"] : "";
     $channel_id = !empty($_REQUEST["channel_id"]) ? $_REQUEST["channel_id"] : "";
+    $user_label_no = !empty($_REQUEST["user_label_no"]) ? $_REQUEST["user_label_no"] : "0";
 
 
     $myMySQL = new MySQL();
     $myMySQL->connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
     $myUser = new User($myMySQL);
+    $myUserLabel = new UserLabel($myMySQL);
 
     $myTemplate = new Template(TEMPLATE_DIR ."/user.html");
 
@@ -35,6 +38,7 @@
     $searchArray['{add_time_max}'] = $add_time_max;
     $searchArray['{add_time_min}'] = $add_time_min;
     $searchArray['{channel_id}'] = $channel_id;
+    $searchArray['{user_label_no}'] = $user_label_no;
 
     $myTemplate->setReplace("search", $searchArray);
 
@@ -58,6 +62,11 @@
     if( !empty($channel_id) )
     {
         $condition .= " AND channel_id = '$channel_id'";
+    }
+
+    if( !empty($user_label_no) )
+    {
+        $condition .= " AND user_label_no = $user_label_no";
     }
 
     if( !empty($add_time_min) )
@@ -84,9 +93,22 @@
 
     $random = time();
 
+    $userLabelMap = $myUserLabel->getMapping("no","*", "1=1");
+
+    $userLabelRows = $myUserLabel->getRows("*", "1=1");
+
+    for($i = 0; isset($userLabelRows[$i]); $i++)
+    {
+        $dataArray = $myUserLabel->getData($userLabelRows[$i]);
+        
+        $myTemplate->setReplace("user_label", $dataArray);
+    }
+
     for($i = 0; isset($rows[$i]); $i++)
     {   
         $dataArray = $myUser->getData($rows[$i]);
+
+        $dataArray['{user_label_title}'] = $userLabelMap[ $rows[$i]['user_label_no'] ]['title'];
 
         unset($_REQUEST['no']);
         $dataArray["{get}"] = isset($_REQUEST) ? http_build_query($_REQUEST) : "";
