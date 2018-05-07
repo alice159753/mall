@@ -84,6 +84,22 @@ $permission_config['menu_user']['data'][] = array('title' => '标签管理删除
 
 
 
+$permission_config['menu_user']['data'][] = array('title' => '设置优惠券',         'php'=> 'discount_coupon_record.php',             'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '设置优惠券新增',     'php'=> 'discount_coupon_record_add.php',         'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '设置优惠券修改',     'php'=> 'discount_coupon_record_modify.php',      'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '设置优惠券删除',     'php'=> 'discount_coupon_record_delete.php',      'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '设置优惠券删除更多', 'php'=> 'discount_coupon_record_delete_more.php', 'display' => 'none');
+
+
+
+$permission_config['menu_user']['data'][] = array('title' => '设置会员卡',         'php'=> 'user_cards_record.php',             'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '设置会员卡新增',     'php'=> 'user_cards_record_add.php',         'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '设置会员卡修改',     'php'=> 'user_cards_record_modify.php',      'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '设置会员卡删除',     'php'=> 'user_cards_record_delete.php',      'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '设置会员卡删除更多', 'php'=> 'user_cards_record_delete_more.php', 'display' => 'none');
+
+
+
 
 $permission_config['menu_marketing']['title'] = '营销';
 

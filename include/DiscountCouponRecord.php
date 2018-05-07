@@ -6,50 +6,47 @@
     include_once(INCLUDE_DIR. "/Role.php");
     ob_clean();
 
-	class UserCardsRecord extends Table
+	class DiscountCouponRecord extends Table
 	{
-	    function UserCardsRecord($myMySQL, $table = "user_cards_record")
+	    function DiscountCouponRecord($myMySQL, $table = "discount_coupon_record")
 	    {
 	        $this->myMySQL = $myMySQL;
 	        $this->table = DB_PRE.$table;
 	    }
 
-        function getIsDefault()
+        function getIsUse()
         {
             return array('1' => '是', '0' => '否');
         }
 
         function getData($row)
         {
-            $isDefaultMap = $this->getIsDefault();
+            $isUseMap = $this->getIsUse();
 
             $dataArray = array();
             $dataArray['{no}']               = $row['no'];
             $dataArray['{user_no}']          = $row['user_no'];
             $dataArray['{user_cards_no}']    = $row['user_cards_no'];
-            $dataArray['{cards_sn}']         = $row['cards_sn'];
-            $dataArray['{is_default}']       = $row['is_default'];
             $dataArray['{add_time}']         = $row['add_time'];
             $dataArray['{update_time}']      = $row['update_time'];
-            $dataArray['{is_default_title}'] = $isDefaultMap[ $row['is_default'] ];
-
     
+            $dataArray['{is_use_title}'] = $isUseMap[ $row['is_use'] ];
+
             return $dataArray;
         }
 
         function getDataClean($row)
         {
-            $isDefaultMap = $this->getIsDefault();
+            $isUseMap = $this->getIsUse();
 
             $dataArray = array();
             $dataArray['no']               = $row['no'];
             $dataArray['user_no']          = $row['user_no'];
-            $dataArray['user_cards_no']    = $row['user_cards_no'];
-            $dataArray['cards_sn']         = $row['cards_sn'];
-            $dataArray['is_default']       = $row['is_default'];
+            $dataArray['discount_coupon_no']    = $row['discount_coupon_no'];
             $dataArray['add_time']         = $row['add_time'];
             $dataArray['update_time']      = $row['update_time'];
-            $dataArray['is_default_title'] = $isDefaultMap[ $row['is_default'] ];
+
+            $dataArray['{is_use_title}'] = $isUseMap[ $row['is_use'] ];
 
             return $dataArray;
         }
