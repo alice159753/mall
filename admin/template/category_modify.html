@@ -47,6 +47,30 @@
 
           <input type="hidden" value="{no}" name="no"/>   
 
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">排序</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="am-input-sm" name="sort" value="{sort}">
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">一级分类</label>
+              <div class="am-u-sm-9">
+
+                <select name="parent_no">
+
+                  <option value="0">一级分类</option>
+
+<!-- start parent_no_lists -->
+                  <option value="{no}">{title}</option>
+<!-- end parent_no_lists -->
+
+                </select>
+
+              </div>
+            </div>
+
 
 
             <div class="am-form-group">
@@ -56,7 +80,7 @@
               </div>
             </div>
 
-<!--            <div class="am-form-group">
+           <div class="am-form-group">
               <label for="admin-name" class="am-u-sm-3 am-form-label">是否展示</label>
               <div class="am-u-sm-9">
 
@@ -67,7 +91,7 @@
 
               </div>
             </div>
- -->
+
             <div class="am-form-group">
               <label for="user-phone" class="am-u-sm-3 am-form-label">图片</label>
               <div class="am-u-sm-9" id="pic_box">

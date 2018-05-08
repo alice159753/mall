@@ -1,0 +1,15 @@
+<!--提示成功-->
+<template name='tip1'>
+  <view class="tip cover">
+    <view class="cover_cont">
+    
+  <view class="cover_cont0">温馨提示</view>
+  <view class="cover_cont1">{{con}}</view>
+  <view class="cover_cont2">查看教程</view>
+  <view class="cover_cont3" bindtap='closetip'>我知道了</view>
+    
+    </view>
+
+  </view>
+  
+</template>

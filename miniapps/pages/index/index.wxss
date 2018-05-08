@@ -1,0 +1,113 @@
+/** 搜索框开始 **/
+.page {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position:fixed;
+  top:0rpx;
+  left:0px;
+  z-index:999;
+}
+.page .search {
+  width: 100%;
+  background-color: #f4a719;
+  height: 100rpx;
+  position: relative;
+}
+.page .search .inp {
+  width: 450rpx;
+  height: 70rpx;
+  font-size: 28rpx;
+  color: #aaaaaa;
+  background-color: #fff;
+  border-bottom-left-radius:30rpx;
+  border-top-left-radius:30rpx;
+  position: absolute;
+  top: 50%;
+  margin-top: -35rpx;
+  left: 36rpx;
+  padding-left: 30rpx;
+}
+.page .search .close {
+  width: 150rpx;
+  height: 70rpx;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  margin-top: -35rpx;
+  left: 486rpx;
+  z-index: 9999;
+  border-bottom-right-radius:30rpx;
+  border-top-right-radius:30rpx;
+}
+.page .search .close .close_pic {
+  width: 26rpx;
+  height: 26rpx;
+  position: absolute;
+  top: 50%;
+  margin-top: -13rpx;
+  right: 30rpx;
+}
+.page .btn {
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.page .btn .search_icon {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 30rpx;
+  right: 40rpx;
+}
+/** 搜索框结束 **/
+
+
+/** 轮播图开始 **/
+.swiper {
+  height: 400rpx;
+  width: 100%;
+  margin-top:100rpx;
+}
+.swiper image {
+  height: 100%;
+  width: 100%;
+}
+/** 轮播图结束 **/
+
+/** start category1 **/
+.scroll_view_h_category
+{
+  white-space: nowrap; 
+  display: flex;
+  padding-top:10rpx;
+  padding-bottom:10rpx;
+}
+
+.scroll_view_h_category .category_box
+{
+   display: inline-block;
+   width: 150rpx;
+}
+.scroll_view_h_category image
+{
+  width: 80rpx; 
+  height: 80rpx;
+}
+.scroll_view_h_category image:first-child
+{
+  padding-left:34rpx;
+}
+.scroll_view_h_category text
+{
+    display: block;
+    width: 80rpx;
+    text-align: center;
+    font-size:30rpx;
+    padding-left:18px;
+}
+/** end category1 **/

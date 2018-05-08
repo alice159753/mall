@@ -1,0 +1,50 @@
+<import src="../templates/load.wxml"/>
+
+<view class="page">
+    <!--输入框 -->
+    <view class="search">
+        <input maxlength="15"  confirm-type="search" value="{{val}}" class="inp" type="text" placeholder="请输入宝贝名称"/>
+
+        <!--关闭按钮-->
+        <view class="close">
+            <image class="close_pic" src="../../images/search_close.png"></image>
+        </view>
+    </view>
+
+  <!--搜索框-->
+    <view class="btn">
+        <image class="search_icon" src="../../images/search.png"></image>
+    </view>
+
+</view>
+
+
+<view class="bgf">
+
+<!--首页轮播图-->
+<swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">    
+      <block wx:for="{{swiperlists}}" wx:for-index="index" wx:key="key">    
+        <swiper-item>    
+          <image src="{{item.pic}}" class="slide-image" mode="aspectFill" lazy-load="true"/>    
+        </swiper-item>    
+      </block>    
+</swiper>  
+
+<!--一级分类轮播图-->
+<scroll-view class="scroll_view_h_category bgf" scroll-x="true">
+
+  <view wx:for="{{category1list}}" wx:key="key" class="category_box">
+  <navigator url="../product/productlists?category_no={{item.no}}&title={{item.title}}">
+     <image class="" mode="scaleToFill" lazy-load="true" src="{{item.pic}}"></image>
+     <text>{{item.title}}</text>
+</navigator>
+  </view>
+
+</scroll-view>
+
+
+
+
+
+
+</view>

@@ -1,0 +1,6 @@
+<template name='load'>
+    <view class="loading">
+        <text class="loadingFont">拼命加载中</text>
+        <image class="loadingPic" src="../../images/loading.gif"></image>
+    </view>
+</template>

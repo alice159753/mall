@@ -1,0 +1,189 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+  font-family: "Microsoft YaHei", 'Source Code Pro', Menlo, Consolas, Monaco, monospace;
+} 
+.bgf2
+{
+  background-color: #f2f2f2;
+}
+.bgf
+{
+  background-color: #ffffff;
+}
+.mt0
+{
+  margin-top: 0!important;
+}
+
+.ml20
+{
+  margin-left: 20rpx!important;
+}
+
+/*下拉刷新样式开始*/
+.loading{
+  width: 150rpx;
+  height: 80rpx;
+  line-height:80rpx;
+  margin:0 auto;
+  position: relative;
+}
+.loadingFont{
+  font-size:22rpx;
+  color: #bbbbbb;
+
+}
+.loadingPic{
+  width:30rpx;
+  height:30rpx;
+  vertical-align: middle;
+  margin-left:10rpx;
+}
+/*下拉刷新样式结束*/
+
+.textc
+{
+  text-align: center;
+  font-family: "Microsoft YaHei", 'Source Code Pro', Menlo, Consolas, Monaco, monospace;
+
+}
+
+/*提示begin  */
+.tip.cover {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+.tip.cover .cover_cont {
+  width: 650rpx;
+  height: 325rpx;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  margin-left: -175rpx;
+  background-color: #fff;
+  color: #333333;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  text-align: center;
+  border-radius: 8px 8px;
+  box-shadow: 1px 1px 10px #d9d9d9;
+}
+.tip .cover_cont .cover_cont0
+{
+    font-size:40rpx;
+}
+.tip .cover_cont .cover_cont1
+{
+  padding:0px 20rpx;
+  color:#7F7F72;
+  padding-bottom:20rpx;
+}
+.tip .cover_cont .cover_cont2
+{
+  width: 49%;
+  display:inline-block;
+  border-right:1px solid #ccc;
+  border-top:1px solid #ccc;
+}
+.tip .cover_cont .cover_cont3
+{
+  width: 49%;
+  display:inline-block;
+  border-top:1px solid #ccc;
+  color:#36a036;
+}
+/*提示end  */
+
+.noBtnDef{
+  position:inherit;
+  display:inherit;
+  margin-left:inherit;
+  margin-right:inherit;
+  padding-left:inherit;
+  padding-right:inherit;
+  box-sizing:inherit;
+  font-size:inherit;
+  text-align:inherit;
+  text-decoration:inherit;
+  line-height:inherit;
+  border-radius:inherit;
+  -webkit-tap-highlight-color:transparent;
+  overflow:hidden;
+  color:inherit;
+  background-color:transparent;
+}
+
+
+/**app.wxss**/
+.nodis {
+  display: none!important;
+}
+.dis {
+  display: block!important;
+}
+.vm {
+  vertical-align: middle;
+}
+.vb {
+  vertical-align: bottom;
+}
+.oh {
+  overflow: hidden!important;
+}
+.bnone {
+  border: none!important;
+  _border: 0;
+}
+.rel {
+  position: relative;
+}
+.abs {
+  position: absolute;
+}
+.text-overflow {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -moz-binding: url(ellipsis.xml#ellipsis)
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.fl {
+  float: left!important;
+}
+.fr {
+  float: right!important;
+}
+.tc {
+  text-align: center!important;
+}
+.tl {
+  text-align: left!important;
+}
+.tr {
+  text-align: right!important;
+}
+.lineBox{
+  height: 20rpx;
+  width: 100%;
+  background-color: #F5F5F5;
+}
+.mt0{margin-top: 0!important;}
+/**app.wxss**/

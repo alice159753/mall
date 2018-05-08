@@ -10,6 +10,7 @@
     // request
     $no    = isset($_REQUEST["no"]) ? $_REQUEST["no"] : 0;
     $fileList = !empty($_REQUEST["fileList"]) ? trim($_REQUEST["fileList"]) : "" ;
+    $parent_no = !empty($_REQUEST["parent_no"]) ? trim($_REQUEST["parent_no"]) : "0" ;
 
     if ( $no == 0 )
     {

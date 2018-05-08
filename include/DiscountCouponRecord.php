@@ -24,13 +24,12 @@
             $isUseMap = $this->getIsUse();
 
             $dataArray = array();
-            $dataArray['{no}']               = $row['no'];
-            $dataArray['{user_no}']          = $row['user_no'];
-            $dataArray['{user_cards_no}']    = $row['user_cards_no'];
-            $dataArray['{add_time}']         = $row['add_time'];
-            $dataArray['{update_time}']      = $row['update_time'];
-    
-            $dataArray['{is_use_title}'] = $isUseMap[ $row['is_use'] ];
+            $dataArray['{no}']                 = $row['no'];
+            $dataArray['{user_no}']            = $row['user_no'];
+            $dataArray['{discount_coupon_no}'] = $row['discount_coupon_no'];
+            $dataArray['{add_time}']           = $row['add_time'];
+            $dataArray['{update_time}']        = $row['update_time'];
+            $dataArray['{is_use_title}']       = $isUseMap[ $row['is_use'] ];
 
             return $dataArray;
         }
@@ -40,13 +39,12 @@
             $isUseMap = $this->getIsUse();
 
             $dataArray = array();
-            $dataArray['no']               = $row['no'];
-            $dataArray['user_no']          = $row['user_no'];
-            $dataArray['discount_coupon_no']    = $row['discount_coupon_no'];
-            $dataArray['add_time']         = $row['add_time'];
-            $dataArray['update_time']      = $row['update_time'];
-
-            $dataArray['{is_use_title}'] = $isUseMap[ $row['is_use'] ];
+            $dataArray['no']                 = $row['no'];
+            $dataArray['user_no']            = $row['user_no'];
+            $dataArray['discount_coupon_no'] = $row['discount_coupon_no'];
+            $dataArray['add_time']           = $row['add_time'];
+            $dataArray['update_time']        = $row['update_time'];
+            $dataArray['{is_use_title}']     = $isUseMap[ $row['is_use'] ];
 
             return $dataArray;
         }

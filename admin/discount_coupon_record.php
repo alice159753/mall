@@ -57,7 +57,7 @@
         $dataArray = $myDiscountCouponRecord->getData($rows[$i]);
         $dataArray['{nickname}'] = $myUser->getValue("nickname", "no = ".$rows[$i]['user_no']);
 
-        $dataArray['{title}'] = $myDiscountCoupon->getValue("title", "no = ".$rows[$i]['user_cards_no']);
+        $dataArray['{title}'] = $myDiscountCoupon->getValue("title", "no = ".$rows[$i]['discount_coupon_no']);
 
         $myTemplate->setReplace("list", $dataArray);
     }
