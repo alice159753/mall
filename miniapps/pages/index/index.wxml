@@ -19,7 +19,7 @@
 </view>
 
 
-<view class="bgf app">
+<view class="bgf6 app">
 
 <!--首页轮播图-->
 <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">    
@@ -41,6 +41,17 @@
   </view>
 
 </scroll-view>
+
+
+<!--ad 1-->
+<view class="ele-container ad1">
+<image src="http://img.weiye.me/zcimgdir/album/file_599e4446c30a2.png" mode='aspectFit'></image>
+</view>
+
+
+<!--ad 1--> 
+
+
 
 <!--推荐位1-->
 <view class="ele-container">

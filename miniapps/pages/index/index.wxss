@@ -112,6 +112,21 @@
 }
 /** end category1 **/
 
+/**广告开始**/
+.app .ad1
+{
+    padding: 14rpx 8rpx;
+    background-color: rgb(255, 255, 255);
+}
+.app .ad1 image
+{
+    width:737rpx;
+    height:271rpx;
+    border-radius: inherit;
+    display:inline-block;
+}
+
+/**广告结束**/
 
 /**推荐位1 开始**/
 .app .ele-container 
