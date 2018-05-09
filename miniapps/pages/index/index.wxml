@@ -19,7 +19,7 @@
 </view>
 
 
-<view class="bgf">
+<view class="bgf app">
 
 <!--首页轮播图-->
 <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">    
@@ -41,6 +41,36 @@
   </view>
 
 </scroll-view>
+
+<!--推荐位1-->
+<view class="ele-container">
+  <view class="element picture recommend1_pic">
+    <image mode="scaleToFill" src="http://img.weiye.me/zcimgdir/album/file_58fdc0813bc4c.png"></image>
+  </view>
+
+</view>
+
+<view class="ele-container">
+<text class="element text recommend1">精选专题
+</text>
+
+</view>
+
+<view class="ele-container">
+
+    <view >
+    
+    </view>
+
+
+
+</view>
+
+<!--推荐位1-->
+
+
+
+
 
 
 
