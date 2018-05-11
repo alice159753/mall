@@ -1,5 +1,7 @@
 <import src="../templates/load.wxml"/>
 
+<navigator url="../search/search">
+
 <view class="page">
     <!--输入框 -->
     <view class="search">
@@ -17,9 +19,10 @@
     </view>
 
 </view>
+</navigator>
 
 
-<view class="bgf6 app">
+<view class="bgf app">
 
 <!--首页轮播图-->
 <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">    
@@ -29,6 +32,8 @@
         </swiper-item>    
       </block>    
 </swiper>  
+
+<view class="bgf2 space"></view>
 
 <!--一级分类轮播图-->
 <scroll-view class="scroll_view_h_category bgf" scroll-x="true">
@@ -42,49 +47,110 @@
 
 </scroll-view>
 
+<view class="bgf2 space"></view>
 
 <!--ad 1-->
 <view class="ele-container ad1">
 <image src="http://img.weiye.me/zcimgdir/album/file_599e4446c30a2.png" mode='aspectFit'></image>
 </view>
-
-
 <!--ad 1--> 
 
-
+<view class="bgf2 space"></view>
 
 <!--推荐位1-->
-<view class="ele-container">
+<view class="ele-container bgf ht60 mt20">
   <view class="element picture recommend1_pic">
     <image mode="scaleToFill" src="http://img.weiye.me/zcimgdir/album/file_58fdc0813bc4c.png"></image>
   </view>
 
-</view>
-
-<view class="ele-container">
-<text class="element text recommend1">精选专题
-</text>
+   <text class="element text recommend1 fs36">精选专题</text>
 
 </view>
 
 <view class="ele-container">
 
-    <view >
+    <view class="product_lists fs32">
     
+      <view class="product_item product_item_left">
+
+        <navigator url="../product/product">
+
+        <view class="inner_content">
+            <image src="http://img.weiye.me/zcimgdir/album/file_590037fa63a14.png"></image>
+
+            <view>
+                <view class="product_title fs32">简约新款</view>
+                <view class="mt20">
+                    <view class="price">￥36.00</view>
+                    <view class="sales_num color1">销量：7</view>
+                    <image src="/images/buy_cars.png" class="buy_cars"></image>
+                </view>
+
+            </view>
+        </view>
+
+        </navigator>
+      
+      </view>
+
+      <view class="product_item product_item_right">
+      
+        <navigator url="../product/product">
+
+        <view class="inner_content">
+            <image src="http://img.weiye.me/zcimgdir/album/file_590037e35addd.png"></image>
+
+            <view>
+                <view class="product_title">简约新款</view>
+                <view class="mt20">
+                    <view class="price">￥36.00</view>
+                    <view class="sales_num color1">销量：7</view>
+                    <image src="/images/buy_cars.png" class="buy_cars"></image>
+                </view>
+
+            </view>
+
+        </view>
+
+        </navigator>
+      
+      
+      </view>
+
     </view>
-
-
 
 </view>
 
 <!--推荐位1-->
 
 
+<view class="bgf2 space"></view>
 
 
+<!--文章动态 开始-->
+
+<view class="ele-container bgf ht60 tc mt20">
+  <view class="element picture recommend1_pic">
+    <image mode="scaleToFill" src="/images/run.png"></image>
+  </view>
+   <text class="element text recommend1 fs36">动态</text>
+</view>
+
+<view class="ele-container bgf ad1">
+<image src="http://img.weiye.me/zcimgdir/album/file_599e4446c30a2.png" mode='aspectFit'></image>
+<view class="text element color1 fs32 mt10">今日热点 | 《择天记》开播鹿晗的盛世美颜不够看</view>
+</view>
+
+<view class="ele-container bgf ad1">
+<image src="http://img.weiye.me/zcimgdir/album/file_599e4446c30a2.png" mode='aspectFit'></image>
+<view class="text element color1 fs32 mt10">今日热点 | 《择天记》开播鹿晗的盛世美颜不够看</view>
+</view>
 
 
+<!--文章动态 结束-->
 
+
+<view class="bgf2 space"></view>
 
 
 

@@ -9,6 +9,16 @@
   box-sizing: border-box;
   font-family: "Microsoft YaHei", 'Source Code Pro', Menlo, Consolas, Monaco, monospace;
 } 
+.app
+{
+  width:100%;
+  overflow: hidden
+}
+.page
+{
+  width:100%;
+  overflow: hidden
+}
 .bgf2
 {
   background-color: #f2f2f2;
@@ -30,6 +40,15 @@
 .ml20
 {
   margin-left: 20rpx!important;
+}
+
+.mt10
+{
+  margin-top: 10rpx;
+}
+.mt20
+{
+  margin-top: 10rpx;
 }
 
 /*下拉刷新样式开始*/
@@ -192,3 +211,43 @@
 }
 .mt0{margin-top: 0!important;}
 /**app.wxss**/
+
+
+.color1
+{
+  color:#666666;
+}
+.color2
+{
+  color:#bbbbbb;
+}
+
+.space
+{
+  width: 100%;
+  height: 20rpx;
+}
+
+.ht50
+{
+  height:50rpx;
+}
+
+.ht60
+{
+  height:60rpx;
+}
+
+.fs30
+{
+  font-size: 30rpx;
+}
+.fs32
+{
+  font-size: 32rpx;
+}
+
+.fs36
+{
+  font-size: 36rpx;
+}

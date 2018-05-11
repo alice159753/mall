@@ -1,1 +1,38 @@
 /* pages/user/suggest.wxss */
+
+.error{
+    padding: 50rpx 36rpx;
+}
+textarea{
+    height: 364rpx;
+    width: 100%;
+    display: block;
+    border: 1px solid #bbb;
+    font-size: 30rpx;
+    line-height: 50rpx;
+    color: #b7b7b7;
+    padding: 20rpx;
+    box-sizing: border-box;
+}
+text{
+  font-size: 24rpx;
+  line-height: 64rpx;
+  color: #b7b7b7;
+  display: block;
+  text-align: right;
+}
+.sub_btn{
+    margin-top: 18rpx;
+    border-radius: 6rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 30rpx;
+    color: #fff;
+    background-color: #f4a719;
+}
+.title
+{
+  font-size:26rpx;
+  color:#b7b7b7;
+  margin-bottom: 22rpx;
+}

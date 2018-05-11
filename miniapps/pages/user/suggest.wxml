@@ -1,2 +1,14 @@
-<!--pages/user/suggest.wxml-->
-<text>pages/user/suggest.wxml</text>
+<view class="error">
+    <form bindsubmit="formSubmit">
+    <view class="section section_gap">
+        <view class="section__con">
+            <view class="title">留下您的联系方式，客服马上联系您，解决您遇到的问题</view>
+
+            <textarea maxlength="{{tempTotalNum}}" bindinput='changeInput' name="wrong_content" placeholder='输入您的反馈意见'></textarea>
+        </view>
+    </view>
+    <view class="btn-area">
+        <button class="sub_btn" formType="submit">提交</button>
+    </view>
+    </form>
+</view>
