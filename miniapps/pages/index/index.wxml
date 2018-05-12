@@ -49,30 +49,45 @@
 
 <view class="bgf2 space"></view>
 
-<!--ad 1-->
+<!--优惠券-->
+<scroll-view class="scroll_view_h_category bgf" scroll-x="true">
+
+  <view class="youhuiquan">
+    <view>
+        <view class="youhuiquan_fuhao">¥</view>
+        <view class="youhuiquan_price">50</view>
+    </view>
+    <view class="youhuiquan_title">无门槛优惠券</view>
+    <view class="youhuiquan_button">点击领取</view>
+  </view>
+
+</scroll-view>
+
+
+<!--优惠券-->
+
+
+<view class="bgf2 space"></view>
+
+<!--广告 1-->
 <view class="ele-container ad1">
 <image src="http://img.weiye.me/zcimgdir/album/file_599e4446c30a2.png" mode='aspectFit'></image>
 </view>
-<!--ad 1--> 
+<!--广告 1--> 
 
 <view class="bgf2 space"></view>
 
 <!--推荐位1-->
-<view class="ele-container bgf ht60 mt20">
+<view class="ele-container bgf ht60 tc mt20">
   <view class="element picture recommend1_pic">
     <image mode="scaleToFill" src="http://img.weiye.me/zcimgdir/album/file_58fdc0813bc4c.png"></image>
   </view>
-
    <text class="element text recommend1 fs36">精选专题</text>
-
 </view>
 
-<view class="ele-container">
-
+<view class="ele-container bgf">
     <view class="product_lists fs32">
-    
       <view class="product_item product_item_left">
-
         <navigator url="../product/product">
 
         <view class="inner_content">
@@ -124,7 +139,6 @@
 <!--推荐位1-->
 
 
-<view class="bgf2 space"></view>
 
 
 <!--文章动态 开始-->

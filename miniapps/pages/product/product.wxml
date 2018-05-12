@@ -69,7 +69,7 @@
 </view>
 
 
-<view class="ele-container">
+<view class="ele-container bgf mt20 mb800">
 
     <view class="product_lists fs32">
     
@@ -124,10 +124,23 @@
 </view>
 
 
+<!--购买按钮-->
+<view class="product_buy">
 
+  <view class="product_customer">
+    <image src="/images/customer.png"></image>
+    <text>客服</text>
+  </view>
 
+  <view class="product_user_cars fl">
+    <image src="/images/buy_cars.png"></image>
+    <text>购物车</text>
+  </view>
 
+  <view class="product_add_user_cars fl big-btn">加入购物车</view>
+  <view class="product_buy_now fl big-btn">立即购买</view>
 
+</view>
 
 
 

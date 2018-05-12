@@ -7,7 +7,7 @@
 }
 .page .search {
   width: 100%;
-  background-color: #f8a6cc;
+  background-color: #f4a719;
   height: 100rpx;
   position: relative;
 }
@@ -475,7 +475,7 @@
 {
     font-size: 34rpx;
     font: left;
-    color:#f8a6cc;
+    color:#f4a719;
     margin-top:10rpx;
     margin-left:20rpx;
 }
@@ -495,7 +495,7 @@
     line-height: 70rpx;
     font-size: 30rpx;
     color: #fff;
-    background-color: #f8a6cc;
+    background-color: #f4a719;
     width: 200rpx;
     border:0rpx;
 }

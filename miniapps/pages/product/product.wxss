@@ -89,6 +89,7 @@
   display: flex;
   flex-direction:row;
   padding-left: 20rpx;
+  padding-bottom:20rpx;
 }
 .postage_price
 {
@@ -137,7 +138,6 @@
   width: 100%;
   min-height: 80rpx;
   position: relative;
-  border:1rpx solid #f2f2f2;
 }
 
 .shop .blue {
@@ -233,7 +233,6 @@
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     width: 100%;
-    padding: 0 10px;
     word-break: break-all;
     margin-top:10rpx;
 }
@@ -266,3 +265,111 @@
 }
 
 /**商品详情 结束**/
+
+
+/**购买按钮 开始**/
+.app .product_buy
+{
+  background-color: transparent;
+  border-top: 0;
+  bottom: -1px;
+  padding: 0;
+  display: block;
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+.app .product_customer
+{
+    float: left;
+    width: 20%;
+    padding: 0;
+    line-height: 50px;
+    background-color: #fff;
+    height: 50px;
+    font-size: 10px;
+    text-align: center;
+}
+.app .product_customer image
+{
+    position: relative;
+    font: normal normal normal 14px/1 vant-icon;
+    font-size: inherit;
+    text-rendering: auto;
+    width: 40rpx;
+    height: 40rpx;
+    display: block;
+    top:10rpx;
+    margin-left:35%;
+}
+.app .product_customer text
+{
+    position: relative;
+    line-height: normal;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    color: #666;
+    font-size: 10px;
+    text-align: center;
+}
+
+.app .product_user_cars
+{
+    float: left;
+    width: 20%;
+    padding: 0;
+    line-height: 50px;
+    background-color: #f7f5f5;
+    height: 50px;
+    font-size: 10px;
+    text-align: center;
+}
+.app .product_user_cars image
+{
+    position: relative;
+    font: normal normal normal 14px/1 vant-icon;
+    font-size: inherit;
+    text-rendering: auto;
+    width: 40rpx;
+    height: 40rpx;
+    display: block;
+    top:10rpx;
+    margin-left:35%;
+}
+.app .product_user_cars text
+{
+    position: relative;
+    line-height: normal;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    color: #666;
+    font-size: 10px;
+    text-align: center;
+}
+.app .product_add_user_cars
+{
+  width: 30%;
+  background-color: #f85;
+  color: #fff;
+}
+.app .big-btn {
+    line-height: 50px;
+    font-size:26rpx;
+    padding: 0;
+    border: none;
+    vertical-align: top;
+    height: 50px;
+    float: left;
+}
+.app .product_buy_now
+{    
+    width: 30%;
+    background-color: #f44;
+    color: #fff;
+}
+/**购买按钮 结束**/
