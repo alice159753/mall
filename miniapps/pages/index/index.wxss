@@ -124,6 +124,7 @@
     height:271rpx;
     border-radius: inherit;
     display:inline-block;
+    padding-top:10rpx;
 }
 
 /**广告结束**/
@@ -296,32 +297,51 @@
 /**商品详情 结束**/
 
 /**优惠券 开始**/
+.scroll_view_h_youhuiquan
+{
+  white-space: nowrap; 
+  display: flex;
+  padding-top:10rpx;
+  padding-bottom:10rpx;
+  height:300rpx;
+}
 .youhuiquan
 {
    width: 200rpx;
-   height: 200rpx;
-   border: 1px #f4a719 solid;
+   height: 260rpx;
+   border-right:1px dashed #B5A281;
+   padding: 20rpx;
+   margin-left:45rpx;
+   display: inline-block;
 }
 .youhuiquan_fuhao
 {
     display: inline-block;
     color:#929292;
+    margin-left:15rpx;
 }
 .youhuiquan_price
 {
-  font-size:84rpx;
+  font-size:76rpx;
   display: inline-block;
   color: #666666;
+  margin-left:20rpx;
 }
 .youhuiquan_title
 {
    color: #828282;
    font-size: 34rpx;
+   margin-top:16rpx;
+
 }
 .youhuiquan_button
 {
-   width: 1000rpx;
-   height: 30rpx;
-   background-color: #B5A281;
+  width:180rpx;
+  height:56rpx;
+  background-color:#B5A281;
+  text-align:center;
+  color:white;
+  margin-top:30rpx;
+  margin-left:14rpx;
 }
 /**优惠券 结束**/

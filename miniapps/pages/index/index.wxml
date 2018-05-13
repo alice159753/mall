@@ -50,7 +50,7 @@
 <view class="bgf2 space"></view>
 
 <!--优惠券-->
-<scroll-view class="scroll_view_h_category bgf" scroll-x="true">
+<scroll-view class="scroll_view_h_youhuiquan bgf" scroll-x="true">
 
   <view class="youhuiquan">
     <view>
@@ -59,7 +59,30 @@
     </view>
     <view class="youhuiquan_title">无门槛优惠券</view>
     <view class="youhuiquan_button">点击领取</view>
+
   </view>
+
+  <view class="youhuiquan">
+    <view>
+        <view class="youhuiquan_fuhao">¥</view>
+        <view class="youhuiquan_price">100</view>
+    </view>
+    <view class="youhuiquan_title">无门槛优惠券</view>
+    <view class="youhuiquan_button">点击领取</view>
+
+  </view>
+
+
+    <view class="youhuiquan">
+    <view>
+        <view class="youhuiquan_fuhao">¥</view>
+        <view class="youhuiquan_price">200</view>
+    </view>
+    <view class="youhuiquan_title">无门槛优惠券</view>
+    <view class="youhuiquan_button">点击领取</view>
+
+  </view>
+
 
 </scroll-view>
 

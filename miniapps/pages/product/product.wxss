@@ -373,3 +373,15 @@
     color: #fff;
 }
 /**购买按钮 结束**/
+
+
+
+/*商品规格开始*/
+.page-bottom-dialog 
+{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/*商品规格结束*/

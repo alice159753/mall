@@ -1,2 +1,96 @@
-<!--pages/product/productlists.wxml-->
-<text>pages/product/productlists.wxml</text>
+<import src="../templates/load.wxml"/>
+
+<view class="page">
+
+    <view class="header">
+        <view class="tab">
+            <view class="tab_single single_one {{istab==0?'active':''}}">
+                <view catchtap="taplist" data-order="sale_num desc" data-id="0" >销量</view>
+                <image class="sort_image_shang1" src="../../images/{{shang0}}" data-order="sale_num asc" data-id="0" catchtap="taplist"></image>
+                <image class="sort_image_xia1" src="../../images/{{xia0}}" data-order="sale_num desc" data-id="0" catchtap="taplist"></image>
+
+            </view>
+            <view class="tab_single single_two {{istab==1?'active':''}}">
+               <view catchtap="taplist" data-order="price/100-coupon_save_price desc"  data-id="1" >价格</view>
+                <image class="sort_image_shang2" src="../../images/{{shang1}}" data-order="price/100-coupon_save_price asc" data-id="1" catchtap="taplist"></image>
+                <image class="sort_image_xia2" src="../../images/{{xia1}}" data-order="price/100-coupon_save_price desc" data-id="1" catchtap="taplist"></image>
+
+            </view>
+            <view class="tab_single single_thr {{istab==2?'active':''}}">
+                <view catchtap="taplist" data-order="coupon_save_price desc"  data-id="2" >卷额</view>
+                <image class="sort_image_shang3" src="../../images/{{shang2}}" data-order="coupon_save_price asc" data-id="2" catchtap="taplist"></image>
+                <image class="sort_image_xia3" src="../../images/{{xia2}}" data-order="coupon_save_price desc" data-id="2" catchtap="taplist"></image>
+
+            </view>
+            <view class="tab_single single_fou {{istab==3?'active':''}}">
+                <view catchtap="taplist" data-order="no desc" data-id="3">综合</view>
+                <image class="sort_image_shang4" src="../../images/{{shang3}}" catchtap="taplist" data-order="no asc" data-id="3"></image>
+                <image class="sort_image_xia4" src="../../images/{{xia3}}" catchtap="taplist" data-order="no desc" data-id="3"></image>
+
+            </view>
+        </view>
+    </view>
+
+</view>
+
+
+<view class="app">
+
+<view class="ele-container bgf mt20 mb800">
+
+    <view class="product_lists fs32">
+    
+      <view class="product_item product_item_left">
+
+        <navigator url="../product/product">
+
+        <view class="inner_content">
+            <image src="http://img.weiye.me/zcimgdir/album/file_590037fa63a14.png"></image>
+
+            <view>
+                <view class="product_title fs32">简约新款</view>
+                <view class="mt20">
+                    <view class="price">￥36.00</view>
+                    <view class="sales_num color1">销量：7</view>
+                    <image src="/images/buy_cars.png" class="buy_cars"></image>
+                </view>
+
+            </view>
+        </view>
+
+        </navigator>
+      
+      </view>
+
+      <view class="product_item product_item_right">
+      
+        <navigator url="../product/product">
+
+        <view class="inner_content">
+            <image src="http://img.weiye.me/zcimgdir/album/file_590037e35addd.png"></image>
+
+            <view>
+                <view class="product_title">简约新款</view>
+                <view class="mt20">
+                    <view class="price">￥36.00</view>
+                    <view class="sales_num color1">销量：7</view>
+                    <image src="/images/buy_cars.png" class="buy_cars"></image>
+                </view>
+
+            </view>
+
+        </view>
+
+        </navigator>
+      
+      
+      </view>
+
+    </view>
+
+</view>
+
+
+
+
+</view>

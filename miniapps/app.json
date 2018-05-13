@@ -30,7 +30,7 @@
       {
         "selectedIconPath": "images/bm_bg2_active.png",
         "iconPath": "images/bm_bg2.png",
-        "pagePath": "pages/category/category",
+        "pagePath": "pages/product/productlists",
         "text": "精品"
       },
       {

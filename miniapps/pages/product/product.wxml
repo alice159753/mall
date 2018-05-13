@@ -123,6 +123,16 @@
 
 </view>
 
+<!-- 规格选择开始 -->
+<view class="page-bottom-dialog">
+
+
+</view>
+
+
+<!-- 规格选择结束 -->
+
+
 
 <!--购买按钮-->
 <view class="product_buy">
@@ -138,6 +148,7 @@
   </view>
 
   <view class="product_add_user_cars fl big-btn">加入购物车</view>
+
   <view class="product_buy_now fl big-btn">立即购买</view>
 
 </view>
