@@ -80,6 +80,76 @@
   transform: translateY(-50%);
   right: 0;
 }
-.helpOut .help .single:nth-child(2) {
-  border: none;
+
+
+/**订单开始**/
+.profile-item {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 54px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-bottom: #e2e2e2 1px solid;
+    overflow: hidden;
 }
+.profile-item .item-icon {
+    position: absolute;
+    top: 14px;
+    left: 27px;
+    display: block;
+    width: 48rpx;
+    height: 48rpx;
+    box-sizing: border-box;
+}
+.profile-item .item-name {
+    margin-left: 65px;
+    display: block;
+    height: 54px;
+    box-sizing: border-box;
+    line-height: 54px;
+    color: #404245;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+}
+.profile-item .item-desc {
+    position: absolute;
+    top: 0;
+    right: 32px;
+    display: block;
+    box-sizing: border-box;
+    line-height: 54px;
+    color: #888;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: right;
+}
+.profile-item .item-arrow {
+    position: absolute;
+    right: 14px;
+    top: 21px;
+    display: block;
+    width: 6px;
+    height: 12px;
+    line-height: 54px;
+    box-sizing: border-box;
+}
+
+.membership-item {
+    width: 24%;
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
+    margin-top: 20rpx;
+}
+.membership-item image
+{
+    width: 48rpx;
+    height: 48rpx;
+}
+.membership-item text
+{
+  display:block;
+}
+/**订单结束**/

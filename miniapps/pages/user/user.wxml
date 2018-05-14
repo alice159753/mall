@@ -7,12 +7,34 @@
 
 </view>
 
+<view class="profile-item">
+    <image src="/images/order.png" class="item-icon"></image>
+    <view class="item-name">我的订单</view>
+    <view class="item-desc">查看全部订单</view>
+    <image src="/images/arrow_r.png" class="item-arrow"></image>
+</view>
+
+
 <view>
    <view class="membership-item">
-              <image src="/images/jifen.png"></image>
-              <text>送积分</text>
+      <image src="/images/daifukuan_active.png"></image>
+       <text>待付款</text>
    </view>
 
+   <view class="membership-item">
+      <image src="/images/daifahuo_active.png"></image>
+       <text>待发货</text>
+   </view>
+
+  <view class="membership-item">
+      <image src="/images/daishouhuo_active.png"></image>
+       <text>待收货</text>
+   </view>
+
+  <view class="membership-item">
+      <image src="/images/daipingjia_active.png"></image>
+       <text>待评价</text>
+   </view>
 </view>
 
 
@@ -27,9 +49,21 @@
                     <image class="arrow_r" src="../../images/arrow_r.png"></image>
                 </navigator>
 
-                <navigator hover-class="none" class="single" url='../user/cards'>
-                    <image class="single_pic" src="../../images/vip.png"></image>
+                <navigator hover-class="none" class="single" url='../user/coupon'>
+                    <image class="single_pic" src="../../images/youhuiquan.png"></image>
                     <view class="single_project">优惠券</view>
+                    <image class="arrow_r" src="../../images/arrow_r.png"></image>
+                </navigator>
+
+                <navigator hover-class="none" class="single" url='../user/suggest'>
+                    <image class="single_pic" src="../../images/collect.png"></image>
+                    <view class="single_project">收藏</view>
+                    <image class="arrow_r" src="../../images/arrow_r.png"></image>
+                </navigator>
+
+               <navigator hover-class="none" class="single" url='../user/suggest'>
+                    <image class="single_pic" src="../../images/view_history.png"></image>
+                    <view class="single_project">浏览历史</view>
                     <image class="arrow_r" src="../../images/arrow_r.png"></image>
                 </navigator>
 

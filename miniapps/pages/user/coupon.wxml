@@ -1,0 +1,21 @@
+<!--pages/user/coupon.wxml-->
+<view class="page app">
+
+<!-- 优惠券开始 -->
+
+<view class="promote-card-list-box">
+    <view class="promote-nav-box">
+    
+    </view>
+
+</view>
+
+
+
+<!-- 优惠券结束 -->
+
+
+
+
+
+</view>

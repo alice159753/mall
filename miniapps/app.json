@@ -8,7 +8,8 @@
     "pages/user/user",
     "pages/product/productlists",
     "pages/user/suggest",
-    "pages/user/cards"
+    "pages/user/cards",
+    "pages/user/coupon"
   ],
   "window": {
     "backgroundTextStyle": "light",
