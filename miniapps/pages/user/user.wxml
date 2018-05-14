@@ -7,18 +7,44 @@
 
 </view>
 
+<view>
+   <view class="membership-item">
+              <image src="/images/jifen.png"></image>
+              <text>送积分</text>
+   </view>
+
+</view>
+
+
+
 
 <view class="helpOut">
             <view class="help">
-                <navigator hover-class="none" class="single" url='../user/help'>
-                    <image class="single_pic" src="../../images/help.png"></image>
-                    <view class="single_project">使用教程</view>
+
+                <navigator hover-class="none" class="single" url='../user/cards'>
+                    <image class="single_pic" src="../../images/vip.png"></image>
+                    <view class="single_project">会员卡</view>
                     <image class="arrow_r" src="../../images/arrow_r.png"></image>
                 </navigator>
+
+                <navigator hover-class="none" class="single" url='../user/cards'>
+                    <image class="single_pic" src="../../images/vip.png"></image>
+                    <view class="single_project">优惠券</view>
+                    <image class="arrow_r" src="../../images/arrow_r.png"></image>
+                </navigator>
+
                 <navigator hover-class="none" class="single" url='../user/suggest'>
                     <image class="single_pic" src="../../images/fankui.png"></image>
                     <view class="single_project">意见反馈</view>
                     <image class="arrow_r" src="../../images/arrow_r.png"></image>
                 </navigator>
+
+               <navigator hover-class="none" class="single" url='../user/help'>
+                    <image class="single_pic" src="../../images/help.png"></image>
+                    <view class="single_project">关于我们</view>
+                    <image class="arrow_r" src="../../images/arrow_r.png"></image>
+                </navigator>
+
+
             </view>
         </view>

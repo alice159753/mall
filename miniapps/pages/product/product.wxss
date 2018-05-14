@@ -383,5 +383,242 @@
     bottom: 0;
     width: 100%;
 }
+.page-bottom-content
+{
+    max-width: 640px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+.page-dialog-close 
+{
+    position: absolute;
+    right: 3px;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+    font-size: 30px;
+    line-height: 40px;
+    text-align: center;
+}
+.page-dialog-close text {
+    display: block;
+    width: 55rpx;
+    height: 55rpx;
+    border: 1px solid #67666f;
+    color: #67666f;
+    text-align: center;
+    line-height: 20px;
+    margin: 9px auto;
+    border-radius: 50%;
+    font-size: 50rpx;
+}
+.dialog-goods-info {
+    min-height: 55px;
+}
+.dialog-block-item {
+    display: block;
+    padding: 5px 0;
+    position: relative;
+    border-bottom: 1px solid #eee;
+}
+.page-bottom-dialog .thumb {
+    float: left;
+    width: 85px;
+    height: 55px;
+    margin: 2px 10px 0 10px;
+    position: relative;
+}
+.page-bottom-dialog .thumb .thumb-wrap {
+    width: 85px;
+    height: 85px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    background-color: #fff;
+    overflow: hidden;
+}
+.page-bottom-dialog .thumb .thumb-wrap image {
+    width: 100%;
+    height: 100%;
+}
+.page-bottom-dialog .pay-goods-title {
+    color: #353535;
+    font-size: 14px;
+}
+.page-bottom-dialog .pay-goods-title {
+    color: #353535;
+    font-size: 14px;
+}
+.page-bottom-dialog .pay-goods-title, #payDialog .pay-goods-price {
+    padding-right: 50px;
+    line-height: 20px;
+}
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.page-bottom-dialog .pay-goods-title, #payDialog .pay-goods-price {
+    padding-right: 50px;
+    line-height: 20px;
+}
+.page-bottom-dialog .pay-current-price {
+    vertical-align: bottom;
+    font-size: 12px;
+    color: #ff6710;
+}
+.page-bottom-dialog .pay-current-price text {
+    vertical-align: bottom;
+    font-size: 14px;
+}
+.page-bottom-dialog .pay-current-price .js-goods-price {
+    vertical-align: bottom;
+    font-size: 14px;
+}
 
+.dialog-block-item {
+    display: block;
+    padding: 5px 0;
+    position: relative;
+    border-bottom: 1px solid #eee;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.page-bottom-dialog .dialog-block-item .shuliang {
+    padding-bottom: 4px;
+    font-weight: bold;
+    color: #373737;
+    font-size: 34rpx;
+}
+.pull-right {
+    float: right;
+}
+.pull-right_guige
+{
+   display:inline-block;
+   margin-left:20rpx;
+   font-size:34rpx;
+}
+.pull-right_guige text{
+  padding: 10rpx;
+  color:#666;
+}
+.pull-left {
+    float: left;
+}
+.pull-left text{
+    color:#666;
+    font-size: 34rpx;
+    margin-right: 10rpx;
+}
+.page-bottom-dialog .pay-goods-stock {
+    display: inline-block;
+    margin: 5px 10px 0 0;
+}
+
+.quantity {
+    display: inline-block;
+    position: relative;
+}
+
+.page-bottom-dialog .minus.disabled, .page-bottom-dialog .plus.disabled {
+    background-color: #f9f9f9;
+    color: #cacaca;
+}
+.page-bottom-dialog .minus, .page-bottom-dialog .plus {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    outline: 0!important;
+    text-indent: -9999px;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-weight: normal;
+    background-color: #f1f1f1;
+    color: #878787;
+    border-radius: 2px;
+}
+.quantity .minus {
+    border-radius: 2px 0 0 2px;
+}
+
+.page-bottom-dialog .minus.disabled:before, .page-bottom-dialog .plus.disabled:before, .page-bottom-dialog .plus.disabled:after {
+    background-color: #cacaca;
+}
+.page-bottom-dialog .minus:before, .page-bottom-dialog .plus:before, .page-bottom-dialog .plus:after {
+    position: absolute;
+    width: 8px;
+    height: 2px;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: #878787;
+    bottom: 0;
+    content: '';
+}
+.page-bottom-dialog .pay-buy-count {
+    border: none;
+    height: 20px;
+    background-color: #f1f1f1;
+    padding: 0;
+    margin: 0 1px;
+    border-radius: 0;
+}
+.quantity input {
+    width: 33px;
+    height: 25px;
+    padding: 1px;
+    margin: 0;
+    border: 1px solid #999;
+    border-width: 1px 0;
+    box-sizing: content-box;
+    text-align: center;
+    vertical-align: middle;
+    display:inline-block;
+}
+
+.page-bottom-dialog .dialog-box-item {
+    display: box;
+    width:100%;
+    text-align:center;
+    margin-top:80rpx;
+}
+.page-bottom-dialog .pay-buy-next, .page-bottom-dialog .pay-add-to-shoppingcart {
+    margin-top: 10px;
+    padding: 10px 0px;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 0px;
+    flex: 1;
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+}
+.btn.btn-block {
+    display: block;
+}
+.btn.btn-yellow {
+    color: #fff;
+    border-color: #f5a623;
+    background-color: #f5a623;
+}
+.btn-yellow {
+    background: #ffcc01;
+}
+
+.page-dialog-wrap {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 50;
+    background-color: rgba(0,0,0,.5);
+}
 /*商品规格结束*/

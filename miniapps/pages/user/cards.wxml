@@ -1,0 +1,107 @@
+<view class="page app">
+
+
+<!-- 会员卡 开始 -->
+  <view class="card-region js-show-code">
+
+    <view class="card-header">
+        <view class="shop-name">
+            <image class="shop-logo" src="https://img.yzcdn.cn/public_files/2016/05/13/8f9c442de8666f82abaf7dd71574e997.png?imageView2/2/w/60/h/60/q/75/format/webp"></image>
+
+            <text>测试会员1</text>
+        </view>
+    </view>
+
+    <view class="member-type">测试</view>
+
+    <view class="card-content"> 
+        <view class="expiry-date">
+            <text>有效期: </text>
+            <text>无限期</text>
+        </view>
+
+        <view class="card-state">使用中</view>
+
+    </view>
+
+  </view>
+<!-- 会员卡 结束-->
+
+<!-- 会员卡号开始 -->
+<view class="user-area">
+<image src="http://thirdwx.qlogo.cn/mmopen/2EeibkTp2yCFpbYwhu6uibWr5icgXTc2L9KnnxYQIS1WuHYJ3OiabBm3ZzDnBXEB6ZcLb6JUkpqGyusglmedII5jy7PUvkz5cUBI/132" class="logo"></image>
+
+<text>456878</text>
+<text>4568 4568 4568 4568 12</text>
+
+</view>
+
+<!-- 会员卡号结束 -->
+
+
+<!-- 会员权益开始 -->
+<view class="membership-region block">
+    <view class="membership-header">
+        <image src="/images/diamond.png"></image>
+        <text class="">会员权益</text>
+    </view>
+
+    <view class="membership js-show-sub-info">
+        <view class="arrow-right down-arrow-right">
+          <view class="membership-item">
+              <image src="/images/baoyou.png"></image>
+              <text>包邮</text>
+          </view>
+
+          <view class="membership-item">
+              <image src="/images/zhekou.png"></image>
+              <text>折扣</text>
+          </view>
+
+         <view class="membership-item">
+              <image src="/images/jifen.png"></image>
+              <text>送积分</text>
+          </view>
+
+        </view>
+
+        <view class="block-sub-desc">
+          <text>享受会员包邮</text>
+          <text>会员折扣9.5折</text>
+          <text>随卡获赠积分：100分</text>
+        </view>
+
+    </view>
+
+</view>
+<!-- 会员权益结束 -->
+
+
+
+<!-- 使用须知开始 -->
+<view class="membership-region block2">
+    <view class="membership-header">
+        <image src="/images/use_help.png"></image>
+        <text class="">使用须知</text>
+    </view>
+
+    <view class="block-sub-desc use_help">
+        <text>享受会员包邮</text>
+    </view>
+
+</view>
+<!-- 使用须知结束 -->
+
+
+<!-- 删除会员卡开始 -->
+
+<view class="single-block delete-card">
+删除会员卡
+
+</view>
+
+<!-- 删除会员卡结束 -->
+
+
+</view>
+

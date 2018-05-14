@@ -1,0 +1,188 @@
+/* pages/user/cards.wxss */
+
+/**会员卡开始**/
+
+.card-region {
+    padding: 20px;
+    margin: 10px;
+    color: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #63b359;
+}
+.card-region .card-header {
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+.card-region .shop-name {
+    float: left;
+    background-size: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 0;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.shop-name {
+    margin: 0 0 0 10px;
+    word-break: break-all;
+}
+.card-region .shop-logo {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    vertical-align: top;
+    background-size: 30px;
+    border-radius: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card-region .member-type {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.card-region .card-content {
+    font-size: 14px;
+    overflow: hidden;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.card-region .expiry-date {
+    float: left;
+}
+
+.card-region .card-state {
+    float: right;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+/**会员卡结束**/
+
+
+/**会员卡卡号 开始**/
+.user-area {
+    padding: 10px;
+    background-color: #fff;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.user-area .logo {
+    width: 50px;
+    height: 50px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    float: left;
+}
+
+.user-area text {
+    padding-left: 70px;
+    font-size: 14px;
+    line-height: 25px;
+    display:block;
+}
+
+/**会员卡卡号 结束**/
+
+/**会员权益 开始**/
+
+.block {
+    border-top: 2rpx solid #e5e5e5;
+    border-bottom: 2rpx solid #e5e5e5;
+    overflow: hidden;
+    margin: 10px 0;
+    background-color: #fff;
+    display: block;
+    position: relative;
+    font-size: 34rpx;
+}
+.membership-region .membership-header {
+    padding: 10px 0;
+    margin-left: 10px;
+}
+
+.membership-header image
+{
+  width:50rpx;
+  height:50rpx;
+}
+.membership-region .membership {
+    font-size: 0;
+    padding:0px 0px 10px 10px;
+}
+.arrow-right {
+    position: relative;
+}
+.membership-region .membership-item {
+    width: 24%;
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
+}
+
+.membership-item image
+{
+    width: 100rpx;
+    height: 100rpx;
+}
+.membership-item text
+{
+  display:block;
+}
+
+.block-sub-desc {
+    padding-top: 10px;
+    word-wrap: break-word;
+    color: #999;
+    font-size: 26rpx;
+    margin-left:45rpx;
+}
+.block-sub-desc text
+{
+    display:block;
+}
+/**会员权益 结束**/
+
+/**使用须知 开始**/
+.block2 {
+    border-bottom: 2rpx solid #e5e5e5;
+    overflow: hidden;
+    background-color: #fff;
+    display: block;
+    position: relative;
+    font-size: 34rpx;
+    margin-bottom:20rpx;
+}
+.use_help
+{
+    padding:0px 0px 10px 10px;
+}
+
+/**使用须知 结束**/
+
+/**删除会员卡 开始**/
+.single-block 
+{
+    padding: 10px;
+    line-height: 22px;
+}
+.delete-card {
+    text-align: center;
+    color: red;
+}
+/**删除会员卡 结束**/

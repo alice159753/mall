@@ -124,18 +124,78 @@
 </view>
 
 <!-- 规格选择开始 -->
-<view class="page-bottom-dialog">
+<view class="page-dialog-wrap">
 
+      <view class="page-bottom-dialog">
+        <view class="page-bottom-content">
+
+            <view class="page-dialog-close">
+            <text>x</text>
+            </view>
+
+            <view class="dialog-block-item dialog-goods-info">
+                <view class="thumb">
+                  <view class="thumb-wrap">
+                    <image src="http://img.weiye.me/zcimgdir/album/file_590037fa63a14.png"> </image>
+                  </view>
+                </view>
+
+                <view class="pay-goods-baseinfo">
+                    <text class="pay-goods-title ellipsis">简约新款</text>
+                    <view class="pay-goods-price">
+                        <view class="pay-current-price">
+                          <text>￥</text>
+                          <text class="js-goods-price">163.22</text>
+                        </view>
+                    </view>
+                </view>
+
+            </view>
+
+            <view class="dialog-block-item">
+                <text class="shuliang">颜色</text>
+                <view class="pull-right_guige">
+                  <text>白色</text>
+                  <text>黑色</text>
+                  <text>蓝色</text>
+                </view>
+            </view>
+
+            <view class="dialog-block-item">
+                <text class="shuliang">数量</text>
+
+                <view class="pull-right">
+                    <view class="pull-left"> 
+                      <text>库存</text> 
+                      <text class="pay-goods-stock">145</text> 
+                    </view>
+
+                    <view class="quantity pull-left">
+                        <view class="minus disabled"></view>
+                        <input confirm-type="search" value="1" class="pay-buy-count" type="text"/>
+                        <view class="plus"></view>
+                    </view>
+                </view>
+            </view>
+
+
+
+
+            <view class="dialog-box-item payDialog-normal">
+                <text class="btn btn-block btn-yellow pay-add-to-shoppingcart">加入购物车</text>
+            </view>
+
+
+        </view>
+      </view>
 
 </view>
-
-
 <!-- 规格选择结束 -->
 
 
 
 <!--购买按钮-->
-<view class="product_buy">
+<view class="product_buy" style='display:none'>
 
   <view class="product_customer">
     <image src="/images/customer.png"></image>
