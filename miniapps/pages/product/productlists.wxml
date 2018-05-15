@@ -40,7 +40,7 @@
 
     <view class="product_lists fs32">
     
-      <view class="product_item product_item_left">
+      <view class="product_item product_item_left mt100">
 
         <navigator url="../product/product">
 
@@ -62,7 +62,7 @@
       
       </view>
 
-      <view class="product_item product_item_right">
+      <view class="product_item product_item_right mt100">
       
         <navigator url="../product/product">
 

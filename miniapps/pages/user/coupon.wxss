@@ -1,2 +1,128 @@
 /* pages/user/coupon.wxss */
 
+/**优惠券开始**/
+.promote-card-list-box .promote-nav-box {
+    margin: 0 0 20px;
+    padding-top: 20px;
+}
+
+.tabber-ios-gray.tabber.tabber-ios {
+    border: 1px solid #f4a719;
+}
+
+.tabber.tabber-ios {
+    border: 1px solid #f60;
+    border-radius: 3px;
+    margin: 0 10px;
+    width: auto;
+    overflow: hidden;
+    height:74rpx;
+}
+
+.tabber-ios-gray.tabber.tabber-ios text.active {
+    color: #fff;
+    background-color: #f4a719;
+}
+
+.tabber-ios-gray.tabber.tabber-ios text {
+    color: #666666;
+    border-right: 1px solid #f4a719;
+    float: left;
+    width: 50%;
+    line-height: 74rpx;
+    border: 0px none;
+    outline: 0px none;
+    background-color: #fff;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.tabber.tabber-ios text.active {
+    line-height: 2;
+    top: 0;
+    color: #fff;
+    border: 0px none;
+    background-color: #f60;
+}
+
+/**优惠券结束**/
+
+
+/**优惠券列表开始**/
+.promote-card-list 
+{
+  margin:0 26rpx;
+}
+.promote-card-list .promote-item {
+    border: 1px solid #f4a719;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    height: 120px;
+    position: relative;
+    overflow: hidden;
+    font-size: 34rpx;
+    background-color: #ffffff;
+}
+.promote-card-list .promote-left-part {
+    float: left;
+    width: 70%;
+    height: 110px;
+    color: #acacac;
+}
+.promote-card-list .promote-left-part .inner {
+    padding: 10px;
+}
+.promote-card-list .promote-left-part .promote-card-value {
+    font-size: 35px;
+    line-height: 56px;
+    color: #d54036;
+}
+.promote-card-list .promote-left-part .promote-card-value span {
+    font-size: 34rpx;
+}
+
+.promote-card-list .promote-left-part .promote-condition {
+    white-space: nowrap;
+    font-size: 26rpx !important;
+}
+.promote-card-list .promote-right-part {
+    float: right;
+    width: 30%;
+    height: 110px;
+    color: #999;
+    line-height: 1.5;
+}
+
+.center, .text-center {
+    text-align: center;
+}
+.promote-card-list .promote-use-state {
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1;
+}
+.promote-card-list .promote-right-part .inner {
+    padding: 6px 10px;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    text-align: right;
+    right: 0;
+}
+.promote-value-sign
+{
+  font-size: 26rpx;
+}
+
+.promote-card-list .promote-left-part .promocard-suffix {
+    margin-left: 5px;
+    font-size: 26rpx;
+}
+
+/**优惠券列表结束**/

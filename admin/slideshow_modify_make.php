@@ -32,11 +32,14 @@
         Output::error('无数据',array(), 1);
     }
 
-    $condition = "title = '". $title ."' AND no != $no";
-
-    if( $mySlideshow->getCount($condition) >= 1 )
+    if( !empty($title) )
     {
-       Output::error('标题不能重复！',array(), 1);
+        $condition = "title = '". $title ."' AND no != $no";
+
+        if( $mySlideshow->getCount($condition) >= 1 )
+        {
+           Output::error('标题不能重复！',array(), 1);
+        }
     }
 
     $dataArray = array();

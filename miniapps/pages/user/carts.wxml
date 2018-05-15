@@ -1,0 +1,84 @@
+<!--pages/user/carts.wxml-->
+<view class="page app">
+
+  <!--购物车列表开始-->
+  <view class="app-content">
+
+      <view class="cart-list">
+
+          <view class="list-item">
+
+            <view class="item-checkbox">
+              <image src="/images/check-off.png"></image>
+            </view>
+
+            <view class="item-photo">
+              <image src="http://www.xinghuilvse.com/data/admin/20180416/20180416154655_5ad454ef5cee3_86830.png"></image>
+            </view>
+
+            <view class="item-info"> 
+
+              <view class="info-name">
+              汉源枇杷【2斤特价、四川5斤包邮】
+              </view>
+
+              <view class="info-attr">
+              重量:1kg
+              </view>
+
+              <view class="info-price">￥28</view>
+              
+              <view class="info-amount">
+
+                  <view class="amount-button active">
+                    <image src="/images/ind-sub.png"></image>
+                  </view>
+
+                  <view class="amount-count active">6</view>
+                
+                  <view class="amount-button active">
+                    <image src="/images/ind-add.png"></image>
+                  </view>
+
+              </view>
+
+              <view class="info-delete">
+                <image src="/images/ind-delete.png"></image>
+              </view>
+
+
+            </view>
+
+            
+
+          </view>
+      </view>
+  </view>
+
+  <!--购物车列表结束-->
+
+
+  <!-- 结算按钮开始 -->
+  <view class="cart-submit">
+
+    <view class="submit-select">
+        <view class="select-checkbox">
+        <image src="/images/check-off.png"></image>
+        </view>
+    </view>
+
+    <view class="submit-total active">
+        <text>￥</text>
+        <text class="total-price">12</text>
+    </view>
+
+    <view class="submit-button dark active">
+    结算（0）
+    </view>
+
+  </view>
+
+
+  <!-- 结算按钮结束 -->
+
+</view>
