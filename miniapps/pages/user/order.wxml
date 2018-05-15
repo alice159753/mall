@@ -1,0 +1,89 @@
+<!--pages/user/order.wxml-->
+<view class="page app">
+
+  <!-- 订单类型 开始 -->
+  <scroll-view class="scroll_view_h bgf order-filter" scroll-x="true">
+
+    <view class="filter-item active">
+      <text class="text">全部</text>
+    </view>
+
+    <view class="filter-item">
+      <text class="text">待付款</text>
+    </view>
+
+    <view class="filter-item">
+      <text class="text">待发货</text>
+    </view>
+
+        <view class="filter-item">
+      <text class="text">待收货</text>
+    </view>
+
+        <view class="filter-item">
+      <text class="text">待评价</text>
+    </view>
+
+  </scroll-view>
+
+  <!-- 订单类型 结束 -->
+
+
+
+  <!-- 订单列表 开始 -->
+  <view class="order-list">
+      <view class="list-item">
+        <!--订单编号-->
+          <view class="item-header">
+              <view class="header-sn ng-binding">#2018050417314970465</view>
+              <view class="header-status">等待买家付款</view>
+          </view>
+
+          <!--商品信息-->
+          <view class="order-goods">
+              <view class="goods-item">
+                  <view class="item-photo">
+                  <image src="http://www.xinghuilvse.com/data/admin/20180501/20180501091231_5ae7beffeb9e8_67909.jpg"></image>
+                  </view>
+
+                  <view class="item-info">
+                    <text class="info-name">汉源枇杷【2斤特价、四川5斤包邮】, 规格：良品</text>
+                    <text class="info-attr">重量:1千克</text>
+                    <text class="info-price">¥28</text>
+                    <text class="info-amount">x1</text>
+
+                  </view>
+
+              </view>
+          </view>
+
+          <!--操作按钮-->
+          <view class="item-footer"> 
+              <view class="footer-sum">
+                <text class="sum ng-binding">合计：￥41</text>
+                <text class="sum ng-binding ng-scope">（运费：￥13）</text>
+              </view>
+
+              <view class="footer-button dark ng-scope">
+                付款
+              </view>
+
+              <view class="footer-button ng-scope">
+                取消订单
+              </view>
+
+          </view>
+
+
+
+
+      </view>
+    
+  </view>
+
+
+  <!-- 订单列表 结束 -->
+
+
+
+</view>
