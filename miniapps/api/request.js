@@ -47,15 +47,6 @@ export function slideshow() {
   });
 }
 
-//注册用户
-export function register(userInfo) {
-  return newWork({
-    url: '/register.php',
-    data: {
-      userinfo: userInfo
-    }
-  });
-}
 
 //首页一级分类
 export function category1() {
@@ -81,6 +72,25 @@ export function recommend() {
 export function article() {
   return newWork({
     url: '/article.php',
+    data: {
+    }
+  });
+}
+
+
+//优惠券
+export function discount_coupon() {
+  return newWork({
+    url: '/discount_coupon.php',
+    data: {
+    }
+  });
+}
+
+//广告
+export function slideshow_ad() {
+  return newWork({
+    url: '/slideshow_ad.php',
     data: {
     }
   });

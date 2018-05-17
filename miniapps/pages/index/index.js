@@ -1,4 +1,6 @@
-import { slideshow, category1, recommend } from '../../api/request'
+import {
+  slideshow, category1, recommend, article, discount_coupon,slideshow_ad
+ } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
 
 var app = getApp();
@@ -14,6 +16,14 @@ Page({
     //首页推荐位
     recommend: [],
 
+    //动态
+    article: [],
+
+    //优惠券
+    discount_coupon: [],
+  
+    //广告
+    slideshow_ad: [],
   },
   //事件处理函数
   bindViewTap: function() {
@@ -51,6 +61,15 @@ Page({
       })
     });
 
+    //优惠券
+    discount_coupon().then((res) => {
+      let arr = res.data.result.data;
+      this.setData({
+        discount_coupon: arr,
+      })
+    });
+
+
     //首页推荐位
     recommend().then((res) => {
       let arr = res.data.result.data;
@@ -68,7 +87,22 @@ Page({
     });
 
 
+    //广告
+    slideshow_ad().then((res) => {
+      let arr = res.data.result.data;
+      this.setData({
+        slideshow_ad: arr,
+      })
+    });
+
+
   },
   
+  onGotUserInfo: function (e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.userInfo)
+    console.log(e.detail.rawData)
+  },
 
+  
 })

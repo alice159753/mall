@@ -11,9 +11,6 @@ function CommonEvent() {
 
 export function login()
 {
-    
-
-
   if (app.globalData.userInfo) {
   }
   else if (this.canIUse) {
@@ -30,9 +27,6 @@ export function login()
         app.globalData.userInfo = res.userInfo
 
         console.log(app.globalData.userInfo);
-
-        //注册用户
-       // utils.register(app.globalData.userInfo);
       }
     })
   }

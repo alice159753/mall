@@ -52,49 +52,38 @@
 <!--优惠券-->
 <scroll-view class="scroll_view_h_youhuiquan bgf" scroll-x="true">
 
-  <view class="youhuiquan">
+  <view class="youhuiquan" wx:for="{{discount_coupon}}" wx:key="key" wx:for-index="idx" wx:for-item="item">
     <view>
-        <view class="youhuiquan_fuhao">¥</view>
-        <view class="youhuiquan_price">50</view>
+        <view wx:if="{{item.coupon_type==1}}">
+           <view class="youhuiquan_fuhao">¥</view>
+          <view class="youhuiquan_price">{{item.coupon_price}}</view>
+        </view>
+        <view wx:if="{{item.coupon_type==2}}">
+          <view class="youhuiquan_price">{{item.discount}}</view>
+          <view class="youhuiquan_fuhao">折</view>
+        </view>
     </view>
+
+    <view wx:if="{{item.use_type==1}}">
     <view class="youhuiquan_title">无门槛优惠券</view>
-    <view class="youhuiquan_button">点击领取</view>
-
-  </view>
-
-  <view class="youhuiquan">
-    <view>
-        <view class="youhuiquan_fuhao">¥</view>
-        <view class="youhuiquan_price">100</view>
     </view>
-    <view class="youhuiquan_title">无门槛优惠券</view>
-    <view class="youhuiquan_button">点击领取</view>
 
-  </view>
-
-
-    <view class="youhuiquan">
-    <view>
-        <view class="youhuiquan_fuhao">¥</view>
-        <view class="youhuiquan_price">200</view>
+    <view wx:if="{{item.use_type==2}}">
+    <view class="youhuiquan_title">满{{item.full_price}}元可使用</view>
     </view>
-    <view class="youhuiquan_title">无门槛优惠券</view>
+
     <view class="youhuiquan_button">点击领取</view>
-
   </view>
-
 
 </scroll-view>
-
-
 <!--优惠券-->
 
 
 <view class="bgf2 space"></view>
 
 <!--广告 1-->
-<view class="ele-container ad1">
-<image src="http://img.weiye.me/zcimgdir/album/file_599e4446c30a2.png" mode='aspectFit'></image>
+<view class="ele-container ad1" wx:for="{{slideshow_ad}}" wx:key="key" wx:for-index="idx" wx:for-item="item">
+<image src="{{item.pic}}"></image>
 </view>
 <!--广告 1--> 
 
@@ -106,7 +95,7 @@
 
 <view class="ele-container bgf ht60 tc mt20">
   <view class="element picture recommend1_pic">
-    <image mode="scaleToFill" src="http://img.weiye.me/zcimgdir/album/file_58fdc0813bc4c.png"></image>
+    <image mode="scaleToFill" src="/images/jingpin.png"></image>
   </view>
    <text class="element text recommend1 fs36">{{itemName.title}}</text>
 </view>
@@ -154,13 +143,11 @@
    <text class="element text recommend1 fs36">动态</text>
 </view>
 
-<view>
-
+<view wx:for="{{article}}" wx:key="article_key" wx:for-index="index" wx:for-item="articleItem">
     <view class="ele-container bgf ad1">
-    <image src="http://img.weiye.me/zcimgdir/album/file_599e4446c30a2.png" mode='aspectFit'></image>
-    <view class="text element color1 fs32 mt10">今日热点 | 《择天记》开播鹿晗的盛世美颜不够看</view>
+    <image src="{{articleItem.thumb_pic}}"></image>
+    <view class="text element color1 fs32 mt10">{{articleItem.title}}</view>
     </view>
-
 </view>
 
 <!--文章动态 结束-->
@@ -168,6 +155,7 @@
 
 <view class="bgf2 space"></view>
 
-
+<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
+<button open-type="openSetting">打开授权设置页</button>
 
 </view>
