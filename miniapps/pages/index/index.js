@@ -1,4 +1,4 @@
-import { slideshow, category1, product } from '../../api/request'
+import { slideshow, category1, recommend } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
 
 var app = getApp();
@@ -7,6 +7,13 @@ Page({
   data: {
     //首页轮播图
     swiperlists: [],
+
+    //首页一级分类
+    category1list: [],   
+
+    //首页推荐位
+    recommend: [],
+
   },
   //事件处理函数
   bindViewTap: function() {
@@ -44,7 +51,21 @@ Page({
       })
     });
 
+    //首页推荐位
+    recommend().then((res) => {
+      let arr = res.data.result.data;
+      this.setData({
+        recommend: arr,
+      })
+    });
 
+    //动态
+    article().then((res) => {
+      let arr = res.data.result.data;
+      this.setData({
+        article: arr,
+      })
+    });
 
 
   },

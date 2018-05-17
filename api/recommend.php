@@ -35,7 +35,7 @@
 
             $data = $myProduct->getDataClean($productRow);
 
-            $dataArray['product_lists'][] = $data
+            $dataArray['product_lists'][] = $data;
         }
 
         $result[] = $dataArray;

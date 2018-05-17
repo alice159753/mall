@@ -1,4 +1,4 @@
-// pages/user/cards.js
+// pages/user/order.js
 Page({
 
   /**

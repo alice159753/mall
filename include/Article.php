@@ -35,7 +35,28 @@
             $dataArray["{description}"] = $row['description'];
             $dataArray["{pic_lists}"]   = $row['pic_lists'];
 
-            $dataArray["{url}"] = URL."/subject_detail.php?no=".$row['no'];
+            $dataArray["{url}"] = URL."/article.php?no=".$row['no'];
+
+            return $dataArray;
+        }
+
+        function getDataClean($row)
+        {
+            $dataArray = array();
+            $dataArray["no"]          = $row['no'];
+            $dataArray["title"]       = $row['title'];
+            $dataArray["author"]      = $row['author'];
+            $dataArray['content']     = $row['content'];
+            $dataArray["view_count"]  = $row['view_count'];
+            $dataArray["pubdate}"]    = $row['pubdate'];
+            $dataArray["is_through"]  = $row['is_through'] == 'Y' ? '通过' : '未通过';
+            $dataArray["top"]         = $row['top'];
+            $dataArray["thumb_pic"]   = FILE_URL.$row['thumb_pic'];
+            $dataArray["add_time"]    = $row['add_time'];
+            $dataArray["description"] = $row['description'];
+            $dataArray["pic_lists"]   = $row['pic_lists'];
+
+            $dataArray["url"] = URL."/article.php?no=".$row['no'];
 
             return $dataArray;
         }

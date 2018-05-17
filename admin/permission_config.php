@@ -121,6 +121,13 @@ $permission_config['menu_posid']['data'][] = array('title' => '轮播图修改',
 $permission_config['menu_posid']['data'][] = array('title' => '轮播图删除',     'php'=> 'slideshow_delete.php',      'display' => 'none');
 $permission_config['menu_posid']['data'][] = array('title' => '轮播图删除更多', 'php'=> 'slideshow_delete_more.php', 'display' => 'none');
 
+$permission_config['menu_posid']['data'][] = array('title' => '广告位',         'php'=> 'slideshow_ad.php',             'display' => 'block');
+$permission_config['menu_posid']['data'][] = array('title' => '广告位新增',     'php'=> 'slideshow_ad_add.php',         'display' => 'none');
+$permission_config['menu_posid']['data'][] = array('title' => '广告位修改',     'php'=> 'slideshow_ad_modify.php',      'display' => 'none');
+$permission_config['menu_posid']['data'][] = array('title' => '广告位删除',     'php'=> 'slideshow_ad_delete.php',      'display' => 'none');
+$permission_config['menu_posid']['data'][] = array('title' => '广告位删除更多', 'php'=> 'slideshow_ad_delete_more.php', 'display' => 'none');
+
+
 $permission_config['menu_posid']['data'][] = array('title' => '推荐位',         'php'=> 'recommend.php',             'display' => 'block');
 $permission_config['menu_posid']['data'][] = array('title' => '推荐位新增',     'php'=> 'recommend_add.php',         'display' => 'none');
 $permission_config['menu_posid']['data'][] = array('title' => '推荐位修改',     'php'=> 'recommend_modify.php',      'display' => 'none');

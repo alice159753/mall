@@ -101,64 +101,45 @@
 <view class="bgf2 space"></view>
 
 <!--推荐位1-->
+<view wx:for="{{recommend}}" wx:key="key" wx:for-index="idx" wx:for-item="itemName">
+
+
 <view class="ele-container bgf ht60 tc mt20">
   <view class="element picture recommend1_pic">
     <image mode="scaleToFill" src="http://img.weiye.me/zcimgdir/album/file_58fdc0813bc4c.png"></image>
   </view>
-   <text class="element text recommend1 fs36">精选专题</text>
+   <text class="element text recommend1 fs36">{{itemName.title}}</text>
 </view>
 
 <view class="ele-container bgf">
     <view class="product_lists fs32">
-      <view class="product_item product_item_left">
+
+<view wx:for="{{itemName.product_lists}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="productItem">
+
+      <view class="product_item  {{idx2/2>0 ? 'product_item_right':'product_item_left'}} ">
         <navigator url="../product/product">
-
         <view class="inner_content">
-            <image src="http://img.weiye.me/zcimgdir/album/file_590037fa63a14.png"></image>
-
+            <image src="{{productItem.pic}}"></image>
             <view>
-                <view class="product_title fs32">简约新款</view>
+                <view class="product_title fs32">{{productItem.title}}</view>
                 <view class="mt20">
-                    <view class="price">￥36.00</view>
-                    <view class="sales_num color1">销量：7</view>
+                    <view class="price">￥{{productItem.sale_price}}</view>
+                    <view class="sales_num color1">销量：{{productItem.sales_num}}</view>
                     <image src="/images/buy_cars.png" class="buy_cars"></image>
                 </view>
 
             </view>
         </view>
-
         </navigator>
-      
       </view>
-
-      <view class="product_item product_item_right">
-      
-        <navigator url="../product/product">
-
-        <view class="inner_content">
-            <image src="http://img.weiye.me/zcimgdir/album/file_590037e35addd.png"></image>
-
-            <view>
-                <view class="product_title">简约新款</view>
-                <view class="mt20">
-                    <view class="price">￥36.00</view>
-                    <view class="sales_num color1">销量：7</view>
-                    <image src="/images/buy_cars.png" class="buy_cars"></image>
-                </view>
-
-            </view>
-
-        </view>
-
-        </navigator>
-      
-      
-      </view>
-
-    </view>
 
 </view>
 
+    </view>
+</view>
+
+
+</view>
 <!--推荐位1-->
 
 
@@ -173,16 +154,14 @@
    <text class="element text recommend1 fs36">动态</text>
 </view>
 
-<view class="ele-container bgf ad1">
-<image src="http://img.weiye.me/zcimgdir/album/file_599e4446c30a2.png" mode='aspectFit'></image>
-<view class="text element color1 fs32 mt10">今日热点 | 《择天记》开播鹿晗的盛世美颜不够看</view>
-</view>
+<view>
 
-<view class="ele-container bgf ad1">
-<image src="http://img.weiye.me/zcimgdir/album/file_599e4446c30a2.png" mode='aspectFit'></image>
-<view class="text element color1 fs32 mt10">今日热点 | 《择天记》开播鹿晗的盛世美颜不够看</view>
-</view>
+    <view class="ele-container bgf ad1">
+    <image src="http://img.weiye.me/zcimgdir/album/file_599e4446c30a2.png" mode='aspectFit'></image>
+    <view class="text element color1 fs32 mt10">今日热点 | 《择天记》开播鹿晗的盛世美颜不够看</view>
+    </view>
 
+</view>
 
 <!--文章动态 结束-->
 

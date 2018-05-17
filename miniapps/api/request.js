@@ -65,3 +65,23 @@ export function category1() {
     }
   });
 }
+
+
+//首页推荐位
+export function recommend() {
+  return newWork({
+    url: '/recommend.php',
+    data: {
+    }
+  });
+}
+
+
+//动态
+export function article() {
+  return newWork({
+    url: '/article.php',
+    data: {
+    }
+  });
+}

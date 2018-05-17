@@ -10,6 +10,7 @@
     "pages/user/suggest",
     "pages/user/cards",
     "pages/user/coupon",
+    "pages/user/order",
     "pages/user/carts"
   ],
   "window": {

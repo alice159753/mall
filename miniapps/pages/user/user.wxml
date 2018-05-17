@@ -7,13 +7,15 @@
 
 </view>
 
+
+<navigator hover-class="none" class="single" url='../user/order?type=all'>
 <view class="profile-item">
     <image src="/images/order.png" class="item-icon"></image>
     <view class="item-name">我的订单</view>
     <view class="item-desc">查看全部订单</view>
     <image src="/images/arrow_r.png" class="item-arrow"></image>
 </view>
-
+</navigator>
 
 <view>
    <view class="membership-item">
