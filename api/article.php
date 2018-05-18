@@ -1,5 +1,6 @@
 <?php
 
+    //文章
     include_once("config.cmd.php");
 
     ob_start();

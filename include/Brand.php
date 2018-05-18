@@ -54,7 +54,7 @@
             $dataArray['is_show_title'] = $isShowMap[ $row['is_show'] ];
             $dataArray['sort']          = $row['sort'];
             $dataArray['description']   = $row['description'];
-            $dataArray['pic']           = $row['pic'];
+            $dataArray['pic']           = FILE_URL.$row['pic'];
 
             $dataArray['show_checkbox'] = $row['is_show'] == 'Y' ? 'checked' : '';
 

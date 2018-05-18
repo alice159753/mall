@@ -1,5 +1,6 @@
 <?php
 
+    //轮播图
     include_once("config.cmd.php");
 
     ob_start();

@@ -25,6 +25,11 @@
     define("TEMPLATE_DIR", $home_dir ."/../template");
     define("FILE_URL", "https://mall.huaban1314.com");
 
+    //微信配置
+    define("WEIXIN_APPID", "wxcbf649345255fcb8");
+    define("WEIXIN_APPSECRECT", "eaf91a434fbf9759a01fa11bbe3d25f5");
+    define("WEIXIN_TOKEN", "");
+
 
     ob_start();
     include_once(INCLUDE_DIR ."/MySQL.php");

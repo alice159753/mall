@@ -1,24 +1,24 @@
 <?php
 
-    //一级分类
+    //推荐位
     include_once("config.cmd.php");
 
     ob_start();
-    include_once(INCLUDE_DIR. "/Category.php");
+    include_once(INCLUDE_DIR. "/Slideshowad.php");
     ob_clean();
 
     $myMySQL = new MySQL();
     $myMySQL->connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-    $myCategory = new Category($myMySQL);
+    $mySlideshowad = new Slideshowad($myMySQL);
 
     //轮播图, 最多展示5条
-    $rows = $myCategory->getRows("*", "is_show = 'Y' AND parent_no = 0 ORDER BY sort ASC");
+    $rows = $mySlideshowad->getRows("*", "1=1 ORDER BY no DESC LIMIT 5");
 
     $result = array();
     for($i = 0; isset($rows[$i]); $i++)
     {
-        $dataArray = $myCategory->getDataClean($rows[$i]);
+        $dataArray = $mySlideshowad->getDataClean($rows[$i]);
 
         $result[] = $dataArray;
     }

@@ -19,9 +19,15 @@
             return array('1' => '是', '0' => '否');
         }
 
+        function getIsPast()
+        {
+            return array('1' => '是', '0' => '否');
+        }
+
         function getData($row)
         {
             $isUseMap = $this->getIsUse();
+            $isPastMap = $this->getIsPast();
 
             $dataArray = array();
             $dataArray['{no}']                 = $row['no'];
@@ -30,6 +36,7 @@
             $dataArray['{add_time}']           = $row['add_time'];
             $dataArray['{update_time}']        = $row['update_time'];
             $dataArray['{is_use_title}']       = $isUseMap[ $row['is_use'] ];
+            $dataArray['{is_past_title}']      = $isPastMap[ $row['is_past'] ];
 
             return $dataArray;
         }
@@ -37,6 +44,7 @@
         function getDataClean($row)
         {
             $isUseMap = $this->getIsUse();
+            $isPastMap = $this->getIsPast();
 
             $dataArray = array();
             $dataArray['no']                 = $row['no'];
@@ -44,7 +52,8 @@
             $dataArray['discount_coupon_no'] = $row['discount_coupon_no'];
             $dataArray['add_time']           = $row['add_time'];
             $dataArray['update_time']        = $row['update_time'];
-            $dataArray['{is_use_title}']     = $isUseMap[ $row['is_use'] ];
+            $dataArray['is_use_title']       = $isUseMap[ $row['is_use'] ];
+            $dataArray['is_past_title']      = $isPastMap[ $row['is_past'] ];
 
             return $dataArray;
         }

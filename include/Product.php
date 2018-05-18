@@ -18,7 +18,7 @@
 
         function getIsOnline()
         {
-            return array('Y' => '是', 'N' => '否');
+            return array('1' => '是', '0' => '否');
         }
 
         //商品类型：1实物商品，2虚拟商品，3电子卡券，4酒店商品，5蛋糕烘培
@@ -110,7 +110,8 @@
             {
                 $brandRow = $myCategory->getRow("*", "no = ". $row['brand_no']);
 
-                $dataArray['{brand_title}'] = $brandRow['title'];
+                $dataArray['{brand_title}'] = empty($brandRow['title']) ? '' : $brandRow['title'];
+                $dataArray['{brand_pic}'] = empty($brandRow['pic']) ? '' : FILE_URL.$brandRow['pic'];
             }
 
             $dataArray['{product_url}'] = URL."/product_detail.php?no=".$row['no'];
@@ -206,7 +207,8 @@
             {
                 $brandRow = $myCategory->getRow("*", "no = ". $row['brand_no']);
 
-                $dataArray['brand_title'] = $brandRow['title'];
+                $dataArray['brand_title'] = empty($brandRow['title']) ? '' : $brandRow['title'];
+                $dataArray['brand_pic'] = empty($brandRow['pic']) ? '' : FILE_URL.$brandRow['pic'];
             }
 
             $dataArray['product_url'] = URL."/product_detail.php?no=".$row['no'];

@@ -81,16 +81,19 @@
 
 <view class="bgf2 space"></view>
 
+
+
+<!--推荐位1-->
+<view wx:for="{{recommend}}" wx:key="key" wx:for-index="idx" wx:for-item="itemName">
+
+
 <!--广告 1-->
-<view class="ele-container ad1" wx:for="{{slideshow_ad}}" wx:key="key" wx:for-index="idx" wx:for-item="item">
-<image src="{{item.pic}}"></image>
+<view class="ele-container ad1" wx:for="{{slideshow_ad}}" wx:key="key" wx:for-index="ad_index" wx:for-item="item">
+<image wx:if="{{idx==ad_index}}" src="{{item.pic}}"></image>
 </view>
 <!--广告 1--> 
 
 <view class="bgf2 space"></view>
-
-<!--推荐位1-->
-<view wx:for="{{recommend}}" wx:key="key" wx:for-index="idx" wx:for-item="itemName">
 
 
 <view class="ele-container bgf ht60 tc mt20">
@@ -106,7 +109,7 @@
 <view wx:for="{{itemName.product_lists}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="productItem">
 
       <view class="product_item  {{idx2/2>0 ? 'product_item_right':'product_item_left'}} ">
-        <navigator url="../product/product">
+        <navigator url="../product/product?product_no={{productItem.no}}">
         <view class="inner_content">
             <image src="{{productItem.pic}}"></image>
             <view>
@@ -155,7 +158,6 @@
 
 <view class="bgf2 space"></view>
 
-<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
-<button open-type="openSetting">打开授权设置页</button>
+
 
 </view>

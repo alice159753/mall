@@ -5,9 +5,13 @@
 
 <!--商品详细-->
 <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">    
+      <block wx:for="{{product_detail.product_img}}" wx:for-index="index" wx:key="key" wx:for-item="item">    
+
         <swiper-item>    
-          <image src="http://img.weiye.me/zcimgdir/album/file_590037c92aacc.png" class="slide-image" mode="aspectFill" lazy-load="true"/>    
-        </swiper-item>    
+          <image src="{{item.img_url}}" class="slide-image" mode="aspectFill" lazy-load="true"/>    
+        </swiper-item>  
+
+      </block> 
 </swiper>  
 
 
@@ -16,19 +20,19 @@
 
     <!-- 商品信息 -->
     <view class="details">
-        <image src="../../images/{{productDetail.shop_pic}}" class="product_shop_pic"></image>
-        <view class="shop_name">测试</view>
-        <view class="product_title mt20">擦擦擦擦擦擦错错</view>
+        <image src="{{product_detail.brand_pic}}" class="product_shop_pic"></image>
+        <view class="shop_name">{{product_detail.brand_title}}</view>
+        <view class="product_title mt20">{{product_detail.title}}</view>
 
         <view class="price_box mt20">
-          <view class="price">¥111</view>
-          <view class="sale_price">¥111111</view>
-          <view class="sale_num">10万人已买</view>
+          <view class="price">¥{{product_detail.sale_price}}</view>
+          <view class="sale_price">¥{{product_detail.lineation_price}}</view>
+          <view class="sale_num">{{product_detail.sales_num}}万人已买</view>
         </view>
 
         <view class="desc_box mt20">
-          <view class="repertory_num shop_name">库存 111</view>
-          <view class="postage_price shop_name">运费 ¥111</view>
+          <view class="repertory_num shop_name">库存 {{product_detail.repertory_num}}</view>
+          <view class="postage_price shop_name">运费 ¥{{product_detail.postage_config.postage_price}}</view>
         </view>
   </view>
 
@@ -43,16 +47,8 @@
     <view class="product_gallery_detail">
       <image src="https://img.yzcdn.cn/upload_files/2017/06/19/Fna08FxNZDN37i6oxWOCK9KnQ8IQ.png?imageView2/2/w/980/h/980/q/75/format/webp"></image>
     
-      <image src="https://img.yzcdn.cn/upload_files/2017/06/19/Fna08FxNZDN37i6oxWOCK9KnQ8IQ.png?imageView2/2/w/980/h/980/q/75/format/webp"></image>
-
-      <image src="https://img.yzcdn.cn/upload_files/2017/06/19/Fna08FxNZDN37i6oxWOCK9KnQ8IQ.png?imageView2/2/w/980/h/980/q/75/format/webp"></image>
-
-
 
     </view>
-
-
-
 
 </view>
 
@@ -124,7 +120,7 @@
 </view>
 
 <!-- 规格选择开始 -->
-<view class="page-dialog-wrap">
+<view class="page-dialog-wrap" style='display:none'>
 
       <view class="page-bottom-dialog">
         <view class="page-bottom-content">
@@ -178,9 +174,6 @@
                 </view>
             </view>
 
-
-
-
             <view class="dialog-box-item payDialog-normal">
                 <text class="btn btn-block btn-yellow pay-add-to-shoppingcart">加入购物车</text>
             </view>
@@ -195,7 +188,7 @@
 
 
 <!--购买按钮-->
-<view class="product_buy" style='display:none'>
+<view class="product_buy">
 
   <view class="product_customer">
     <image src="/images/customer.png"></image>

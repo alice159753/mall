@@ -1,3 +1,11 @@
+import {
+  product_detail
+} from '../../api/request'
+var CommonEvent = require('../common/commonEvent');
+
+var app = getApp();
+
+
 // pages/product/product.js
 Page({
 
@@ -5,7 +13,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    //商品详情
+    product_detail: [],
   },
 
   /**
@@ -13,6 +22,30 @@ Page({
    */
   onLoad: function (options) {
   
+    console.log('product onload');
+    CommonEvent.login();
+
+    console.log(app.globalData.userInfo);
+
+    console.log("options");
+    console.log(options);
+
+    //首页轮播图
+    product_detail(1, options.product_no).then((res) => {
+      
+      let arr = res.data.result.data;
+      this.setData({
+        product_detail: arr,
+      });
+
+      //设置导航条名称
+      wx.setNavigationBarTitle({
+        title: arr.title
+      });
+
+
+    });
+
   },
 
   /**

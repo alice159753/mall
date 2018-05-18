@@ -95,3 +95,13 @@ export function slideshow_ad() {
     }
   });
 }
+
+
+//商品详情
+export function product_detail(user_no, product_no) {
+  return newWork({
+    url: '/product_detail.php?user_no=' + user_no + "&product_no=" + product_no,
+    data: {
+    }
+  });
+}

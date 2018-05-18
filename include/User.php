@@ -167,7 +167,7 @@ class User extends Table
             $dataArray['headimgurl'] = $user['avatarUrl'];
             $dataArray['privilege']  = '';
             $dataArray['login_type'] = $login_type;
-            $dataArray['add_time'] = 'now()';
+            $dataArray['add_time']   = 'now()';
             $dataArray['channel_id'] = isset($_SESSION['channel_id']) ? $_SESSION['channel_id'] : 1;
 
             $myOpenUser->addRow($dataArray);

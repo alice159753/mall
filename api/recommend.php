@@ -1,5 +1,6 @@
 <?php
 
+    //推荐位
     include_once("config.cmd.php");
 
     ob_start();
@@ -26,7 +27,7 @@
 
         foreach ($product_no_lists as $key => $value) 
         {
-            $productRow = $myProduct->getRow("*", "no = ". $value ." AND is_online = 1");
+            $productRow = $myProduct->getRow("*", "no = ". $value ." AND is_online = 1 LIMIT 12");
 
             if( empty($productRow) )
             {
