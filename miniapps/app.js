@@ -34,43 +34,36 @@ App({
               //resSetting.authSetting['scope.userInfo']
               if (true) {
                 // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-                wx.getUserInfo({
-                  success: resUserInfo => {
+                // wx.getUserInfo({
+                //   success: resUserInfo => {
 
-                    console.log("获取用户信息成功2");
+                //     console.log("获取用户信息成功2");
+                //     resUserInfo.userInfo.code = res.code;
+                //     this.globalData.userInfo = resUserInfo.userInfo
+                //     console.log(resUserInfo);
+                //     let that = this;
+                //     //发起网络请求
+                //     wx.request({
+                //       url: 'https://mall.huaban1314.com/api/weixin_login.php',
+                //       data: resUserInfo.userInfo,
+                //       header: { 'content-type': 'application/json' },
+                //       success: function (res) {
+                //         console.log("注册返回的数据" + res.data);
+                //         console.log(res.data);
+                //         that.globalData.userInfo.user_no = res.data.result.data.no;
+                //         console.log(that.globalData.userInfo);
+                //       }
+                //     });
 
-                    resUserInfo.userInfo.code = res.code;
+                //     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回,所以此处加入 callback 以防止这种情况
+                //     if (this.userInfoReadyCallback) {
+                //       this.userInfoReadyCallback(resUserInfo)
+                //     }
 
-                    this.globalData.userInfo = resUserInfo.userInfo
+                //   }
+                // })
 
-                    console.log(resUserInfo);
 
-                    let that = this;
-
-                    //发起网络请求
-                    wx.request({
-                      url: 'https://mall.huaban1314.com/api/weixin_login.php',
-                      data: resUserInfo.userInfo,
-                      header: { 'content-type': 'application/json' },
-                      success: function (res) {
-                        console.log("注册返回的数据" + res.data);
-                        console.log(res.data);
-
-                        that.globalData.userInfo.user_no = res.data.result.data.no;
-
-                        console.log(that.globalData.userInfo);
-
-                      }
-
-                    });
-
-                    // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回,所以此处加入 callback 以防止这种情况
-                    if (this.userInfoReadyCallback) {
-                      this.userInfoReadyCallback(resUserInfo)
-                    }
-
-                  }
-                })
               }
             }
           })

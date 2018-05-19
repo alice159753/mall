@@ -1,4 +1,5 @@
 <import src="../templates/load.wxml"/>
+<import src="../templates/tips.wxml"/>
 
 <navigator url="../search/search">
 
@@ -158,6 +159,7 @@
 
 <view class="bgf2 space"></view>
 
+<template is="tip3" data="{{...tip1Data}}" />
 
 
 </view>

@@ -1,15 +1,46 @@
 <!--提示成功-->
 <template name='tip1'>
+
   <view class="tip cover">
     <view class="cover_cont">
     
   <view class="cover_cont0">温馨提示</view>
   <view class="cover_cont1">{{con}}</view>
-  <view class="cover_cont2">查看教程</view>
+  <view class="cover_cont2">
+  
+  <navigator url="/pages/user/help">查看教程</navigator> 
+  
+  </view>
+
   <view class="cover_cont3" bindtap='closetip'>我知道了</view>
     
     </view>
 
   </view>
   
+</template>
+
+
+<template name='tip2'>
+
+<modal title="温馨提示" cancelText="查看教程" confirmText="我知道了" bindcancel="userhelp" bindconfirm="closetip">
+<view class="cover_cont1">{{con}}</view>
+</modal>
+
+</template>
+
+
+<template name='tip3'>
+  <view class="layer_bg"></view>
+  <view class="tip cover">
+    <view class="cover_cont">
+        <view class="cover_cont0">微信授权</view>
+        <view class="cover_cont1">请登录</view>
+
+        <button class="cover_cont4" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" hover-class='button_hover'>允许</button>
+
+        <button class="cover_cont5" bindtap='closetip' hover-class='button_hover'>拒绝</button>
+
+    </view>
+  </view>
 </template>

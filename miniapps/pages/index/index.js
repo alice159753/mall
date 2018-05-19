@@ -24,6 +24,10 @@ Page({
   
     //广告
     slideshow_ad: [],
+
+    tip1Data: {
+      con: '复制口令成功，打开手机淘宝或天猫下单'
+    }
   },
   //事件处理函数
   bindViewTap: function() {
@@ -96,6 +100,12 @@ Page({
     });
 
 
+  },
+
+  onGotUserInfo: function (e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.userInfo)
+    console.log(e.detail.rawData)
   },
   
 })

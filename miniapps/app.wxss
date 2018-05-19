@@ -19,6 +19,7 @@
   width:100%;
   overflow: hidden
 }
+
 .bgf2
 {
   background-color: #f2f2f2;
@@ -93,6 +94,7 @@
   top: 0;
   height: 100%;
   width: 100%;
+  z-index: 1000;
 }
 .tip.cover .cover_cont {
   width: 650rpx;
@@ -133,6 +135,60 @@
   border-top:1px solid #ccc;
   color:#36a036;
 }
+.layer_bg 
+{
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    left: 0;
+    top: 0;
+}
+.tip .cover_cont .cover_cont4
+{
+  width:49%;
+  border-top:1px solid #ccc;
+  border-right:1px solid #ccc;
+  color:#36a036;
+  height:40px;
+  background-color:white;
+  display:inline-block;
+}
+
+.tip .cover_cont .cover_cont5
+{
+  width:49%;
+  border-top:1px solid #ccc;
+  height:40px;
+  background-color:white;
+  display:inline-block;
+}
+button[class="cover_cont4"],button[class="cover_cont5"]
+{
+  outline:none;
+  border:none;
+  list-style: none;
+  background: none;
+  border-radius:0px;
+
+}
+.button_hover
+{
+  outline:none;
+  border:none;
+  list-style: none;
+  background: none;
+  border-radius:0px;
+}
+button[class="cover_cont4"]::after,button[class="cover_cont5"]::after {
+  outline:none;
+  border:none;
+  list-style: none;
+  background: none;
+  border-radius:0px;
+}
+
 /*提示end  */
 
 .noBtnDef{
