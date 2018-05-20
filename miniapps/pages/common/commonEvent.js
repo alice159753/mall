@@ -2,6 +2,8 @@ import { commonAjax, register } from '../../api/request'
 var utils = require('../../utils/util.js');
 let app = getApp();
 
+let resUserInfo = [];
+
 function CommonEvent() {
   var cur = arguments[0];
   var userInfo = {};
@@ -9,8 +11,13 @@ function CommonEvent() {
   var canIUse = wx.canIUse('button.open-type.getUserInfo');
 };
 
-export function login()
+export function login(e)
 {
+  console.log(e.detail.errMsg);
+  console.log(e.detail.userInfo);
+
+  resUserInfo.userInfo = e.detail.userInfo;
+
   console.log("commonEvent login");
   console.log(this.canIUse);
 
@@ -27,17 +34,57 @@ export function login()
   }
   else 
   {
-    // 在没有 open-type=getUserInfo 版本的兼容处理
-    // wx.getUserInfo({
-    //   success: res => {
-    //     app.globalData.userInfo = res.userInfo
-    //     console.log("commonEvent login getUserInfo succ");
-    //     console.log(app.globalData.userInfo);
-    //   },
-    //   fail:res=>{
-    //     console.log("commonEvent login getUserInfo fail");
-    //   }
-    // })
+    wx.login({
+      fail: res => {
+        console.log("获取用户登录res.code失败fail");
+        console.log(res);
+      },
+      complete: res => {
+        console.log("获取用户登录res.code complete");
+        console.log(res);
+      },
+      success: res => {
+
+        console.log("获取用户登录res.code成功=" + res.code);
+
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) 
+        {
+              resUserInfo.userInfo.code = res.code;
+
+              app.globalData.userInfo = resUserInfo.userInfo
+
+              console.log(resUserInfo);
+
+            //发起网络请求
+            wx.request({
+               url: 'https://mall.huaban1314.com/api/weixin_login.php',
+               data: resUserInfo.userInfo,
+               header: { 'content-type': 'application/json' },
+                success: function (res) 
+                {
+                    console.log("注册返回的数据" + res.data);
+                    console.log(res.data);
+
+                    app.globalData.userInfo.user_no = res.data.result.data.no;
+
+                    console.log(app.globalData.userInfo);
+                }
+             });
+
+
+
+       }
+   
+        
+        
+      }
+
+
+    })
+
+
+
 
   }
 

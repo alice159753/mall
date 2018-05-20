@@ -40,7 +40,7 @@
 <scroll-view class="scroll_view_h_category bgf" scroll-x="true">
 
   <view wx:for="{{category1list}}" wx:key="key" class="category_box">
-  <navigator url="../product/productlists?category_no={{item.no}}&title={{item.title}}">
+  <navigator url="../product/productlists?category_no_1={{item.no}}&title={{item.title}}">
      <image class="" mode="scaleToFill" lazy-load="true" src="{{item.pic}}"></image>
      <text>{{item.title}}</text>
 </navigator>
@@ -70,22 +70,22 @@
     </view>
 
     <view wx:if="{{item.use_type==2}}">
-    <view class="youhuiquan_title">满{{item.full_price}}元可使用</view>
+    <view class="youhuiquan_title">满{{item.full_price}}元可用</view>
     </view>
 
-    <view class="youhuiquan_button">点击领取</view>
+    <view class="youhuiquan_button" bindtap='get_discount_coupon' data-discount_coupon_no="{{item.no}}">点击领取</view>
   </view>
 
 </scroll-view>
 <!--优惠券-->
 
 
-<view class="bgf2 space"></view>
-
-
 
 <!--推荐位1-->
 <view wx:for="{{recommend}}" wx:key="key" wx:for-index="idx" wx:for-item="itemName">
+
+
+<view class="bgf2 space"></view>
 
 
 <!--广告 1-->
@@ -159,7 +159,8 @@
 
 <view class="bgf2 space"></view>
 
-<template is="tip3" data="{{...tip1Data}}" />
+<!--微信登录-->
+<template is="tip3" wx:if="{{isloginshow}}" data="{{...tip1Data}}" />
 
 
 </view>

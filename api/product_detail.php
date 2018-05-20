@@ -34,7 +34,7 @@
 
     }
 
-    $condition = "no = $product_no AND is_online = 1";
+    $condition = "no = $product_no AND is_online = 1 AND is_delete = 0";
     
     $row = $myProduct->getRow("*", $condition);
 

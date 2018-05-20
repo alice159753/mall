@@ -1,5 +1,5 @@
 import {
-  slideshow, category1, recommend, article, discount_coupon,slideshow_ad
+  slideshow, category1, recommend, article, discount_coupon, slideshow_ad, discount_coupon_add
  } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
 
@@ -25,9 +25,8 @@ Page({
     //广告
     slideshow_ad: [],
 
-    tip1Data: {
-      con: '复制口令成功，打开手机淘宝或天猫下单'
-    }
+    //是否
+    isloginshow : false,
   },
   //事件处理函数
   bindViewTap: function() {
@@ -42,8 +41,15 @@ Page({
     });
 
     console.log('index onload');
-    CommonEvent.login();
+    console.log(app.globalData.userInfo);
 
+    //没有登录则展示登录框
+    if (!app.globalData.userInfo) {
+      this.setData({
+        isloginshow: true,
+      })
+    }
+    
     //设置导航条名称
     wx.setNavigationBarTitle({
       title: app.globalData.globalNameOne
@@ -102,10 +108,63 @@ Page({
 
   },
 
+  //微信登录
   onGotUserInfo: function (e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.userInfo)
-    console.log(e.detail.rawData)
+    CommonEvent.login(e);
+
+    console.log('登录完成');
+    console.log(app.globalData.userInfo);
+
+    this.setData({
+      isloginshow: false,
+    })
   },
-  
+
+  //关闭微信登录
+  closetip: function() {
+    this.setData({
+      isloginshow: false,
+    })
+  },
+
+
+  //领取优惠券
+  get_discount_coupon: function (event) {
+    console.log("领取优惠券");
+    console.log(event);
+
+    //没有登录则展示登录框
+    if (!app.globalData.userInfo) 
+    {
+      this.setData({
+        isloginshow: true,
+      })
+    }
+    else
+    {
+      let discount_coupon_no = event.currentTarget.dataset.discount_coupon_no;
+      //领取优惠券
+       discount_coupon_add(app.globalData.userInfo.user_no, discount_coupon_no).then((res) => {
+        console.log("领取优惠券result");
+        console.log(res);
+
+        if ( res.data.result.status.code == 0 )
+        {
+          wx.showToast({
+            title: '领取成功',
+            icon: 'success',
+          });
+        }
+        else
+        {
+          wx.showToast({ 
+            title: res.data.result.status.msg,
+            icon: 'none',
+          });
+        }
+      });
+    }
+  },
+
+
 })

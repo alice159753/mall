@@ -27,7 +27,7 @@
 
         foreach ($product_no_lists as $key => $value) 
         {
-            $productRow = $myProduct->getRow("*", "no = ". $value ." AND is_online = 1 LIMIT 12");
+            $productRow = $myProduct->getRow("*", "no = ". $value ." AND is_online = 1 AND is_delete = 0 LIMIT 12");
 
             if( empty($productRow) )
             {

@@ -115,8 +115,9 @@
 /**广告开始**/
 .app .ad1
 {
-    padding: 14rpx 8rpx;
+    padding: 14rpx 0rpx 8rpx 8rpx ;
     background-color: rgb(255, 255, 255);
+    height:auto;
 }
 .app .ad1 image
 {
@@ -124,7 +125,7 @@
     height:271rpx;
     border-radius: inherit;
     display:inline-block;
-    padding-top:10rpx;
+    padding-top:25rpx;
 }
 
 /**广告结束**/

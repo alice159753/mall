@@ -23,7 +23,6 @@ Page({
   onLoad: function (options) {
   
     console.log('product onload');
-    CommonEvent.login();
 
     console.log(app.globalData.userInfo);
 
@@ -31,7 +30,7 @@ Page({
     console.log(options);
 
     //首页轮播图
-    product_detail(1, options.product_no).then((res) => {
+    product_detail(app.globalData.userInfo.user_no, options.product_no).then((res) => {
       
       let arr = res.data.result.data;
       this.setData({

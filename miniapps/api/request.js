@@ -96,11 +96,32 @@ export function slideshow_ad() {
   });
 }
 
+//商品列表
+export function product(page, category_no_1 = 0, order = 'sale_num desc') {
+  return newWork({
+    url: '/product.php',
+    data: {
+      page: page,
+      category_no: category_no_1,
+      order: order,
+    }
+  });
+}
 
 //商品详情
 export function product_detail(user_no, product_no) {
   return newWork({
     url: '/product_detail.php?user_no=' + user_no + "&product_no=" + product_no,
+    data: {
+    }
+  });
+}
+
+
+//领取优惠券
+export function discount_coupon_add(user_no, discount_coupon_no) {
+  return newWork({
+    url: '/discount_coupon_add.php?user_no=' + user_no + "&discount_coupon_no=" + discount_coupon_no,
     data: {
     }
   });

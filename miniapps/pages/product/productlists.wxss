@@ -1,5 +1,42 @@
-/**商品列表排序 开始**/
+/** start category1 **/
+.scroll_view_h_category
+{
+  white-space: nowrap; 
+  display: flex;
+  padding-top:10rpx;
+  padding-bottom:20rpx;
+}
 
+.scroll_view_h_category .category_box
+{
+   display: inline-block;
+   width: 150rpx;
+}
+.scroll_view_h_category image
+{
+  width: 80rpx; 
+  height: 80rpx;
+}
+.scroll_view_h_category image:first-child
+{
+  padding-left:34rpx;
+}
+.scroll_view_h_category text
+{
+    display: block;
+    width: 80rpx;
+    text-align: center;
+    font-size:30rpx;
+    padding-left:18px;
+}
+.scroll_view_h_category .active
+{
+  color:#f4a719;
+}
+/** end category1 **/
+
+
+/**商品列表排序 开始**/
 page {
   border-top: none;
 }
@@ -11,15 +48,13 @@ page {
 }
 .page .header {
   width:100%;
-  position: fixed;
-  top:0rpx;
-  left:0rpx;
   z-index:999;
-  background-color:#fff;
+  background-color: #f2f2f2;
 }
 .page .header .tab {
   width: 100%;
   height: 90rpx;
+  border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #eeeeee;
   position: relative;
 }
@@ -55,77 +90,42 @@ page {
   text-align: center;
 }
 .page .header .tab .active {
-  color: #f8a6cc;
-  /*border-bottom: 1px solid #f8a6cc;*/
+  color: #f4a719;
 }
-
-.page .header .tab  .sort_image_shang1
-{
-  width: 35rpx;
-  height: 35rpx;
-  position: fixed;
-  top:18rpx;
-  left:17%;
-}
-.page .header .tab  .sort_image_xia1
-{
-  width: 35rpx;
-  height: 35rpx;
-  position: fixed;
-  top:40rpx;
-  left:17%;
-}
-
-.page .header .tab  .sort_image_shang2
-{
-  width: 35rpx;
-  height: 35rpx;
-  position: fixed;
-  top:18rpx;
-  left:42%;
-}
-.page .header .tab  .sort_image_xia2
-{
-  width: 35rpx;
-  height: 35rpx;
-  position: fixed;
-  top:40rpx;
-  left:42%;
-}
+.page .header .tab  .sort_image_shang1,.page .header .tab  .sort_image_shang2,
 .page .header .tab  .sort_image_shang3
 {
   width: 35rpx;
   height: 35rpx;
-  position: fixed;
-  top:18rpx;
-  left:68%;
+  position: relative;
+  top:-88rpx;
+  left:88%;
 }
+.page .header .tab  .sort_image_xia1,.page .header .tab  .sort_image_xia2,
 .page .header .tab  .sort_image_xia3
 {
   width: 35rpx;
   height: 35rpx;
-  position: fixed;
-  top:40rpx;
-  left:68%;
+  position: relative;
+  top:-62rpx;
+  left:40%;
 }
-
 .page .header .tab  .sort_image_shang4
 {
   width: 35rpx;
   height: 35rpx;
-  position: fixed;
-  top:18rpx;
-  left:92%;
+  position: relative;
+  top:-88rpx;
+  left:50%;
 }
 .page .header .tab  .sort_image_xia4
 {
   width: 35rpx;
   height: 35rpx;
-  position: fixed;
-  top:40rpx;
-  left:92%;
+  position: relative;
+  top:-62rpx;
+  left:23%;
 }
-
 /**商品列表排序 结束**/
 
 

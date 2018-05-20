@@ -2,6 +2,21 @@
 
 <view class="page">
 
+<scroll-view class="scroll_view_h_category bgf" scroll-x="true">
+  <view class="category_box">
+    <navigator url="../product/productlists?category_no_1=0&title=全部">
+      <text class="{{category_no_1==0 ? 'active' : ''}}">全部</text>
+    </navigator>
+  </view>
+
+  <view wx:for="{{category1list}}" wx:key="key" class="category_box">
+    <navigator url="../product/productlists?category_no_1={{item.no}}&title={{item.title}}">
+      <text class="{{category_no_1==item.no ? 'active' : ''}}">{{item.title}}</text>
+    </navigator>
+  </view>
+</scroll-view>
+
+
     <view class="header">
         <view class="tab">
             <view class="tab_single single_one {{istab==0?'active':''}}">
@@ -11,23 +26,24 @@
 
             </view>
             <view class="tab_single single_two {{istab==1?'active':''}}">
-               <view catchtap="taplist" data-order="price/100-coupon_save_price desc"  data-id="1" >价格</view>
-                <image class="sort_image_shang2" src="../../images/{{shang1}}" data-order="price/100-coupon_save_price asc" data-id="1" catchtap="taplist"></image>
-                <image class="sort_image_xia2" src="../../images/{{xia1}}" data-order="price/100-coupon_save_price desc" data-id="1" catchtap="taplist"></image>
+               <view catchtap="taplist" data-order="sale_price desc"  data-id="1" >价格</view>
+                <image class="sort_image_shang2" src="../../images/{{shang1}}" data-order="sale_price asc" data-id="1" catchtap="taplist"></image>
+                <image class="sort_image_xia2" src="../../images/{{xia1}}" data-order="sale_price desc" data-id="1" catchtap="taplist"></image>
 
             </view>
             <view class="tab_single single_thr {{istab==2?'active':''}}">
-                <view catchtap="taplist" data-order="coupon_save_price desc"  data-id="2" >卷额</view>
-                <image class="sort_image_shang3" src="../../images/{{shang2}}" data-order="coupon_save_price asc" data-id="2" catchtap="taplist"></image>
-                <image class="sort_image_xia3" src="../../images/{{xia2}}" data-order="coupon_save_price desc" data-id="2" catchtap="taplist"></image>
+                <view catchtap="taplist" data-order="add_time desc"  data-id="2" >新品</view>
+                <image class="sort_image_shang3" src="../../images/{{shang2}}" data-order="add_time asc" data-id="2" catchtap="taplist"></image>
+                <image class="sort_image_xia3" src="../../images/{{xia2}}" data-order="add_time desc" data-id="2" catchtap="taplist"></image>
 
             </view>
+
             <view class="tab_single single_fou {{istab==3?'active':''}}">
                 <view catchtap="taplist" data-order="no desc" data-id="3">综合</view>
                 <image class="sort_image_shang4" src="../../images/{{shang3}}" catchtap="taplist" data-order="no asc" data-id="3"></image>
                 <image class="sort_image_xia4" src="../../images/{{xia3}}" catchtap="taplist" data-order="no desc" data-id="3"></image>
-
             </view>
+
         </view>
     </view>
 
@@ -40,7 +56,7 @@
 
     <view class="product_lists fs32">
     
-      <view class="product_item product_item_left mt100">
+      <view class="product_item product_item_left mt20">
 
         <navigator url="../product/product">
 
@@ -62,7 +78,7 @@
       
       </view>
 
-      <view class="product_item product_item_right mt100">
+      <view class="product_item product_item_right mt20">
       
         <navigator url="../product/product">
 

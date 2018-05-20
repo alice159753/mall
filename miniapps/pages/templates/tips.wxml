@@ -35,11 +35,10 @@
   <view class="tip cover">
     <view class="cover_cont">
         <view class="cover_cont0">微信授权</view>
-        <view class="cover_cont1">请登录</view>
+        <view class="cover_cont1">需获取您的公开信息（昵称，头像等）</view>
 
         <button class="cover_cont4" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" hover-class='button_hover'>允许</button>
 
-        <button class="cover_cont5" bindtap='closetip' hover-class='button_hover'>拒绝</button>
 
     </view>
   </view>

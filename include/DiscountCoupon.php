@@ -52,6 +52,7 @@
             $dataArray['{use_type}']           = $row['use_type'];
             $dataArray['{full_price}']         = $row['full_price'];
             $dataArray['{limit_num}']          = $row['limit_num'];
+            $dataArray['{limit_num_title}']    = $row['limit_num'] == 0 ? '不限张': $row['limit_num'];
             $dataArray['{user_label_no}']      = $row['user_label_no'];
             $dataArray['{date_type}']          = $row['date_type'];
             $dataArray['{start_date}']         = $row['start_date'];
@@ -105,6 +106,7 @@
             $dataArray['use_type']           = $row['use_type'];
             $dataArray['full_price']         = $row['full_price'];
             $dataArray['limit_num']          = $row['limit_num'];
+            $dataArray['limit_num_title']    = $row['limit_num'] == 0 ? '不限张': $row['limit_num'];
             $dataArray['user_label_no']      = $row['user_label_no'];
             $dataArray['date_type']          = $row['date_type'];
             $dataArray['start_date']         = $row['start_date'];
