@@ -102,7 +102,7 @@ export function product(page, category_no_1 = 0, order = 'sale_num desc') {
     url: '/product.php',
     data: {
       page: page,
-      category_no: category_no_1,
+      category_no_1: category_no_1,
       order: order,
     }
   });

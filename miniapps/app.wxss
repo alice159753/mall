@@ -67,6 +67,7 @@
   line-height:80rpx;
   margin:0 auto;
   position: relative;
+  clear:both;
 }
 .loadingFont{
   font-size:22rpx;

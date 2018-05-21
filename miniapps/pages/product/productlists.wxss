@@ -5,6 +5,9 @@
   display: flex;
   padding-top:10rpx;
   padding-bottom:20rpx;
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
 }
 
 .scroll_view_h_category .category_box
@@ -50,6 +53,7 @@ page {
   width:100%;
   z-index:999;
   background-color: #f2f2f2;
+  margin-top:83rpx;
 }
 .page .header .tab {
   width: 100%;
@@ -60,7 +64,7 @@ page {
 }
 .page .header .tab .tab_single {
   line-height: 88rpx;
-  font-size: 30rpx;
+  font-size: 26rpx;
   color: #333333;
   box-sizing: border-box;
   text-align: center;

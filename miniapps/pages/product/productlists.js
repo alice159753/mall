@@ -3,6 +3,8 @@ import {
   category1, product
 } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
+var util = require('../../utils/util');
+
 
 var app = getApp();
 
@@ -13,6 +15,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+
+    //控制显示load
+    load_show: true,
 
     //首页一级分类
     category1list: [],   
@@ -30,7 +35,7 @@ Page({
     page: 1,
 
     //分类排序, 销量降序
-    category_order: 'sale_num desc',
+    category_order: 'real_sales desc',
 
     //销量，价格，新品，综合
     istab: 0,
@@ -44,8 +49,6 @@ Page({
     xia2: 'xia.png',
     shang3: 'shang.png',
     xia3: 'xia.png',
-
-
   },
 
   /**
@@ -55,6 +58,12 @@ Page({
 
     console.log("productlists onload");
     console.log(options);
+
+    if ( util.isBlank(options) )
+    {
+      options.category_no_1 = "0";
+      options.title = "分类";
+    }
 
     //设置导航条名称
     wx.setNavigationBarTitle({
@@ -70,12 +79,12 @@ Page({
     });
 
     //首页全部商品
-    product(1, options.category_no_1, 'sale_num desc').then((res) => {
+    product(1, options.category_no_1, 'real_sales desc').then((res) => {
       let arr = res.data.result.data;
       this.setData({
         productlists: arr,
         category_no_1: options.category_no_1,
-        category_order: 'sale_num desc',
+        category_order: 'real_sales desc',
         //设置默认箭头颜色
         xia0: 'xia_active.png',
 
@@ -89,6 +98,31 @@ Page({
 
     let id = event.currentTarget.dataset.id;
     let order = event.currentTarget.dataset.order;
+    let category_no_1 = event.currentTarget.dataset.category_no;
+
+    //如果id为空，则获取全局变量
+    if (util.isBlank(id) )
+    {
+      id = that.data.istab;
+    }
+
+    //如果order为空，则获取全局变量
+    if (util.isBlank(order)) {
+      order = that.data.category_order;
+    }
+    else
+    {
+      that.data.category_order = order;
+    }
+
+    //如果category_no_1为空，则获取全局变量
+    if (util.isBlank(category_no_1)) {
+      category_no_1 = that.data.category_no_1;
+    }
+    else
+    {
+      that.data.category_no_1 = category_no_1;
+    }
 
     console.log("id=" + id);
     console.log("order=" + order);
@@ -96,11 +130,12 @@ Page({
     this.setData({
       istab: id,
       category_order: order,
-      page: 1
+      page: 1,
+      category_no_1: category_no_1,
     })
 
     //首页全部商品
-    product(1, that.data.category_no_1, order).then((res) => {
+    product(1, category_no_1, order).then((res) => {
       let arr = res.data.result.data;
       this.setData({
         productlists: arr,
@@ -168,7 +203,22 @@ Page({
 
   },
 
+  //清空箭头的颜色
+  clearjiantou: function () {
+    let that = this;
 
+    this.setData({
+      shang0: 'shang.png',
+      xia0: 'xia.png',
+      shang1: 'shang.png',
+      xia1: 'xia.png',
+      shang2: 'shang.png',
+      xia2: 'xia.png',
+      shang3: 'shang.png',
+      xia3: 'xia.png',
+    })
+
+  },
 
 
   /**
@@ -209,8 +259,33 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-  
+  onReachBottom: function () 
+  {
+
+    console.log('下拉刷新～');
+    let that = this;
+
+    that.setData({
+      load_show: true,
+      page: that.data.page + 1
+    });
+
+    setTimeout(function () 
+    {
+      that.setData({
+        load_show: false
+      });
+
+      product(that.data.page, that.data.category_no_1, that.data.category_order).then((res) => {
+        let arr = res.data.result.data;
+        let newarr = that.data.productlists.concat(arr);
+        console.log(newarr);
+        that.setData({
+          productlists: newarr
+        })
+      })
+    }, 1500)
+
   },
 
   /**

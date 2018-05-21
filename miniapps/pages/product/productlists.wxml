@@ -5,14 +5,12 @@
 <scroll-view class="scroll_view_h_category bgf" scroll-x="true">
   <view class="category_box">
     <navigator url="../product/productlists?category_no_1=0&title=全部">
-      <text class="{{category_no_1==0 ? 'active' : ''}}">全部</text>
+      <text class="{{category_no_1==0 ? 'active' : ''}}" catchtap="taplist" data-title="全部" data-category_no="0">全部</text>
     </navigator>
   </view>
 
   <view wx:for="{{category1list}}" wx:key="key" class="category_box">
-    <navigator url="../product/productlists?category_no_1={{item.no}}&title={{item.title}}">
-      <text class="{{category_no_1==item.no ? 'active' : ''}}">{{item.title}}</text>
-    </navigator>
+      <text class="{{category_no_1==item.no ? 'active' : ''}}" catchtap="taplist" data-title="{{item.title}}" data-category_no="{{item.no}}">{{item.title}}</text>
   </view>
 </scroll-view>
 
@@ -20,9 +18,9 @@
     <view class="header">
         <view class="tab">
             <view class="tab_single single_one {{istab==0?'active':''}}">
-                <view catchtap="taplist" data-order="sale_num desc" data-id="0" >销量</view>
-                <image class="sort_image_shang1" src="../../images/{{shang0}}" data-order="sale_num asc" data-id="0" catchtap="taplist"></image>
-                <image class="sort_image_xia1" src="../../images/{{xia0}}" data-order="sale_num desc" data-id="0" catchtap="taplist"></image>
+                <view catchtap="taplist" data-order="real_sales desc" data-id="0" >销量</view>
+                <image class="sort_image_shang1" src="../../images/{{shang0}}" data-order="real_sales asc" data-id="0" catchtap="taplist"></image>
+                <image class="sort_image_xia1" src="../../images/{{xia0}}" data-order="real_sales desc" data-id="0" catchtap="taplist"></image>
 
             </view>
             <view class="tab_single single_two {{istab==1?'active':''}}">
@@ -50,63 +48,41 @@
 </view>
 
 
+<!--商品列表开始-->
 <view class="app">
+    <view class="ele-container bgf mt20 mb800">
 
-<view class="ele-container bgf mt20 mb800">
 
-    <view class="product_lists fs32">
-    
-      <view class="product_item product_item_left mt20">
+        <view class="product_lists fs32">
+            <view wx:for="{{productlists}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="productItem">
 
-        <navigator url="../product/product">
+                <view class="product_item  {{idx2/2>0 ? 'product_item_right':'product_item_left'}} ">
+                  <navigator url="../product/product?product_no={{productItem.no}}">
+                  <view class="inner_content">
+                      <image src="{{productItem.pic}}"></image>
+                      <view>
+                          <view class="product_title fs32">{{productItem.title}}</view>
+                          <view class="mt20">
+                              <view class="price">￥{{productItem.sale_price}}</view>
+                              <view class="sales_num color1">销量：{{productItem.sales_num}}</view>
+                              <image src="/images/buy_cars.png" class="buy_cars"></image>
+                          </view>
 
-        <view class="inner_content">
-            <image src="http://img.weiye.me/zcimgdir/album/file_590037fa63a14.png"></image>
-
-            <view>
-                <view class="product_title fs32">简约新款</view>
-                <view class="mt20">
-                    <view class="price">￥36.00</view>
-                    <view class="sales_num color1">销量：7</view>
-                    <image src="/images/buy_cars.png" class="buy_cars"></image>
+                      </view>
+                  </view>
+                  </navigator>
                 </view>
 
-            </view>
+          </view>
         </view>
 
-        </navigator>
-      
-      </view>
 
-      <view class="product_item product_item_right mt20">
-      
-        <navigator url="../product/product">
-
-        <view class="inner_content">
-            <image src="http://img.weiye.me/zcimgdir/album/file_590037e35addd.png"></image>
-
-            <view>
-                <view class="product_title">简约新款</view>
-                <view class="mt20">
-                    <view class="price">￥36.00</view>
-                    <view class="sales_num color1">销量：7</view>
-                    <image src="/images/buy_cars.png" class="buy_cars"></image>
-                </view>
-
-            </view>
-
-        </view>
-
-        </navigator>
-      
-      
-      </view>
+          <!--下拉刷新-->
+        <template is="load" wx-if="{{load_show}}"/>
+  
 
     </view>
 
-</view>
-
-
-
 
 </view>
+<!--商品列表结束-->

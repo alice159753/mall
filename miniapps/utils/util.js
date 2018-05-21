@@ -52,6 +52,23 @@ var util = {
     // var req_time = new Date().getTime() + _this.randomNum();//请求接口时间（Unix时间戳+4位的随机数）
 
   },
+  //用于判断空，Undefined String Array Object
+  isBlank: function (str){
+
+      if (Object.prototype.toString.call(str) === '[object Undefined]') {//空
+        return true
+      } else if (
+        Object.prototype.toString.call(str) === '[object String]' ||
+        Object.prototype.toString.call(str) === '[object Array]') { //字条串或数组
+        return str.length == 0 ? true : false
+      } else if (Object.prototype.toString.call(str) === '[object Object]') {
+        return JSON.stringify(str) == '{}' ? true : false
+      } else {
+        return true
+      }
+
+  },
+
 };
 
 module.exports = util;
