@@ -126,3 +126,14 @@ export function discount_coupon_add(user_no, discount_coupon_no) {
     }
   });
 }
+
+//意见反馈
+export function suggest(user_no, content) {
+  return newWork({
+    url: '/suggest.php',
+    data: {
+      user_no: user_no,
+      content: content,
+    }
+  });
+}

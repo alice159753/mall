@@ -1,4 +1,5 @@
 <import src="../templates/load.wxml"/>
+<import src="../templates/tips.wxml"/>
 
 <view class="page">
 
@@ -50,8 +51,7 @@
 
 <!--商品列表开始-->
 <view class="app">
-    <view class="ele-container bgf mt20 mb800">
-
+    <view class="ele-container bgf mt20 mb600">
 
         <view class="product_lists fs32">
             <view wx:for="{{productlists}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="productItem">
@@ -86,3 +86,7 @@
 
 </view>
 <!--商品列表结束-->
+
+
+<!--微信登录-->
+<template is="tip3" wx:if="{{isloginshow}}" />

@@ -166,5 +166,26 @@ Page({
     }
   },
 
+  //点击分类跳转到分类详情
+  changeTab: function (event)
+  {
+    let title = event.currentTarget.dataset.title;
+    let category_no_1 = event.currentTarget.dataset.category_no;
+
+    app.globalData.category.title = title;
+    app.globalData.category.category_no_1 = category_no_1;
+
+    //切换switchTab以后不刷新tab解决方案
+    wx.switchTab({
+      url: '../product/productlists',
+      success: function (e) {
+        var page = getCurrentPages().pop();
+        if (page == undefined || page == null) return;
+        page.onLoad();
+      }
+    });
+
+  },
+
 
 })

@@ -1,4 +1,10 @@
-// pages/user/user.js
+import { commonAjax, product_detail } from '../../api/request'
+
+var utils = require('../../utils/util.js');
+var CommonEvent = require('../common/commonEvent');
+var app = getApp();
+
+
 Page({
 
   /**
@@ -12,7 +18,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+
+    console.log('user onload');
+    console.log(app.globalData.userInfo);
+
+    //没有登录则展示登录框
+    if (!app.globalData.userInfo) {
+      this.setData({
+        isloginshow: true,
+      })
+    }
+
+    this.setData({
+      userInfo: app.globalData.userInfo,
+    })
+
   },
 
   /**
@@ -55,6 +75,31 @@ Page({
    */
   onReachBottom: function () {
   
+  },
+
+  //微信登录
+  onGotUserInfo: function (e) {
+    CommonEvent.login(e);
+
+    console.log('登录完成');
+    console.log(app.globalData.userInfo);
+
+    this.setData({
+      isloginshow: false,
+    });
+
+    let page = getCurrentPages().pop();
+    if (page == undefined || page == null) return;
+    page.onLoad();
+
+
+  },
+
+  //关闭微信登录
+  closetip: function () {
+    this.setData({
+      isloginshow: false,
+    })
   },
 
   /**

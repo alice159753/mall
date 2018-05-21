@@ -81,6 +81,10 @@ App({
     userInfo: null,
     globalNameOne: "花伴电商",
     globalShareTitle: "花伴电商",
+    category: {
+      title:'分类',
+      category_no_1:'0',
+    },
 
   },
 

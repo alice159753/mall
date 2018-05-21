@@ -1,3 +1,6 @@
+<import src="../templates/tips.wxml"/>
+
+
 <view class="page">
 
 <view class="userinfo">
@@ -75,7 +78,7 @@
                     <image class="arrow_r" src="../../images/arrow_r.png"></image>
                 </navigator>
 
-               <navigator hover-class="none" class="single" url='../user/help'>
+               <navigator hover-class="none" class="single" url='../user/about'>
                     <image class="single_pic" src="../../images/help.png"></image>
                     <view class="single_project">关于我们</view>
                     <image class="arrow_r" src="../../images/arrow_r.png"></image>
@@ -84,3 +87,7 @@
 
             </view>
         </view>
+
+
+<!--微信登录-->
+<template is="tip3" wx:if="{{isloginshow}}" />

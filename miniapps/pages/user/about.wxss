@@ -1,0 +1,37 @@
+/* pages/user/about.wxss */
+
+.headTitle 
+{
+    font-size: 34rpx;
+    line-height: 48px;
+    padding-top: 132px;
+}
+.headTitle image
+{
+    width: 100px;
+    height: 100px;
+    border-radius: 0%;
+    margin-left: -45px;
+    position: absolute;
+    left: 50%;
+    top: 42px;
+}
+.headTitle text
+{
+   color: #28b36f;
+   text-align: center;
+   font-size: 34rpx;
+   line-height: 48px;
+   position:absolute;
+    left:50%;
+    top:42px;
+
+}
+
+.cantact
+{
+  margin-top: 22px!important;
+  font-size: 26rpx!important;
+  text-align: center!important;
+  color: #666!important;
+}

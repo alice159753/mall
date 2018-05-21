@@ -1,6 +1,6 @@
 import { commonAjax, suggest } from '../../api/request'
 
-var utils = require('../../utils/util.js');
+var util = require('../../utils/util.js');
 var CommonEvent = require('../common/commonEvent');
 var app = getApp();
 
@@ -36,9 +36,9 @@ Page({
       return false;
     }
 
-    suggest(1, e.detail.value.wrong_content).then((json) => {
+    suggest(app.globalData.userInfo.user_no, e.detail.value.wrong_content).then((json) => {
       if (json.data.result.status.code == 0) {
-        utils.noOpen('反馈成功', function () {
+        util.noOpen('反馈成功', function () {
           setTimeout(() => {
             wx.navigateBack({
               delta: 100, // 回退前 delta(默认为1) 页面
@@ -113,7 +113,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
 
+  onShareAppMessage: function () {
+    return {
+      title: app.globalData.globalShareTitle,
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
+
 })

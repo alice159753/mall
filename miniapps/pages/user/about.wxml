@@ -1,0 +1,16 @@
+<!--pages/user/about.wxml-->
+
+<view class="page app">
+
+<view class="headTitle">
+    <image src="http://www.xinghuilvse.com/data/admin/20180416/20180416131252_5ad430d475f52_52964.jpg"></image>
+    <text>测试</text>
+</view>
+
+<view class="cantact">
+qq：472422839
+</view>
+
+
+
+</view>

@@ -11,13 +11,16 @@
     "pages/user/cards",
     "pages/user/coupon",
     "pages/user/order",
-    "pages/user/carts"
+    "pages/user/carts",
+    "pages/user/about"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "花伴电商",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 10
   },
   "tabBar": {
     "color": "#a9b7b7",

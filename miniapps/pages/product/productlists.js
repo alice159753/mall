@@ -25,9 +25,6 @@ Page({
     //分类no
     category_no_1: 0,
 
-    //控制显示图片
-    show: true,
-
     //商品列表
     productlists: [],
 
@@ -49,6 +46,9 @@ Page({
     xia2: 'xia.png',
     shang3: 'shang.png',
     xia3: 'xia.png',
+
+    //是否
+    isloginshow: false,
   },
 
   /**
@@ -57,12 +57,30 @@ Page({
   onLoad: function (options) {
 
     console.log("productlists onload");
-    console.log(options);
+    console.log(app.globalData.category);
+
+    //没有登录则展示登录框
+    if (!app.globalData.userInfo) {
+      this.setData({
+        isloginshow: true,
+      })
+    }
 
     if ( util.isBlank(options) )
     {
-      options.category_no_1 = "0";
-      options.title = "分类";
+      options = { 'category_no_1': 0, 'title':'分类'};
+    }
+
+    let title = app.globalData.category.title;
+    let category_no_1 = app.globalData.category.category_no_1;
+
+    if ( !util.isBlank(title) )
+    {
+      options.title = title;
+    }
+
+    if (!util.isBlank(category_no_1)) {
+      options.category_no_1 = category_no_1;
     }
 
     //设置导航条名称
@@ -81,20 +99,46 @@ Page({
     //首页全部商品
     product(1, options.category_no_1, 'real_sales desc').then((res) => {
       let arr = res.data.result.data;
-      this.setData({
-        productlists: arr,
-        category_no_1: options.category_no_1,
-        category_order: 'real_sales desc',
-        //设置默认箭头颜色
-        xia0: 'xia_active.png',
-
-      })
+      console.log("product arr");
+      console.log(arr);
+      if (util.isBlank(arr) )
+      {
+        this.setData({
+          load_show:false,
+        });
+      }
+        this.setData({
+          productlists: arr,
+          category_no_1: options.category_no_1,
+          category_order: 'real_sales desc',
+          //设置默认箭头颜色
+          xia0: 'xia_active.png',
+        })
     });
 
+    //清空跳转时候的全局变量
+    app.globalData.category.title = '分类';
+    app.globalData.category.category_no_1 = '0';
   },
   //tab选择
   taplist: function (event) {
     let that = this;
+    
+    //没有登录则展示登录框
+    if (!app.globalData.userInfo) {
+      this.setData({
+        isloginshow: true,
+      })
+    }
+
+    this.setData({
+      load_show: true,
+    });
+
+    //清空数据
+    this.setData({
+      productlists: {},
+    })
 
     let id = event.currentTarget.dataset.id;
     let order = event.currentTarget.dataset.order;
@@ -261,7 +305,6 @@ Page({
    */
   onReachBottom: function () 
   {
-
     console.log('下拉刷新～');
     let that = this;
 
@@ -270,23 +313,44 @@ Page({
       page: that.data.page + 1
     });
 
-    setTimeout(function () 
-    {
-      that.setData({
-        load_show: false
-      });
-
       product(that.data.page, that.data.category_no_1, that.data.category_order).then((res) => {
         let arr = res.data.result.data;
+
+        if (util.isBlank(arr) )
+        {
+          that.setData({
+            load_show: false,
+          });
+        }
+
         let newarr = that.data.productlists.concat(arr);
         console.log(newarr);
         that.setData({
           productlists: newarr
         })
       })
-    }, 1500)
-
   },
+
+
+  //微信登录
+  onGotUserInfo: function (e) {
+    CommonEvent.login(e);
+
+    console.log('登录完成');
+    console.log(app.globalData.userInfo);
+
+    this.setData({
+      isloginshow: false,
+    })
+  },
+
+  //关闭微信登录
+  closetip: function () {
+    this.setData({
+      isloginshow: false,
+    })
+  },
+
 
   /**
    * 用户点击右上角分享
