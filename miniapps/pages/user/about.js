@@ -1,3 +1,13 @@
+import {
+  system_config
+} from '../../api/request'
+var CommonEvent = require('../common/commonEvent');
+var util = require('../../utils/util');
+
+var app = getApp();
+
+
+
 // pages/user/about.js
 Page({
 
@@ -5,7 +15,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    //系统配置
+    system_config:{},
   },
 
   /**
@@ -13,6 +24,15 @@ Page({
    */
   onLoad: function (options) {
   
+    //系统配置
+    system_config().then((res) => {
+      let arr = res.data.result.data;
+      this.setData({
+        system_config: arr,
+      })
+    });
+
+
   },
 
   /**

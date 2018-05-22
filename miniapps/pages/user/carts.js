@@ -1,4 +1,11 @@
 // pages/user/carts.js
+import {
+  slideshow, category1, recommend, article, discount_coupon, slideshow_ad, discount_coupon_add
+} from '../../api/request'
+var CommonEvent = require('../common/commonEvent');
+
+var app = getApp();
+
 Page({
 
   /**
@@ -13,6 +20,15 @@ Page({
    */
   onLoad: function (options) {
   
+    //没有登录则展示登录框
+    if (!app.globalData.userInfo) {
+      this.setData({
+        isloginshow: true,
+      })
+    }
+
+
+
   },
 
   /**
@@ -55,6 +71,25 @@ Page({
    */
   onReachBottom: function () {
   
+  },
+
+  //微信登录
+  onGotUserInfo: function (e) {
+    CommonEvent.login(e);
+
+    console.log('登录完成');
+    console.log(app.globalData.userInfo);
+
+    this.setData({
+      isloginshow: false,
+    })
+  },
+
+  //关闭微信登录
+  closetip: function () {
+    this.setData({
+      isloginshow: false,
+    })
   },
 
   /**

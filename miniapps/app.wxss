@@ -59,10 +59,7 @@
 {
   margin-bottom: 800rpx;
 }
-.mb600
-{
-  margin-bottom: 600rpx;
-}
+
 /*下拉刷新样式开始*/
 .loading{
   width: 150rpx;

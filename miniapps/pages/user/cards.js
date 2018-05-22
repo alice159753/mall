@@ -1,18 +1,36 @@
-// pages/user/cards.js
+import {
+  user_cards
+} from '../../api/request'
+var CommonEvent = require('../common/commonEvent');
+var util = require('../../utils/util');
+
+var app = getApp();
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+
+    //会员卡
+    usercardsLists:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    
+    //没有登录则展示登录框
+    if (!app.globalData.userInfo) {
+      this.setData({
+        isloginshow: true,
+      })
+    }
+
+
   },
 
   /**
@@ -56,6 +74,26 @@ Page({
   onReachBottom: function () {
   
   },
+
+  //微信登录
+  onGotUserInfo: function (e) {
+    CommonEvent.login(e);
+
+    console.log('登录完成');
+    console.log(app.globalData.userInfo);
+
+    this.setData({
+      isloginshow: false,
+    })
+  },
+
+  //关闭微信登录
+  closetip: function () {
+    this.setData({
+      isloginshow: false,
+    })
+  },
+
 
   /**
    * 用户点击右上角分享

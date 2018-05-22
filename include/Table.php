@@ -119,6 +119,8 @@ class Table
         if ( $totalPage < $page )
         {
             $page = $totalPage;
+
+            return array();
         }
     
         $startNo = ($page - 1) * $pageSize;

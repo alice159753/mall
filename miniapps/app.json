@@ -1,17 +1,17 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/product/productlists",    
+    "pages/user/carts",        
+    "pages/user/user",        
     "pages/category/category",
     "pages/product/product",
     "pages/search/search",
     "pages/logs/logs",
-    "pages/user/user",
-    "pages/product/productlists",
     "pages/user/suggest",
     "pages/user/cards",
     "pages/user/coupon",
     "pages/user/order",
-    "pages/user/carts",
     "pages/user/about"
   ],
   "window": {

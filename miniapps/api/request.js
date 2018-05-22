@@ -137,3 +137,25 @@ export function suggest(user_no, content) {
     }
   });
 }
+
+
+
+//获取客户优惠券信息，//1 可使用，2已过期，已使用
+export function discount_coupon_record(page, user_no, type) {
+  return newWork({
+    url: '/discount_coupon_record.php',
+    data: {
+      page: page,
+      user_no: user_no,
+      type: type,
+    }
+  });
+}
+
+
+//系统配置
+export function system_config() {
+  return newWork({
+    url: '/system_config.php',
+  });
+}

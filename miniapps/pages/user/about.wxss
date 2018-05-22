@@ -22,15 +22,22 @@
    text-align: center;
    font-size: 34rpx;
    line-height: 48px;
-   position:absolute;
-    left:50%;
-    top:42px;
+    position:absolute;
+    left:48%;
+    top:300rpx;
+}
 
+.site_name
+{
+  margin-top: 20px!important;
+  font-size: 34rpx!important;
+  text-align: center!important;
+  color: #28b36f!important;
 }
 
 .cantact
 {
-  margin-top: 22px!important;
+  margin-top: 20px!important;
   font-size: 26rpx!important;
   text-align: center!important;
   color: #666!important;

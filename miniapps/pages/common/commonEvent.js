@@ -71,21 +71,11 @@ export function login(e)
                     console.log(app.globalData.userInfo);
                 }
              });
-
-
-
        }
-   
-        
         
       }
 
-
     })
-
-
-
-
   }
 
 }

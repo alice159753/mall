@@ -35,10 +35,40 @@
             $dataArray["{company}"]          = $row['company'];
             $dataArray["{zoology}"]          = $row['zoology'];
             $dataArray["{customer_phone}"]   = $row['customer_phone'];
+            $dataArray["{longitude}"]        = $row['longitude'];
+            $dataArray["{latitude}"]         = $row['latitude'];
+            $dataArray["{copyright}"]        = $row['copyright'];
 
             return $dataArray;
         }
 
+        function getDataclean($row)
+        {
+            $dataArray = array();
+            $dataArray["no"]               = $row['no'];
+            $dataArray["site_name"]        = $row['site_name'];
+            $dataArray["site_title"]       = $row['site_title'];
+            $dataArray["site_keyword"]     = $row['site_keyword'];
+            $dataArray["site_description"] = $row['site_description'];
+            $dataArray["site_logo"]        = FILE_URL.$row['site_logo'];
+            $dataArray["comany_address"]   = $row['comany_address'];
+            $dataArray["phone"]            = $row['phone'];
+            $dataArray["qq"]               = $row['qq'];
+            $dataArray["skype"]            = $row['skype'];
+            $dataArray["wechat"]           = $row['wechat'];
+            $dataArray["email"]            = $row['email'];
+            $dataArray["add_time"]         = $row['add_time'];
+            $dataArray["update_time"]      = $row['update_time'];
+            $dataArray["wechat_logo"]      = FILE_URL.$row['wechat_logo'];
+            $dataArray["company"]          = $row['company'];
+            $dataArray["zoology"]          = $row['zoology'];
+            $dataArray["customer_phone"]   = $row['customer_phone'];
+            $dataArray["longitude"]        = $row['longitude'];
+            $dataArray["latitude"]         = $row['latitude'];
+            $dataArray["copyright"]        = $row['copyright'];
+
+            return $dataArray;
+        }
 	}
 
 ?>

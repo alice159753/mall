@@ -1,12 +1,21 @@
-<!--pages/user/coupon.wxml-->
+<import src="../templates/load.wxml"/>
+<import src="../templates/tips.wxml"/>
+
+
 <view class="page app">
 
 <!-- 优惠券开始 -->
 <view class="promote-card-list-box">
     <view class="promote-nav-box">
         <view class="tabber-ios-gray tabber tabber-ios">
-            <text class="active">可用优惠券</text>
-            <text>已失效</text>
+            <navigator url="../user/coupon?type=1">
+            <text class="{{type == 1 ? 'active' :''}}">可用优惠券</text>
+            </navigator>
+
+            <navigator url="../user/coupon?type=2">
+            <text class="{{type == 2 ? 'active' :''}}">已失效</text>
+            </navigator>
+
         </view>
     </view>
 </view>
@@ -14,52 +23,28 @@
 
 
 <!-- 优惠券列表开始 -->
-<view class="promote-card-list">
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
+          class="promote-card-list">
 
+    <view class="promote-item promote-item--active" wx:for="{{couponlists}}" wx:for-index="index" wx:key="key">
 
-    <view class="promote-item promote-item--active">
         <!--左边-->
         <view class="promote-left-part">
             <view class="inner">
-                <text class="promote-shop-name">测试标题</text>
+                <text class="promote-shop-name">{{item.discount_coupon.title}}</text>
 
-                <view class="promote-card-value">
+                <view class="promote-card-value" wx:if="{{item.discount_coupon.coupon_type==1}}">
                    <text class="promote-value-sign">￥</text>
-                    <text>100</text>
+                    <text>{{item.discount_coupon.coupon_price}}</text>
                 </view>
 
-                <view class="promote-condition">
-                   <text>使用期限：2018.05.31 — 2018.07.26</text>
-                </view>
-
-            </view>
-        </view>
-
-        <!--右边-->
-        <view class="promote-right-part center">
-          <view class="promote-use-state"></view>
-          <view class="inner">
-            <text>满100元可使用</text>
-          </view>
-        </view>
-    </view>
-
-
-
-
-    <view class="promote-item promote-item--active">
-        <!--左边-->
-        <view class="promote-left-part">
-            <view class="inner">
-                <text class="promote-shop-name">测试标题</text>
-
-                <view class="promote-card-value">
-                   <text>9.5</text>
+                <view class="promote-card-value" wx:if="{{item.discount_coupon.coupon_type==2}}">
+                   <text>{{item.discount_coupon.discount}}</text>
                    <text class="promocard-suffix">折</text>
                 </view>
 
                 <view class="promote-condition">
-                   <text>使用期限：2018.05.31 — 2018.07.26</text>
+                   <text>使用期限：{{item.start_date}} — {{item.end_date}}</text>
                 </view>
 
             </view>
@@ -69,26 +54,26 @@
         <view class="promote-right-part center">
           <view class="promote-use-state"></view>
           <view class="inner">
-            <text>满100元可使用</text>
+            <text>{{item.discount_coupon.use_type_title}}</text>
           </view>
         </view>
+
     </view>
 
 
+    <!--下拉刷新-->
+    <template is="load" wx-if="{{load_show}}"/>
+  
 
-
-
-
-
-
-
-
-</view>
-
+</scroll-view>
 
 
 <!-- 优惠券列表结束 -->
 
-
-
 </view>
+
+
+
+
+<!--微信登录-->
+<template is="tip3" wx:if="{{isloginshow}}" />

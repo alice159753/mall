@@ -37,6 +37,8 @@
             $dataArray['{update_time}']        = $row['update_time'];
             $dataArray['{is_use_title}']       = $isUseMap[ $row['is_use'] ];
             $dataArray['{is_past_title}']      = $isPastMap[ $row['is_past'] ];
+            $dataArray['{is_use}']             = $row['is_use'];
+            $dataArray['{is_past}']            = $row['is_past'];
 
             return $dataArray;
         }
@@ -54,6 +56,8 @@
             $dataArray['update_time']        = $row['update_time'];
             $dataArray['is_use_title']       = $isUseMap[ $row['is_use'] ];
             $dataArray['is_past_title']      = $isPastMap[ $row['is_past'] ];
+            $dataArray['is_use']             = $row['is_use'];
+            $dataArray['is_past']            = $row['is_past'];
 
             return $dataArray;
         }

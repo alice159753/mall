@@ -96,6 +96,11 @@
 
         function getDataClean($row)
         {
+            $couponTypeMap = $this->getCouponType();
+            $useTypeMap = $this->getUseType();
+            $dateTypeMap = $this->getDateType();
+            $useProductTypeMap = $this->getUseProductType();
+
             $dataArray = array();
             $dataArray['no']                 = $row['no'];
             $dataArray['title']              = $row['title'];
@@ -125,6 +130,24 @@
             $dataArray['use_type_title']         = $useTypeMap[ $row['use_type'] ];
             $dataArray['date_type_title']        = $dateTypeMap[ $row['date_type'] ];
             $dataArray['use_product_type_title'] = $useProductTypeMap[ $row['use_product_type'] ];
+
+            $dataArray['use_type_title']         = str_replace("$$", $row['full_price'], $dataArray['use_type_title']);
+
+            if(  $row['date_type'] == 1 )
+            {
+                $dataArray['date_type_title'] = str_replace("start", $row['start_date'], $dataArray['date_type_title']);
+                $dataArray['date_type_title'] = str_replace("end", $row['end_date'], $dataArray['date_type_title']);
+            }
+
+            if(  $row['date_type'] == 2 )
+            {
+                $dataArray['date_type_title'] = str_replace("$$", $row['valid_day_today'], $dataArray['date_type_title']);
+            }
+
+            if(  $row['date_type'] == 3 )
+            {
+                $dataArray['date_type_title'] = str_replace("$$", $row['valid_day_tomorrow'], $dataArray['date_type_title']);
+            }
 
             return $dataArray;
         }

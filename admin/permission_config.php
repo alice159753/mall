@@ -168,6 +168,9 @@ $permission_config['menu_article']['data'][] = array('title' => '图文删除更
 
 
 $permission_config['menu_admin']['title'] = '基本配置';
+$permission_config['menu_admin']['data'][] = array('title' => '系统配置','php'=> 'system_config_modify.php', 'display' => 'block');
+
+
 $permission_config['menu_admin']['data'][] = array('title' => '管理员管理',         'php'=> 'admin.php',             'display' => 'block');
 $permission_config['menu_admin']['data'][] = array('title' => '管理员管理新增',     'php'=> 'admin_add.php',         'display' => 'none');
 $permission_config['menu_admin']['data'][] = array('title' => '管理员管理修改',     'php'=> 'admin_modify.php',      'display' => 'none');

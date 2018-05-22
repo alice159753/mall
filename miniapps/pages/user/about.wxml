@@ -3,12 +3,18 @@
 <view class="page app">
 
 <view class="headTitle">
-    <image src="http://www.xinghuilvse.com/data/admin/20180416/20180416131252_5ad430d475f52_52964.jpg"></image>
-    <text>测试</text>
+
+    <image src="{{system_config.wechat_logo}}"></image>
+
+    <text></text>
+</view>
+
+<view class="site_name">
+{{system_config.site_name}}
 </view>
 
 <view class="cantact">
-qq：472422839
+qq：{{system_config.qq}}
 </view>
 
 

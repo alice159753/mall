@@ -1,3 +1,6 @@
+<import src="../templates/load.wxml"/>
+<import src="../templates/tips.wxml"/>
+
 <view class="page app">
 
 
@@ -105,3 +108,7 @@
 
 </view>
 
+
+
+<!--微信登录-->
+<template is="tip3" wx:if="{{isloginshow}}" />

@@ -1,4 +1,7 @@
 <!--pages/user/carts.wxml-->
+<import src="../templates/load.wxml"/>
+<import src="../templates/tips.wxml"/>
+
 <view class="page app">
 
   <!--购物车列表开始-->
@@ -80,5 +83,12 @@
 
 
   <!-- 结算按钮结束 -->
+
+
+
+
+<!--微信登录-->
+<template is="tip3" wx:if="{{isloginshow}}" />
+
 
 </view>

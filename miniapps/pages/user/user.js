@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    isloginshow:false
   },
 
   /**
@@ -21,6 +21,9 @@ Page({
 
     console.log('user onload');
     console.log(app.globalData.userInfo);
+
+    let that = this;
+    console.log(that.data.isloginshow);
 
     //没有登录则展示登录框
     if (!app.globalData.userInfo) {

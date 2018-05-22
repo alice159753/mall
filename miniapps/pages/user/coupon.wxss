@@ -53,6 +53,7 @@
 .promote-card-list 
 {
   margin:0 26rpx;
+  width: auto;
 }
 .promote-card-list .promote-item {
     border: 1px solid #f4a719;
