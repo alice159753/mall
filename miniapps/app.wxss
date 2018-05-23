@@ -59,6 +59,10 @@
 {
   margin-bottom: 800rpx;
 }
+.mb1800
+{
+  margin-bottom: 1800rpx;
+}
 
 /*下拉刷新样式开始*/
 .loading{

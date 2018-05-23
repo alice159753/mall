@@ -108,7 +108,7 @@
             $dataArray['{brand_title}'] = '';
             if( !empty($row['brand_no']) )
             {
-                $brandRow = $myCategory->getRow("*", "no = ". $row['brand_no']);
+                $brandRow = $myBrand->getRow("*", "no = ". $row['brand_no']);
 
                 $dataArray['{brand_title}'] = empty($brandRow['title']) ? '' : $brandRow['title'];
                 $dataArray['{brand_pic}'] = empty($brandRow['pic']) ? '' : FILE_URL.$brandRow['pic'];
@@ -205,7 +205,7 @@
             $dataArray['brand_title'] = '';
             if( !empty($row['brand_no']) )
             {
-                $brandRow = $myCategory->getRow("*", "no = ". $row['brand_no']);
+                $brandRow = $myBrand->getRow("*", "no = ". $row['brand_no']);
 
                 $dataArray['brand_title'] = empty($brandRow['title']) ? '' : $brandRow['title'];
                 $dataArray['brand_pic'] = empty($brandRow['pic']) ? '' : FILE_URL.$brandRow['pic'];
@@ -219,12 +219,6 @@
 
             return $dataArray;
         }
-
-
-
-
-
-
 
 	}
 

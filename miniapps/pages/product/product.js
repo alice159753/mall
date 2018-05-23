@@ -15,6 +15,9 @@ Page({
   data: {
     //商品详情
     product_detail: [],
+
+    //商品详情是否展示
+    isproductdetailshow: false,
   },
 
   /**
@@ -23,13 +26,17 @@ Page({
   onLoad: function (options) {
   
     console.log('product onload');
-
-    console.log(app.globalData.userInfo);
-
     console.log("options");
     console.log(options);
 
-    //首页轮播图
+    //没有登录则展示登录框
+    if (!app.globalData.userInfo) {
+      this.setData({
+        isloginshow: true,
+      })
+    }
+
+    //商品详情
     product_detail(app.globalData.userInfo.user_no, options.product_no).then((res) => {
       
       let arr = res.data.result.data;
@@ -42,10 +49,49 @@ Page({
         title: arr.title
       });
 
-
     });
 
   },
+
+  /**
+   * 商品详情是否展示
+   */
+  traggle_product_detail_show:function(){
+
+     if( this.data.isproductdetailshow ) 
+     {
+       this.setData({
+         isproductdetailshow: false,
+       });
+     }
+     else
+     {
+       this.setData({
+         isproductdetailshow: true,
+       });
+     }
+  },
+
+  //点击分类跳转到分类详情
+  changeTab: function (event) {
+    let title = event.currentTarget.dataset.title;
+    let category_no_1 = event.currentTarget.dataset.category_no;
+
+    app.globalData.category.title = title;
+    app.globalData.category.category_no_1 = category_no_1;
+
+    //切换switchTab以后不刷新tab解决方案
+    wx.switchTab({
+      url: '../product/productlists',
+      complete: function (e) {
+        var page = getCurrentPages().pop();
+        if (page == undefined || page == null) return;
+        page.onLoad();
+      }
+    });
+
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -88,6 +134,26 @@ Page({
   onReachBottom: function () {
   
   },
+
+  //微信登录
+  onGotUserInfo: function (e) {
+    CommonEvent.login(e);
+
+    console.log('登录完成');
+    console.log(app.globalData.userInfo);
+
+    this.setData({
+      isloginshow: false,
+    })
+  },
+
+  //关闭微信登录
+  closetip: function () {
+    this.setData({
+      isloginshow: false,
+    })
+  },
+
 
   /**
    * 用户点击右上角分享

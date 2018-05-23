@@ -11,6 +11,7 @@
     include_once(INCLUDE_DIR. "/Brand.php");
     include_once(INCLUDE_DIR. "/PostageConfig.php");
     include_once(INCLUDE_DIR. "/PostageConfig.php");
+    include_once(INCLUDE_DIR. "/ProductAttr.php");
     ob_clean();
 
     $myMySQL = new MySQL();
@@ -23,6 +24,7 @@
     $myBrand = new Brand($myMySQL);
     $myPostageConfig = new PostageConfig($myMySQL);
     $myCategory = new Category($myMySQL);
+    $myProductAttr = new ProductAttr($myMySQL);
 
 
     $product_no = !empty($_REQUEST["product_no"]) ? $_REQUEST["product_no"] : 0;
@@ -73,6 +75,16 @@
 
         $result['product_img_detail'][] = $dataArray;
     }
+
+    //获取商品规格
+    $rows = $myProductAttr->getRows("*", "product_no = $product_no order by no DESC");
+    for($i = 0; isset($rows[$i]); $i++)
+    {
+        $dataArray = $myProductAttr->getDataClean($rows[$i]);
+
+        $result['product_attr'][] = $dataArray;
+    }
+
 
     //获得商品品牌
     // $row = $myBrand->getRow("*", "no = ". $row['brand_no']);

@@ -32,13 +32,13 @@
   display: inline-block;
   margin-left: 10rpx;
 }
-.product_title
+.product_detail_title
 {
   font-size: 34rpx;
   line-height: 34rpx;
   color: #333;
   font-weight: 250;
-  padding-left: 10rpx;
+  padding-left: 25rpx;
   padding-right: 10rpx;
 }
 .price_box
@@ -71,16 +71,27 @@
     font-size: 28rpx;
     font: left;
     margin-top:18rpx;
-    margin-left:40rpx;
+    margin-left:15rpx;
     text-decoration:line-through;
     color:#bbbbbb;
-    width:300rpx;
+    width:100rpx;
+}
+.price_box .member_price 
+{
+    font-size: 28rpx;
+    font: left;
+    margin-top:18rpx;
+    margin-left:40rpx;
+    color:#f4a719;
+    width:150rpx;
 }
 .price_box .sale_num
 {
     font-size: 28rpx;
     color:#bbbbbb;
     margin-top:8px;
+    margin-left:23%;
+
 }
 
 .desc_box
@@ -182,7 +193,7 @@
 /*你可能会喜欢 结束*/
 
 
-/**商品详情 开始**/
+/**你可能会喜欢列表 开始**/
 .app .product_lists
 {
     width: 100%;
@@ -264,7 +275,7 @@
     right: 48rpx;
 }
 
-/**商品详情 结束**/
+/**你可能会喜欢列表 结束**/
 
 
 /**购买按钮 开始**/
