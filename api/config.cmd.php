@@ -26,8 +26,8 @@
     define("FILE_URL", "https://mall.huaban1314.com");
 
     //微信配置
-    define("WEIXIN_APPID", "wxcbf649345255fcb8");
-    define("WEIXIN_APPSECRECT", "eaf91a434fbf9759a01fa11bbe3d25f5");
+    define("WEIXIN_APPID", "wx4a3c9a890bf83384");
+    define("WEIXIN_APPSECRECT", "66475268e92dfb1f4b1a5d8c3d1df970");
     define("WEIXIN_TOKEN", "");
 
 

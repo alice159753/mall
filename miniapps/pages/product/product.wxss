@@ -616,11 +616,8 @@
 }
 .btn.btn-yellow {
     color: #fff;
-    border-color: #f5a623;
-    background-color: #f5a623;
-}
-.btn-yellow {
-    background: #ffcc01;
+    border-color: #f4a719;
+    background-color: #f4a719;
 }
 
 .page-dialog-wrap {

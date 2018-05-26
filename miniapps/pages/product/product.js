@@ -18,6 +18,13 @@ Page({
 
     //商品详情是否展示
     isproductdetailshow: false,
+
+    //是否展示规格
+    isshowguige:false,
+
+    //是否展示购物车
+    isshowcarts: true,
+
   },
 
   /**
@@ -154,6 +161,24 @@ Page({
     })
   },
 
+  traggle_guige:function (){
+    //如果当前展示的是规格页面
+    if (this.data.isshowguige)
+    {
+      this.setData({
+        isshowguige: false,
+        isshowcarts: true,
+      })
+    }
+    else
+    {
+      this.setData({
+        isshowguige: true,
+        isshowcarts: false,
+      })
+    }
+
+  },
 
   /**
    * 用户点击右上角分享

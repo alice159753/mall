@@ -105,12 +105,12 @@
 
 
 <!-- 规格选择开始 -->
-<view class="page-dialog-wrap" style='display:none'>
+<view class="page-dialog-wrap" wx:if="{{isshowguige}}">
 
       <view class="page-bottom-dialog">
         <view class="page-bottom-content">
 
-            <view class="page-dialog-close">
+            <view class="page-dialog-close" catchtap='traggle_guige'>
             <text>x</text>
             </view>
 
@@ -173,11 +173,12 @@
 
 
 <!--购买按钮-->
-<view class="product_buy">
+<view class="product_buy" wx:if="{{isshowcarts}}">
 
   <view class="product_customer">
     <image src="/images/customer.png"></image>
     <text>客服</text>
+    <button  open-type="contact"></button>
   </view>
 
   <view class="product_user_cars fl">
@@ -187,11 +188,12 @@
     </navigator>
   </view>
 
-  <view class="product_add_user_cars fl big-btn">加入购物车</view>
+  <view class="product_add_user_cars fl big-btn" catchtap='traggle_guige'>加入购物车</view>
 
   <view class="product_buy_now fl big-btn">立即购买</view>
 
 </view>
+
 
 
 </view>

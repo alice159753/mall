@@ -34,7 +34,7 @@
 
     if( isset($response['errcode']) && $response['errcode'] != 0 )
     {
-        Output::error('登录失败请重新登录1！', array());
+        Output::error('登录失败请重新登录1！'.print_r($response, true), array());
     }
 
 //{
