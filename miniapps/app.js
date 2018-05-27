@@ -1,6 +1,36 @@
 //app.js
 App({
+
+  showModal: function (param) {
+    wx.showModal({
+      title: param.title || '提示',
+      content: param.content,
+      showCancel: param.showCancel || false,
+      cancelText: param.cancelText || '取消',
+      cancelColor: param.cancelColor || '#000000',
+      confirmText: param.confirmText || '确定',
+      confirmColor: param.confirmColor || '#3CC51F',
+      success: function (res) {
+        if (res.confirm) {
+          typeof param.confirm == 'function' && param.confirm(res);
+        } else {
+          typeof param.cancel == 'function' && param.cancel(res);
+        }
+      },
+      fail: function (res) {
+        typeof param.fail == 'function' && param.fail(res);
+      },
+      complete: function (res) {
+        typeof param.complete == 'function' && param.complete(res);
+      }
+    })
+  },
+  
+
   onLaunch: function () {
+
+
+    
     // 展示本地存储能力
     //var logs = wx.getStorageSync('logs') || []
     //logs.unshift(Date.now())

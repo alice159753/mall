@@ -79,10 +79,10 @@
             <div class="am-form-group">
               <label for="admin-name" class="am-u-sm-3 am-form-label">
                 <span style="color: red">*</span>
-              规格名称</label>
+              规格名称1</label>
               <div class="am-u-sm-9">
 
-                <select name="specification_no" id="specification_no" onchange="change2('specification_content.ajax.php', 'specification_no', 'specification_value');">
+                <select name="specification_no1" id="specification_no1" onchange="change2('specification_content.ajax.php', 'specification_no1', 'specification_value1');">
 
                 <!-- start specification -->
                   <option value="{no}">{title}</option>
@@ -94,19 +94,82 @@
               </div>
             </div>
 
-
             <div class="am-form-group">
               <label for="admin-name" class="am-u-sm-3 am-form-label">
               <span style="color: red">*</span>
-              规格名称属性</label>
+              规格名称属性1</label>
               <div class="am-u-sm-9">
 
-                <select name="specification_value" id="specification_value">
+                <select name="specification_value1" id="specification_value1">
 
                 </select>
 
               </div>
             </div>
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+              规格名称2</label>
+              <div class="am-u-sm-9">
+
+                <select name="specification_no2" id="specification_no2" onchange="change2('specification_content.ajax.php', 'specification_no2', 'specification_value2');">
+
+                <!-- start specification -->
+                  <option value="{no}">{title}</option>
+                <!-- end specification -->
+
+                </select>
+
+
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+              规格名称属性2</label>
+              <div class="am-u-sm-9">
+
+                <select name="specification_value2" id="specification_value2">
+
+                </select>
+
+              </div>
+            </div>
+
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+              规格名称3</label>
+              <div class="am-u-sm-9">
+
+                <select name="specification_no3" id="specification_no3" onchange="change2('specification_content.ajax.php', 'specification_no3', 'specification_value3');">
+
+                <!-- start specification -->
+                  <option value="{no}">{title}</option>
+                <!-- end specification -->
+
+                </select>
+
+
+              </div>
+            </div>
+
+            <div class="am-form-group">
+              <label for="admin-name" class="am-u-sm-3 am-form-label">
+              规格名称属性3</label>
+              <div class="am-u-sm-9">
+
+                <select name="specification_value3" id="specification_value3">
+
+                </select>
+
+              </div>
+            </div>
+
+
+
+
 
             <div class="am-form-group">
               <label for="admin-name" class="am-u-sm-3 am-form-label">
@@ -251,16 +314,30 @@
 $(document).ready(function()
 {
 
-$('#specification_no').select2();
-change2('specification_content.ajax.php', 'specification_no', 'specification_value');
+$('#specification_no1').select2();
+change2('specification_content.ajax.php', 'specification_no1', 'specification_value1');
+var specification_no1 = $("#specification_no1").select2();
+specification_no1.val("{specification_no1}").trigger("change");
+specification_no1.change();
+$("#specification_value1").val('{specification_value1}');
 
 
-var specification_no = $("#specification_no").select2();
-specification_no.val("{specification_no}").trigger("change");
-specification_no.change();
+$('#specification_no2').select2();
+change2('specification_content.ajax.php', 'specification_no2', 'specification_value2');
+var specification_no2 = $("#specification_no2").select2();
+specification_no2.val("{specification_no2}").trigger("change");
+specification_no2.change();
+$("#specification_value2").val('{specification_value2}');
 
 
-$("#specification_value").val('{specification_value}');
+$('#specification_no3').select2();
+change2('specification_content.ajax.php', 'specification_no3', 'specification_value3');
+var specification_no3 = $("#specification_no3").select2();
+specification_no3.val("{specification_no3}").trigger("change");
+specification_no3.change();
+$("#specification_value3").val('{specification_value3}');
+
+
 $("#product_weight_ceil").val('{product_weight_ceil}');
 
 

@@ -12,6 +12,7 @@
     include_once(INCLUDE_DIR. "/PostageConfig.php");
     include_once(INCLUDE_DIR. "/PostageConfig.php");
     include_once(INCLUDE_DIR. "/ProductAttr.php");
+    include_once(INCLUDE_DIR. "/UserCarts.php");
     ob_clean();
 
     $myMySQL = new MySQL();
@@ -25,6 +26,7 @@
     $myPostageConfig = new PostageConfig($myMySQL);
     $myCategory = new Category($myMySQL);
     $myProductAttr = new ProductAttr($myMySQL);
+    $myUserCarts = new UserCarts($myMySQL);
 
 
     $product_no = !empty($_REQUEST["product_no"]) ? $_REQUEST["product_no"] : 0;
@@ -78,30 +80,79 @@
 
 
     //获取商品规格
-    $rows = $myProductAttr->getRows("*", "product_no = $product_no group by specification_no");
+    $rows = $myProductAttr->getRows("*", "product_no = $product_no");
+    $productAttrMap1 = array();
+    $productAttrMap2 = array();
+    $productAttrMap3 = array();
+
+    //获取最低的价格和最高的价格
+    $price_min = 999999999999;
+    $price_max = 0;
+
     for($i = 0; isset($rows[$i]); $i++)
     {
-        $product_attr = array();
+        $sale_price = $rows[$i]['sale_price'];
 
-        $dataArray = array();
-        $dataArray['specification_no'] = $rows[$i]['specification_no'];
-        $dataArray['specification_title'] = $rows[$i]['specification_title'];
-
-        $product_attr = $dataArray;
-
-        $lists = $myProductAttr->getRows("*", "product_no = $product_no and specification_no = ".$rows[$i]['specification_no']." order by no DESC");
-
-        foreach ($lists as $key => $value) 
+        if( $sale_price > $price_max )
         {
-            $dataArray = $myProductAttr->getDataClean($value);
-
-            $product_attr['lists'][] = $dataArray;
+            $price_max = $sale_price;
         }
 
-        $result['product_attr'][] = $product_attr;
+        if( $sale_price < $price_min )
+        {
+            $price_min = $sale_price;
+        }
 
+        $specification_no1 = $rows[$i]['specification_no1'];
+        $specification_title1 = $rows[$i]['specification_title1'];
+        $specification_value1 = $rows[$i]['specification_value1'];
+
+        $productAttrMap1['no'] = $specification_no1;
+        $productAttrMap1['title'] = $specification_title1;
+        $productAttrMap1['value'][ $specification_value1 ] = $specification_value1;
+
+        $specification_no2 = $rows[$i]['specification_no2'];
+        $specification_title2 = $rows[$i]['specification_title2'];
+        $specification_value2 = $rows[$i]['specification_value2'];
+
+        if( !empty($specification_no2) )
+        {
+            $productAttrMap2['no'] = $specification_no2;
+            $productAttrMap2['title'] = $specification_title2;
+            $productAttrMap2['value'][ $specification_value2 ] = $specification_value2;
+        }
+
+        $specification_no3 = $rows[$i]['specification_no3'];
+        $specification_title3 = $rows[$i]['specification_title3'];
+        $specification_value3 = $rows[$i]['specification_value3'];
+
+        if( !empty($specification_no3) )
+        {
+            $productAttrMap3['no'] = $specification_no3;
+            $productAttrMap3['title'] = $specification_title3;
+            $productAttrMap3['value'][ $specification_value3 ] = $specification_value3;
+        }
+
+        $rows[$i] = $myProductAttr->getDataClean($rows[$i]);
     }
 
+    $result['product_attr']['title1'] = $productAttrMap1;
+    $result['product_attr']['title2'] = $productAttrMap2;
+    $result['product_attr']['title3'] = $productAttrMap3;
+
+    $result['product_attr']['lists'] = $rows;
+
+    $result['product_specification_pic'] = $result['pic'];
+    $result['product_specification_title'] = $result['title'];
+    $result['product_specification_price'] = $price_min."-".$price_max;
+
+    //如果规格为空
+    if( empty($rows) )
+    {
+        $result['product_specification_price'] = $result['sale_price'];
+    }
+
+    $result['product_specification_repertory_num'] = $result['repertory_num'];
 
     //获得商品品牌
     // $row = $myBrand->getRow("*", "no = ". $row['brand_no']);
@@ -149,6 +200,13 @@
         $dataArray = $myProduct->getDataClean($rows[$i]);
 
         $result['likeLists'][] = $dataArray;
+    }
+
+    //获取用户购物车数量
+    if( !empty($user_no) )
+    {
+        $count = $myUserCarts->getRow("sum(buy_num) as sum_buy_num", "user_no = ".$user_no." AND product_no = $product_no AND is_buy = 0");
+        $result['user_carts_num'] = $count['sum_buy_num'];
     }
 
     Output::succ('', $result);

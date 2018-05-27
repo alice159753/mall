@@ -8,7 +8,32 @@
     include_once(INCLUDE_DIR. "/Specification.php");
     ob_clean();
 
-    $specification_no = !empty($_REQUEST["specification_no"]) ? trim($_REQUEST["specification_no"]) : 0;
+    $specification_no1 = !empty($_REQUEST["specification_no1"]) ? trim($_REQUEST["specification_no1"]) : 0;
+    $specification_no2 = !empty($_REQUEST["specification_no2"]) ? trim($_REQUEST["specification_no2"]) : 0;
+    $specification_no3 = !empty($_REQUEST["specification_no3"]) ? trim($_REQUEST["specification_no3"]) : 0;
+
+
+    if( empty($specification_no1) && empty($specification_no2) && 
+        empty($specification_no3))
+    {
+        echo '';
+        exit;
+    }
+
+    if( !empty($specification_no1) )
+    {
+        $specification_no = $specification_no1;
+    }
+
+    if( !empty($specification_no2) )
+    {
+        $specification_no = $specification_no2;
+    }
+
+    if( !empty($specification_no3) )
+    {
+        $specification_no = $specification_no3;
+    }
 
     if( empty($specification_no) )
     {

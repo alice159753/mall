@@ -20,9 +20,19 @@
             $dataArray = array();
             $dataArray['{no}']                   = $row['no'];
             $dataArray['{product_no}']           = $row['product_no'];
-            $dataArray['{specification_no}']     = $row['specification_no'];
-            $dataArray['{specification_title}']  = $row['specification_title'];
-            $dataArray['{specification_value}']  = $row['specification_value'];
+
+            $dataArray['{specification_no1}']     = $row['specification_no1'];
+            $dataArray['{specification_title1}']  = $row['specification_title1'];
+            $dataArray['{specification_value1}']  = $row['specification_value1'];
+
+            $dataArray['{specification_no2}']     = $row['specification_no2'];
+            $dataArray['{specification_title2}']  = $row['specification_title2'];
+            $dataArray['{specification_value2}']  = $row['specification_value2'];
+
+            $dataArray['{specification_no3}']     = $row['specification_no3'];
+            $dataArray['{specification_title3}']  = $row['specification_title3'];
+            $dataArray['{specification_value3}']  = $row['specification_value3'];
+
             $dataArray['{sale_price}']           = $row['sale_price'];
             $dataArray['{lineation_price}']      = $row['lineation_price'];
             $dataArray['{cost_price}']           = $row['cost_price'];
@@ -46,9 +56,19 @@
             $dataArray = array();
             $dataArray['no']                   = $row['no'];
             $dataArray['product_no']           = $row['product_no'];
-            $dataArray['specification_no']     = $row['specification_no'];
-            $dataArray['specification_title']  = $row['specification_title'];
-            $dataArray['specification_value']  = $row['specification_value'];
+
+            $dataArray['specification_no1']     = $row['specification_no1'];
+            $dataArray['specification_title1']  = $row['specification_title1'];
+            $dataArray['specification_value1']  = $row['specification_value1'];
+
+            $dataArray['specification_no2']     = $row['specification_no2'];
+            $dataArray['specification_title2']  = $row['specification_title2'];
+            $dataArray['specification_value2']  = $row['specification_value2'];
+
+            $dataArray['specification_no3']     = $row['specification_no3'];
+            $dataArray['specification_title3']  = $row['specification_title3'];
+            $dataArray['specification_value3']  = $row['specification_value3'];
+
             $dataArray['sale_price']           = $row['sale_price'];
             $dataArray['lineation_price']      = $row['lineation_price'];
             $dataArray['cost_price']           = $row['cost_price'];
@@ -58,7 +78,7 @@
             $dataArray['give_integral']        = $row['give_integral'];
             $dataArray['add_time']             = $row['add_time'];
             $dataArray['update_time']          = $row['update_time'];
-            $dataArray['pic']                  = $row['pic'];
+            $dataArray['pic']                  = FILE_URL.$row['pic'];
             $dataArray['product_weight_kg']    = $row['product_weight_kg'];
             $dataArray['product_weight_g']     = $row['product_weight_g'];
             $dataArray['product_weight']       = !empty($row['product_weight_kg']) ? $row['product_weight_kg']: $row['product_weight_g'];

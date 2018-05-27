@@ -11,7 +11,9 @@
     // request
     $no    = isset($_REQUEST["no"]) ? $_REQUEST["no"] : 0;
     $fileList = !empty($_REQUEST["fileList"]) ? trim($_REQUEST["fileList"]) : "" ;
-    $specification_no = !empty($_REQUEST["specification_no"]) ? trim($_REQUEST["specification_no"]) : "0" ;
+    $specification_no1 = !empty($_REQUEST["specification_no1"]) ? trim($_REQUEST["specification_no1"]) : "0" ;
+   $specification_no2 = !empty($_REQUEST["specification_no2"]) ? trim($_REQUEST["specification_no2"]) : "0" ;
+    $specification_no3 = !empty($_REQUEST["specification_no3"]) ? trim($_REQUEST["specification_no3"]) : "0" ;
     $product_weight = !empty($_REQUEST["product_weight"]) ? trim($_REQUEST["product_weight"]) : "0" ;
     $product_weight_ceil = !empty($_REQUEST["product_weight_ceil"]) ? trim($_REQUEST["product_weight_ceil"]) : "" ;
 
@@ -43,8 +45,20 @@
     $dataArray = $_REQUEST;
     $dataArray['update_time'] = 'now()';
 
-    $specification_title = $mySpecification->getValue("title", "no = $specification_no");
-    $dataArray['specification_title'] = $specification_title;
+    $specification_title1 = $mySpecification->getValue("title", "no = $specification_no1");
+    $dataArray['specification_title1'] = $specification_title1;
+
+    if( !empty($specification_no2) )
+    {
+        $specification_title2 = $mySpecification->getValue("title", "no = $specification_no2");
+        $dataArray['specification_title2'] = $specification_title2;
+    }
+
+    if( !empty($specification_no3) )
+    {
+        $specification_title3 = $mySpecification->getValue("title", "no = $specification_no3");
+        $dataArray['specification_title3'] = $specification_title3;
+    }
 
     if( !empty($fileList) )
     {

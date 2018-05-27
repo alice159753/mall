@@ -1,10 +1,39 @@
 import {
-  product_detail
+  product_detail, user_carts_add_make
 } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
 
+var util = require('../../utils/util');
+
 var app = getApp();
 
+
+function buy_api(that)
+{
+  //加入购物车
+  user_carts_add_make(app.globalData.userInfo.user_no, that.data.product_no, that.data.product_attr_no, that.data.buy_num).then((res) => {
+    let arr = res.data.result.data;
+    console.log(arr);
+
+    if (res.data.result.status.code == 0 )
+    {
+      app.showModal({ content: '加入购物车成功' });
+
+      that.setData({
+        user_carts_num: arr,
+      });
+
+      var page = getCurrentPages().pop();
+      if (page == undefined || page == null) return;
+      page.traggle_guige();
+    }
+    else
+    {
+      app.showModal({ content: res.data.result.status.msg });
+    }
+
+  });
+}
 
 // pages/product/product.js
 Page({
@@ -25,6 +54,53 @@ Page({
     //是否展示购物车
     isshowcarts: true,
 
+    //库存 减少样式
+    minus_disabled:'disabled',
+
+    //库存 添加样式
+    plus_disabled: '',
+
+    //购买数量
+    buy_num:1,
+
+    //展示规格商品图片
+    product_specification_pic:'',
+    //展示规格标题
+    product_specification_title: '',
+    //展示规格价格
+    product_specification_price: '',
+    //展示规格库存
+    product_specification_repertory_num: '',
+
+    //规格值1
+    product_specification_value1: '',
+    //规格值2
+    product_specification_value2: '',
+    //规格值3
+    product_specification_value3: '',
+
+    //规格no1
+    product_specification_no1: '',
+    //规格no2
+    product_specification_no2: '',
+    //规格no3
+    product_specification_no3: '',
+
+    //规格是否有1
+    product_has_specification1: false,
+    //规格是否有2
+    product_has_specification2: false,
+    //规格是否有3
+    product_has_specification3: false,
+
+    //选中的product_attr_no
+    product_attr_no:0,
+
+    //选中的product_no
+    product_no: 0,
+
+    //用户购物车数量
+    user_carts_num:0,
   },
 
   /**
@@ -43,12 +119,41 @@ Page({
       })
     }
 
+    this.setData({
+      product_no: options.product_no,
+    })
+    
     //商品详情
     product_detail(app.globalData.userInfo.user_no, options.product_no).then((res) => {
-      
       let arr = res.data.result.data;
+
+      if ( !util.isBlank(arr.product_attr.title1) )
+      {
+        this.setData({
+          product_has_specification1: true,
+        });
+      }
+      if (!util.isBlank(arr.product_attr.title2)) {
+        this.setData({
+          product_has_specification2: true,
+        });
+      }
+
+      if (!util.isBlank(arr.product_attr.title3)) {
+        this.setData({
+          product_has_specification3: true,
+        });
+      }
+
       this.setData({
         product_detail: arr,
+        product_specification_pic: arr.product_specification_pic,
+        product_specification_title: arr.product_specification_title,
+        product_specification_price: arr.product_specification_price,
+        product_specification_repertory_num: arr.product_specification_repertory_num,
+
+        user_carts_num: arr.user_carts_num
+
       });
 
       //设置导航条名称
@@ -64,6 +169,9 @@ Page({
    * 商品详情是否展示
    */
   traggle_product_detail_show:function(){
+
+    console.log("isproductdetailshow=");
+    console.log(this.data.isproductdetailshow);
 
      if( this.data.isproductdetailshow ) 
      {
@@ -177,6 +285,331 @@ Page({
         isshowcarts: false,
       })
     }
+
+  },
+
+  //减少
+  minus:function (){
+    this.data.buy_num = this.data.buy_num - 1;
+    if (this.data.buy_num < 1) {
+      this.data.buy_num = 1;
+      app.showModal({ content: '购买数量不能小于1' });
+
+      this.setData({
+        'minus_disabled': 'disabled'
+      });
+    }
+
+    this.setData({
+      'buy_num': this.data.buy_num,
+      'plus_disabled': ''
+    });
+
+  },
+
+  //添加
+  plus:function (){
+    this.data.buy_num = this.data.buy_num + 1;
+    if (this.data.buy_num > this.data.product_specification_repertory_num) {
+      this.data.buy_num = parseInt(this.data.product_specification_repertory_num);
+      app.showModal({ content: '购买数量不能大于库存' });
+
+      this.setData({
+        'plus_disabled': 'disabled',
+      });
+    }
+
+    this.setData({
+      'buy_num': this.data.buy_num,
+      'minus_disabled': ''
+    });
+  },
+
+  //点击数量
+  buy_num: function (e) {
+    var count = e.detail.value
+
+    if (count > this.data.product_specification_repertory_num) {
+      count = this.data.product_specification_repertory_num;
+      app.showModal({ content: '购买数量不能大于库存' });
+
+      this.setData({
+        'plus_disabled': 'disabled',
+        'minus_disabled': ''
+      });
+    }
+
+    if (count < 1 )
+    {
+      count = 1;
+      app.showModal({ content: '购买数量不能小于1' });
+
+      this.setData({
+        'minus_disabled': 'disabled',
+        'plus_disabled': '',
+      });
+    }
+    
+    this.setData({
+      'buy_num': count
+    });
+  },
+
+  //点击规格
+  chooseGuige:function (e){    
+    let position = e.currentTarget.dataset.position;
+    let specification_value = e.currentTarget.dataset.specification_value;
+    let specification_no = e.currentTarget.dataset.specification_no;
+
+    this.setData({
+      'product_attr_no': 0,
+    });
+
+    //位置1
+    if (position == 1 )
+    {
+      this.setData({
+        'product_specification_value1': specification_value,
+        'product_specification_no1': specification_no
+      });
+    }
+
+    //位置2
+    if (position == 2) {
+      this.setData({
+        'product_specification_value2': specification_value,
+        'product_specification_no2': specification_no
+      });
+    }
+
+    //位置3
+    if (position == 3) {
+      this.setData({
+        'product_specification_value3': specification_value,
+        'product_specification_no3': specification_no
+      });
+    }
+
+    let is_3 = false;
+    let is_2 = false;
+
+
+    //点击了以后需要修改商品的图片和价格
+    //3个规格都有
+    console.log(3);
+    if (this.data.product_has_specification1 && 
+        this.data.product_has_specification2 &&
+        this.data.product_has_specification3 )
+    {
+      is_3 = true;
+
+      //如果3个规格都选择，则修改对应的数据
+      if ( !util.isBlank(this.data.product_specification_no1) &&
+           !util.isBlank(this.data.product_specification_no2) &&
+           !util.isBlank(this.data.product_specification_no3) 
+         )
+        {
+           var lists = this.data.product_detail.product_attr.lists;
+
+           var i = 0;
+           for (i = 0; i < lists.length; i++)
+          {
+             if (
+this.data.product_specification_no1 == lists[i]['specification_no1'] && this.data.product_specification_value1 == lists[i]['specification_value1'] && 
+this.data.product_specification_no2 == lists[i]['specification_no2'] && this.data.product_specification_value2 == lists[i]['specification_value2'] && 
+ this.data.product_specification_no3 == lists[i]['specification_no3'] && this.data.product_specification_value3 == lists[i]['specification_value3'] 
+             )
+            {
+               if (lists[i]['repertory_num'] == 0 )
+              {
+                 app.showModal({ content: '库存为空，请选择其他规格' });
+                 return 0;
+              }
+
+               this.setData({
+                 'product_specification_pic': lists[i]['pic'],
+                 'product_specification_price': lists[i]['sale_price'],
+                 'product_specification_repertory_num': lists[i]['repertory_num'],
+                 'product_attr_no': lists[i]['no'],
+               });
+
+               return 0;
+
+            }
+          }
+
+        }
+        else{
+        return 0;
+        }
+    }
+
+    if (is_3) {
+      return 0;
+    }
+
+    //如果只有2个规格
+    console.log(2);
+ 
+    if (this.data.product_has_specification1 &&
+      this.data.product_has_specification2 ) {
+
+      is_2 = true;
+
+      //如果3个规格都选择，则修改对应的数据
+      if (!util.isBlank(this.data.product_specification_no1) &&
+        !util.isBlank(this.data.product_specification_no2) 
+      ) {
+        var lists = this.data.product_detail.product_attr.lists;
+
+        var i = 0;
+        for (i = 0; i < lists.length; i++) {
+          if (
+            this.data.product_specification_no1 == lists[i]['specification_no1'] && this.data.product_specification_value1 == lists[i]['specification_value1'] &&
+            this.data.product_specification_no2 == lists[i]['specification_no2'] && this.data.product_specification_value2 == lists[i]['specification_value2'] 
+          ) {
+            if (lists[i]['repertory_num'] == 0) {
+              app.showModal({ content: '库存为空，请选择其他规格' });
+              return 0;
+            }
+
+            this.setData({
+              'product_specification_pic': lists[i]['pic'],
+              'product_specification_price': lists[i]['sale_price'],
+              'product_specification_repertory_num': lists[i]['repertory_num'],
+              'product_attr_no': lists[i]['no'],
+            });
+
+            return 0;
+          }
+        }
+      }
+      else{
+        return 0;
+      }
+
+    }
+
+    if (is_2) {
+      return 0;
+    }
+
+    //如果只有1个规格
+    console.log(1);
+    if (this.data.product_has_specification1 ) {
+      //如果3个规格都选择，则修改对应的数据
+      if (!util.isBlank(this.data.product_specification_no1)
+      ) {
+        var lists = this.data.product_detail.product_attr.lists;
+        console.log(lists);
+        var i = 0;
+        for (i = 0; i < lists.length; i++) {
+          if (
+            this.data.product_specification_no1 == lists[i]['specification_no1'] && this.data.product_specification_value1 == lists[i]['specification_value1'] 
+          ) {
+            if (lists[i]['repertory_num'] == 0) {
+              app.showModal({ content: '库存为空，请选择其他规格' });
+              return 0;
+            }
+            this.setData({
+              'product_specification_pic': lists[i]['pic'],
+              'product_specification_price': lists[i]['sale_price'],
+              'product_specification_repertory_num': lists[i]['repertory_num'],
+              'product_attr_no': lists[i]['no'],
+            });
+
+            return 0;
+          }
+        }
+
+      }
+      else
+      {
+        return 0;
+      }
+    }
+  },
+
+  //加入购物车
+  buy_carts_submit:function ()
+  {
+     let is_3 = false;
+     let is_2 = false;
+
+      //如果有3个
+      console.log(3);
+      if (this.data.product_has_specification1 &&
+      this.data.product_has_specification2 &&
+      this.data.product_has_specification3)
+      {
+        is_3 = true;
+
+        if (util.isBlank(this.data.product_specification_value1)) {
+          app.showModal({ content: '请选择规格1' });
+          return 0;
+        }
+        if (util.isBlank(this.data.product_specification_value2)) {
+          app.showModal({ content: '请选择规格2' });
+          return 0;
+        }
+        if (util.isBlank(this.data.product_specification_value3)) {
+          app.showModal({ content: '请选择规格3' });
+          return 0;
+        }
+
+        if (util.isBlank(this.data.product_attr_no)) 
+        {
+          app.showModal({ content: '该规格库存为空' });
+          return 0;
+        }
+
+        buy_api(this);
+
+      }
+
+      if (is_3)
+      {
+        return 0;
+      }
+
+      //如果有2个
+      console.log(2);
+      if (this.data.product_has_specification1 &&
+        this.data.product_has_specification2 &&
+        this.data.product_has_specification3) 
+        {
+            if (util.isBlank(this.data.product_specification_value1)) {
+              app.showModal({ content: '请选择规格1' });
+              return 0;
+            }
+            if (util.isBlank(this.data.product_specification_value2)) {
+              app.showModal({ content: '请选择规格2' });
+              return 0;
+            }
+
+            buy_api(this);
+
+        }
+
+        if (is_2) {
+          return 0;
+        }
+
+      //如果有1个
+      console.log(1);
+       if (this.data.product_has_specification1 &&
+        this.data.product_has_specification2 &&
+        this.data.product_has_specification3) 
+        {
+          if (util.isBlank(this.data.product_specification_value1)) {
+            app.showModal({ content: '请选择规格1' });
+            return 0;
+          }
+
+          buy_api(this);
+        }
+
+
 
   },
 

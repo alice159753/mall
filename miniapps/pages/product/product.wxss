@@ -316,25 +316,37 @@
     top:10rpx;
     margin-left:35%;
 }
-.app .product_customer text
+.app .product_customer button
 {
     position: relative;
     line-height: normal;
     left: 0;
-    bottom: 10px;
+    bottom: -8px;
     width: 100%;
     color: #666;
     font-size: 10px;
     text-align: center;
+    outline:none;
+    border:none;
+    list-style: none;
+    background: none;
+    border-radius:0px;
 }
-
+.app .product_customer button::after
+{
+    outline:none;
+    border:none;
+    list-style: none;
+    background: none;
+    border-radius:0px;
+}
 .app .product_user_cars
 {
     float: left;
     width: 20%;
     padding: 0;
     line-height: 50px;
-    background-color: #f7f5f5;
+    background-color: #f2f2f2;
     height: 50px;
     font-size: 10px;
     text-align: center;
@@ -350,6 +362,19 @@
     display: block;
     top:10rpx;
     margin-left:35%;
+}
+.app .product_user_cars .active
+{
+    content: "";
+    height: 8px;
+    width: 8px;
+    border-radius: 8px;
+    background: #f44;
+    position: absolute;
+    top: 2px;
+    left: 30%;
+    margin-left: 4px;
+    z-index: 200;
 }
 .app .product_user_cars text
 {
@@ -455,13 +480,12 @@
     width: 100%;
     height: 100%;
 }
+
 .page-bottom-dialog .pay-goods-title {
     color: #353535;
     font-size: 14px;
-}
-.page-bottom-dialog .pay-goods-title {
-    color: #353535;
-    font-size: 14px;
+    width: 48%;
+    display: block;
 }
 .page-bottom-dialog .pay-goods-title, #payDialog .pay-goods-price {
     padding-right: 50px;
@@ -509,13 +533,26 @@
 }
 .pull-right_guige
 {
-   display:inline-block;
    margin-left:20rpx;
    font-size:34rpx;
+   margin-top:20rpx;
+   width:100%;
 }
 .pull-right_guige text{
   padding: 10rpx;
   color:#666;
+  text-align:center;
+  border:1px solid #ccc;
+   border-radius:8px;
+  display: inline-block;
+  margin-left:20rpx;
+  min-width: 20%;
+}
+.pull-right_guige .active
+{
+  background-color: #f4a719;
+  border:1px solid #f4a719;
+  color:#fff;
 }
 .pull-left {
     float: left;
@@ -535,16 +572,11 @@
     position: relative;
 }
 
-.page-bottom-dialog .minus.disabled, .page-bottom-dialog .plus.disabled {
-    background-color: #f9f9f9;
-    color: #cacaca;
-}
+
 .page-bottom-dialog .minus, .page-bottom-dialog .plus {
-    position: relative;
     display: inline-block;
     font-size: 16px;
     outline: 0!important;
-    text-indent: -9999px;
     overflow: hidden;
     vertical-align: middle;
     width: 20px;
@@ -554,26 +586,18 @@
     background-color: #f1f1f1;
     color: #878787;
     border-radius: 2px;
+    text-align: center;
 }
+
+.page-bottom-dialog .minus.disabled, .page-bottom-dialog .plus.disabled {
+    background-color: #f9f9f9;
+    color: #cacaca;
+}
+
 .quantity .minus {
     border-radius: 2px 0 0 2px;
 }
 
-.page-bottom-dialog .minus.disabled:before, .page-bottom-dialog .plus.disabled:before, .page-bottom-dialog .plus.disabled:after {
-    background-color: #cacaca;
-}
-.page-bottom-dialog .minus:before, .page-bottom-dialog .plus:before, .page-bottom-dialog .plus:after {
-    position: absolute;
-    width: 8px;
-    height: 2px;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    background-color: #878787;
-    bottom: 0;
-    content: '';
-}
 .page-bottom-dialog .pay-buy-count {
     border: none;
     height: 20px;

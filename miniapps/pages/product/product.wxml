@@ -117,50 +117,69 @@
             <view class="dialog-block-item dialog-goods-info">
                 <view class="thumb">
                   <view class="thumb-wrap">
-                    <image src="http://img.weiye.me/zcimgdir/album/file_590037fa63a14.png"> </image>
+                    <image src="{{product_specification_pic}}"> </image>
                   </view>
                 </view>
 
                 <view class="pay-goods-baseinfo">
-                    <text class="pay-goods-title ellipsis">简约新款</text>
+                    <text class="pay-goods-title ellipsis">{{product_specification_title}}</text>
                     <view class="pay-goods-price">
                         <view class="pay-current-price">
                           <text>￥</text>
-                          <text class="js-goods-price">163.22</text>
+                          <text class="js-goods-price">{{product_specification_price}}</text>
                         </view>
                     </view>
                 </view>
 
             </view>
 
-            <view class="dialog-block-item">
-                <text class="shuliang">颜色</text>
+
+<!--商品规格开始-->
+            <view class="dialog-block-item" wx:if="{{product_detail.product_attr.title1.title}}">
+                <text class="shuliang">{{product_detail.product_attr.title1.title}}</text>
                 <view class="pull-right_guige">
-                  <text>白色</text>
-                  <text>黑色</text>
-                  <text>蓝色</text>
+                  <text wx:for="{{product_detail.product_attr.title1.value}}" wx:for-index="index" wx:key="key" wx:for-item="valueitem" data-specification_value="{{valueitem}}" data-specification_no="{{product_detail.product_attr.title1.no}}" data-position="1" bindtap='chooseGuige' class="{{product_specification_value1==valueitem?'active':''}}">{{valueitem}}</text>
                 </view>
             </view>
+
+            <view class="dialog-block-item" wx:if="{{product_detail.product_attr.title2.title}}">
+                <text class="shuliang">{{product_detail.product_attr.title2.title}}</text>
+                <view class="pull-right_guige">
+                  <text wx:for="{{product_detail.product_attr.title2.value}}" wx:for-index="index" wx:key="key" wx:for-item="valueitem" data-specification_value="{{valueitem}}" data-specification_no="{{product_detail.product_attr.title2.no}}" data-position="2" bindtap='chooseGuige' class="{{product_specification_value2==valueitem?'active':''}}">{{valueitem}}</text>
+                </view>
+            </view>
+
+            <view class="dialog-block-item" wx:if="{{product_detail.product_attr.title3.title}}">
+                <text class="shuliang">{{product_detail.product_attr.title3.title}}</text>
+                <view class="pull-right_guige">
+                  <text wx:for="{{product_detail.product_attr.title3.value}}" wx:for-index="index" wx:key="key" wx:for-item="valueitem" data-specification_value="{{valueitem}}" data-specification_no="{{product_detail.product_attr.title3.no}}" data-position="3" bindtap='chooseGuige' class="{{product_specification_value3==valueitem?'active':''}}">{{valueitem}}</text>
+                </view>
+            </view>
+
+
+<!--商品规格结束-->
 
             <view class="dialog-block-item">
                 <text class="shuliang">数量</text>
 
+
                 <view class="pull-right">
                     <view class="pull-left"> 
                       <text>库存</text> 
-                      <text class="pay-goods-stock">145</text> 
+                      <text class="pay-goods-stock">{{product_specification_repertory_num}}</text> 
                     </view>
 
                     <view class="quantity pull-left">
-                        <view class="minus disabled"></view>
-                        <input confirm-type="search" value="1" class="pay-buy-count" type="text"/>
-                        <view class="plus"></view>
+                        <view class="minus {{minus_disabled}}" catchtap='minus'>-</view>
+          <input value="{{buy_num}}" class="pay-buy-count" type="text" bindinput="buy_num"/>
+                        <view class="plus {{plus_disabled}}" catchtap='plus'>+</view>
                     </view>
                 </view>
             </view>
 
+
             <view class="dialog-box-item payDialog-normal">
-                <text class="btn btn-block btn-yellow pay-add-to-shoppingcart">加入购物车</text>
+              <text class="btn btn-block btn-yellow pay-add-to-shoppingcart" bindtap='buy_carts_submit'>加入购物车</text>
             </view>
 
 
@@ -177,18 +196,18 @@
 
   <view class="product_customer">
     <image src="/images/customer.png"></image>
-    <text>客服</text>
-    <button  open-type="contact"></button>
+    <button open-type="contact">客服</button>
   </view>
-
+ 
   <view class="product_user_cars fl">
     <navigator open-type='switchTab' url="../user/carts">
     <image src="/images/buy_cars.png"></image>
+    <text class="{{user_carts_num>0 ?'active':''}}"></text>
     <text>购物车</text>
     </navigator>
   </view>
 
-  <view class="product_add_user_cars fl big-btn" catchtap='traggle_guige'>加入购物车</view>
+  <view class="product_add_user_cars fl big-btn" catchtap='traggle_guige'>加入购物车     </view>
 
   <view class="product_buy_now fl big-btn">立即购买</view>
 

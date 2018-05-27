@@ -159,3 +159,17 @@ export function system_config() {
     url: '/system_config.php',
   });
 }
+
+
+//加入购物车
+export function user_carts_add_make(user_no, product_no, product_attr_no, buy_num) {
+  return newWork({
+    url: '/user_carts_add_make.php',
+    data: {
+      user_no: user_no,
+      product_no: product_no,
+      product_attr_no: product_attr_no,
+      buy_num: buy_num,
+    }
+  });
+}
