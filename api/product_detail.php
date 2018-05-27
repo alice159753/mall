@@ -49,7 +49,7 @@
 
     $result['sales_num'] = ceil($result['sales_num']/10000); //展示单位为万
 
-    if( !empty($user_no) )
+    if( !empty($user_no) && $user_no == 'undefined' )
     {
         $userCollectRow = $myUserCollect->getRow("*","user_no = ".$user_no." AND product_no = $product_no");
     }
@@ -76,13 +76,30 @@
         $result['product_img_detail'][] = $dataArray;
     }
 
+
     //获取商品规格
-    $rows = $myProductAttr->getRows("*", "product_no = $product_no order by no DESC");
+    $rows = $myProductAttr->getRows("*", "product_no = $product_no group by specification_no");
     for($i = 0; isset($rows[$i]); $i++)
     {
-        $dataArray = $myProductAttr->getDataClean($rows[$i]);
+        $product_attr = array();
 
-        $result['product_attr'][] = $dataArray;
+        $dataArray = array();
+        $dataArray['specification_no'] = $rows[$i]['specification_no'];
+        $dataArray['specification_title'] = $rows[$i]['specification_title'];
+
+        $product_attr = $dataArray;
+
+        $lists = $myProductAttr->getRows("*", "product_no = $product_no and specification_no = ".$rows[$i]['specification_no']." order by no DESC");
+
+        foreach ($lists as $key => $value) 
+        {
+            $dataArray = $myProductAttr->getDataClean($value);
+
+            $product_attr['lists'][] = $dataArray;
+        }
+
+        $result['product_attr'][] = $product_attr;
+
     }
 
 

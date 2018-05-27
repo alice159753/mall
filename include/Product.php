@@ -144,14 +144,14 @@
             $dataArray['virtual_sales']      = $row['virtual_sales'];
             $dataArray['sales_num']          = $row['real_sales'] + $row['virtual_sales'];
             $dataArray['content']            = $row['content'];
-            $dataArray['is_online}']         = $row['is_online'];
+            $dataArray['is_online']         = $row['is_online'];
             $dataArray['is_online_title']    = $isOnlineMap[ $row['is_online'] ];
             $dataArray['add_time']           = $row['add_time'];
             $dataArray['update_time']        = $row['update_time'];
             $dataArray['label']              = $row['label'];
             $dataArray['sales_start_date']   = $row['sales_start_date'];
             $dataArray['sales_end_date']     = $row['sales_end_date'];
-            $dataArray['repertory_num}']     = $row['repertory_num'];
+            $dataArray['repertory_num']     = $row['repertory_num'];
             $dataArray['description']        = $row['description'];
             $dataArray['selling_points']     = $row['selling_points'];
             $dataArray['sale_price']         = $row['sale_price'];
