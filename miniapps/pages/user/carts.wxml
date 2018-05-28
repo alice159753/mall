@@ -4,58 +4,70 @@
 
 <view class="page app">
 
+
   <!--购物车列表开始-->
   <view class="app-content">
 
-      <view class="cart-list">
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
+          class="cart-list">
 
-          <view class="list-item">
+        <!--购物车列表开始 -->
+          <view class="list-item" wx:for="{{user_carts_lists}}" wx:for-index="index" wx:key="key" wx:for-item="item">
 
-            <view class="item-checkbox">
-              <image src="/images/check-off.png"></image>
+            <view class="item-checkbox" data-user_carts_no="{{item.no}}" bindtap='user_carts_one'>
+              <image src="{{item.isshow ?'/images/check-on-multi.png':'/images/check-off.png'}}"></image>
             </view>
 
             <view class="item-photo">
-              <image src="http://www.xinghuilvse.com/data/admin/20180416/20180416154655_5ad454ef5cee3_86830.png"></image>
+              <image src="{{item.product_pic}}"></image>
             </view>
 
             <view class="item-info"> 
 
               <view class="info-name">
-              汉源枇杷【2斤特价、四川5斤包邮】
+              {{item.product_title}}
               </view>
 
-              <view class="info-attr">
-              重量:1kg
+              <!--规格属性-->
+              <view class="info-attr" wx:if="{{item.product_attr_text}}">
+              {{item.product_attr_text}}
               </view>
 
-              <view class="info-price">￥28</view>
+              <view class="info-attr" wx:if="{{item.product_weight_kg > 0}}">
+              重量:{{item.product_weight_kg}}kg
+              </view>
+
+              <view class="info-attr" wx:if="{{item.product_weight_g > 0}}">
+              重量:{{item.product_weight_g}}g
+              </view>
+
+              <view class="info-price">￥{{item.sale_price}}</view>
               
               <view class="info-amount">
 
-                  <view class="amount-button active">
+                  <view class="amount-button active" data-repertory_num="{{item.data-repertory_num}}"  bindtap='minus' data-user_carts_no="{{item.no}}">
                     <image src="/images/ind-sub.png"></image>
                   </view>
 
-                  <view class="amount-count active">6</view>
+                  <view class="amount-count active">{{item.buy_num}}</view>
                 
-                  <view class="amount-button active">
+                  <view class="amount-button active" data-repertory_num="{{item.data-repertory_num}}" bindtap='plus' data-user_carts_no="{{item.no}}">
                     <image src="/images/ind-add.png"></image>
                   </view>
 
               </view>
 
-              <view class="info-delete">
+              <view class="info-delete" bindtap='user_carts_delete' data-user_carts_no="{{item.no}}">
                 <image src="/images/ind-delete.png"></image>
               </view>
 
-
             </view>
 
-            
-
           </view>
-      </view>
+          
+        <!--购物车列表结束 -->
+
+      </scroll-view>
   </view>
 
   <!--购物车列表结束-->
@@ -65,18 +77,18 @@
   <view class="cart-submit">
 
     <view class="submit-select">
-        <view class="select-checkbox">
-        <image src="/images/check-off.png"></image>
+        <view class="select-checkbox" bindtap='chooseAll'>
+        <image src="{{isshowall ?'/images/check-on-multi.png':'/images/check-off.png'}}"></image>
         </view>
     </view>
 
-    <view class="submit-total active">
+    <view class="submit-total {{total_sale_price>0 ? 'active':''}}">
         <text>￥</text>
-        <text class="total-price">12</text>
+        <text class="total-price">{{total_sale_price}}</text>
     </view>
 
-    <view class="submit-button dark active">
-    结算（0）
+    <view class="submit-button dark {{total_sale_price>0 ? 'active':''}}" bindtap='user_carts_make'>
+    结算（{{total_buy_num}}）
     </view>
 
   </view>

@@ -1,40 +1,28 @@
+// pages/user/carts.js
 import {
-  system_config
+  user_carts, user_carts_delete
 } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
-var util = require('../../utils/util');
 
 var app = getApp();
 
-
-
-// pages/user/about.js
+// pages/user/ordermake.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    //系统配置
-    system_config:{},
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
-    console.log("about onload");
+    console.log("ordermake");
 
-    //系统配置
-    system_config().then((res) => {
-      let arr = res.data.result.data;
-      this.setData({
-        system_config: arr,
-      })
-    });
-
-
+    console.log(app.globalUserCarts);
   },
 
   /**

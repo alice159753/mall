@@ -173,3 +173,28 @@ export function user_carts_add_make(user_no, product_no, product_attr_no, buy_nu
     }
   });
 }
+
+
+
+//用户购物车列表
+export function user_carts(user_no) {
+  return newWork({
+    url: '/user_carts.php',
+    data: {
+      user_no: user_no,
+    }
+  });
+}
+
+
+
+//删除购物车
+export function user_carts_delete(user_no, user_carts_no) {
+  return newWork({
+    url: '/user_carts_delete.php',
+    data: {
+      user_no: user_no,
+      user_carts_no: user_carts_no,
+    }
+  });
+}

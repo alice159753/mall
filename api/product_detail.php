@@ -205,7 +205,7 @@
     //获取用户购物车数量
     if( !empty($user_no) )
     {
-        $count = $myUserCarts->getRow("sum(buy_num) as sum_buy_num", "user_no = ".$user_no." AND product_no = $product_no AND is_buy = 0");
+        $count = $myUserCarts->getRow("sum(buy_num) as sum_buy_num", "user_no = ".$user_no." AND product_no = $product_no");
         $result['user_carts_num'] = $count['sum_buy_num'];
     }
 

@@ -23,6 +23,8 @@ Page({
    */
   onLoad: function (options) {
     
+    console.log("cards onload");
+
     //没有登录则展示登录框
     if (!app.globalData.userInfo) {
       this.setData({

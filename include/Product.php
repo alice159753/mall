@@ -157,7 +157,7 @@
             $dataArray['sale_price']         = $row['sale_price'];
             $dataArray['lineation_price']    = $row['lineation_price'];
             $dataArray['member_price']       = $row['member_price'];
-            $dataArray['cost_price']         = $row['cost_price'];
+            //$dataArray['cost_price']         = $row['cost_price']; //隐藏成本价
             $dataArray['postage_no']         = $row['postage_no'];
             $dataArray['postage_price']      = $row['postage_price'];
             $dataArray['product_weight_kg']  = $row['product_weight_kg'];

@@ -78,7 +78,7 @@
     }
 
     //判断改产品是否已经加入购物车
-    $userCarsRow = $myUserCarts->getRow("*", "user_no = ".$user_no." AND product_no = $product_no AND is_buy = 0 AND product_attr_no = $product_attr_no");
+    $userCarsRow = $myUserCarts->getRow("*", "user_no = ".$user_no." AND product_no = $product_no AND product_attr_no = $product_attr_no");
 
     if( !empty($userCarsRow) )
     {
@@ -93,7 +93,6 @@
         $dataArray['user_no']         = $user_no;
         $dataArray['product_no']      = $product_no;
         $dataArray['buy_num']         = $buy_num;
-        $dataArray['is_buy']          = '0';
         $dataArray['add_time']        = 'now()';
         $dataArray['product_attr_no'] = $product_attr_no;
 
@@ -122,7 +121,7 @@
         $myUserCarts->addRow($dataArray);
     }
     
-    $count = $myUserCarts->getRow("sum(buy_num) as sum_buy_num", "user_no = ".$user_no." AND product_no = $product_no AND is_buy = 0");
+    $count = $myUserCarts->getRow("sum(buy_num) as sum_buy_num", "user_no = ".$user_no." AND product_no = $product_no");
     $count = $count['sum_buy_num'];
 
     Output::succ('添加成功',$count);

@@ -17,7 +17,7 @@ function buy_api(that)
 
     if (res.data.result.status.code == 0 )
     {
-      app.showModal({ content: '加入购物车成功' });
+      app.showToast({ title: '加入购物车成功', icon:'none' });
 
       that.setData({
         user_carts_num: arr,
@@ -533,8 +533,11 @@ this.data.product_specification_no2 == lists[i]['specification_no2'] && this.dat
   //加入购物车
   buy_carts_submit:function ()
   {
+     console.log("buy_carts_submit");
+
      let is_3 = false;
      let is_2 = false;
+     let is_1 = false;
 
       //如果有3个
       console.log(3);
@@ -575,13 +578,14 @@ this.data.product_specification_no2 == lists[i]['specification_no2'] && this.dat
       //如果有2个
       console.log(2);
       if (this.data.product_has_specification1 &&
-        this.data.product_has_specification2 &&
-        this.data.product_has_specification3) 
+          this.data.product_has_specification2
+        ) 
         {
             if (util.isBlank(this.data.product_specification_value1)) {
               app.showModal({ content: '请选择规格1' });
               return 0;
             }
+
             if (util.isBlank(this.data.product_specification_value2)) {
               app.showModal({ content: '请选择规格2' });
               return 0;
@@ -597,10 +601,10 @@ this.data.product_specification_no2 == lists[i]['specification_no2'] && this.dat
 
       //如果有1个
       console.log(1);
-       if (this.data.product_has_specification1 &&
-        this.data.product_has_specification2 &&
-        this.data.product_has_specification3) 
+       if (this.data.product_has_specification1) 
         {
+          is_1 = true;
+
           if (util.isBlank(this.data.product_specification_value1)) {
             app.showModal({ content: '请选择规格1' });
             return 0;
@@ -609,8 +613,12 @@ this.data.product_specification_no2 == lists[i]['specification_no2'] && this.dat
           buy_api(this);
         }
 
+       if (is_1) 
+       {
+         return 0;
+       }
 
-
+       buy_api(this);
   },
 
   /**

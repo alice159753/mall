@@ -3,12 +3,13 @@
 /**购物车列表开始**/
 
 .cart-list {
-    margin-top: 15px;
+    /*margin-top: 15px;*/
     position: relative;
     display: block;
     width: 100%;
     box-sizing: border-box;
-    border-top: #e2e2e2 1px solid;
+    /*border-top: #e2e2e2 1px solid;*/
+    margin-bottom: 100px;
 }
 .cart-list .list-item 
 {
@@ -69,7 +70,7 @@
 }
 
 .cart-list .list-item .item-info .info-attr {
-    margin-top: 8px;
+    margin-top: 2px;
     position: relative;
     display: block;
     box-sizing: border-box;
