@@ -83,8 +83,7 @@
     </view>
 
     <view class="submit-total {{total_sale_price>0 ? 'active':''}}">
-        <text>￥</text>
-        <text class="total-price">{{total_sale_price}}</text>
+        <text class="total-price colormain">￥{{total_sale_price}}</text>
     </view>
 
     <view class="submit-button dark {{total_sale_price>0 ? 'active':''}}" bindtap='user_carts_make'>

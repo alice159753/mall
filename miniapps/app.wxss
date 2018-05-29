@@ -32,6 +32,10 @@
 {
   background-color: #666;
 }
+.colormain
+{
+  color:#f4a719;
+}
 
 .mt0
 {

@@ -1,2 +1,138 @@
-<!--pages/user/ordermake.wxml-->
-<text>pages/user/ordermake.wxml</text>
+<import src="../templates/load.wxml"/>
+<import src="../templates/tips.wxml"/>
+
+
+<view class="page app">
+
+<!--新建立收货地址-->
+<view class="empty-address-tip" bindtap='chooseAddress' style='display:none'>
+<image src="/images/add.png" class="add"></image>
+<text>新建收货地址</text>
+<image src="/images/arrow_r.png" class="arrow_r"></image>
+</view>
+
+<!--存在收货地址-->
+<view class="address-tip">
+
+<image src="/images/site.png" class="site"></image>
+
+<view class="shouhuoren">
+  <text>wangchun</text>
+</view>
+
+<view class="phone">
+  <text>wangchun</text>
+</view>
+
+<view class="address">
+  <text>wangchunwangchunwangchunwangchun</text>
+</view>
+
+<image src="/images/arrow_r.png" class="arrow_r"></image>
+
+</view>
+
+
+<view class="empty-border"></view>
+
+<view class="bgf2 space"></view>
+
+<!--商品列表开始-->
+<view class="confirm-goods">
+    <view class="goods-item">
+      <view class="item-photo">
+        <image src="http://www.xinghuilvse.com/data/admin/20180416/20180416154655_5ad454ef5cee3_86830.png"></image>
+      </view>
+
+      <view class="item-info">
+        <view class="info-name">汉源枇杷【2斤特价、四川5斤包邮】</view>
+
+         <view class="info-attr" wx:if="{{item.product_attr_text}}">
+              {{item.product_attr_text}}
+         </view>
+
+        <view class="info-attr" wx:if="{{item.product_weight_kg > 0}}">
+              重量:{{item.product_weight_kg}}kg
+         </view>
+
+        <view class="info-attr" wx:if="{{item.product_weight_g > 0}}">
+              重量:{{item.product_weight_g}}g
+        </view>
+
+        <view class="info-price">￥{{item.sale_price}}</view>
+
+        <view class="info-amount">x8</view>
+
+      </view>
+
+
+    </view>
+
+</view>
+<!--商品列表结束-->
+
+<view class="bgf2 space"></view>
+
+<!--快递-->
+<view class="confirm-form">
+
+  <view class="form-item">
+      <view class="item-title">配送方式</view>
+      <view class="item-value">普通快递</view>
+  </view>
+
+  <view class="form-item">
+      <textarea maxlength="{{tempTotalNum}}" bindinput='changeInput' name="wrong_content" placeholder='买家留言' class="item-textarea"></textarea>
+
+  </view>
+
+
+<view class="preview-goods-order-section discount-way">
+    <view class="preview-section-title">优惠方式</view>
+    <view class="ico-moon icon-rightarrow"></view>
+    <picker bindchange="discountChange" value="{{ selectDiscountIndex }}" range="{{ discountList }}" range-key="title" style="margin-bottom:-5px;">
+      <view class="select-discount-title">ddddd
+      <text class="pull-right colormain" hidden="{{ selectDiscountIndex == 0 }}">-¥1</text></view>
+
+    </picker>
+  </view>
+
+
+
+  <view class="confirm-summury">
+    <view class="summury-total">
+      订单总额
+      <text class="total-price">+¥168</text>
+    </view>
+
+    <view class="summury-detail">
+       商品总额
+      <text class="total-price">+¥168</text>
+    </view>
+
+    <view class="summury-detail">
+       运费总额
+      <text class="total-price">+¥168</text>
+    </view>
+  </view>
+
+  <view class="confirm-submit">
+      <view class="submit-total">
+        <view class="total-price">
+            合计金额
+            <text class="sepcial_price">¥23</text>
+        </view>
+      </view>
+
+      <view class="submit-button dark active">提交订单并支付</view>
+  </view>
+
+
+</view>
+
+
+</view>
+
+
+<!--微信登录-->
+<template is="tip3" wx:if="{{isloginshow}}" />

@@ -13,17 +13,54 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    //收货人地址
+    chooseAddress:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("ordermake");
+    console.log("ordermake onload");
+    console.log("app.globalUserCarts");
 
+    //购物车列表商品
     console.log(app.globalUserCarts);
+
+    //没有登录则展示登录框
+    if (!app.globalData.userInfo) {
+      this.setData({
+        isloginshow: true,
+      })
+    }
+
+
   },
+
+  //选择地址
+  chooseAddress:function (){
+
+    wx.chooseAddress({
+      success: function (res) {
+        console.log(res.userName);
+        console.log(res.postalCode);
+        console.log(res.provinceName);
+        console.log(res.cityName);
+        console.log(res.countyName);
+        console.log(res.detailInfo);
+        console.log(res.nationalCode);
+        console.log(res.telNumber);
+
+        this.setData({
+          chooseAddress: res,
+        });
+
+      }
+    })
+
+
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

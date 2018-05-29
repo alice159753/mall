@@ -1,1 +1,406 @@
 /* pages/user/ordermake.wxss */
+
+/*空地址开始*/
+.empty-address-tip
+{
+  width: 100%;
+  height:50px;
+}
+.empty-border
+{
+    width: 100%;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAAEBAMAAADfWWRjAAAAIVBMVEUAAAAyhPr/bm4zhPv/bm4zhfz/b28zhfz/cHAyg/r/bW0RhIYcAAAACXRSTlMA0dHDw1paS0u6tlG1AAAAPElEQVQI12NgW4UCljAwsM5EAZMZGBiYUBWtYGBgRFU0HaioC1WRAgNDJaoiAaAiL1RFCQwMlqiKAhgYAEHZS5OAMg/cAAAAAElFTkSuQmCC');
+    content: '';
+    display: block;
+    height: 2px;
+    background-size: 34px 2px;
+}
+.empty-address-tip .add
+{
+    width: 100rpx;
+    height: 100rpx;
+    position:absolute;
+    top:0;
+    left: 50rpx;
+}
+.empty-address-tip text
+{
+    width: 500rpx;
+    height: 100rpx;
+    position:absolute;
+    top:10rpx;
+    right: 70rpx;
+    color:#666666;
+}
+.empty-address-tip .arrow_r
+{
+    width:15rpx;
+    height:26rpx;
+    position:absolute;
+    top:3%;
+    right: 50rpx;
+}
+/*空地址结束*/
+
+/*地址开始*/
+address-tip
+{
+  width: 100%;
+  height:50px;
+}
+.address-tip .site
+{
+    width: 50rpx;
+    height: 50rpx;
+    position:absolute;
+    top:0;
+    left: 50rpx;
+}
+.address-tip .arrow_r
+{
+    width:15rpx;
+    height:26rpx;
+    position:absolute;
+    top:3%;
+    right: 50rpx;
+}
+.address-tip .shouhuoren
+{   
+    color: #333;
+    margin-left: 50px;
+}
+.address-tip .phone
+{   
+    color: #888;
+    margin-left: 50px;
+}
+.address-tip .address
+{   
+    color: #888;
+    margin-left: 50px;
+}
+.address-tip .address text
+{
+    display:block;
+    width:80%;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*地址结束*/
+
+
+
+
+
+
+/*商品列表开始*/
+.confirm-goods {
+    position: relative;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-top: #e2e2e2 1px solid;
+}
+
+.confirm-goods .goods-item {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    border-bottom: #e2e2e2 1px solid;
+    background-color: #fff;
+}
+.confirm-goods .goods-item .item-photo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: block;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    border: #e2e2e2 1px solid;
+}
+.confirm-goods .goods-item .item-photo image {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+.confirm-goods .goods-item .item-info {
+    position: relative;
+    display: block;
+    height: 100%;
+    box-sizing: border-box;
+    margin-left: 100px;
+    margin-right: 5px;
+    overflow: hidden;
+}
+.confirm-goods .goods-item .item-info .info-name {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    box-sizing: border-box;
+    color: #404245;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    line-height: 14px;
+}.confirm-goods .goods-item .item-info .info-attr {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    box-sizing: border-box;
+    color: #666;
+    font-size: 13px;
+    font-weight: 400;
+    text-align: left;
+    line-height: 14px;
+}
+.confirm-goods .goods-item .item-info .info-price {
+    position: absolute;
+    left: 0;
+    bottom: 8px;
+    width: 50%;
+    display: block;
+    box-sizing: border-box;
+    color: #404245;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    line-height: 16px;
+}
+.confirm-goods .goods-item .item-info .info-amount {
+    position: absolute;
+    right: 6px;
+    bottom: 8px;
+    width: 50%;
+    display: block;
+    box-sizing: border-box;
+    color: #888;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: right;
+    line-height: 16px;
+}
+/*商品列表结束*/
+
+/*快递开始*/
+.confirm-form {
+    position: relative;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: #e2e2e2 1px solid;
+    background-color: #fff;
+}
+.confirm-form .form-item {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-bottom: #e2e2e2 1px solid;
+}
+.confirm-form .form-item .item-title {
+    float: left;
+    display: block;
+    width: 25%;
+    height: 44px;
+    box-sizing: border-box;
+    color: #888;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    line-height: 44px;
+    padding-left: 10px;
+}
+.confirm-form .form-item .item-value {
+    float: left;
+    display: block;
+    width: 75%;
+    height: 44px;
+    box-sizing: border-box;
+    color: #404245;
+    font-size: 13px;
+    font-weight: 400;
+    text-align: right;
+    line-height: 44px;
+    padding-right: 24px;
+}
+.confirm-form .form-item .item-textarea {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    height:150rpx;
+    background-color: #f5f5f5;
+    border: none;
+    text-align: left;
+    overflow: hidden;
+    color: #404245;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.confirm-summury {
+    position: relative;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: #e2e2e2 1px solid;
+    border-bottom: #e2e2e2 1px solid;
+    background-color: #fff;
+    margin-top: 10px;
+    padding-bottom: 4px;
+}
+.confirm-summury .summury-total {
+    display: block;
+    height: 34px;
+    overflow: hidden;
+    color: #404245;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 34px;
+    padding-left: 10px;
+}
+.confirm-summury .summury-total .total-price {
+    float: right;
+    display: block;
+    height: 34px;
+    overflow: hidden;
+    color: #404245;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 34px;
+    padding-right: 8px;
+}
+.confirm-summury .summury-detail {
+    display: block;
+    height: 20px;
+    overflow: hidden;
+    color: #888;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    padding-left: 10px;
+}
+.confirm-submit {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    width: 100%;
+    height: 44px;
+    box-sizing: border-box;
+    border-top: #e2e2e2 1px solid;
+    background-color: #fff;
+    box-shadow: 3px 0 7px rgba(0,0,0,.35);
+}
+.confirm-submit .submit-total {
+    float: left;
+    position: relative;
+    display: block;
+    width: 60%;
+    height: 100%;
+    box-sizing: border-box;
+    color: #404245;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: right;
+    line-height: 44px;
+    background-color: #fff;
+    padding-right: 8px;
+}
+.confirm-submit .submit-total .total-price {
+    width: 100%;
+    color: #404245;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: right;
+}
+.confirm-summury .summury-detail .total-price {
+    float: right;
+    display: block;
+    height: 20px;
+    overflow: hidden;
+    color: #888;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    padding-right: 8px;
+}
+.confirm-submit .submit-total .sepcial_price {
+    color: #f4a719;
+}
+.confirm-submit .submit-button.dark.active {
+    color: #fff;
+    background-color: #f4a719;
+}
+.confirm-submit .submit-button.active {
+    opacity: 1;
+}
+.confirm-submit .submit-button {
+    float: left;
+    position: relative;
+    display: block;
+    width: 40%;
+    height: 100%;
+    box-sizing: border-box;
+    color: #404245;
+    background-color: #f7f7f7;
+    line-height: 44px;
+    text-align: center;
+    opacity: .25;
+    font-size: 16px;
+}
+/*快递结束*/
+
+/*优惠方式开始*/
+.preview-goods-order-section {
+  background: #fdfdfd;
+  overflow: hidden;
+  font-size:14px;
+  padding-left:25rpx;
+  padding-top:10rpx;
+}
+.discount-way .select-discount-title {
+  padding-top:60rpx;
+  position:relative;
+  z-index:2;
+}
+.discount-way .preview-section-title {
+  position: absolute;
+  color:#888;
+}
+.preview-section-title {
+  margin-bottom: 8px;
+}
+.discount-way .icon-rightarrow {
+  position:absolute;
+  right:60rpx;
+  font-size:28rpx;
+  color:#aaa;
+  top:40rpx;
+}
+.select-discount-title {
+  font-size: 29rpx;
+  line-height: 24px;
+  color: #818181;
+  margin-right: 6px;
+}
+.discount-way .select-discount-title {
+  padding-top:64rpx;
+  position:relative;
+  z-index:2;
+}
+.pull-right {
+  float: right;
+}
+/*优惠方式结束*/
