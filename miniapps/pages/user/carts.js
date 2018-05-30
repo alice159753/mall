@@ -6,6 +6,23 @@ var CommonEvent = require('../common/commonEvent');
 
 var app = getApp();
 
+//获取选种的购物车no
+function getUserCartsNos($rows) {
+  var arr = new Array();
+
+  for (var i = 0; i < $rows.length; i++) {
+    let no = $rows[i]['no'];
+
+    if ($rows[i]['isshow']) {
+      arr.push(no);
+    }
+
+  }
+
+  return arr.join(",");
+}
+
+
 //设置选中的商品
 function set_choose(that, user_carts_no)
 {
@@ -295,9 +312,12 @@ Page({
   user_carts_make:function (){
 
     app.globalUserCarts = this.data.user_carts_lists;
+    console.log(app.globalUserCarts);
+    let user_carts_nos = getUserCartsNos(this.data.user_carts_lists);
+    console.log(user_carts_nos);
 
     wx.navigateTo({
-      url: '../user/ordermake',
+      url: '../user/ordermake?user_carts_nos=' + user_carts_nos,
     })
 
   },

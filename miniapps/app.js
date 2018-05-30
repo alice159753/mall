@@ -1,6 +1,67 @@
 //app.js
 App({
 
+  wxPay: function (param) {
+    let _this = this;
+    wx.requestPayment({
+      'timeStamp': param.timeStamp,
+      'nonceStr': param.nonceStr,
+      'package': param.package,
+      'signType': 'MD5',
+      'paySign': param.paySign,
+      success: function(res){
+        _this.wxPaySuccess(param);
+        typeof param.success === 'function' && param.success();
+      },
+      fail: function(res){
+        if(res.errMsg === 'requestPayment:fail cancel'){
+          typeof param.fail === 'function' && param.fail();
+          return;
+        }
+        if(res.errMsg === 'requestPayment:fail'){
+          res.errMsg = '支付失败';
+        }
+        _this.showModal({
+          content: res.errMsg
+        })
+        _this.wxPayFail(param, res.errMsg);
+        typeof param.fail === 'function' && param.fail();
+      }
+    })
+  },
+  wxPaySuccess: function (param) {
+    let orderId = param.orderId,
+        goodsType = param.goodsType,
+        formId = param.package.substr(10),
+        t_num = goodsType == 1 ? 'AT0104':'AT0009';
+
+    this.sendRequest({
+      hideLoading: true,
+      url: '/index.php?r=AppShop/SendXcxOrderCompleteMsg',
+      data: {
+        formId: formId,
+        t_num: t_num,
+        order_id: orderId
+      }
+    })
+  },
+  wxPayFail: function (param, errMsg) {
+    let orderId = param.orderId,
+        formId = param.package.substr(10);
+
+    this.sendRequest({
+      hideLoading: true,
+      url: '/index.php?r=AppShop/SendXcxOrderCompleteMsg',
+      data: {
+        formId: formId,
+        t_num: 'AT0010',
+        order_id: orderId,
+        fail_reason: errMsg
+      }
+    })
+  },
+
+
   showModal: function (param) {
     wx.showModal({
       title: param.title || '提示',

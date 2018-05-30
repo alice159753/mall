@@ -198,3 +198,37 @@ export function user_carts_delete(user_no, user_carts_no) {
     }
   });
 }
+
+
+
+//结算
+export function order_confirm(user_no, user_carts_nos) {
+  return newWork({
+    url: '/order_confirm.php',
+    data: {
+      user_no: user_no,
+      user_carts_nos: user_carts_nos,
+    }
+  });
+}
+
+
+//添加新地址
+export function user_address_add(user_no, chooseAddress) {
+  return newWork({
+    url: '/user_address_add.php',
+    data: {
+      user_no: user_no,
+      consignee: chooseAddress.userName,
+      zipcode: chooseAddress.postalCode,
+      province: chooseAddress.provinceName,
+      city: chooseAddress.cityName,
+      district: chooseAddress.countyName,
+      address: chooseAddress.detailInfo,
+      country: chooseAddress.nationalCode,
+      tel: chooseAddress.telNumber,
+
+
+    }
+  });
+}

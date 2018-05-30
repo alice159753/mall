@@ -228,10 +228,10 @@
                 {
                     $productAttrRow = $myProductAttr->getRow("*", "no = ". $userCartsRows[$i]['product_attr_no']);
 
-                    $productRow['shop_price'] = $productAttrRow['price'];
+                    $productRow['sale_price'] = $productAttrRow['sale_price'];
                 }
 
-                $product_fee += $userCartsRows[$i]['buy_num'] * $productRow['shop_price'];
+                $product_fee += $userCartsRows[$i]['buy_num'] * $productRow['sale_price'];
             }
 
             return $product_fee;

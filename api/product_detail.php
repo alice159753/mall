@@ -34,7 +34,7 @@
 
     if( empty($product_no) )
     {
-        Output::error('1', '该宝贝不存在');
+        Output::error('该宝贝不存在', '1');
 
     }
 
@@ -44,7 +44,7 @@
 
     if( empty($row) )
     {
-        Output::error('1', '该宝贝已经下线');
+        Output::error('该宝贝已经下线', '2');
     }
 
     $result = $myProduct->getDataClean($row);
