@@ -85,7 +85,8 @@
 
 <view class="preview-goods-order-section discount-way" wx:if="{{order_confirm.discount_coupon}}">
     <view class="preview-section-title">优惠方式</view>
-    <view class="ico-moon icon-rightarrow"></view>
+    <image src="/images/arrow_r.png" class="icon-rightarrow"></image>
+
     <picker bindchange="discountChange" value="{{selectDiscountIndex}}" range="{{order_confirm.discount_coupon}}" range-key="use_type_title" style="margin-bottom:-5px;">
       <view class="select-discount-title">{{ selectDiscountInfo.use_type_title }}
 
@@ -123,7 +124,7 @@
         </view>
       </view>
 
-      <view class="submit-button dark active">提交订单并支付</view>
+      <view class="submit-button dark active" bindtap='order_make'>提交订单并支付</view>
   </view>
 
 

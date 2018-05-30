@@ -1,5 +1,7 @@
 <?php
-
+    ob_start();
+    include_once(INCLUDE_DIR. "/Curl.php");
+    ob_clean();
 
     class WeChat
     {
@@ -531,12 +533,40 @@
 
             return $ticket;
         }
-        
+
+        //小程序支付
+        function xcx($body, $total_fee, $out_trade_no, $notify_url, $return_url)
+        {
+            $myCurl = new Curl();
+
+            $dataArray = array();
+            $dataArray['appid']            = WEIXIN_APPID;
+            $dataArray['mch_id']           = MERCHANT_NUMBER;
+            $dataArray['nonce_str']        = $this->great_rand();
+            $dataArray['body']             = $body;
+            $dataArray['out_trade_no']     = $out_trade_no;
+            $dataArray['total_fee']        = $total_fee;
+            $dataArray['spbill_create_ip'] = $this->get_client_ip();
+            $dataArray['notify_url']       = $notify_url;
+            $dataArray['return_url']       = $return_url;
+            $dataArray['trade_type']       = 'JSAPI'; //以分为单位
+
+            $sign = $this->get_sign($dataArray);
+            $dataArray['sign'] = $sign;
+
+            $postXml = $this->arrayToXml($dataArray);
+
+            $url = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
+
+            $xml = $myCurl->doPost($url, $postXml);
+echo $xml;
+            $content = simplexml_load_string($xml);
+
+            $mweb_url = $content->mweb_url;
+
+            return  $mweb_url;
+        }
 
     }
-
-
-
-
 
 ?>

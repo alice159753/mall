@@ -29,7 +29,8 @@
     define("WEIXIN_APPID", "wx4a3c9a890bf83384");
     define("WEIXIN_APPSECRECT", "66475268e92dfb1f4b1a5d8c3d1df970");
     define("WEIXIN_TOKEN", "");
-
+    define("MERCHANT_NUMBER", "1494738062");
+    define("WEIXIN_PAY_KEY", "");
 
     ob_start();
     include_once(INCLUDE_DIR ."/MySQL.php");

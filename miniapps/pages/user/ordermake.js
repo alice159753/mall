@@ -1,8 +1,9 @@
 // pages/user/carts.js
 import {
-  order_confirm, user_address_add
+  order_confirm, user_address_add, order_make
 } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
+var util = require('../../utils/util');
 
 var app = getApp();
 
@@ -38,6 +39,15 @@ Page({
     selectDiscountInfo:[],
     selectDiscountIndex: [],
 
+    //购物车信息
+    user_carts_nos: "",
+
+    //地址信息
+    user_address_no:0,
+
+    //优惠券信息
+    discount_coupon_no:0,
+
   },
 
   /**
@@ -58,6 +68,12 @@ Page({
     order_confirm(app.globalData.userInfo.user_no, options.user_carts_nos).then((res) => {
       let arr = res.data.result.data;
 
+      let user_address_no = 0;
+      if( !util.isBlank(arr.user_address) ) 
+      {
+        user_address_no = arr.user_address.no;
+      }
+
        //失败
       if ( res.data.result.status.code != 0 )
       {
@@ -67,6 +83,9 @@ Page({
       {
         this.setData({
           order_confirm: arr,
+          user_carts_nos: options.user_carts_nos,
+          user_address_no: user_address_no,
+          
         });
       }
     });
@@ -94,6 +113,10 @@ Page({
         //添加新地址
         user_address_add(user_no, res).then((res) => {
           let arr = res.data.result.data;
+
+          that.setData({
+            user_address_no: arr.no,
+          });
         });
 
         console.log(that.data.order_confirm);
@@ -122,13 +145,30 @@ Page({
   discountChange:function (e){
     var index = e.detail.value;
     console.log(index);
+
     this.setData({
       selectDiscountInfo: this.data.order_confirm.discount_coupon[index],
       selectDiscountIndex: index,
+      discount_coupon_no: this.data.order_confirm.discount_coupon[index]['no'],
     })
-
-
   },
+
+  //提交订单并支付
+  order_make:function(){
+      let that = this;
+      console.log(that.data.user_carts_nos);
+      console.log(that.data.user_address_no);
+      console.log(that.data.discount_coupon_no);
+
+      //下单
+      order_make(app.globalData.userInfo.user_no, that.data.user_carts_nos, that.data.discount_coupon_no).then((res) => {
+        let arr = res.data.result.data;
+
+       
+      });
+      
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

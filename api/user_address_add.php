@@ -35,6 +35,8 @@
                                  address = '".$address."' AND country = '".$country."' AND tel = '".$tel."'
                                  ");
 
+    $result = $row;
+
     if( empty($row) )
     {
         $dataArray = array();
@@ -50,8 +52,10 @@
         $dataArray['add_time']  = 'now()';
 
         $myUserAddress->addRow($dataArray);
-    }
 
+        $result = $dataArray;
+        $result['no'] = $myUserAddress->getInserID();
+    }
 
     Output::succ('', $result);
 

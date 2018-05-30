@@ -385,10 +385,11 @@ address-tip
 }
 .discount-way .icon-rightarrow {
   position:absolute;
-  right:60rpx;
+  right:34rpx;
   font-size:28rpx;
   color:#aaa;
-  top:40rpx;
+  width:15rpx;
+  height:26rpx;
 }
 .select-discount-title {
   font-size: 29rpx;
