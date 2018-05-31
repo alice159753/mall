@@ -48,8 +48,11 @@
             $dataArray["author"]      = $row['author'];
             $dataArray['content']     = $row['content'];
 
-            $dataArray['content'] = str_replace("<p>", "<view>", $dataArray['content']);
-            $dataArray['content'] = str_replace("</p>", "</view>", $dataArray['content']);
+            $dataArray['content'] = str_replace("<br/>", "<p></p>", $dataArray['content']);
+            $dataArray['content'] = str_replace("<br>", "<p></p>", $dataArray['content']);
+
+            //替换图片地址
+            $dataArray['content'] = str_replace('src="/ueditor/', 'src="'.FILE_URL.'/ueditor/', $dataArray['content']);
 
             $dataArray["view_count"]  = $row['view_count'];
             $dataArray["pubdate}"]    = $row['pubdate'];

@@ -15,8 +15,7 @@
     "pages/user/about",
     "pages/user/ordermake",
     "pages/index/article",
-    "pages/index/articledetail",
-    "pages/index/test"
+    "pages/index/articledetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

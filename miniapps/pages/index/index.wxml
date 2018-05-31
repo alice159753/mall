@@ -144,7 +144,7 @@
   </view>
    <text class="element text recommend1 fs36">动态</text>
 
-  <navigator url="../index/test">
+  <navigator url="../index/article">
     <view class="dongtai_more">
     <text class="">更多</text>
     <image src="../../images/arrow_r.png" class="arrow_r"></image>
@@ -153,11 +153,14 @@
 
 </view>
 
+
 <view wx:for="{{article}}" wx:key="article_key" wx:for-index="index" wx:for-item="articleItem">
+<navigator url="../index/articledetail?article_no={{articleItem.no}}">
     <view class="ele-container bgf ad1">
     <image src="{{articleItem.thumb_pic}}"></image>
     <view class="text element color1 fs32 mt10">{{articleItem.title}}</view>
     </view>
+</navigator>
 </view>
 
 <!--文章动态 结束-->

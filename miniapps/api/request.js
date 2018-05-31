@@ -69,10 +69,11 @@ export function recommend() {
 
 
 //动态
-export function article() {
+export function article(article_no = 0) {
   return newWork({
     url: '/article.php',
     data: {
+      article_no: article_no,
     }
   });
 }
