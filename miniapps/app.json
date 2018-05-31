@@ -13,7 +13,10 @@
     "pages/user/coupon",
     "pages/user/order",
     "pages/user/about",
-    "pages/user/ordermake"
+    "pages/user/ordermake",
+    "pages/index/article",
+    "pages/index/articledetail",
+    "pages/index/test"
   ],
   "window": {
     "backgroundTextStyle": "light",

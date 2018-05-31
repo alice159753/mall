@@ -1,0 +1,68 @@
+/* pages/index/article.wxss */
+
+.app .newsIndex-newsList {
+    margin-top: 5px;
+    background: #fff;
+}
+
+.app .newsIndex-newsList .news-item {
+    position: relative;
+    margin: 0 15px;
+    border-bottom: 1px solid #E9E9E9;
+}
+
+.app .newsIndex-newsList .news-img 
+{
+    margin-right: 10px;
+    display: inline-block;
+    margin: 12px 0;
+    width: 100px;
+    height: 75px;
+    overflow: hidden;
+}
+
+.app .newsIndex-newsList .news-img image
+{
+   width: 134px;
+   height: 75px;
+}
+
+.app .newsIndex-newsList .news-text 
+{
+    display: inline-block;
+    margin-right: 0;
+    width: 176px;
+    vertical-align: top;
+    padding-top: 12px;
+    line-height: 20px;
+    margin-left: 10px;
+}
+
+.app .newsIndex-newsList .news-text .news-title 
+{
+    max-height: 40px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333;
+    font-size: 16px;
+}
+
+.app .newsIndex-newsList .news-item .news-text-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 176px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    line-height: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #999;
+}
+
+.app .newsIndex-newsList .news-text-bottom text {
+    margin-right: 10px;
+}

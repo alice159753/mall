@@ -1,0 +1,90 @@
+<import src="../templates/load.wxml"/>
+<import src="../templates/tips.wxml"/>
+
+<import src="../../wxParse/wxParse.wxml"/> 
+<view class="wxParse">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+</view>
+
+
+
+<view class="page app">
+
+    <view class="detail-main">
+
+      <view class="title-wrap">
+          <text class="title">{{article.title}}</text>
+      
+          <view class="retrieval">
+              <view class="category">
+                <text>{{article.author}}</text>
+              </view>
+              <text class="newsDetail-time-time">{{article.time_format}}</text>
+          </view>
+      </view>
+
+      <view class="main-wrap">
+        <view class="newsDetail-content">
+            <view>演讲从不只是念PPT。</view>
+            <view>演讲从不只是念PPT。</view>
+            {{article.content}}
+        </view>
+
+        <view class="read">
+          阅读 {{article.view_count}}
+        </view>
+      </view>
+
+      <view class="recommend">
+          <view class="title">相关推荐</view>
+      </view>
+
+
+<!--推荐文章开始-->
+ <view class="newsIndex-newsList">
+  
+    <navigator url="../index/articledetail">
+    <view class="news-item">
+        <view class="news-img">
+          <image src="http://img.zhichiwangluo.com/zcimgdir/album/file_5a6edda7d9563.png"></image>
+        </view>
+
+        <view class="news-text">
+          <text class="news-title">电影曾是王健林的“面子”，如今也拿来换了钱</text>
+          <view class="news-text-bottom">
+            <text>5月</text>
+            <text>评论</text>
+          </view>
+        </view>
+    </view>
+    </navigator>
+
+    <view class="news-item">
+        <view class="news-img">
+          <image src="http://img.zhichiwangluo.com/zcimgdir/album/file_5a6edda7d9563.png"></image>
+        </view>
+
+        <view class="news-text">
+          <text class="news-title">电影曾是王健林的“面子”，如今也拿来换了钱</text>
+          <view class="news-text-bottom">
+            <text>5月</text>
+            <text>评论</text>
+          </view>
+        </view>
+    </view>
+    
+  </view>
+<!--推荐文章结束-->
+
+
+
+
+    </view>
+
+
+</view>
+
+
+
+<!--微信登录-->
+<template is="tip3" wx:if="{{isloginshow}}" />

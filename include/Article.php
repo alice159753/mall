@@ -47,6 +47,10 @@
             $dataArray["title"]       = $row['title'];
             $dataArray["author"]      = $row['author'];
             $dataArray['content']     = $row['content'];
+
+            $dataArray['content'] = str_replace("<p>", "<view>", $dataArray['content']);
+            $dataArray['content'] = str_replace("</p>", "</view>", $dataArray['content']);
+
             $dataArray["view_count"]  = $row['view_count'];
             $dataArray["pubdate}"]    = $row['pubdate'];
             $dataArray["is_through"]  = $row['is_through'] == 'Y' ? '通过' : '未通过';
@@ -55,6 +59,9 @@
             $dataArray["add_time"]    = $row['add_time'];
             $dataArray["description"] = $row['description'];
             $dataArray["pic_lists"]   = $row['pic_lists'];
+
+            $dataArray["time_format"]    = !empty($row['pubdate']) && $row['pubdate'] != '0000-00-00'? 
+                                            date('Y-m-d', strtotime($row['pubdate'])) : date('Y-m-d', strtotime($row['add_time']));
 
             $dataArray["url"] = URL."/article.php?no=".$row['no'];
 

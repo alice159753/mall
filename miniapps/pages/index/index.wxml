@@ -143,6 +143,14 @@
     <image mode="scaleToFill" src="/images/run.png"></image>
   </view>
    <text class="element text recommend1 fs36">动态</text>
+
+  <navigator url="../index/test">
+    <view class="dongtai_more">
+    <text class="">更多</text>
+    <image src="../../images/arrow_r.png" class="arrow_r"></image>
+    </view>
+  </navigator>
+
 </view>
 
 <view wx:for="{{article}}" wx:key="article_key" wx:for-index="index" wx:for-item="articleItem">

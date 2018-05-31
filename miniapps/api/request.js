@@ -243,3 +243,14 @@ export function order_make(user_no, user_carts_nos, discount_coupon_no) {
     }
   });
 }
+
+
+//文章详细
+export function article_detail(article_no) {
+  return newWork({
+    url: '/article_detail.php',
+    data: {
+      article_no: article_no,
+    }
+  });
+}
