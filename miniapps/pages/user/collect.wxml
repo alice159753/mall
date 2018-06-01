@@ -1,0 +1,96 @@
+<import src="../templates/load.wxml"/>
+<import src="../templates/tips.wxml"/>
+
+<view class="page app">
+
+  <view class="menu">
+      <view class="menu_tab">
+      <text class="{{collect_type==1?'active':''}}" bindtap='changeTab' data-collect_type="1">商品</text>
+      </view>
+
+      <view class="menu_tab">
+      <text class="{{collect_type==2?'active':''}}" bindtap='changeTab' data-collect_type="2">动态</text>
+      </view>
+  </view>
+
+
+<!--商品开始-->
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
+          class="promote-card-list" wx:if="{{collect_type==1}}">
+
+<view class="ele-container bgf">
+    <view class="product_lists fs32">
+
+<!--商品列表开始-->
+<view wx:for="{{lists}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="item">
+      <view class="product_item  {{idx2/2>0 ? 'product_item_right':'product_item_left'}} ">
+        <navigator url="../product/product?product_no={{item.product.no}}">
+        <view class="inner_content">
+            <image src="{{item.product.pic}}"></image>
+            <view>
+                <view class="product_title fs32">{{item.product.title}}</view>
+                <view class="mt20">
+                    <view class="price">￥{{item.product.sale_price}}</view>
+                    <view class="sales_num color1">销量：{{item.product.sales_num}}</view>
+                    <image src="/images/buy_cars.png" class="buy_cars"></image>
+                </view>
+
+            </view>
+        </view>
+        </navigator>
+      </view>
+</view>
+<!--商品列表结束-->
+
+    </view>
+</view>
+
+<!--下拉刷新-->
+<template is="load" wx-if="{{load_show}}"/>
+
+
+</scroll-view>
+<!--商品结束-->
+
+
+
+<!--文章开始-->
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
+          class="newsIndex-newsList" wx:if="{{collect_type==2}}">
+
+  
+    <view class="news-item" wx:for="{{lists}}" wx:for-index="index" wx:key="key" wx:for-item="item">
+
+        <navigator url="../index/articledetail?article_no={{item.article.no}}">
+
+        <view class="news-img">
+          <image src="{{item.article.thumb_pic}}" mode="scaleToFill"></image>
+        </view>
+
+        <view class="news-text">
+          <text class="news-title">{{item.article.title}}</text>
+          <view class="news-text-bottom">
+            <text>{{item.article.author}}</text>
+          </view>
+        </view>
+
+        </navigator>
+
+    </view>
+
+
+<!--下拉刷新-->
+<template is="load" wx-if="{{load_show}}"/>
+
+</scroll-view>
+
+<!--文章结束-->
+
+
+</view>
+
+
+
+
+<!--微信登录-->
+<template is="tip3" wx:if="{{isloginshow}}" />

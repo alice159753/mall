@@ -60,13 +60,13 @@
                     <image class="arrow_r" src="../../images/arrow_r.png"></image>
                 </navigator>
 
-                <navigator hover-class="none" class="single" url='../user/suggest'>
+                <navigator hover-class="none" class="single" url='../user/collect'>
                     <image class="single_pic" src="../../images/collect.png"></image>
                     <view class="single_project">收藏</view>
                     <image class="arrow_r" src="../../images/arrow_r.png"></image>
                 </navigator>
 
-               <navigator hover-class="none" class="single" url='../user/suggest'>
+               <navigator hover-class="none" class="single" url='../user/footprint'>
                     <image class="single_pic" src="../../images/view_history.png"></image>
                     <view class="single_project">浏览历史</view>
                     <image class="arrow_r" src="../../images/arrow_r.png"></image>

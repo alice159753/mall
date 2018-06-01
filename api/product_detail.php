@@ -13,6 +13,7 @@
     include_once(INCLUDE_DIR. "/PostageConfig.php");
     include_once(INCLUDE_DIR. "/ProductAttr.php");
     include_once(INCLUDE_DIR. "/UserCarts.php");
+    include_once(INCLUDE_DIR. "/UserFootPrint.php");
     ob_clean();
 
     $myMySQL = new MySQL();
@@ -27,6 +28,7 @@
     $myCategory = new Category($myMySQL);
     $myProductAttr = new ProductAttr($myMySQL);
     $myUserCarts = new UserCarts($myMySQL);
+    $myUserFootPrint = new UserFootPrint($myMySQL);
 
 
     $product_no = !empty($_REQUEST["product_no"]) ? $_REQUEST["product_no"] : 0;
@@ -207,6 +209,19 @@
     {
         $count = $myUserCarts->getRow("sum(buy_num) as sum_buy_num", "user_no = ".$user_no." AND product_no = $product_no");
         $result['user_carts_num'] = $count['sum_buy_num'];
+    }
+
+
+    //用户足迹
+    $count = $myUserFootPrint->getCount("user_no = $user_no AND product_no = $product_no");
+    if( $count <= 0 )
+    {
+        $dataArray = array();
+        $dataArray['user_no'] = $user_no;
+        $dataArray['product_no'] = $product_no;
+        $dataArray['add_time'] = 'now()';
+
+        $myUserFootPrint->addRow($dataArray);
     }
 
     Output::succ('', $result);

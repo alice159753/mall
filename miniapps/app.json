@@ -15,7 +15,9 @@
     "pages/user/about",
     "pages/user/ordermake",
     "pages/index/article",
-    "pages/index/articledetail"
+    "pages/index/articledetail",
+    "pages/user/collect",
+    "pages/user/footprint"
   ],
   "window": {
     "backgroundTextStyle": "light",

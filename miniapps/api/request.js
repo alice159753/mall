@@ -255,3 +255,29 @@ export function article_detail(article_no) {
     }
   });
 }
+
+
+//我的足迹
+export function user_footprint(page, user_no) {
+  return newWork({
+    url: '/user_footprint.php',
+    data: {
+      page: page,
+      user_no: user_no,
+    }
+  });
+}
+
+
+
+//用户收藏
+export function user_collect(page, user_no, collect_type) {
+  return newWork({
+    url: '/user_collect.php',
+    data: {
+      page: page,
+      user_no: user_no,
+      collect_type: collect_type,
+    }
+  });
+}

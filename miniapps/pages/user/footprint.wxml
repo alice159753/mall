@@ -1,0 +1,47 @@
+<import src="../templates/load.wxml"/>
+<import src="../templates/tips.wxml"/>
+
+<view class="page app">
+
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
+          class="promote-card-list">
+
+<view class="ele-container bgf">
+    <view class="product_lists fs32">
+
+<!--商品列表开始-->
+<view wx:for="{{user_footprint_lists}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="item">
+      <view class="product_item  {{idx2/2>0 ? 'product_item_right':'product_item_left'}} ">
+        <navigator url="../product/product?product_no={{item.product.no}}">
+        <view class="inner_content">
+            <image src="{{item.product.pic}}"></image>
+            <view>
+                <view class="product_title fs32">{{item.product.title}}</view>
+                <view class="mt20">
+                    <view class="price">￥{{item.product.sale_price}}</view>
+                    <view class="sales_num color1">销量：{{item.product.sales_num}}</view>
+                    <image src="/images/buy_cars.png" class="buy_cars"></image>
+                </view>
+
+            </view>
+        </view>
+        </navigator>
+      </view>
+</view>
+<!--商品列表结束-->
+
+    </view>
+</view>
+
+<!--下拉刷新-->
+<template is="load" wx-if="{{load_show}}"/>
+
+
+</scroll-view>
+
+
+</view>
+
+
+<!--微信登录-->
+<template is="tip3" wx:if="{{isloginshow}}" />
