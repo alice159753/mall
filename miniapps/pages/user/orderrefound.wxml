@@ -1,0 +1,21 @@
+<import src="../templates/tips.wxml"/>
+<import src="../templates/load.wxml"/>
+
+<view class="error">
+    <form bindsubmit="formSubmit">
+    <view class="section section_gap">
+        <view class="section__con">
+            <view class="title">请在此输入退款理由及联系方式，卖家会尽快与您联系</view>
+
+            <textarea maxlength="{{tempTotalNum}}" bindinput='changeInput' name="sales_return_note" placeholder='输入您的退款理由及联系方式'></textarea>
+        </view>
+    </view>
+    <view class="btn-area">
+        <button class="sub_btn" formType="submit">提交</button>
+    </view>
+    </form>
+</view>
+
+
+<!--微信登录-->
+<template is="tip3" wx:if="{{isloginshow}}" />

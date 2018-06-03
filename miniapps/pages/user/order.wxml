@@ -1,26 +1,30 @@
+<import src="../templates/tips.wxml"/>
+<import src="../templates/load.wxml"/>
+
+
 <!--pages/user/order.wxml-->
 <view class="page app">
 
   <!-- 订单类型 开始 -->
   <scroll-view class="scroll_view_h bgf order-filter" scroll-x="true">
 
-    <view class="filter-item active">
+    <view class="filter-item {{order_type=='all'?'active':''}}" bindtap='changeTab' data-order_type='all'>
       <text class="text">全部</text>
     </view>
 
-    <view class="filter-item">
+    <view class="filter-item {{order_type=='daifukuan'?'active':''}}" bindtap='changeTab' data-order_type='daifukuan'>
       <text class="text">待付款</text>
     </view>
 
-    <view class="filter-item">
+    <view class="filter-item {{order_type=='daifahuo'?'active':''}}" bindtap='changeTab' data-order_type='daifahuo'>
       <text class="text">待发货</text>
     </view>
 
-        <view class="filter-item">
+    <view class="filter-item {{order_type=='daishouhuo'?'active':''}}" bindtap='changeTab' data-order_type='daishouhuo'>
       <text class="text">待收货</text>
     </view>
 
-        <view class="filter-item">
+    <view class="filter-item {{order_type=='daipingjia'?'active':''}}" bindtap='changeTab' data-order_type='daipingjia'>
       <text class="text">待评价</text>
     </view>
 
@@ -30,60 +34,114 @@
 
 
 
+
   <!-- 订单列表 开始 -->
-  <view class="order-list">
-      <view class="list-item">
+  <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="order-list" wx:if="{{!isempty}}">
+
+      <view class="list-item" wx:for="{{orderlists}}" wx:for-index="index" wx:key="key">
         <!--订单编号-->
           <view class="item-header">
-              <view class="header-sn ng-binding">#2018050417314970465</view>
-              <view class="header-status">等待买家付款</view>
+              <view class="header-sn ng-binding">{{item.order_sn}}</view>
+              <view class="header-status">{{item.show_order_status_title}}</view>
           </view>
 
           <!--商品信息-->
           <view class="order-goods">
-              <view class="goods-item">
+              <view class="goods-item" wx:for="{{item.product}}" wx:key="product_key" wx:for-index="idx" wx:for-item="productItem">
                   <view class="item-photo">
-                  <image src="http://www.xinghuilvse.com/data/admin/20180501/20180501091231_5ae7beffeb9e8_67909.jpg"></image>
+                  <image src="{{productItem.product_pic}}"></image>
                   </view>
 
                   <view class="item-info">
-                    <text class="info-name">汉源枇杷【2斤特价、四川5斤包邮】, 规格：良品</text>
-                    <text class="info-attr">重量:1千克</text>
-                    <text class="info-price">¥28</text>
-                    <text class="info-amount">x1</text>
+                    <text class="info-name">{{productItem.product_title}}</text>
+
+                    <view class="info-attr" wx:if="{{productItem.product_attr_text}}">
+                          {{productItem.product_attr_text}}
+                    </view>
+
+                    <view class="info-attr" wx:if="{{productItem.product_weight_kg > 0}}">
+                          重量:{{productItem.product_weight_kg}}kg
+                    </view>
+
+                    <view class="info-attr" wx:if="{{productItem.product_weight_g > 0}}">
+                          重量:{{productItem.product_weight_g}}g
+                    </view>
+
+                    <text class="info-price">¥{{productItem.sale_price}}</text>
+                    <text class="info-amount">x{{productItem.buy_num}}</text>
 
                   </view>
 
               </view>
           </view>
 
-          <!--操作按钮-->
+          <!--操作按钮开始-->
           <view class="item-footer"> 
+
               <view class="footer-sum">
-                <text class="sum ng-binding">合计：￥41</text>
-                <text class="sum ng-binding ng-scope">（运费：￥13）</text>
+                <text class="sum ng-binding">合计：￥{{item.total_fee}}</text>
+                <text class="sum ng-binding ng-scope">（运费：￥{{item.shipping_fee}}）</text>
               </view>
 
-              <view class="footer-button dark ng-scope">
-                付款
+              <view wx:if="{{item.order_type=='daifukuan'}}">
+                  <view class="footer-button dark ng-scope" bindtap="order_pay" data-order_info_no="{{item.no}}">
+                    付款
+                  </view>
+                  <view class="footer-button ng-scope" bindtap="order_cancel" data-order_info_no="{{item.no}}">
+                    取消订单
+                  </view>
               </view>
 
-              <view class="footer-button ng-scope">
-                取消订单
+              <view wx:if="{{item.order_type=='daishouhuo'}}">
+                  <view class="footer-button dark ng-scope" bindtap="order_receiving" data-order_info_no="{{item.no}}">
+                    确认收货
+                  </view>
+                  <view class="footer-button ng-scope" bindtap="order_expressage" data-order_info_no="{{item.no}}">
+                    查看物流
+                  </view>
+              </view>
+
+              <view wx:if="{{item.order_type=='daipingjia'}}">
+
+                  <navigator url="../user/orderreview?order_info_no={{item.no}}">
+                  <view class="footer-button dark ng-scope">
+                    评价
+                  </view>
+                  </navigator>
+
+                  <navigator url="../user/orderrefound?order_info_no={{item.no}}">
+                  <view class="footer-button ng-scope">
+                    申请退款
+                  </view>
+                  </navigator>
+
               </view>
 
           </view>
 
-
-
+          <!--操作按钮结束-->
 
       </view>
     
-  </view>
-
+  </scroll-view >
 
   <!-- 订单列表 结束 -->
 
 
+<!-- 没有订单 开始 -->
+<view class="empty_box" wx:if="{{isempty}}">
+  <navigator url="../index/index">
+  <image src="/images/empty.png"></image>
+  <view class="head_title">您还没有相关的订单</view>
+  <view class="head_note">可以去看看有哪些想卖的</view>
+  </navigator>
+</view>
+<!-- 没有订单 结束 -->
+
+
 
 </view>
+
+
+<!--微信登录-->
+<template is="tip3" wx:if="{{isloginshow}}" />

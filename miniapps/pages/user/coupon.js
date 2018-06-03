@@ -68,6 +68,29 @@ Page({
      });
   },
 
+  //切换tab
+  changeTab: function (e) {
+    let that = this;
+    let type = e.currentTarget.dataset.type;
+
+    console.log("type=" + type);
+
+    that.setData({
+      type: type,
+      page: 1,
+      couponlists: [],
+    });
+
+    //优惠券
+    discount_coupon_record(that.data.page, app.globalData.userInfo.user_no, type).then((res) => {
+      let arr = res.data.result.data;
+      this.setData({
+        couponlists: arr,
+      })
+    });
+
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

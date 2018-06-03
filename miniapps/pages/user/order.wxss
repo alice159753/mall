@@ -10,7 +10,7 @@
 
 .order-filter {
     width: 100%;
-    height: 80rpx;
+    height: 100rpx;
     color: #404245;
     font-size: 34rpx;
     text-align: center;
@@ -24,12 +24,12 @@
     display: block;
     float: left;
     width: 20%;
-    height: 80rpx;
+    height: 100rpx;
     box-sizing: border-box;
 }
 
 .order-filter .filter-item.active .text {
-      border-bottom: #28b36f 15rpx solid;
+      border-bottom: #f4a719 15rpx solid;
 }
 .order-filter .filter-item .text {
     display: block;
@@ -40,8 +40,34 @@
     text-align: center;
     box-sizing: border-box;
     margin: 0 auto;
+    line-height:35px;
 }
 /**订单类型 结束 **/
+
+/** 没有订单 开始**/
+.empty_box
+{
+    width: 100%;
+    text-align: center;
+}
+.empty_box image
+{
+    width: 50%;
+    height: 100px;
+} 
+.empty_box .head_title
+{
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #666;
+} 
+.empty_box .head_note
+{
+  font-size: 12px !important;
+  color: #666;
+} 
+/** 没有订单 开始 **/
 
 
 /**订单列表 开始 **/
@@ -195,7 +221,7 @@
     clear: both;
 }
 .order-list .list-item .item-footer .footer-button.dark {
-    background-color: #28b36f;
+    background-color: #f4a719;
     color: #fff;
 }
 .order-list .list-item .item-footer .footer-button {
@@ -219,7 +245,7 @@
     position: relative;
     width: 50%;
     display: block;
-    color: #28b36f;
+    color: #f4a719;
     font-size: 14px;
     font-weight: 400;
     text-align: right;

@@ -1,3 +1,13 @@
+import {
+  order_info, order_cancel, order_receiving
+} from '../../api/request'
+var CommonEvent = require('../common/commonEvent');
+
+var util = require('../../utils/util');
+
+var app = getApp();
+
+
 // pages/user/order.js
 Page({
 
@@ -5,14 +15,188 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+
+    //订单列表
+    orderlists: [],
+    order_type:'all',
+    
+    isempty:true,
+    load_show: true,
+    scrollTop: 0,
+    scrollHeight: 0,
+    page: 1,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    console.log('order onload');
+
+    let that = this;
+
+    //没有登录则展示登录框
+    if (!app.globalData.userInfo) {
+      this.setData({
+        isloginshow: true,
+      })
+    }
+
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          scrollHeight: res.windowHeight
+        });
+      }
+    });
+
+    if ( util.isBlank(options) )
+    {
+      options.order_type = that.data.order_type;
+    }
+
+    if ( util.isBlank(options.order_type) )
+    {
+      options.order_type = that.data.order_type;
+    }
+
+    //订单列表
+    order_info(that.data.page, app.globalData.userInfo.user_no, options.order_type).then((res) => {
+      let arr = res.data.result.data;
+      
+      let isempty = this.data.isempty;
+
+      if ( arr.length >= 1 )
+      {
+        isempty = false;
+      }
+
+      this.setData({
+        orderlists: arr,
+        order_type: options.order_type,
+        isempty: isempty,
+      });
+
+    });
+
+  },
+
+  //切换tab
+  changeTab:function(e){
+    var order_type = e.currentTarget.dataset.order_type;
+
+    console.log("order_type=" + order_type);
+
+    this.setData({
+      page:1,
+      order_type: order_type,
+      isempty:true,
+
+    });
+
+    //订单列表
+    order_info(1, app.globalData.userInfo.user_no, order_type).then((res) => {
+      let arr = res.data.result.data;
+
+      let isempty = this.data.isempty;
+
+      console.log("length="+arr.length);
+      console.log("isempty="+isempty);
+
+      if (arr.length >= 1) {
+        isempty = false;
+      }
+
+      this.setData({
+        orderlists: arr,
+        isempty:isempty,
+
+      });
+
+    });
+
+  },
+
+  //取消订单
+  order_cancel:function (e){
+    var order_info_no = e.currentTarget.dataset.order_info_no;
+
+    if ( util.isBlank(order_info_no) )
+    {
+       app.showModal({ content: '订单编号不能为空' });
+
+       return '';
+    }
+
+    order_cancel(app.globalData.userInfo.user_no, order_info_no).then((res) => {
+      let arr = res.data.result.data;
+
+      if ( res.data.result.status.code == 0 )
+      {
+        //重新加载页面
+        var page = getCurrentPages().pop();
+        if (page == undefined || page == null) return;
+        let options = {};
+        page.onLoad(options);
+      }
+      else
+      {
+        app.showModal({ content: res.data.result.status.msg });
+      }
+
+    });
+
+  },
+
+  //确认收货
+  order_receiving: function (e) {
+    var order_info_no = e.currentTarget.dataset.order_info_no;
+
+    if (util.isBlank(order_info_no)) {
+      app.showModal({ content: '订单编号不能为空' });
+
+      return '';
+    }
+
+    order_cancel(app.globalData.userInfo.user_no, order_info_no).then((res) => {
+      let arr = res.data.result.data;
+
+      if (res.data.result.status.code == 0) {
+
+        app.showToast({ title: '确认收货成功',icon:'none' });
+
+        //重新加载页面
+        var page = getCurrentPages().pop();
+        if (page == undefined || page == null) return;
+        let options = {};
+        page.onLoad(options);
+      }
+      else {
+        app.showModal({ content: res.data.result.status.msg });
+      }
+
+    });
+
+  },
+
+  //微信登录
+  onGotUserInfo: function (e) {
+    CommonEvent.login(e);
+
+    console.log('登录完成');
+    console.log(app.globalData.userInfo);
+
+    this.setData({
+      isloginshow: false,
+    })
+  },
+
+  //关闭微信登录
+  closetip: function () {
+    this.setData({
+      isloginshow: false,
+    })
   },
 
   /**
@@ -26,7 +210,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var page = getCurrentPages().pop();
+    if (page == undefined || page == null) return;
+    page.onLoad([]);
+
   },
 
   /**
@@ -54,7 +241,37 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    console.log('下拉刷新～');
+    let that = this;
+
+    //设置分页数据
+    that.setData({
+      page: that.data.page + 1
+    });
+
+    order_info(that.data.page, app.globalData.userInfo.user_no, that.data.order_type).then((res) => {
+      let arr = res.data.result.data;
+
+      console.log(arr);
+
+      if (util.isBlank(arr)) {
+        that.setData({
+          load_show: false,
+        });
+      }
+      else {
+        that.setData({
+          load_show: true,
+        });
+      }
+
+      let newarr = that.data.orderlists.concat(arr);
+      console.log(newarr);
+      that.setData({
+        orderlists: newarr
+      })
+
+    })
   },
 
   /**

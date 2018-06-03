@@ -20,6 +20,12 @@
   overflow: hidden
 }
 
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .bgf2
 {
   background-color: #f2f2f2;

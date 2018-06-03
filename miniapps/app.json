@@ -17,7 +17,10 @@
     "pages/index/article",
     "pages/index/articledetail",
     "pages/user/collect",
-    "pages/user/footprint"
+    "pages/user/footprint",
+    "pages/user/cardslists",
+    "pages/user/orderrefound",
+    "pages/user/orderreview"
   ],
   "window": {
     "backgroundTextStyle": "light",

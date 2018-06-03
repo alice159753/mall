@@ -21,25 +21,36 @@
 </navigator>
 
 <view>
+
    <view class="membership-item">
+     <navigator url="../user/order?order_type=daifukuan">
       <image src="/images/daifukuan_active.png"></image>
        <text>待付款</text>
+      </navigator>
    </view>
+
 
    <view class="membership-item">
+     <navigator url="../user/order?order_type=daifahuo">
       <image src="/images/daifahuo_active.png"></image>
        <text>待发货</text>
+     </navigator>
    </view>
 
   <view class="membership-item">
+    <navigator url="../user/order?order_type=daishouhuo">
       <image src="/images/daishouhuo_active.png"></image>
        <text>待收货</text>
+    </navigator>
    </view>
 
   <view class="membership-item">
+    <navigator url="../user/order?order_type=daipingjia">
       <image src="/images/daipingjia_active.png"></image>
        <text>待评价</text>
+    </navigator>
    </view>
+
 </view>
 
 
@@ -48,7 +59,7 @@
 <view class="helpOut">
             <view class="help">
 
-                <navigator hover-class="none" class="single" url='../user/cards'>
+                <navigator hover-class="none" class="single" url='../user/cardslists'>
                     <image class="single_pic" src="../../images/vip.png"></image>
                     <view class="single_project">会员卡</view>
                     <image class="arrow_r" src="../../images/arrow_r.png"></image>

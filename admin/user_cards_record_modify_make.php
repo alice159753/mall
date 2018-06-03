@@ -32,6 +32,12 @@
         Output::error('无数据',array(), 1);
     }
 
+    //判断是否已经添加了该会员卡
+    if( $myUserCardsRecord->getCount("user_no = ".$_REQUEST['user_no']." AND user_cards_no = ". $_REQUEST['user_cards_no'] ." AND no != $no") >= 1 )
+    {
+        Output::error('已经添加了该会员卡，不能重复添加',array(), 1);
+    }
+
     $dataArray = $_REQUEST;
     $dataArray['update_time'] = 'now()';
 

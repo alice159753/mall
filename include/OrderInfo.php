@@ -211,6 +211,134 @@
             return $dataArray;
         }
 
+        function getDataClean($row)
+        {
+            $orderStatusMap    = $this->getOrderStatus();
+            $shippingStatusMap = $this->getShippingStatus();
+            $payStatusMap      = $this->getPayStatus();
+            $commentStatusMap  = $this->getCommentStatus();
+            $payTypeMap        = $this->getPayType();
+
+            $myUser = new User($this->myMySQL);
+
+            $dataArray = array();
+            $dataArray['no']                    = $row['no'];
+            $dataArray['postage_config_no']     = $row['postage_config_no'];
+            $dataArray['order_sn']              = $row['order_sn'];
+            $dataArray['user_no']               = $row['user_no'];
+            $dataArray['order_status_title']    = $orderStatusMap[ $row['order_status'] ];
+            $dataArray['shipping_status_title'] = $shippingStatusMap[ $row['shipping_status'] ];
+            $dataArray['pay_status_title']      = $payStatusMap[ $row['pay_status'] ];
+            $dataArray['comment_status_title']  = $commentStatusMap[ $row['comment_status'] ];
+            $dataArray['pay_type_title']        = $payTypeMap[ $row['pay_type'] ];
+            $dataArray['order_status']          = $row['order_status'];
+            $dataArray['shipping_status']       = $row['shipping_status'];
+            $dataArray['pay_status']            = $row['pay_status'];
+            $dataArray['comment_status']        = $row['comment_status'];
+            $dataArray['pay_type']              = $row['pay_type'];
+            $dataArray['consignee']             = $row['consignee'];
+            $dataArray['country']               = $row['country'];
+            $dataArray['province']              = $row['province'];
+            $dataArray['city']                  = $row['city'];
+            $dataArray['district']              = $row['district'];
+            $dataArray['address']               = $row['address'];
+            $dataArray['zipcode']               = $row['zipcode'];
+            $dataArray['tel']                   = $row['tel'];
+            $dataArray['mobile']                = $row['mobile'];
+            $dataArray['email']                 = $row['email'];
+            $dataArray['best_time']             = $row['best_time'];
+            $dataArray['sign_building']         = $row['sign_building'];
+            $dataArray['postscript']            = $row['postscript']; //订单附言,由用户提交订单前填写
+            $dataArray['total_fee']             = $row['total_fee']/100;
+            $dataArray['order_fee']             = $row['order_fee']/100;
+            $dataArray['shipping_fee']          = $row['shipping_fee']/100;
+            $dataArray['insure_fee']            = $row['insure_fee']/100;
+            $dataArray['pay_note']              = $row['pay_note']; //付款备注, 在订单管理编辑修改
+            $dataArray['to_buyer']              = $row['to_buyer'];  //商家给客户留言
+            $dataArray['add_time']              = $row['add_time'];
+            $dataArray['confirm_time']          = $row['confirm_time'];
+            $dataArray['pay_time']              = $row['pay_time'];
+            $dataArray['shipping_time']         = $row['shipping_time'];
+            $dataArray['lastmodify']            = $row['lastmodify'];
+            $dataArray['channel_id']            = $row['channel_id'];
+            $dataArray['invoice_no']            = $row['invoice_no'];
+            $dataArray['sales_return_note']     = $row['sales_return_note'];
+            $dataArray['pay_content']           = str_replace(";", ";<br/>", $row['pay_content']);
+
+            $dataArray['nickname'] = '';
+            if( !empty($row['user_no']) )
+            {
+                $userRow = $myUser->getRow("*", "no = ". $row['user_no']);
+                $dataArray['nickname'] = $userRow['nickname'];
+            }
+
+            $dataArray['order_type'] = '';
+            $dataArray['show_order_status_title'] = '';
+
+            //待付款
+            if( $row['pay_status'] == 0 && ($row['order_status'] == 0 || $row['order_status'] == 1) )
+            {
+                $dataArray['order_type'] = 'daifukuan';
+                $dataArray['show_order_status_title'] = '等待买家付款';
+            }
+
+            //待发货
+            if( $row['pay_status'] == 2 && ($row['order_status'] == 1 || $row['order_status'] == 0 ) && $row['shipping_status']  == 0 )
+            {
+                $dataArray['order_type'] = 'daifahuo';
+                $dataArray['show_order_status_title'] = '等待卖家发货';
+            }
+
+            //待收货
+            if( $row['pay_status'] == 2 && ($row['order_status'] == 1 || $row['order_status'] == 0 ) && $row['shipping_status'] == 1 )
+            {
+                $dataArray['order_type'] = 'daishouhuo';
+                $dataArray['show_order_status_title'] = '等待买家收货';
+            }
+
+            //待评价
+            if( $row['pay_status'] == 2 && ($row['order_status'] == 1 || $row['order_status'] == 0 ) && $row['shipping_status'] == 2 && $row['comment_status'] == 0 )
+            {
+                $dataArray['order_type'] = 'daipingjia';
+                $dataArray['show_order_status_title'] = '等待买家评论';
+            }
+
+            //已取消
+            if( $row['order_status'] == 2 )
+            {
+                $dataArray['order_type'] = 'yiquxiao';
+                $dataArray['show_order_status_title'] = '已取消';
+            }
+
+            //已退货
+            if( $row['order_status'] == 4 )
+            {
+                $dataArray['order_type'] = 'yituihuo';
+                $dataArray['show_order_status_title'] = '已退货';
+            }
+
+            //已评价
+            if( $row['pay_status'] == 1 && ($row['order_status'] == 1 || $row['order_status'] == 0 ) && $row['shipping_status'] == 2 && $row['comment_status'] == 1 )
+            {
+                $dataArray['order_type'] = 'yipingjia';
+                $dataArray['show_order_status_title'] = '交易成功';
+            }
+
+            //申请退款
+            if( $row['order_status'] == 6 )
+            {
+                $dataArray['order_type'] = 'shenqingtuikuan';
+                $dataArray['show_order_status_title'] = '申请退款';
+            }
+
+            if( $row['pay_status'] == 3 )
+            {
+                $dataArray['order_type'] = 'yituikuan';
+                $dataArray['show_order_status_title'] = '已退款';
+            }
+
+            return $dataArray;
+        }
 
         //计算商品价格
         function orderFee($userCartsRows)

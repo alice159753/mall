@@ -281,3 +281,126 @@ export function user_collect(page, user_no, collect_type) {
     }
   });
 }
+
+
+//会员卡列表
+export function user_cards_record(page, user_no) {
+  return newWork({
+    url: '/user_cards_record.php',
+    data: {
+      page: page,
+      user_no: user_no,
+    }
+  });
+}
+
+//会员卡详细
+export function user_cards(user_no,user_cards_record_no) {
+  return newWork({
+    url: '/user_cards.php',
+    data: {
+      user_no: user_no,
+      user_cards_record_no: user_cards_record_no,
+    }
+  });
+}
+
+
+//删除会员卡
+export function user_cards_record_delete(user_no, user_cards_record_no) {
+  return newWork({
+    url: '/user_cards_record_delete.php',
+    data: {
+      user_no: user_no,
+      user_cards_record_no: user_cards_record_no,
+    }
+  });
+}
+
+//设置默认会员卡
+export function user_cards_record_default(user_no, user_cards_record_no) {
+  return newWork({
+    url: '/user_cards_record_default.php',
+    data: {
+      user_no: user_no,
+      user_cards_record_no: user_cards_record_no,
+    }
+  });
+}
+
+//订单列表
+export function order_info(page, user_no, order_type) {
+  return newWork({
+    url: '/order_info.php',
+    data: {
+      page: page,
+      user_no: user_no,
+      order_type: order_type,
+    }
+  });
+}
+
+
+//取消订单
+export function order_cancel(user_no, order_info_no) {
+  return newWork({
+    url: '/order_cancel.php',
+    data: {
+      user_no: user_no,
+      order_info_no: order_info_no,
+    }
+  });
+}
+
+
+//确认收货
+export function order_receiving(user_no, order_info_no) {
+  return newWork({
+    url: '/order_receiving.php',
+    data: {
+      user_no: user_no,
+      order_info_no: order_info_no,
+    }
+  });
+}
+
+
+//申请收货
+export function order_refound(user_no, order_info_no, sales_return_note) {
+  return newWork({
+    url: '/order_refound.php',
+    data: {
+      user_no: user_no,
+      order_info_no: order_info_no,
+      sales_return_note: sales_return_note,
+    }
+  });
+}
+
+
+//订单商品列表
+export function order_product(user_no, order_info_no) {
+  return newWork({
+    url: '/order_product.php',
+    data: {
+      user_no: user_no,
+      order_info_no: order_info_no,
+    }
+  });
+}
+
+
+//评价
+export function order_review(user_no, order_info_no, contents, stars, isanons, productnos) {
+  return newWork({
+    url: '/order_review.php',
+    data: {
+      user_no: user_no,
+      order_info_no: order_info_no,
+      contents: contents,
+      stars: stars,
+      isanons: isanons,
+      productnos: productnos
+    }
+  });
+}

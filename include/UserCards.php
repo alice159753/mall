@@ -109,6 +109,10 @@
             {
                 $dataArray['date_type_title'] = str_replace("start", $row['start_date'], $dataArray['date_type_title']);
                 $dataArray['date_type_title'] = str_replace("end", $row['end_date'], $dataArray['date_type_title']);
+
+                $row['start_date'] = date('Y.m.d', strtotime($row['start_date']));
+                $row['end_date'] = date('Y.m.d', strtotime($row['end_date']));
+                $dataArray['date_type_title'] = $row['start_date']."~".$row['end_date'];
             }
 
             if(  $row['date_type'] == 2 )

@@ -96,7 +96,20 @@
     line-height: 25px;
     display:block;
 }
-
+.default-card {
+    width: 48px;
+    height: 22px;
+    background-color: #9acf93;
+    font-size: 12px;
+    padding: 0 3px;
+    line-height: 24px;
+    border-radius: 4px;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    right: 10px;
+    top: 24px;
+}
 /**会员卡卡号 结束**/
 
 /**会员权益 开始**/
@@ -105,7 +118,6 @@
     border-top: 2rpx solid #e5e5e5;
     border-bottom: 2rpx solid #e5e5e5;
     overflow: hidden;
-    margin: 10px 0;
     background-color: #fff;
     display: block;
     position: relative;
@@ -120,6 +132,7 @@
 {
   width:50rpx;
   height:50rpx;
+  vertical-align:middle;
 }
 .membership-region .membership {
     font-size: 0;
@@ -166,7 +179,6 @@
     display: block;
     position: relative;
     font-size: 34rpx;
-    margin-bottom:20rpx;
 }
 .use_help
 {
@@ -180,9 +192,32 @@
 {
     padding: 10px;
     line-height: 22px;
+    border-bottom: 2rpx solid #e5e5e5;
+    margin-bottom: 200px;
 }
 .delete-card {
     text-align: center;
-    color: red;
 }
 /**删除会员卡 结束**/
+
+
+/**使用会员卡 开始**/
+.use-single-block 
+{
+    padding: 10px;
+    line-height: 22px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    text-align: center;
+    width: 100%;
+    border-top:#e2e2e2 1px solid;
+    background-color:#fff;
+    box-shadow:3px 0 7px rgba(0,0,0,.35);
+}
+.use-card {
+    text-align: center;
+    color: red;
+}
+/**使用会员卡 结束**/

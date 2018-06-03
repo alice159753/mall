@@ -1,5 +1,5 @@
 import {
-  user_cards
+  user_cards, system_config, user_cards_record_delete, user_cards_record_default
 } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
 var util = require('../../utils/util');
@@ -15,15 +15,20 @@ Page({
   data: {
 
     //会员卡
-    usercardsLists:{}
+    user_cards_detail:{},
+
+    //系统配置
+    system_config:{},
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
     console.log("cards onload");
+    console.log(options);
+    console.log("no=" + options.no);
 
     //没有登录则展示登录框
     if (!app.globalData.userInfo) {
@@ -32,6 +37,66 @@ Page({
       })
     }
 
+    //会员卡
+    user_cards(app.globalData.userInfo.user_no, options.no).then((res) => {
+      let arr = res.data.result.data;
+
+      this.setData({
+        user_cards_detail: arr,
+      })
+    });
+
+    //系统配置
+    system_config().then((res) => {
+      let arr = res.data.result.data;
+
+      this.setData({
+        system_config: arr,
+      })
+    });
+
+    this.setData({
+      userInfo: app.globalData.userInfo,
+    })
+  },
+
+  delete_cards:function(){
+    let no = this.data.user_cards_detail.no;
+
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除吗？',
+      success: function (sm) {
+        if (sm.confirm) 
+        {
+            // 用户点击了确定 可以调用删除方法了
+              user_cards_record_delete(app.globalData.userInfo.user_no, no).then((res) => {
+                let arr = res.data.result.data;
+                if (res.data.result.status.code == 0) {
+                  app.showModal({ content: '删除成功'});
+                }
+                wx.navigateTo({
+                  url: '../user/cardslists',
+                })
+              });
+          }
+        }
+      })
+  },
+
+  //设置默认会员卡
+  default_cards:function ()
+  {
+    let no = this.data.user_cards_detail.no;
+
+    user_cards_record_default(app.globalData.userInfo.user_no, no).then((res) => {
+      let arr = res.data.result.data;
+      if (res.data.result.status.code == 0) 
+      {
+        app.showToast({ title: '设置成功', icon: 'none' });
+      }
+
+    });
 
   },
 

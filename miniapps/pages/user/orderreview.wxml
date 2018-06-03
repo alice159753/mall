@@ -1,0 +1,74 @@
+<!--pages/user/orderreview.wxml-->
+<view class="page app">
+
+<form bindsubmit="formSubmit">
+
+<!--商品列表开始-->
+<view class="confirm-goods" wx:for="{{order_product}}" wx:key="product_key" wx:for-index="idx" wx:for-item="productItem">
+
+    <view class="goods-item" >
+
+      <view class="item-photo">
+        <image src="{{productItem.pic}}"></image>
+      </view>
+
+      <!--item info 开始-->
+
+      <view class="item-info">
+        <view class="info-name">{{productItem.product_title}}</view>
+        
+         <view class="info-attr" wx:if="{{productItem.product_attr_text}}">
+              {{productItem.product_attr_text}}
+         </view>
+
+        <view class="info-attr" wx:if="{{productItem.product_weight_kg > 0}}">
+              重量:{{productItem.product_weight_kg}}kg
+         </view>
+
+        <view class="info-attr" wx:if="{{productItem.product_weight_g > 0}}">
+              重量:{{productItem.product_weight_g}}g
+        </view>
+
+        <view class="info-price">￥{{productItem.sale_price}}</view>
+
+        <view class="info-amount">x{{productItem.buy_num}}</view>
+
+      </view>
+
+      <!--item info 结束-->
+
+    </view>
+
+      <view class="pingjia">请为该商品打分</view>
+
+      <view class="star_box">
+
+        <image src="../../images/{{productItem.position >=1 ? 'star_active.png':'star.png'}}" data-position="1" data-no="{{productItem.no}}" bindtap='starclick'></image>
+
+        <image src="../../images/{{productItem.position >=2 ? 'star_active.png':'star.png'}}" data-position="2" data-no="{{productItem.no}}" bindtap='starclick'></image>
+
+        <image src="../../images/{{productItem.position >=3 ? 'star_active.png':'star.png'}}" data-position="3" data-no="{{productItem.no}}" bindtap='starclick'></image>
+
+        <image src="../../images/{{productItem.position >=4 ? 'star_active.png':'star.png'}}" data-position="4" data-no="{{productItem.no}}" bindtap='starclick'></image>
+
+        <image src="../../images/{{productItem.position ==5 ? 'star_active.png':'star.png'}}" data-position="5" data-no="{{productItem.no}}" bindtap='starclick'></image>
+
+      </view>
+
+      <textarea  name="content_{{productItem.no}}" placeholder='输入您的评价'></textarea>
+
+      <view class="review-anon">
+          <image class="item-checkbox" src="../../images/{{productItem.is_anon ? 'check-on-multi.png':'check-off.png'}}" data-no="{{productItem.no}}" bindtap='anonlick'></image>
+          <view class="item-title">匿名评论</view>
+      </view>
+
+</view>
+<!--商品列表结束-->
+
+    <view class="btn-area">
+        <button class="sub_btn" formType="submit">提交</button>
+    </view>
+
+</form>
+
+</view>

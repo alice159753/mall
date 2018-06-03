@@ -1,0 +1,59 @@
+/* pages/user/cardslists.wxss */
+.card-area {
+    padding: 0px 15px;
+    padding-bottom: 0;
+    -webkit-box-shadow: 0 -4px 15px rgba(51,51,51,0.1);
+    box-shadow: 0 -4px 15px rgba(51,51,51,0.1);
+}
+.card-item {
+    width: 100%;
+    background-color: #55bd47;
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    padding:10px 0px;
+    margin-top: 15px;
+}
+.card-item .head {
+    height: 16px;
+    font-size: 16px;
+    color: #fff;
+    padding-left: 15px;
+    padding-top: 15px;
+    text-shadow: 0 1px 1px rgba(51,51,51,0.5);
+}
+
+.card-item .content-area {
+    padding: 10px 15px 12px;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 12px;
+    color: #fff;
+}
+.card-item .rights {
+    float: left;
+    text-shadow: 0 1px 1px rgba(51,51,51,0.5);
+    max-width: 18em;
+    height: 12px;
+    margin-top:20px;
+    margin-right: 10px;
+}
+
+.card-item .state {
+    float: right;
+    text-shadow: 0 1px 1px rgba(51,51,51,0.5);
+    margin-top:20px;
+}
+
+.default-card {
+    background-image: url('data:image/png;base64,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');
+    background-size: 100%;
+    width: 70px;
+    height: 30px;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: -5px;
+    top: 8px;
+}

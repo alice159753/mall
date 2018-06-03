@@ -8,13 +8,9 @@
 <view class="promote-card-list-box">
     <view class="promote-nav-box">
         <view class="tabber-ios-gray tabber tabber-ios">
-            <navigator url="../user/coupon?type=1">
-            <text class="{{type == 1 ? 'active' :''}}">可用优惠券</text>
-            </navigator>
 
-            <navigator url="../user/coupon?type=2">
-            <text class="{{type == 2 ? 'active' :''}}">已失效</text>
-            </navigator>
+            <text class="{{type == 1 ? 'active' :''}}" bindtap='changeTab' data-type="1">可用优惠券</text>
+            <text class="{{type == 2 ? 'active' :''}}" bindtap='changeTab' data-type="2">已失效</text>
 
         </view>
     </view>
