@@ -21,7 +21,7 @@
     $category_no_1 = !empty($_REQUEST["category_no_1"]) ? $_REQUEST["category_no_1"] : 0;  //一级分类
     $order = !empty($_REQUEST["order"]) ? $_REQUEST["order"] : 'real_sales desc';  //综合将序
     $page = !empty($_REQUEST["page"]) ? $_REQUEST["page"] : 1;
-    $page_size = !empty($_REQUEST["page_size"]) ? $_REQUEST["page_size"] : 2;
+    $page_size = !empty($_REQUEST["page_size"]) ? $_REQUEST["page_size"] : 20;
 
     $condition = "is_online = 1 AND is_delete = 0";
 

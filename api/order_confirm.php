@@ -86,13 +86,9 @@
         $result['product_lists'][] = $dataArray;
     }
 
-    $product_fee = $myOrderInfo->orderFee($userCartsRows);
-    $product_fee = $product_fee / 100; //单位转换为元
+    $product_fee  = $myOrderInfo->orderFee($result['product_lists']);
 
-    //$carriageFee = $myOrderInfo->orderCarriageFee($userCartsRows, $userAddressRow);
-    //$carriage_fee = $carriageFee['carriage_fee'] / 100;
-
-    $carriage_fee = 10;
+    $carriage_fee = $myOrderInfo->orderCarriageFee($result['product_lists']);
 
     //计算总共金额
     $result['total_fee']       = $product_fee + $carriage_fee;

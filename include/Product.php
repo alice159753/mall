@@ -5,6 +5,7 @@
     ob_start();
     include_once(INCLUDE_DIR. "/Category.php");
     include_once(INCLUDE_DIR. "/Brand.php");
+    include_once(INCLUDE_DIR. "/ProductAttr.php");
     ob_clean();
     
 
@@ -34,6 +35,7 @@
 
             $myCategory = new Category($this->myMySQL);
             $myBrand = new Brand($this->myMySQL);
+            $myProductAttr = new ProductAttr($this->myMySQL);
 
             $dataArray = array();
             $dataArray['{no}']                 = $row['no'];
@@ -120,6 +122,8 @@
 
             $dataArray['{online_checkbox}'] = $row['is_online'] ==1 ? 'checked' :'';
 
+            $dataArray['{product_attr_count}'] = $myProductAttr->getCount("product_no = ".$row['no']);
+
             return $dataArray;
         }
 
@@ -151,7 +155,7 @@
             $dataArray['label']              = $row['label'];
             $dataArray['sales_start_date']   = $row['sales_start_date'];
             $dataArray['sales_end_date']     = $row['sales_end_date'];
-            $dataArray['repertory_num']     = $row['repertory_num'];
+            $dataArray['repertory_num']      = $row['repertory_num'];
             $dataArray['description']        = $row['description'];
             $dataArray['selling_points']     = $row['selling_points'];
             $dataArray['sale_price']         = $row['sale_price'];

@@ -87,6 +87,7 @@ address-tip
     overflow:hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-size: 34rpx;
 }
 /*地址结束*/
 
@@ -154,7 +155,7 @@ address-tip
     position: relative;
     display: block;
     width: 100%;
-    margin-top: 2px;
+    margin-top: 6px;
     box-sizing: border-box;
     color: #666;
     font-size: 13px;

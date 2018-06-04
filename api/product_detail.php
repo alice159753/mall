@@ -193,7 +193,14 @@
 
 
     //like
-    $condition = "is_online = 1 and category_no_1 = ".$row['category_no_1']." ORDER BY rand() DESC LIMIT 6";
+    if( !empty($row['category_no_1']) )
+    {
+        $condition = "is_online = 1 and category_no_1 = ".$row['category_no_1']." ORDER BY rand() DESC LIMIT 6";
+    }
+    else
+    {
+        $condition = "is_online = 1 ORDER BY rand() DESC LIMIT 6";
+    }
     
     $rows = $myProduct->getRows("*",  $condition);
 

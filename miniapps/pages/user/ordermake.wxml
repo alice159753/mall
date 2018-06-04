@@ -2,7 +2,7 @@
 <import src="../templates/tips.wxml"/>
 
 
-<view class="page app">
+<scroll-view class="page app mb800" scroll-y="true" >
 
 <!--新建立收货地址-->
 <view class="empty-address-tip" bindtap='chooseAddress' wx:if="{{!order_confirm.user_address}}">
@@ -41,7 +41,7 @@
       </view>
 
       <view class="item-info">
-        <view class="info-name">{{productItem.title}}</view>
+        <view class="info-name ellipsis">{{productItem.title}}</view>
 
          <view class="info-attr" wx:if="{{productItem.product_attr_text}}">
               {{productItem.product_attr_text}}
@@ -131,7 +131,7 @@
 </view>
 
 
-</view>
+</scroll-view>
 
 
 <!--微信登录-->

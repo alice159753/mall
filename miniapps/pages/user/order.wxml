@@ -53,7 +53,7 @@
                   </view>
 
                   <view class="item-info">
-                    <text class="info-name">{{productItem.product_title}}</text>
+                    <text class="info-name ellipsis">{{productItem.product_title}}</text>
 
                     <view class="info-attr" wx:if="{{productItem.product_attr_text}}">
                           {{productItem.product_attr_text}}

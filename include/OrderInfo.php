@@ -7,6 +7,7 @@
     include_once(INCLUDE_DIR. "/Product.php");
     include_once(INCLUDE_DIR. "/PostageConfig.php");
     include_once(INCLUDE_DIR. "/OrderProduct.php");
+    include_once(INCLUDE_DIR. "/Tools.php");
     ob_clean();
 
 	class OrderInfo extends Table
@@ -341,161 +342,97 @@
         }
 
         //计算商品价格
-        function orderFee($userCartsRows)
+        function orderFee($product_lists)
         {
-            $myProduct = new Product($this->myMySQL);
-            $myProductAttr = new ProductAttr($this->myMySQL);
-
             $product_fee = 0;
-            for($i = 0; isset($userCartsRows[$i]); $i++)
+            for($i = 0; isset($product_lists[$i]); $i++)
             {
-                $product_no = $userCartsRows[$i]['product_no'];
-                $productRow = $myProduct->getRow("*", "no = $product_no");
-
-                if( !empty($userCartsRows[$i]['product_attr_no']) )
-                {
-                    $productAttrRow = $myProductAttr->getRow("*", "no = ". $userCartsRows[$i]['product_attr_no']);
-
-                    $productRow['sale_price'] = $productAttrRow['sale_price'];
-                }
-
-                $product_fee += $userCartsRows[$i]['buy_num'] * $productRow['sale_price'];
+                $product_fee += ($product_lists[$i]['buy_num'] * $product_lists[$i]['sale_price']);
             }
 
             return $product_fee;
         }
 
-
         //商品运费
-        function orderCarriageFee($userCartsRows, $userAddressRow)
+        function orderCarriageFee($product_lists)
         {
-            $myProduct = new Product($this->myMySQL);
+            $carriage_fee = 0;
+            $postage_price = 0;
+            $weightMap = array();
+
             $myPostageConfig = new PostageConfig($this->myMySQL);
-            $myProductAttr = new ProductAttr($this->myMySQL);
 
-            //获取默认地址配置
-            $defaultPostageConfig = $myPostageConfig->getRow("*", "no = 1");
+            //计算规格
+            //如果设定统一价格，则价格单独计算，该商品购买多少件商品，都是一个价格
+            //商品运用的是一个运费模版，则首价格是放在一起计算
+            //如果所有的商品都是，统一价格，则取最贵的统一价格
 
-            $province = isset($userAddressRow['province']) ? $userAddressRow['province'] : '';
-            $province = str_replace('省', "", $province);
+            //获取所有的模版配置
+            $postageConfigMap = $myPostageConfig->getRows("*", "1=1");
+            $postageConfigMap = Tools::arrayColumn($postageConfigMap, 'no');
 
-            $city = isset($userAddressRow['city']) ? $userAddressRow['city'] : '';
-            $city = str_replace('市', "", $city);
-
-            $district = isset($userAddressRow['district']) ? $userAddressRow['district'] : '';
-            $district = str_replace('区', "", $district);
-
-            $postageConfig = array();
-            if( !empty($province) )
+            for($i = 0; isset($product_lists[$i]); $i++)
             {
-                $condition = "province like '%$province%'";
+                $postage_no = $product_lists[$i]['postage_no'];
 
-                $rows = $myPostageConfig->getRows("*", $condition);
-                for($i = 0; isset($rows[$i]); $i++)
+                //使用运费模版
+                if( !empty($postage_no) )
                 {
-                    //如果市和区为空，则满足要求
-                    if( empty($rows[$i]['city']) && empty($rows[$i]['district']) )
-                    {
-                        $postageConfig = $rows[$i];
-                    }
-
-                    //判断市
-                    if( !empty($rows[$i]['city']) && empty($rows[$i]['district']) )
-                    {
-                        if( strstr($rows[$i]['city'], $city) )
-                        {
-                            $postageConfig = $rows[$i];
-                        }
-                    }
-
-                    //判断区
-                    if( !empty($rows[$i]['city']) && !empty($rows[$i]['district']) )
-                    {
-                        if( strstr($rows[$i]['city'], $city) && strstr($rows[$i]['district'], $district) )
-                        {
-                            $postageConfig = $rows[$i];
-                        }
-                    }
-                }
-            }
-
-            $finalConfig = $defaultPostageConfig;
-            if( !empty($postageConfig) )
-            {
-                $finalConfig = $postageConfig;
-            }
-
-            $result = array();
-            $result['postage_config_no'] = $finalConfig['no'];
-
-            $fee = 0;
-            $goods_weight = 0;
-            for($i = 0; isset($userCartsRows[$i]); $i++)
-            {
-                $product_no = $userCartsRows[$i]['product_no'];
-                $productRow = $myProduct->getRow("*", "no = $product_no");
-
-                //判断这个商品是否免邮费
-                if( $productRow['is_shipping'] == 'Y' )
-                {
-                    continue; 
-                }
-
-                //省内包邮，省外不包邮
-                if( $province == '四川' )
-                {
-                    if( !empty($productRow['buy_num_shipping']) && $productRow['buy_num_shipping'] < $userCartsRows[$i]['buy_num'] )
+                    if( !isset($postageConfigMap[ $postage_no ]) )
                     {
                         continue;
                     }
-                }
 
-                if( !empty($userCartsRows[$i]['product_attr_no']) )
+                    $type = $postageConfigMap[ $postage_no ]['type'];
+
+                    //将商品按照运费模版分类，并累加重量
+                    if( $type == 1 )
+                    {
+                        $weightMap[ $postage_no ] = $product_lists[$i]['buy_num'];
+                    }
+                    else
+                    {
+                        $weightMap[ $postage_no ] = ($product_lists[$i]['product_weight_kg'] + ($product_lists[$i]['product_weight_g']/1000)) * $product_lists[$i]['buy_num'];
+                    }
+                }
+                //统一价格
+                else
                 {
-                    $productAttrRow = $myProductAttr->getRow("*", "no = ". $userCartsRows[$i]['product_attr_no']);
+                    $postage_price = $product_lists[$i]['postage_price'] > $postage_price ? $product_lists[$i]['postage_price'] : $postage_price;
 
-                    $productRow['goods_weight'] = $productAttrRow['product_weight'];
                 }
-
-                $goods_weight += $productRow['goods_weight'] * $userCartsRows[$i]['buy_num']; //千克 
             }
 
-            //判断是否超过20kg
-            if( $goods_weight > 20 )
+            foreach ($weightMap as $postage_no => $weight) 
             {
-                $h = ceil($goods_weight / 20);
-
-                $fee = $h * $finalConfig['first_price'];
-
-                $fee += ($h - 1) * (20 - $finalConfig['first_weight']) / $finalConfig['continue_weight'] * $finalConfig['continue_price'];
-
-                $fee += ($goods_weight % 20 - $finalConfig['first_weight']) / $finalConfig['continue_weight'] * $finalConfig['continue_price'];
-            }
-            else if( $goods_weight == 0 )
-            {
-                $fee = 0;
-            }
-            else
-            {
-                $fee += $finalConfig['first_price'];
-
-                if( $goods_weight > $finalConfig['first_weight'] )
+                if( !isset($postageConfigMap[ $postage_no ]) )
                 {
-                    $weight = ($goods_weight - $finalConfig['first_weight'])  / $finalConfig['continue_weight'];
+                    continue;
+                }
 
-                    $fee += $weight * $finalConfig['continue_price'];
+                $type = $postageConfigMap[ $postage_no ]['type'];
+                $first_weight = $postageConfigMap[ $postage_no ]['first_weight'];
+                $first_price = $postageConfigMap[ $postage_no ]['first_price'];
+                $continue_weight = $postageConfigMap[ $postage_no ]['continue_weight'];
+                $continue_price = $postageConfigMap[ $postage_no ]['continue_price'];
+
+                //件数
+                if( $type == 1 )
+                {
+                    $second_price = $weight - $first_weight < 0 ? 0 : ($weight - $first_weight) * $continue_price;
+
+                    $carriage_fee += $first_price + $second_price;
+                }
+                //重量
+                else
+                {
+                    $second_price = $weight - $first_weight < 0 ? 0 : ($weight - $first_weight) * $continue_price;
+
+                    $carriage_fee += $first_price + $second_price;
                 }
             }
 
-
-            if( $fee == 0 )
-            {
-                $result['postage_config_no'] = 0;
-            }
-
-            $result['carriage_fee'] = $fee;
-
-            return $result;
+            return $carriage_fee + $postage_price;
         }
 
         function createOrder($user_no, $userAddressRow, $userCartsRows, $product_fee, $carriageFee, $postscript, $pay_type = 1)

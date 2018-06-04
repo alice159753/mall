@@ -94,13 +94,14 @@
 
 <view class="bgf2 space"></view>
 
-
+<!--推荐位名称 开始-->
 <view class="ele-container bgf ht60 tc mt20">
   <view class="element picture recommend1_pic">
     <image mode="scaleToFill" src="/images/jingpin.png"></image>
   </view>
    <text class="element text recommend1 fs36">{{itemName.title}}</text>
 </view>
+<!--推荐位名称 结束-->
 
 <view class="ele-container bgf">
     <view class="product_lists fs32">

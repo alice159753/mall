@@ -201,6 +201,21 @@ class Tools
         return $pageURL;
     }
 
+    function arrayColumn($array, $key)
+    {
+        $result = array();
+
+        foreach ($array as $i => $v) 
+        {   
+            if( isset($v[ $key ]) )
+            {
+                $result[ $v[ $key ] ] = $v;
+            }
+        }
+
+        return $result;
+    }
+
 }
 
 

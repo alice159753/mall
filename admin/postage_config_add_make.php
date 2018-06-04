@@ -17,8 +17,6 @@
 
     $dataArray = $_REQUEST;
     $dataArray['add_time'] = 'now()';
-    $dataArray['first_price'] = $_REQUEST['first_price'] * 100;
-    $dataArray['continue_price'] = $_REQUEST['continue_price'] * 100;
 
     $myPostageConfig->addRow($dataArray);
 

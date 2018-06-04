@@ -24,7 +24,7 @@
 
             <view class="item-info"> 
 
-              <view class="info-name">
+              <view class="info-name ellipsis">
               {{item.product_title}}
               </view>
 

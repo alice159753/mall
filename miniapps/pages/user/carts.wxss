@@ -70,7 +70,7 @@
 }
 
 .cart-list .list-item .item-info .info-attr {
-    margin-top: 2px;
+    margin-top: 6px;
     position: relative;
     display: block;
     box-sizing: border-box;
