@@ -161,10 +161,21 @@ Page({
       console.log(that.data.discount_coupon_no);
 
       //下单
-      order_make(app.globalData.userInfo.user_no, that.data.user_carts_nos, that.data.discount_coupon_no).then((res) => {
+      order_make(app.globalData.userInfo.user_no, app.globalData.userInfo.openid, that.data.user_carts_nos, that.data.discount_coupon_no).then((res) => {
         let arr = res.data.result.data;
 
-       
+        var param = arr;
+        console.log(param);
+
+        param.success = function () 
+        {
+           console.log("支付成功");
+        };
+
+        app.wxPay(param);
+
+
+
       });
       
   },

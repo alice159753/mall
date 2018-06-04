@@ -535,7 +535,7 @@
         }
 
         //小程序支付
-        function xcx($body, $total_fee, $out_trade_no, $notify_url, $return_url)
+        function xcx($openid, $body, $total_fee, $out_trade_no, $notify_url, $return_url)
         {
             $myCurl = new Curl();
 
@@ -550,6 +550,7 @@
             $dataArray['notify_url']       = $notify_url;
             $dataArray['return_url']       = $return_url;
             $dataArray['trade_type']       = 'JSAPI'; //以分为单位
+            $dataArray['openid']           = $openid;
 
             $sign = $this->get_sign($dataArray);
             $dataArray['sign'] = $sign;
@@ -559,12 +560,31 @@
             $url = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
 
             $xml = $myCurl->doPost($url, $postXml);
-echo $xml;
-            $content = simplexml_load_string($xml);
 
-            $mweb_url = $content->mweb_url;
+            $content = json_decode(json_encode((array)simplexml_load_string(utf8_encode($xml), null, LIBXML_NOCDATA)), 1);
 
-            return  $mweb_url;
+            return  $content;
+
+            // <xml><return_code><![CDATA[SUCCESS]]></return_code>
+            // <return_msg><![CDATA[OK]]></return_msg>
+            // <appid><![CDATA[wx4a3c9a890bf83384]]></appid>
+            // <mch_id><![CDATA[1494738062]]></mch_id>
+            // <nonce_str><![CDATA[ClNyDfGfZkFUUiiW]]></nonce_str>
+            // <sign><![CDATA[9EE028A671FED6000C4AC3167F588274]]></sign>
+            // <result_code><![CDATA[SUCCESS]]></result_code>
+            // <prepay_id><![CDATA[wx04131809752441705ac385de0260434076]]></prepay_id>
+            // <trade_type><![CDATA[JSAPI]]></trade_type>
+            // </xml>
+        }
+
+        //小程序支付, 获取sign
+        function makePaySign($nonceStr, $package, $timeStamp)
+        {
+            // paySign = MD5(appId=wxd678efh567hg6787&nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111) = 22D9B4E54AB1950F51E0649E8810ACD6
+
+            $pay_sign = "appId=".WEIXIN_APPID."&nonceStr=$nonceStr&package=".$package."&signType=MD5&timeStamp=$timeStamp&key=".WEIXIN_PAY_KEY;
+
+            return md5($pay_sign);
         }
 
     }

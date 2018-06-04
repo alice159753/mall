@@ -67,6 +67,7 @@ export function login(e)
                     console.log(res.data);
 
                     app.globalData.userInfo.user_no = res.data.result.data.no;
+                    app.globalData.userInfo.openid = res.data.result.data.openid;
 
                     console.log(app.globalData.userInfo);
                 }

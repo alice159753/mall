@@ -3,6 +3,7 @@ import {
   user_carts, user_carts_delete
 } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
+var util = require('../../utils/util');
 
 var app = getApp();
 
@@ -315,6 +316,13 @@ Page({
     console.log(app.globalUserCarts);
     let user_carts_nos = getUserCartsNos(this.data.user_carts_lists);
     console.log(user_carts_nos);
+
+    //如果没有勾选商品，则不进入到结算页面
+    if ( util.isBlank(user_carts_nos) )
+    {
+       app.showModal({'content': '请选择需要结算的商品'}); 
+       return '';
+    } 
 
     wx.navigateTo({
       url: '../user/ordermake?user_carts_nos=' + user_carts_nos,

@@ -234,13 +234,14 @@ export function user_address_add(user_no, chooseAddress) {
 
 
 //下单
-export function order_make(user_no, user_carts_nos, discount_coupon_no) {
+export function order_make(user_no, openid, user_carts_nos, discount_coupon_no) {
   return newWork({
     url: '/order_make.php',
     data: {
       user_no: user_no,
       user_carts_nos: user_carts_nos,
       discount_coupon_no: discount_coupon_no,
+      openid: openid,
     }
   });
 }

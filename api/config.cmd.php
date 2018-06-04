@@ -30,7 +30,7 @@
     define("WEIXIN_APPSECRECT", "66475268e92dfb1f4b1a5d8c3d1df970");
     define("WEIXIN_TOKEN", "");
     define("MERCHANT_NUMBER", "1494738062");
-    define("WEIXIN_PAY_KEY", "");
+    define("WEIXIN_PAY_KEY", "zhanghui19890721zhangnan19900509");
 
     ob_start();
     include_once(INCLUDE_DIR ."/MySQL.php");

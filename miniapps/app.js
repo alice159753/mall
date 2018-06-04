@@ -110,7 +110,8 @@ App({
 
   },
 
-  //app.globalData.userInfo.no //user_no
+  //app.globalData.userInfo.user_no //user_no
+  //app.globalData.userInfo.openid //openid
   globalData: {
     userInfo: null,
     globalNameOne: "花伴电商",
