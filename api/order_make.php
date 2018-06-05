@@ -43,6 +43,7 @@
     $myWeChat = new WeChat();
     $myUser = new User($myMySQL);
 
+    //获取用户openid
     if( empty($openid) )
     {
         $userRow = $myUser->getRow("*", "no = $user_no");
@@ -54,6 +55,44 @@
     {
         Output::error('商品不能为空2', '3');
     }
+
+    //如果优惠券不等于空
+    if( !empty($discount_coupon_no) )
+    {
+        //判断这个优惠券是否合法
+
+        $discountCouponRow = $myDiscountCoupon->getRow("*", "no = ".$discount_coupon_no);
+    }
+
+    //商品
+    for($i = 0; isset($userCartsRows[$i]); $i++)
+    {
+        $product_no = $userCartsRows[$i]['product_no'];
+        $productRow = $myProduct->getRow("*", "no = $product_no");
+
+        $dataArray = $myProduct->getDataClean($productRow);
+
+        $dataArray['buy_num'] = $userCartsRows[$i]['buy_num'];
+        $dataArray['product_attr_text'] = $userCartsRows[$i]['product_attr_text'];
+
+        //如果规格不为空，则从规格里面获取内容
+        if( !empty($userCartsRows[$i]['product_attr_no']) )
+        {
+            $productAttrRow = $myProductAttr->getRow("*", "no = ". $userCartsRows[$i]['product_attr_no']);
+
+            $dataArray['sale_price']        = $productAttrRow['sale_price'] / 100;
+            $dataArray['product_weight_kg'] = $productAttrRow['product_weight_kg'];
+            $dataArray['product_weight_g']  = $productAttrRow['product_weight_g'];
+            $dataArray['pic']               = FILE_URL.$productAttrRow['pic'];
+        }
+
+        $result['product_lists'][] = $dataArray;
+    }
+
+    $product_fee  = $myOrderInfo->orderFee($result['product_lists']);
+
+    $carriage_fee = $myOrderInfo->orderCarriageFee($result['product_lists']);
+
 
     $response = $myWeChat->xcx($openid, '测试', 1, time(), 'https://mall.huaban1314.com', 'https://mall.huaban1314.com');
 
