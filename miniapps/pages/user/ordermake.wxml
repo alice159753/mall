@@ -116,6 +116,14 @@
     </view>
   </view>
 
+</view>
+
+
+</scroll-view>
+
+
+
+
   <view class="confirm-submit">
       <view class="submit-total">
         <view class="total-price">
@@ -124,15 +132,11 @@
         </view>
       </view>
 
-      <view class="submit-button dark active" bindtap='order_make'>提交订单并支付</view>
+<view class="submit-button dark active" bindtap='order_make'>提交订单并支付</view>
   </view>
 
 
-</view>
 
-
-</scroll-view>
-
-
+  
 <!--微信登录-->
 <template is="tip3" wx:if="{{isloginshow}}" />

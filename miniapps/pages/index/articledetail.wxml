@@ -22,12 +22,20 @@
         </view>
 
         <view class="read">
-          阅读 {{article_detail.view_count}}
+
+          <text>  阅读 {{article_detail.view_count}} </text>
+
+          <image src="../../images/collect.png" class="collect"></image>
+
         </view>
+
+
       </view>
 
       <view class="recommend">
           <view class="title">相关推荐</view>
+
+
       </view>
 
 

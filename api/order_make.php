@@ -150,12 +150,19 @@
     //清空购物车
     $myUserCarts->remove("user_no = $user_no AND no in ($user_carts_nos)");
 
+    //减少库存
+    $myOrderInfo->reduceProduct($result['product_lists']);
+
     //下订单
     $order_sn = $myOrderInfo->createOrder($user_no, $userAddressRow, $result['product_lists'], $product_fee_discount, $product_fee, $carriage_fee, $postscript, $discount_coupon_no, 1);
 
     $product_fee = !empty($product_fee_discount) ? $product_fee_discount : $product_fee;
 
-    $response = $myWeChat->xcx($openid, $result['product_lists'][0]['title'], $product_fee, $order_sn, 'https://mall.huaban1314.com/api/wechat_callback.php', 'https://mall.huaban1314.com');
+    $product_fee = $product_fee * 100; //转换成分
+
+    $product_fee = 1;
+
+    $response = $myWeChat->xcx($openid, $result['product_lists'][0]['title'], $product_fee, $order_sn, 'https://mall.huaban1314.com/api/wechat_callback.php', 'https://mall.huaban1314.com/wechat_callback.php');
 
     $result = array();
     $result['timeStamp'] = (string)time();
@@ -163,6 +170,7 @@
     $result['package']   = "prepay_id=".$response['prepay_id'];
     $result['signType']  = $response['MD5'];
     $result['paySign']   = $myWeChat->makePaySign($result['nonceStr'], $result['package'], $result['timeStamp']);
+    $result['order_sn']  = $order_sn;
 
     Output::succ('', $result);
 

@@ -506,6 +506,34 @@
             return $order_sn;
         }
 
+        //减少库存
+        function  reduceProduct($product_lists)
+        {
+            $myProduct = new Product($this->myMySQL);
+            $myProductAttr = new ProductAttr($this->myMySQL);
+
+            for($i = 0; isset($product_lists[$i]); $i++)
+            {
+                if( !empty($product_lists[$i]['product_attr_no']) )
+                {
+                    $repertory_num =  $myProductAttr->getValue('repertory_num', "no = ". $product_lists[$i]['product_attr_no']);
+
+                    $repertory_num = ($repertory_num -1) < 0 ? 0 : $repertory_num - 1;
+
+                    $myProductAttr->update(array('repertory_num' => $repertory_num), "no = ". $product_lists[$i]['product_attr_no']);
+                }
+                else
+                {
+                    $repertory_num =  $myProduct->getValue('repertory_num', "no = ". $product_lists[$i]['no']);
+                    
+                    $repertory_num = ($repertory_num -1) < 0 ? 0 : $repertory_num - 1;
+
+                    $myProduct->update(array('repertory_num' => $repertory_num), "no = ". $product_lists[$i]['no']);
+                }
+            }
+        }
+
+
 }
 
 ?>

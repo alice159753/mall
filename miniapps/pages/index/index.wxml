@@ -103,7 +103,7 @@
 </view>
 <!--推荐位名称 结束-->
 
-<view class="ele-container bgf">
+<view class="ele-container bgf fl">
     <view class="product_lists fs32">
 
 <view wx:for="{{itemName.product_lists}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="productItem">

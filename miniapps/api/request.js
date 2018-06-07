@@ -406,3 +406,15 @@ export function order_review(user_no, order_info_no, contents, stars, isanons, p
     }
   });
 }
+
+
+//支付成功
+export function wechat_callback(user_no, order_sn) {
+  return newWork({
+    url: '/wechat_callback.php',
+    data: {
+      user_no: user_no,
+      order_sn: order_sn,
+    }
+  });
+}

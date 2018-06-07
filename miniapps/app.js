@@ -10,7 +10,6 @@ App({
       'signType': 'MD5',
       'paySign': param.paySign,
       success: function(res){
-        _this.wxPaySuccess(param);
         typeof param.success === 'function' && param.success();
       },
       fail: function(res){
@@ -29,38 +28,6 @@ App({
       }
     })
   },
-  wxPaySuccess: function (param) {
-    let orderId = param.orderId,
-        goodsType = param.goodsType,
-        formId = param.package.substr(10),
-        t_num = goodsType == 1 ? 'AT0104':'AT0009';
-
-    this.sendRequest({
-      hideLoading: true,
-      url: '/index.php?r=AppShop/SendXcxOrderCompleteMsg',
-      data: {
-        formId: formId,
-        t_num: t_num,
-        order_id: orderId
-      }
-    })
-  },
-  wxPayFail: function (param, errMsg) {
-    let orderId = param.orderId,
-        formId = param.package.substr(10);
-
-    this.sendRequest({
-      hideLoading: true,
-      url: '/index.php?r=AppShop/SendXcxOrderCompleteMsg',
-      data: {
-        formId: formId,
-        t_num: 'AT0010',
-        order_id: orderId,
-        fail_reason: errMsg
-      }
-    })
-  },
-
 
   showModal: function (param) {
     wx.showModal({

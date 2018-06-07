@@ -44,12 +44,16 @@
 
 .main-wrap .read {
     color: #999;
-    font-size: 12px;
+    font-size: 14px;
     padding-bottom: 17px;
     padding-top: 39px;
     margin-left: 15px;
 }
-
+.main-wrap .read text
+{
+  display:inline-block;
+  font-size:14px;
+}
 .recommend {
     background: #fff;
     border-bottom:1px solid #eee;
@@ -61,6 +65,7 @@
     margin-top: 5px;
     padding: 12.5px 15px;
     overflow: hidden;
+    display: inline-block;
 }
 
 
@@ -131,5 +136,12 @@
 .app .newsIndex-newsList .news-text-bottom text {
     margin-right: 10px;
 }
-
+.collect
+{
+    width:15px;
+    height:15px;
+    margin-left:20px;
+    margin-top:10px;
+    margin-bottom:-1px;
+}
 /*推荐章节*/

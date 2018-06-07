@@ -1,6 +1,6 @@
 // pages/user/carts.js
 import {
-  order_confirm, user_address_add, order_make
+  order_confirm, user_address_add, order_make, wechat_callback
 } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
 var util = require('../../utils/util');
@@ -168,14 +168,33 @@ Page({
         var param = arr;
         console.log(param);
 
-        param.success = function () 
-        {
-           console.log("支付成功");
-        };
+        wx.requestPayment({
+          'timeStamp': param.timeStamp,
+          'nonceStr': param.nonceStr,
+          'package': param.package,
+          'signType': 'MD5',
+          'paySign': param.paySign,
+          success: function (res) {
+            
+            console.log("支付成功");
+            app.showModal({ content: '支付成功' });
 
-        app.wxPay(param);
+            console.log(res);
+
+            //通知服务器,支付成功
+            wechat_callback(app.globalData.userInfo.user_no, param.order_sn).then((res) => {
 
 
+            });
+
+
+          },
+          fail: function (res) {
+            console.log("支付失败");
+            app.showModal({ content: '支付失败' });
+
+          }
+        })
 
       });
       
