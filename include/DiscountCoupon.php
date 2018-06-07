@@ -3,7 +3,7 @@
 	include_once("Table.php");
 
     ob_start();
-    include_once(INCLUDE_DIR. "/Role.php");
+    include_once(INCLUDE_DIR. "/DiscountCouponRecord.php");
     ob_clean();
 
 	class DiscountCoupon extends Table
@@ -151,6 +151,54 @@
 
             return $dataArray;
         }
-	}
 
+
+        //计算优惠价格
+        function computerPrice($discount_coupon_no, $product_fee)
+        {
+            $myDiscountCouponRecord = new DiscountCouponRecord($this->myMySQL);
+
+            $discountCouponRecordRow = $myDiscountCouponRecord->getRow("*", "no = ".$discount_coupon_no." AND is_use = 0 AND is_past = 0");
+
+            if( empty($discountCouponRecordRow) )
+            {
+                return $product_fee;
+            }
+
+            $discountCouponRow = $this->getRow("*", "no = ".$discountCouponRecordRow['discount_coupon_no']."");
+
+            if( empty($discountCouponRow) )
+            {
+                return $product_fee;
+            }
+
+            //无限制, 满减
+            if( $discountCouponRow['use_type'] == 1 || 
+                ($discountCouponRow['use_type'] == 2 && $discountCouponRow['full_price'] < $product_fee) )
+            {
+                //1指定金额，2折扣
+                if( $discountCouponRow['coupon_type'] == 1 )
+                {
+                    $product_fee = $product_fee - $discountCouponRow['coupon_price'];
+                }
+
+                if( $discountCouponRow['coupon_type'] == 2 )
+                {
+                    $product_fee = ($product_fee * (int)$discountCouponRow['discount'])/10;
+                }
+            }
+
+            //更新优惠券状态
+            $dataArray = array();
+            $dataArray['use_num'] = $discountCouponRow['use_num'] + 1;
+            $this->update($dataArray, "no = ".$discountCouponRecordRow['discount_coupon_no']."");
+
+            $dataArray = array();
+            $dataArray['is_use'] = 1;
+            $myDiscountCouponRecord->update($dataArray, "no = ".$discount_coupon_no."");
+
+            return $product_fee;
+        }
+
+}
 ?>

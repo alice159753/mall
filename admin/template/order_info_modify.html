@@ -89,10 +89,8 @@
               <td class="special_price" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">￥{order_fee}</td>
               <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">运费</td>
               <td class="special_price" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">￥{shipping_fee}</td>
-              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">运费模版编号</td>
-              <td class="special_price" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;" colspan="3">
-                <a href="postage_config.php?no={postage_config_no}" target="_blank">{postage_config_no}</a>
-              </td>
+              <td class="table-title table-strong" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">优惠金额</td>
+              <td class="special_price" style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">￥{discount_fee}</td>
             </tr>
 
             <tr>
@@ -169,6 +167,7 @@
                 <th class="table-title">数量</th>
                 <th class="table-date">合计(元)</th>
                 <th class="table-date">规格编号</th>
+                <th class="table-date">规格名称</th>
                 <th class="table-date">评价类型</th>
                 <th class="table-date">评价内容</th>
 
@@ -181,14 +180,13 @@
                 <img src="{product_pic}" style="width: 50px;height: 50px" />
               </td>
               <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{product_weight}</td>
-              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;" class="special_price">￥{shop_price}</td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;" class="special_price">￥{sale_price}</td>
               <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;" class="special_price">￥{buy_num}</td>
               <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;" class="special_price">￥{total_fee}</td>
               <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">
-
                 <a href="product_attr_modify.php?no={product_attr_no}" target="_blank">{product_attr_no}</a>
-
               </td>
+              <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{product_attr_text}</td>
               <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{comment_type_title}</td>
               <td style="border-top:0px solid #ddd; border-bottom: 1px solid #ddd;">{content}</td>
 

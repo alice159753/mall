@@ -121,10 +121,11 @@
             $dataArray['{best_time}']             = $row['best_time'];
             $dataArray['{sign_building}']         = $row['sign_building'];
             $dataArray['{postscript}']            = $row['postscript']; //订单附言,由用户提交订单前填写
-            $dataArray['{total_fee}']             = $row['total_fee']/100;
-            $dataArray['{order_fee}']             = $row['order_fee']/100;
-            $dataArray['{shipping_fee}']          = $row['shipping_fee']/100;
-            $dataArray['{insure_fee}']            = $row['insure_fee']/100;
+            $dataArray['{total_fee}']             = $row['total_fee'];
+            $dataArray['{order_fee}']             = $row['order_fee'];
+            $dataArray['{shipping_fee}']          = $row['shipping_fee'];
+            $dataArray['{discount_fee}']          = $row['discount_fee'];
+            $dataArray['{insure_fee}']            = $row['insure_fee'];
             $dataArray['{pay_note}']              = $row['pay_note']; //付款备注, 在订单管理编辑修改
             $dataArray['{to_buyer}']              = $row['to_buyer'];  //商家给客户留言
             $dataArray['{add_time}']              = $row['add_time'];
@@ -435,7 +436,8 @@
             return $carriage_fee + $postage_price;
         }
 
-        function createOrder($user_no, $userAddressRow, $userCartsRows, $product_fee, $carriageFee, $postscript, $pay_type = 1)
+        //postscript  订单附言
+        function createOrder($user_no, $userAddressRow, $product_lists, $product_fee_discount, $product_fee, $carriage_fee, $postscript,$discount_coupon_no, $pay_type = 1)
         {
             $order_sn = date('YmdHis').rand(10000, 99999);
 
@@ -446,67 +448,62 @@
 
             $userRow = $myUser->getRow("*", "no = $user_no");
 
-            $dataArray                      = array();
-            $dataArray['postage_config_no'] = $carriageFee['postage_config_no'];
-            $dataArray['order_sn']          = $order_sn;
-            $dataArray['user_no']           = $user_no;
-            $dataArray['order_status']      = 0;
-            $dataArray['shipping_status']   = 0;
-            $dataArray['pay_status']        = 0;
-            $dataArray['comment_status']    = 0;
-            $dataArray['pay_type']          = $pay_type;
-            $dataArray['consignee']         = $userAddressRow['consignee'];
-            $dataArray['country']           = $userAddressRow['country'];
-            $dataArray['province']          = $userAddressRow['province'];
-            $dataArray['city']              = $userAddressRow['city'];
-            $dataArray['district']          = $userAddressRow['district'];
-            $dataArray['address']           = $userAddressRow['address'];
-            $dataArray['mobile']            = $userAddressRow['mobile'];
-            $dataArray['postscript']        = $postscript;
-            $dataArray['total_fee']         = $product_fee + $carriageFee['carriage_fee'];
-            $dataArray['order_fee']         = $product_fee;
-            $dataArray['shipping_fee']      = $carriageFee['carriage_fee'];
-            $dataArray['channel_id']        = $userRow['channel_id'];
-            $dataArray['add_time']          = 'now()';
+            $dataArray                       = array();
+            $dataArray['postage_config_no']  = 0;
+            $dataArray['order_sn']           = $order_sn;
+            $dataArray['user_no']            = $user_no;
+            $dataArray['order_status']       = 0;
+            $dataArray['shipping_status']    = 0;
+            $dataArray['pay_status']         = 0;
+            $dataArray['comment_status']     = 0;
+            $dataArray['pay_type']           = $pay_type;
+            $dataArray['consignee']          = $userAddressRow['consignee'];
+            $dataArray['country']            = $userAddressRow['country'];
+            $dataArray['province']           = $userAddressRow['province'];
+            $dataArray['city']               = $userAddressRow['city'];
+            $dataArray['district']           = $userAddressRow['district'];
+            $dataArray['address']            = $userAddressRow['address'];
+            $dataArray['mobile']             = $userAddressRow['mobile'];
+            $dataArray['postscript']         = $postscript;
+            $dataArray['total_fee']          = $product_fee_discount + $carriage_fee;
+            $dataArray['order_fee']          = $product_fee_discount;
+            $dataArray['shipping_fee']       = $carriage_fee;
+            $dataArray['discount_fee']       = abs($product_fee_discount - $product_fee);
+            $dataArray['channel_id']         = $userRow['channel_id'];
+            $dataArray['add_time']           = 'now()';
+            $dataArray['discount_coupon_no'] = $discount_coupon_no;
 
             $this->addRow($dataArray);
             $insert_id = $this->getInsertID();
 
             //添加商品信息
-            for($i = 0; isset($userCartsRows[$i]); $i++)
+            for($i = 0; isset($product_lists[$i]); $i++)
             {
-                $product_no = $userCartsRows[$i]['product_no'];
-                $productRow = $myProduct->getRow("*", "no = $product_no");
+                $product_no = $product_lists[$i]['no'];
 
                 $dataArray = array();
-                $dataArray['user_no']         = $user_no;
-                $dataArray['order_no']        = $insert_id;
-                $dataArray['order_sn']        = $order_sn;
-                $dataArray['product_no']      = $product_no;
-                $dataArray['product_title']   = $productRow['title'];
-                $dataArray['product_pic']     = $productRow['pic'];
-                $dataArray['shop_price']      = $productRow['shop_price'];
-                $dataArray['market_price']    = $productRow['market_price'];
-                $dataArray['product_weight']  = $productRow['goods_weight'];
-                $dataArray['buy_num']         = $userCartsRows[$i]['buy_num'];
-                $dataArray['add_time']        = 'now()';
-                $dataArray['channel_id']      = $userRow['channel_id'];
-                $dataArray['product_attr_no'] = $userCartsRows[$i]['product_attr_no'];
-
-                if( !empty($dataArray['product_attr_no']) )
-                {
-                    $productAttrRow = $myProductAttr->getRow("*", "no = ". $dataArray['product_attr_no']);
-
-                    $dataArray['product_title']   = $productRow['title'].", 规格：".$productAttrRow['title'];
-                    $dataArray['product_pic']     = $productAttrRow['img_url'];
-                    $dataArray['shop_price']      = $productAttrRow['price'];
-                    $dataArray['product_weight']  = $productAttrRow['product_weight'];
-                }
+                $dataArray['user_no']           = $user_no;
+                $dataArray['order_no']          = $insert_id;
+                $dataArray['order_sn']          = $order_sn;
+                $dataArray['product_no']        = $product_no;
+                $dataArray['product_title']     = $product_lists[$i]['title'];
+                $dataArray['product_pic']       = $product_lists[$i]['pic'];
+                $dataArray['product_weight_kg'] = $product_lists[$i]['product_weight_kg'];
+                $dataArray['product_weight_g']  = $product_lists[$i]['product_weight_g'];
+                $dataArray['sale_price']        = $product_lists[$i]['sale_price'];
+                $dataArray['lineation_price']   = $product_lists[$i]['lineation_price'];
+                $dataArray['member_price']      = $product_lists[$i]['member_price'];
+                $dataArray['cost_price']        = $product_lists[$i]['cost_price'];
+                $dataArray['buy_num']           = $product_lists[$i]['buy_num'];
+                $dataArray['add_time']          = 'now()';
+                $dataArray['channel_id']        = $userRow['channel_id'];
+                $dataArray['product_attr_no']   = $product_lists[$i]['product_attr_no'];
+                $dataArray['product_attr_text'] = $product_lists[$i]['product_attr_text'];
 
                 $myOrderProduct->addRow($dataArray);
             }
 
-            return $insert_id;
+            return $order_sn;
         }
 
 }

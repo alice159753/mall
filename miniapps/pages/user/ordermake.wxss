@@ -261,6 +261,7 @@ address-tip
     background-color: #fff;
     margin-top: 10px;
     padding-bottom: 4px;
+    margin-bottom: 100px;
 }
 .confirm-summury .summury-total {
     display: block;

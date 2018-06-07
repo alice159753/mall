@@ -42,6 +42,7 @@
     include_once(INCLUDE_DIR ."/Output.php");
     include_once(INCLUDE_DIR ."/StringFormat.php");
     include_once(INCLUDE_DIR ."/FileTools.php");
+    include_once(INCLUDE_DIR ."/Logs.php");
     ob_clean();
 
 

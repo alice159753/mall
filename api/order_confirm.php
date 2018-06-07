@@ -50,17 +50,6 @@
 
     $result['user_address'] = $userAddressRow;
 
-    $discountCouponRows = $myDiscountCouponRecord->getRows("*", "user_no = $user_no AND is_use = 0 AND is_past = 0");
-
-    for($i = 0; isset($discountCouponRows[$i]); $i++)
-    {
-        $row = $myDiscountCoupon->getRow("*", "no = ".$discountCouponRows[$i]['discount_coupon_no']);
-
-        $dataArray = $myDiscountCoupon->getDataClean($row);
-
-        $result['discount_coupon'][] = $dataArray;
-    }
-
     //商品
     for($i = 0; isset($userCartsRows[$i]); $i++)
     {
@@ -77,7 +66,7 @@
         {
             $productAttrRow = $myProductAttr->getRow("*", "no = ". $userCartsRows[$i]['product_attr_no']);
 
-            $dataArray['sale_price']        = $productAttrRow['sale_price'] / 100;
+            $dataArray['sale_price']        = $productAttrRow['sale_price'];
             $dataArray['product_weight_kg'] = $productAttrRow['product_weight_kg'];
             $dataArray['product_weight_g']  = $productAttrRow['product_weight_g'];
             $dataArray['pic']               = FILE_URL.$productAttrRow['pic'];
@@ -94,6 +83,29 @@
     $result['total_fee']       = $product_fee + $carriage_fee;
     $result['product_fee']     = $product_fee;
     $result['carriage_fee']    = $carriage_fee;
+
+
+    //获取当前商品可以使用的优惠券
+    $discountCouponRows = $myDiscountCouponRecord->getRows("*", "user_no = $user_no AND is_use = 0 AND is_past = 0");
+
+    for($i = 0; isset($discountCouponRows[$i]); $i++)
+    {
+        $row = $myDiscountCoupon->getRow("*", "no = ".$discountCouponRows[$i]['discount_coupon_no']);
+
+        //满多少元可以使用
+        if( $row['use_type'] == 2 )
+        {
+            if( $row['full_price'] > $product_fee )
+            {
+                continue;
+            }
+        }
+
+        $dataArray = $myDiscountCoupon->getDataClean($row);
+        $dataArray['discount_coupon_no'] = $discountCouponRows[$i]['no'];
+
+        $result['discount_coupon'][] = $dataArray;
+    }
 
     Output::succ('', $result);
 

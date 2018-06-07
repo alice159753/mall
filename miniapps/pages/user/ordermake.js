@@ -93,6 +93,7 @@ Page({
 
   },
 
+  //选择地址
   chooseAddress:function(){
 
     let that = this;
@@ -149,7 +150,7 @@ Page({
     this.setData({
       selectDiscountInfo: this.data.order_confirm.discount_coupon[index],
       selectDiscountIndex: index,
-      discount_coupon_no: this.data.order_confirm.discount_coupon[index]['no'],
+      discount_coupon_no: this.data.order_confirm.discount_coupon[index]['discount_coupon_no'],
     })
   },
 
@@ -161,7 +162,7 @@ Page({
       console.log(that.data.discount_coupon_no);
 
       //下单
-      order_make(app.globalData.userInfo.user_no, app.globalData.userInfo.openid, that.data.user_carts_nos, that.data.discount_coupon_no).then((res) => {
+      order_make(app.globalData.userInfo.user_no, app.globalData.userInfo.openid, that.data.user_carts_nos, that.data.discount_coupon_no, that.data.user_address_no).then((res) => {
         let arr = res.data.result.data;
 
         var param = arr;

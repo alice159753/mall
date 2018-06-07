@@ -96,26 +96,26 @@
         $dataArray['add_time']        = 'now()';
         $dataArray['product_attr_no'] = $product_attr_no;
 
-        $dataArray['product_title']   = $productRow['title'];
-        $dataArray['product_pic']     = $productRow['pic'];
-        $dataArray['sale_price']      = $productRow['sale_price'];
-        $dataArray['lineation_price'] = $productRow['lineation_price'];
-        $dataArray['member_price']    = $productRow['member_price'];
-        $dataArray['cost_price']      = $productRow['cost_price'];
-        $dataArray['product_weight_kg']      = $productRow['product_weight_kg'];
-        $dataArray['product_weight_g']      = $productRow['product_weight_g'];
+        $dataArray['product_title']     = $productRow['title'];
+        $dataArray['product_pic']       = $productRow['pic'];
+        $dataArray['sale_price']        = $productRow['sale_price'];
+        $dataArray['lineation_price']   = $productRow['lineation_price'];
+        $dataArray['member_price']      = $productRow['member_price'];
+        $dataArray['cost_price']        = $productRow['cost_price'];
+        $dataArray['product_weight_kg'] = $productRow['product_weight_kg'];
+        $dataArray['product_weight_g']  = $productRow['product_weight_g'];
 
         if( !empty($product_attr_no) )
         {
-            $dataArray['product_pic']     = !empty($productAttrRow['pic']) ? $productAttrRow['pic'] : $productRow['pic'];
-            $dataArray['sale_price']      = $productAttrRow['sale_price'];
-            $dataArray['lineation_price'] = $productAttrRow['lineation_price'];
-            $dataArray['member_price']    = $productAttrRow['member_price'];
-            $dataArray['cost_price']      = $productAttrRow['cost_price'];
+            $dataArray['product_pic']       = !empty($productAttrRow['pic']) ? $productAttrRow['pic'] : $productRow['pic'];
+            $dataArray['sale_price']        = $productAttrRow['sale_price'];
+            $dataArray['lineation_price']   = $productAttrRow['lineation_price'];
+            $dataArray['member_price']      = $productAttrRow['member_price'];
+            $dataArray['cost_price']        = $productAttrRow['cost_price'];
             $dataArray['product_attr_text'] = $productAttrRow['specification_value1']." ".$productAttrRow['specification_value2']." ".$productAttrRow['specification_value3'];
-
-            $dataArray['product_weight_kg']      = $productAttrRow['product_weight_kg'];
-            $dataArray['product_weight_g']      = $productAttrRow['product_weight_g'];
+            
+            $dataArray['product_weight_kg'] = $productAttrRow['product_weight_kg'];
+            $dataArray['product_weight_g']  = $productAttrRow['product_weight_g'];
         }
 
         $myUserCarts->addRow($dataArray);
