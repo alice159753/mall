@@ -59,7 +59,7 @@
 }
 .mt20
 {
-  margin-top: 10rpx;
+  margin-top: 20rpx;
 }
 .mt100
 {

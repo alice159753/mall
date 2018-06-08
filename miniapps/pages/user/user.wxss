@@ -23,6 +23,7 @@
 
 .userinfo-nickname {
   color: #fff;
+  padding-bottom: 10px;
 }
 
 .usermotto {

@@ -25,7 +25,7 @@
 
           <text>  阅读 {{article_detail.view_count}} </text>
 
-          <image src="../../images/collect.png" class="collect"></image>
+          <image src="../../images/{{is_collect ? 'collect_active.png' : 'collect.png'}}" class="collect" bindtap='collect'></image>
 
         </view>
 

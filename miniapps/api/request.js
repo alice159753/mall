@@ -249,14 +249,27 @@ export function order_make(user_no, openid, user_carts_nos, discount_coupon_no, 
 
 
 //文章详细
-export function article_detail(article_no) {
+export function article_detail(user_no, article_no) {
   return newWork({
     url: '/article_detail.php',
     data: {
       article_no: article_no,
+      user_no: user_no,
     }
   });
 }
+
+//文章收藏
+export function article_collect(user_no, article_no) {
+  return newWork({
+    url: '/article_collect.php',
+    data: {
+      article_no: article_no,
+      user_no: user_no,
+    }
+  });
+}
+
 
 
 //我的足迹
@@ -418,3 +431,49 @@ export function wechat_callback(user_no, order_sn) {
     }
   });
 }
+
+
+
+//热门搜索
+export function hot_search() {
+  return newWork({
+    url: '/hot_search.php',
+    data: {
+    }
+  });
+}
+
+//历史搜索
+export function user_search_history(user_no) {
+  return newWork({
+    url: '/user_search_history.php',
+    data: {
+      user_no: user_no,
+    }
+  });
+}
+
+
+//删除历史搜索
+export function user_search_delete(user_no, search_no) {
+  return newWork({
+    url: '/user_search_delete.php',
+    data: {
+      user_no: user_no,
+      search_no: search_no,
+    }
+  });
+}
+
+//执行搜索
+export function product_search(user_no, keyword) {
+  return newWork({
+    url: '/product_search.php',
+    data: {
+      user_no: user_no,
+      keyword: keyword,
+
+    }
+  });
+}
+

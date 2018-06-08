@@ -22,55 +22,9 @@
 
 <!--如果商品存在则展示商品，否则展示热门搜索-->
 <view wx:if="{{is_show_product}}">
-<view class="productlists">
-  <view class="recommend_products">
-    <view hover-class='none' wx:key wx:for="{{productlists}}" data-product_id="{{item.product_id}}"
-                  class="recommend_products_single">
 
-<navigator url="../product/product?no={{item.no}}">
-  <!--左边图片-->
-                    <image src="{{item.pic_url}}" class="recommend_products_single_pic"></image>
 
-  <!--右边内容-->
-                    <view class="recommend_products_single_r">
-  <!--第一行-->
-                        <view class="recommend_products_single_shop_name">
-                            <image class="recommend_products_single_r_look_pic" src="../../images/{{item.shop_pic}}"></image>
-                            <view class="recommend_products_single_r_look_num">{{item.shop_name}}</view>
-                        </view>
-  <!--第二行-->
-                        <view class="recommend_products_single_r_title">{{item.title}}</view>
 
-  <!--第三行-->
-                        <view class="recommend_products_single_r_look">
-                            <image class="recommend_products_single_r_look_pic" src="../../images/eye.png"></image>
-                            <view class="recommend_products_single_r_look_num">{{item.sale_num}}</view>
-
-                            <image class="recommend_products_single_r_look_pic ml20" src="../../images/time.png"></image>
-                            <view class="recommend_products_single_r_look_num">{{item.coupon_start_date_format}}~{{item.coupon_end_date_format}}</view>
-
-                        </view>
-  <!--第四行-->
-            <view class="recommend_products_single_r_price">
-            <view class="recommend_products_single_r_price_l">
-              <view class="juanhou">卷后:</view>
-              <view class="price">¥{{item.sale_price}}</view>
-              <view class="sale_price">¥{{item.price}}</view>
-            </view>
-
-            <button class="buy_botton" type="primary">立即购买</button>
-
-            </view>
-
-        </view>
-</navigator>
-    </view>
-
-    <!--下拉刷新-->
-   <template is="load" wx-if="{{show}}"/>
-
-  </view>
-</view>
 </view>
 
 
@@ -92,9 +46,11 @@
             <view class="historySearch">历史搜索</view>
             <view class="historyList">
                 <view  wx:for="{{historyArray}}" class="historySingle width100"  wx:key="key">
-          <view class="text-overflow width90" bindtap="search_submit" data-title="{{item.title}}">{{item.title}}</view>
 
-          <image src="../../images/search_close.png" class="delete_search_image" bindtap='user_search_delete'  data-no="{{item.no}}"></image>
+<view wx:if="{{item.is_display}}">
+<view class="text-overflow width90" bindtap="search_submit" data-title="{{item.title}}">{{item.title}}</view>
+<image src="../../images/search_close.png" class="delete_search_image" bindtap='user_search_delete'  data-no="{{item.no}}"></image>
+</view>
 
                 </view>
 

@@ -142,6 +142,6 @@
     height:15px;
     margin-left:20px;
     margin-top:10px;
-    margin-bottom:-1px;
+    margin-bottom:-2px;
 }
 /*推荐章节*/

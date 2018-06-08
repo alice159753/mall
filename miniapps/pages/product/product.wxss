@@ -40,13 +40,15 @@
   font-weight: 250;
   padding-left: 25rpx;
   padding-right: 10rpx;
+  padding-top: 20rpx;
 }
 .price_box
 {
   width: 100%;
   display: flex;
   flex-direction:row;
-  padding-left: 20rpx;
+  padding-left: 24rpx;
+  padding-top: 20rpx;
 }
 .price_box .juanhou
 {
@@ -64,7 +66,6 @@
     font-size: 44rpx;
     font: left;
     color:#f4a719;
-    margin-left:30rpx;
 }
 .price_box .sale_price 
 {
@@ -101,6 +102,8 @@
   flex-direction:row;
   padding-left: 20rpx;
   padding-bottom:20rpx;
+  padding-top:20rpx;
+
 }
 .postage_price
 {
@@ -178,8 +181,8 @@
 }
 
 .shop .shop_more .shop_more_font {
-  font-size: 34rpx;
-  color: #bbbbbb;
+  font-size: 26rpx;
+  color: #888;
   position: absolute;
   left: 25rpx;
 }
@@ -313,7 +316,7 @@
     width: 40rpx;
     height: 40rpx;
     display: block;
-    top:10rpx;
+    top:20rpx;
     margin-left:35%;
 }
 .app .product_customer button
@@ -321,7 +324,7 @@
     position: relative;
     line-height: normal;
     left: 0;
-    bottom: -8px;
+    bottom: -12px;
     width: 100%;
     color: #666;
     font-size: 10px;
@@ -360,7 +363,7 @@
     width: 40rpx;
     height: 40rpx;
     display: block;
-    top:10rpx;
+    top:20rpx;
     margin-left:35%;
 }
 .app .product_user_cars .active
@@ -381,7 +384,7 @@
     position: relative;
     line-height: normal;
     left: 0;
-    bottom: 10px;
+    bottom: 6px;
     width: 100%;
     color: #666;
     font-size: 10px;
@@ -458,6 +461,13 @@
     position: relative;
     border-bottom: 1px solid #eee;
 }
+.dialog-block-item .kucun
+{
+  text-align:center;
+  vertical-align:middle;
+  line-height:12px;
+}
+
 .page-bottom-dialog .thumb {
     float: left;
     width: 85px;
@@ -559,7 +569,7 @@
 }
 .pull-left text{
     color:#666;
-    font-size: 34rpx;
+    font-size: 30rpx;
     margin-right: 10rpx;
 }
 .page-bottom-dialog .pay-goods-stock {

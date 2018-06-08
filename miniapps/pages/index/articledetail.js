@@ -1,7 +1,7 @@
 var WxParse = require('../../wxParse/wxParse.js');
 
 import {
-  article_detail, article
+  article_detail, article, article_collect
 } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
 
@@ -15,6 +15,12 @@ Page({
 
     //相关推荐
     article_lists:[],
+
+    //是否收藏
+    is_collect:0,
+
+    //文章no
+    article_no:0,
     
   },
   onLoad: function (options) {
@@ -30,7 +36,7 @@ Page({
     }
 
     //动态详情
-    article_detail(options.article_no).then((res) => {
+    article_detail(app.globalData.userInfo.user_no, options.article_no).then((res) => {
       let arr = res.data.result.data;
 
       if (res.data.result.status.code != 0) {
@@ -41,6 +47,8 @@ Page({
 
       that.setData({
         article_detail: arr,
+        is_collect: arr.is_collect,
+        article_no:arr.no,
       })
     });
 
@@ -55,6 +63,36 @@ Page({
       that.setData({
         article_lists: arr,
       })
+    });
+
+  },
+
+  //收藏
+  collect:function (){
+
+    //动态详情
+    article_collect(app.globalData.userInfo.user_no, this.data.article_no).then((res) => {
+      let arr = res.data.result.data;
+
+      if (res.data.result.status.code != 0) 
+      {
+         app.showModal({ content: res.data.result.status.msg });
+      }
+      else
+      {
+        if ( arr.is_collect == 1 )
+          {
+            app.showToast({ title: '收藏成功', icon: 'none' });
+          }
+          else
+          {
+            app.showToast({ title: '取消收藏成功', icon: 'none' });
+          }
+
+          this.setData({
+            is_collect: arr.is_collect,
+          })
+      }
     });
 
   },

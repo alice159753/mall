@@ -8,6 +8,7 @@
   position: fixed;
   top: 0rpx;
   left: 0rpx;
+  z-index: 1000;
 }
 
 .scroll_view_h_category .category_box

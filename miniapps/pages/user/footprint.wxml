@@ -6,7 +6,7 @@
 <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
           class="promote-card-list">
 
-<view class="ele-container bgf">
+<view class="ele-container bgf mt20">
     <view class="product_lists fs32">
 
 <!--商品列表开始-->

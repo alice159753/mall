@@ -164,7 +164,7 @@
 
 
                 <view class="pull-right">
-                    <view class="pull-left"> 
+                    <view class="pull-left kucun"> 
                       <text>库存</text> 
                       <text class="pay-goods-stock">{{product_specification_repertory_num}}</text> 
                     </view>

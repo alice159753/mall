@@ -98,6 +98,12 @@ $permission_config['menu_user']['data'][] = array('title' => '设置会员卡删
 $permission_config['menu_user']['data'][] = array('title' => '设置会员卡删除更多', 'php'=> 'user_cards_record_delete_more.php', 'display' => 'none');
 
 
+$permission_config['menu_user']['data'][] = array('title' => '热门搜索',         'php'=> 'hot_search.php',             'display' => 'block');
+$permission_config['menu_user']['data'][] = array('title' => '热门搜索新增',     'php'=> 'hot_search_add.php',         'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '热门搜索修改',     'php'=> 'hot_search_modify.php',      'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '热门搜索删除',     'php'=> 'hot_search_delete.php',      'display' => 'none');
+$permission_config['menu_user']['data'][] = array('title' => '热门搜索删除更多', 'php'=> 'hot_search_delete_more.php', 'display' => 'none');
+
 
 $permission_config['menu_user']['data'][] = array('title' => '客户搜索',         'php'=> 'search.php',             'display' => 'block');
 $permission_config['menu_user']['data'][] = array('title' => '客户搜索新增',     'php'=> 'search_add.php',         'display' => 'none');

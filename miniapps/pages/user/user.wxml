@@ -79,7 +79,7 @@
 
                <navigator hover-class="none" class="single" url='../user/footprint'>
                     <image class="single_pic" src="../../images/view_history.png"></image>
-                    <view class="single_project">浏览历史</view>
+                    <view class="single_project">我的足迹</view>
                     <image class="arrow_r" src="../../images/arrow_r.png"></image>
                 </navigator>
 

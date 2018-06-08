@@ -81,8 +81,8 @@ App({
   //app.globalData.userInfo.openid //openid
   globalData: {
     userInfo: null,
-    globalNameOne: "花伴电商",
-    globalShareTitle: "花伴电商",
+    globalNameOne: "脐橙汽车",
+    globalShareTitle: "脐橙汽车",
     category: {
       title:'分类',
       category_no_1:'0',

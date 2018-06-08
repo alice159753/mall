@@ -17,6 +17,7 @@ Page({
 
     //是否展示热门搜索
     is_show_hot:true,
+
     //是否展示商品
     is_show_product:false,
 
@@ -51,7 +52,7 @@ Page({
     });
 
     //历史搜索
-    user_search_history(3).then((res) => {
+    user_search_history(app.globalData.userInfo.user_no).then((res) => {
       let arr = res.data.result.data;
       this.setData({
         historyArray: arr,
@@ -150,17 +151,32 @@ Page({
     let no = event.currentTarget.dataset.no;
 
     //删除需要展示
-    user_search_delete(no).then((res) => {
+    user_search_delete(app.globalData.userInfo.user_no, no).then((res) => {
       let arr = res.data.result.data;
     });
 
-     //重新加载 
-    user_search_history(3).then((res) => {
-      let arr = res.data.result.data;
-      this.setData({
-        historyArray: arr,
-      })
-    });
+    console.log(historyArray);
+
+    //重新加载 
+    for (let i = 0; i < this.data.historyArray.length; i++)
+    {
+       if (this.data.historyArray[i]['no'] == no )
+        {
+           this.data.historyArray[i]['is_display'] = 0;
+        }
+    }
+
+    this.setData({
+      historyArray: this.data.historyArray,
+    })
+
+    // user_search_history(app.globalData.userInfo.user_no).then((res) => {
+    //   let arr = res.data.result.data;
+    //   this.setData({
+    //     historyArray: arr,
+    //   })
+    // });
+
   },
 
   /**
