@@ -8,6 +8,34 @@ var util = require('../../utils/util');
 
 var app = getApp();
 
+function load_more(that)
+{
+  console.log('下拉刷新～');
+
+  that.setData({
+    load_show: true,
+    page: that.data.page + 1
+  });
+
+  product(that.data.page, that.data.category_no_1, that.data.category_order).then((res) => {
+    let arr = res.data.result.data;
+
+    if (util.isBlank(arr)) {
+      that.setData({
+        load_show: false,
+      });
+    }
+
+    let newarr = that.data.productlists.concat(arr);
+    console.log(newarr);
+    that.setData({
+      productlists: newarr
+    })
+  })
+
+}
+
+
 
 Page({
 
@@ -32,7 +60,7 @@ Page({
     page: 1,
 
     //分类排序, 销量降序
-    category_order: 'real_sales desc',
+    category_order: 'real_sales desc,virtual_sales desc',
 
     //销量，价格，新品，综合
     istab: 0,
@@ -49,12 +77,19 @@ Page({
 
     //是否
     isloginshow: false,
+
+    scrollTop: 0,
+    scrollHeight: 0,
+    page: 1,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    let that = this;
 
     console.log("productlists onload");
     console.log(app.globalData.category);
@@ -65,6 +100,16 @@ Page({
         isloginshow: true,
       })
     }
+
+
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          scrollHeight: res.windowHeight
+        });
+      }
+    });
+
 
     if ( util.isBlank(options) )
     {
@@ -97,7 +142,7 @@ Page({
     });
 
     //首页全部商品
-    product(1, options.category_no_1, 'real_sales desc').then((res) => {
+    product(1, options.category_no_1, 'real_sales desc,virtual_sales desc').then((res) => {
       let arr = res.data.result.data;
       console.log("product arr");
       console.log(arr);
@@ -110,7 +155,7 @@ Page({
         this.setData({
           productlists: arr,
           category_no_1: options.category_no_1,
-          category_order: 'real_sales desc',
+          category_order: 'real_sales desc,virtual_sales desc',
           //设置默认箭头颜色
           xia0: 'xia_active.png',
         })
@@ -300,35 +345,17 @@ Page({
   
   },
 
+  //下一页
+  loadMore: function (){
+    load_more(this);
+  },
+
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () 
   {
-    console.log('下拉刷新～');
-    let that = this;
-
-    that.setData({
-      load_show: true,
-      page: that.data.page + 1
-    });
-
-      product(that.data.page, that.data.category_no_1, that.data.category_order).then((res) => {
-        let arr = res.data.result.data;
-
-        if (util.isBlank(arr) )
-        {
-          that.setData({
-            load_show: false,
-          });
-        }
-
-        let newarr = that.data.productlists.concat(arr);
-        console.log(newarr);
-        that.setData({
-          productlists: newarr
-        })
-      })
+    load_more(this);
   },
 
 

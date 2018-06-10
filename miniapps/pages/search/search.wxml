@@ -1,7 +1,7 @@
 
 <import src="../templates/load.wxml"/>
 
-<view class="page">
+<view class="page app">
 
     <!--输入框 bindinput="userInput" -->
     <view class="search">
@@ -21,11 +21,34 @@
 
 
 <!--如果商品存在则展示商品，否则展示热门搜索-->
-<view wx:if="{{is_show_product}}">
+<!--商品列表开始-->
+<view class="ele-container bgf fl mt20" wx:if="{{is_show_product}}">
+    <view class="product_lists fs32">
 
+<view wx:for="{{productlists}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="productItem">
 
+      <view class="product_item  {{idx2}} {{idx2%2==0 ? 'product_item_left':'product_item_right'}} ">
+        <navigator url="../product/product?product_no={{productItem.no}}">
+        <view class="inner_content">
+            <image src="{{productItem.pic}}"></image>
+            <view>
+                <view class="product_title fs32">{{productItem.title}}</view>
+                <view class="mt20">
+                    <view class="price">￥{{productItem.sale_price}}</view>
+                    <view class="sales_num color1">销量：{{productItem.sales_num}}</view>
+                    <image src="/images/buy_cars.png" class="buy_cars"></image>
+                </view>
+
+            </view>
+        </view>
+        </navigator>
+      </view>
 
 </view>
+
+    </view>
+</view>
+<!--商品列表结束-->
 
 
 

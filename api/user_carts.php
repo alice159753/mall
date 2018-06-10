@@ -23,7 +23,7 @@
     $myUserCarts = new UserCarts($myMySQL);
     $myProductAttr = new ProductAttr($myMySQL);
 
-    $rows = $myUserCarts->getRows("*", "user_no = ".$user_no."");
+    $rows = $myUserCarts->getRows("*", "user_no = ".$user_no." AND is_display = 1");
 
     $result = array();
     for($i = 0; isset($rows[$i]); $i++)

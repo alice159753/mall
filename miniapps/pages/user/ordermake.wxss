@@ -233,7 +233,11 @@ address-tip
     font-weight: 400;
     text-align: right;
     line-height: 44px;
-    padding-right: 24px;
+    padding-right: 10px;
+}
+.confirm-form .form-item .colormain
+{
+  color:#f4a719;
 }
 .confirm-form .form-item .item-textarea {
     display: block;
@@ -365,11 +369,10 @@ address-tip
 
 /*优惠方式开始*/
 .preview-goods-order-section {
-  background: #fdfdfd;
   overflow: hidden;
   font-size:14px;
   padding-left:25rpx;
-  padding-top:10rpx;
+  padding-top:30rpx;
 }
 .discount-way .select-discount-title {
   padding-top:60rpx;

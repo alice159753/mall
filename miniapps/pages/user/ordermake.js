@@ -1,6 +1,6 @@
 // pages/user/carts.js
 import {
-  order_confirm, user_address_add, order_make, wechat_callback
+  order_confirm, user_address_add, order_make, wechat_callback, order_price
 } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
 var util = require('../../utils/util');
@@ -48,6 +48,17 @@ Page({
     //优惠券信息
     discount_coupon_no:0,
 
+    //卖家留言
+    postscript:'',
+
+
+    //商品价格
+    product_fee:0,
+    //运费
+    carriage_fee:0,
+    //总价
+    total_fee:0,
+
   },
 
   /**
@@ -55,14 +66,7 @@ Page({
    */
   onLoad: function (options) {
     console.log("ordermake onload");
-
-    console.log("app.globalUserCarts");
-    console.log(app.globalUserCarts);
-
     console.log(options.user_carts_nos);
-
-    //let user_carts_nos = getUserCartsNos(app.globalUserCarts);
-    //console.log("user_carts_nos="+user_carts_nos);
 
     //订单确认数据
     order_confirm(app.globalData.userInfo.user_no, options.user_carts_nos).then((res) => {
@@ -85,9 +89,14 @@ Page({
           order_confirm: arr,
           user_carts_nos: options.user_carts_nos,
           user_address_no: user_address_no,
-          
+
+          total_fee: arr.total_fee,
+          product_fee: arr.product_fee,
+          carriage_fee: arr.carriage_fee,
+
         });
       }
+
     });
 
 
@@ -151,7 +160,31 @@ Page({
       selectDiscountInfo: this.data.order_confirm.discount_coupon[index],
       selectDiscountIndex: index,
       discount_coupon_no: this.data.order_confirm.discount_coupon[index]['discount_coupon_no'],
-    })
+    });
+
+    let that = this;
+
+    //重新计算价格
+    order_price(app.globalData.userInfo.user_no, app.globalData.userInfo.openid, that.data.user_carts_nos, that.data.discount_coupon_no, that.data.user_address_no).then((res) => {
+      let arr = res.data.result.data;
+
+      //失败
+      if (res.data.result.status.code != 0) {
+        app.showModal({ content: res.data.result.status.msg });
+      }
+      else {
+        this.setData({
+          total_fee: arr.total_fee,
+          product_fee: arr.product_fee,
+          carriage_fee: arr.carriage_fee,
+
+        });
+      }
+
+    });
+
+
+
   },
 
   //提交订单并支付
@@ -162,44 +195,42 @@ Page({
       console.log(that.data.discount_coupon_no);
 
       //下单
-      order_make(app.globalData.userInfo.user_no, app.globalData.userInfo.openid, that.data.user_carts_nos, that.data.discount_coupon_no, that.data.user_address_no).then((res) => {
+      order_make(app.globalData.userInfo.user_no, app.globalData.userInfo.openid, that.data.user_carts_nos, that.data.discount_coupon_no, that.data.user_address_no, that.data.postscript).then((res) => {
         let arr = res.data.result.data;
 
         var param = arr;
         console.log(param);
 
-        wx.requestPayment({
-          'timeStamp': param.timeStamp,
-          'nonceStr': param.nonceStr,
-          'package': param.package,
-          'signType': 'MD5',
-          'paySign': param.paySign,
-          success: function (res) {
-            
-            console.log("支付成功");
-            app.showModal({ content: '支付成功' });
+        param.success = function () {
+          console.log("支付成功");
+          app.showModal({ content: '支付成功' });
+          console.log(res);
+          //通知服务器,支付成功
+          wechat_callback(app.globalData.userInfo.user_no, param.order_sn).then((res) => {
+          });
+        };
 
-            console.log(res);
+        param.fail = function(){
+          console.log("支付失败");
+          //app.showModal({ content: '支付失败' });
+        };
 
-            //通知服务器,支付成功
-            wechat_callback(app.globalData.userInfo.user_no, param.order_sn).then((res) => {
-
-
-            });
-
-
-          },
-          fail: function (res) {
-            console.log("支付失败");
-            app.showModal({ content: '支付失败' });
-
-          }
-        })
+        app.wxPay(param);
 
       });
       
   },
 
+  //用户输入卖家留言
+  changeInput:function (e){
+
+    let postscript = e.detail.value;
+
+    this.setData({
+      postscript: encodeURIComponent(postscript),
+    });
+
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

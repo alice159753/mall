@@ -12,6 +12,7 @@
     $product_attr_no = !empty($_REQUEST["product_attr_no"]) ? trim($_REQUEST["product_attr_no"]) : "0";
     $buy_num = !empty($_REQUEST["buy_num"]) ? $_REQUEST["buy_num"] : 0;
     $product_no = !empty($_REQUEST["product_no"]) ? $_REQUEST["product_no"] : 0;
+    $is_display = isset($_REQUEST["is_display"]) ? $_REQUEST["is_display"] : 1;
 
     if( empty($user_no) )
     {
@@ -78,7 +79,7 @@
     }
 
     //判断改产品是否已经加入购物车
-    $userCarsRow = $myUserCarts->getRow("*", "user_no = ".$user_no." AND product_no = $product_no AND product_attr_no = $product_attr_no");
+    $userCarsRow = $myUserCarts->getRow("*", "user_no = ".$user_no." AND product_no = $product_no AND product_attr_no = $product_attr_no AND is_display = $is_display");
 
     if( !empty($userCarsRow) )
     {
@@ -86,6 +87,8 @@
         $dataArray['buy_num'] = $userCarsRow['buy_num'] + $buy_num;
 
         $myUserCarts->update($dataArray, "no = ". $userCarsRow['no']);
+
+        $insert_id = $userCarsRow['no'];
     }
     else
     {
@@ -104,6 +107,7 @@
         $dataArray['cost_price']        = $productRow['cost_price'];
         $dataArray['product_weight_kg'] = $productRow['product_weight_kg'];
         $dataArray['product_weight_g']  = $productRow['product_weight_g'];
+        $dataArray['is_display']        = $is_display;
 
         if( !empty($product_attr_no) )
         {
@@ -119,11 +123,17 @@
         }
 
         $myUserCarts->addRow($dataArray);
+        $insert_id = $myUserCarts->getInsertID();
     }
     
+
     $count = $myUserCarts->getRow("sum(buy_num) as sum_buy_num", "user_no = ".$user_no." AND product_no = $product_no");
     $count = $count['sum_buy_num'];
 
-    Output::succ('添加成功',$count);
+    $result = array();
+    $result['no'] = $insert_id;
+    $result['count'] = $count;
+
+    Output::succ('添加成功',$result);
 
 ?>

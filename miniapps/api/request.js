@@ -163,7 +163,7 @@ export function system_config() {
 
 
 //加入购物车
-export function user_carts_add_make(user_no, product_no, product_attr_no, buy_num) {
+export function user_carts_add_make(user_no, product_no, product_attr_no, buy_num,is_display = 1) {
   return newWork({
     url: '/user_carts_add_make.php',
     data: {
@@ -171,6 +171,7 @@ export function user_carts_add_make(user_no, product_no, product_attr_no, buy_nu
       product_no: product_no,
       product_attr_no: product_attr_no,
       buy_num: buy_num,
+      is_display: is_display,
     }
   });
 }
@@ -234,7 +235,7 @@ export function user_address_add(user_no, chooseAddress) {
 
 
 //下单
-export function order_make(user_no, openid, user_carts_nos, discount_coupon_no, user_address_no) {
+export function order_make(user_no, openid, user_carts_nos, discount_coupon_no, user_address_no, postscript) {
   return newWork({
     url: '/order_make.php',
     data: {
@@ -243,6 +244,8 @@ export function order_make(user_no, openid, user_carts_nos, discount_coupon_no, 
       discount_coupon_no: discount_coupon_no,
       openid: openid,
       user_address_no: user_address_no,
+      postscript: postscript,
+
     }
   });
 }
@@ -270,7 +273,16 @@ export function article_collect(user_no, article_no) {
   });
 }
 
-
+//商品收藏
+export function product_collect(user_no, product_no) {
+  return newWork({
+    url: '/product_collect.php',
+    data: {
+      product_no: product_no,
+      user_no: user_no,
+    }
+  });
+}
 
 //我的足迹
 export function user_footprint(page, user_no) {
@@ -360,6 +372,17 @@ export function order_info(page, user_no, order_type) {
 export function order_cancel(user_no, order_info_no) {
   return newWork({
     url: '/order_cancel.php',
+    data: {
+      user_no: user_no,
+      order_info_no: order_info_no,
+    }
+  });
+}
+
+//付款
+export function order_pay(user_no, order_info_no) {
+  return newWork({
+    url: '/order_pay.php',
     data: {
       user_no: user_no,
       order_info_no: order_info_no,
@@ -477,3 +500,16 @@ export function product_search(user_no, keyword) {
   });
 }
 
+//重新计算价格
+export function order_price(user_no, openid, user_carts_nos, discount_coupon_no, user_address_no) {
+  return newWork({
+    url: '/order_price.php',
+    data: {
+      user_no: user_no,
+      user_carts_nos: user_carts_nos,
+      discount_coupon_no: discount_coupon_no,
+      openid: openid,
+      user_address_no: user_address_no,
+    }
+  });
+}

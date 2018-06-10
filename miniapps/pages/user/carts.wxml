@@ -8,8 +8,7 @@
   <!--购物车列表开始-->
   <view class="app-content">
 
-<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
-          class="cart-list">
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="cart-list">
 
         <!--购物车列表开始 -->
           <view class="list-item" wx:for="{{user_carts_lists}}" wx:for-index="index" wx:key="key" wx:for-item="item">

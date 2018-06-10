@@ -19,8 +19,7 @@
 
 
 <!-- 优惠券列表开始 -->
-<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
-          class="promote-card-list">
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="promote-card-list" bindscrolltolower="loadMore">
 
     <view class="promote-item promote-item--active" wx:for="{{couponlists}}" wx:for-index="index" wx:key="key">
 

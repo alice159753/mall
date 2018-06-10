@@ -150,12 +150,14 @@ Page({
   {
     let no = event.currentTarget.dataset.no;
 
+    console.log("delete search no =" + no);
+
     //删除需要展示
     user_search_delete(app.globalData.userInfo.user_no, no).then((res) => {
       let arr = res.data.result.data;
     });
 
-    console.log(historyArray);
+    console.log(this.data.historyArray);
 
     //重新加载 
     for (let i = 0; i < this.data.historyArray.length; i++)
@@ -169,13 +171,6 @@ Page({
     this.setData({
       historyArray: this.data.historyArray,
     })
-
-    // user_search_history(app.globalData.userInfo.user_no).then((res) => {
-    //   let arr = res.data.result.data;
-    //   this.setData({
-    //     historyArray: arr,
-    //   })
-    // });
 
   },
 

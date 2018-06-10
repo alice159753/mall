@@ -7,6 +7,7 @@ var util = require('../../utils/util');
 
 var app = getApp();
 
+
 //获取选种的购物车no
 function getUserCartsNos($rows) {
   var arr = new Array();
@@ -38,9 +39,18 @@ function set_choose(that, user_carts_no)
       lists[i]['isshow'] = lists[i]['isshow'] ? false : true;
     }
 
+    console.log("isshowall="+that.data.isshowall);
+
     if (user_carts_no == 0 )
     {
-      lists[i]['isshow'] = true;
+      if (that.data.isshowall)
+      {
+          lists[i]['isshow'] = true;
+      }
+      else
+      {
+         lists[i]['isshow'] = false;
+      }
     }
   }
 
@@ -69,6 +79,10 @@ function computer_price(that)
         total_sale_price = total_sale_price + (parseInt(lists[i]['sale_price']) * parseInt(lists[i]['buy_num']));
       }
   }
+
+  console.log(lists);
+  console.log("total_sale_price=" + total_sale_price);
+  console.log("total_buy_num=" + total_buy_num);
 
   that.setData({
     user_carts_lists: lists,
@@ -137,6 +151,9 @@ Page({
 
     //购物车购买数量
     total_buy_num:0,
+    
+    //是否展示所有
+    isshowall: false,
   },
 
   /**
@@ -174,7 +191,10 @@ Page({
         user_carts_lists: arr,
       });
 
+      computer_price(that);
+
     });
+
 
   },
 
@@ -190,7 +210,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('onShow');
+    console.log('carts onShow');
 
     var page = getCurrentPages().pop();
     if (page == undefined || page == null) return;
@@ -251,9 +271,23 @@ Page({
   {
     console.log("chooseAll");
 
+    if ( this.data.isshowall )
+    {
+        this.setData({
+          isshowall: false,
+        })
+    }
+    else
+    {
+      this.setData({
+        isshowall: true,
+      })
+    }
+
     set_choose(this, 0);
 
     computer_price(this);
+
 
   },
 

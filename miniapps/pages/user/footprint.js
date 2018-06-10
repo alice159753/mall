@@ -6,6 +6,38 @@ var util = require('../../utils/util');
 
 var app = getApp();
 
+function load_more(that) {
+
+  console.log('下拉刷新～');
+
+  //设置分页数据
+  that.setData({
+    page: that.data.page + 1
+  });
+
+  user_footprint(that.data.page, app.globalData.userInfo.user_no).then((res) => {
+    let arr = res.data.result.data;
+
+    console.log(arr);
+
+    if (util.isBlank(arr)) {
+      that.setData({
+        load_show: false,
+      });
+    }
+    else {
+      that.setData({
+        load_show: true,
+      });
+    }
+
+    let newarr = that.data.user_footprint_lists.concat(arr);
+    console.log(newarr);
+    that.setData({
+      user_footprint_lists: newarr
+    })
+  })
+}
 
 // pages/user/footprint.js
 Page({
@@ -93,42 +125,18 @@ Page({
   
   },
 
+  //下一页
+  loadMore: function () {
+    load_more(this);
+  },
+
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log('下拉刷新～');
-    let that = this;
-
-    //设置分页数据
-    that.setData({
-      page: that.data.page + 1
-    });
-
-    user_footprint(that.data.page, app.globalData.userInfo.user_no).then((res) => {
-      let arr = res.data.result.data;
-
-      console.log(arr);
-
-      if (util.isBlank(arr)) {
-        that.setData({
-          load_show: false,
-        });
-      }
-      else {
-        that.setData({
-          load_show: true,
-        });
-      }
-
-      let newarr = that.data.user_footprint_lists.concat(arr);
-      console.log(newarr);
-      that.setData({
-        user_footprint_lists: newarr
-      })
-    })
+    load_more(this);
   },
-
+  
   //微信登录
   onGotUserInfo: function (e) {
     CommonEvent.login(e);

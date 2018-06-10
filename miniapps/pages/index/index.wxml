@@ -83,16 +83,16 @@
 <view wx:for="{{recommend}}" wx:key="key" wx:for-index="idx" wx:for-item="itemName">
 
 
-<view class="bgf2 space"></view>
-
+<view class="bgf2 space cl"></view>
 
 <!--广告 1-->
-<view class="ele-container ad1" wx:for="{{slideshow_ad}}" wx:key="key" wx:for-index="ad_index" wx:for-item="item">
-<image wx:if="{{idx==ad_index}}" src="{{item.pic}}"></image>
+<view class="ele-container ad1" wx:if="{{slideshow_ad[idx]}}">
+    <image src="{{slideshow_ad[idx].pic}}"></image>
 </view>
+
 <!--广告 1--> 
 
-<view class="bgf2 space"></view>
+<view class="bgf2 space cl"></view>
 
 <!--推荐位名称 开始-->
 <view class="ele-container bgf ht60 tc mt20">
@@ -103,12 +103,14 @@
 </view>
 <!--推荐位名称 结束-->
 
+<!--商品列表开始-->
 <view class="ele-container bgf fl">
     <view class="product_lists fs32">
 
 <view wx:for="{{itemName.product_lists}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="productItem">
 
-      <view class="product_item  {{idx2/2>0 ? 'product_item_right':'product_item_left'}} ">
+      <view class="product_item  {{idx2}} {{idx2%2==0 ? 'product_item_left':'product_item_right'}} ">
+
         <navigator url="../product/product?product_no={{productItem.no}}">
         <view class="inner_content">
             <image src="{{productItem.pic}}"></image>
@@ -129,12 +131,14 @@
 
     </view>
 </view>
+<!--商品列表结束-->
 
 
 </view>
 <!--推荐位1-->
 
 
+<view class="bgf2 space cl"></view>
 
 
 <!--文章动态 开始-->
@@ -158,7 +162,7 @@
 <view wx:for="{{article}}" wx:key="article_key" wx:for-index="index" wx:for-item="articleItem">
 <navigator url="../index/articledetail?article_no={{articleItem.no}}">
     <view class="ele-container bgf ad1">
-    <image src="{{articleItem.thumb_pic}}"></image>
+    <image src="{{articleItem.thumb_pic}}" mode='aspectFit'></image>
     <view class="text element color1 fs32 mt10">{{articleItem.title}}</view>
     </view>
 </navigator>

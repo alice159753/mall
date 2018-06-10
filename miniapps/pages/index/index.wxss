@@ -124,7 +124,6 @@
     height:271rpx;
     border-radius: inherit;
     display:inline-block;
-    padding-top:25rpx;
 }
 
 /**广告结束**/
@@ -263,7 +262,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    width: 100%;
+    width: 90%;
     word-break: break-all;
     margin-top:10rpx;
 }

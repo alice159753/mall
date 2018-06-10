@@ -24,6 +24,7 @@
     $dataArray = array();
     $dataArray['pay_status'] = 2;
     $dataArray["lastmodify"] = 'now()';
+    $dataArray["pay_time"]   = 'now()';
 
     $myOrderInfo->update($dataArray, "user_no = $user_no AND order_sn = '".$order_sn."'");
 

@@ -15,15 +15,16 @@
 
 
 <!--商品开始-->
-<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
-          class="promote-card-list" wx:if="{{collect_type==1}}">
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="promote-card-list" wx:if="{{collect_type==1}}"  bindscrolltolower="loadMore">
 
 <view class="ele-container bgf">
     <view class="product_lists fs32">
 
 <!--商品列表开始-->
 <view wx:for="{{lists}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="item">
-      <view class="product_item  {{idx2/2>0 ? 'product_item_right':'product_item_left'}} ">
+
+      <view class="product_item  {{idx2}} {{idx2%2==0 ? 'product_item_left':'product_item_right'}} ">
+      
         <navigator url="../product/product?product_no={{item.product.no}}">
         <view class="inner_content">
             <image src="{{item.product.pic}}"></image>
@@ -38,6 +39,7 @@
             </view>
         </view>
         </navigator>
+
       </view>
 </view>
 <!--商品列表结束-->
@@ -48,17 +50,14 @@
 <!--下拉刷新-->
 <template is="load" wx-if="{{load_show}}"/>
 
-
 </scroll-view>
 <!--商品结束-->
 
 
 
 <!--文章开始-->
-<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
-          class="newsIndex-newsList" wx:if="{{collect_type==2}}">
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="newsIndex-newsList" wx:if="{{collect_type==2}}"        bindscrolltolower="loadMore">
 
-  
     <view class="news-item" wx:for="{{lists}}" wx:for-index="index" wx:key="key" wx:for-item="item">
 
         <navigator url="../index/articledetail?article_no={{item.article.no}}">
@@ -77,7 +76,6 @@
         </navigator>
 
     </view>
-
 
 <!--下拉刷新-->
 <template is="load" wx-if="{{load_show}}"/>

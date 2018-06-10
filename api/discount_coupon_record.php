@@ -10,7 +10,7 @@
 
     $order = !empty($_REQUEST["order"]) ? $_REQUEST["order"] : 'no desc';  //综合将序
     $page = !empty($_REQUEST["page"]) ? $_REQUEST["page"] : 1;
-    $page_size = !empty($_REQUEST["page_size"]) ? $_REQUEST["page_size"] : 1;
+    $page_size = !empty($_REQUEST["page_size"]) ? $_REQUEST["page_size"] : 20;
     $user_no = !empty($_REQUEST["user_no"]) ? trim($_REQUEST["user_no"]) : "0";
     $type = !empty($_REQUEST["type"]) ? trim($_REQUEST["type"]) : "1";  //1 可使用，2已过期，已使用
 

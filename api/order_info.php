@@ -11,6 +11,7 @@
     $order_type = !empty($_REQUEST["order_type"]) ? $_REQUEST["order_type"] : 'all';
     $page = !empty($_REQUEST["page"]) ? $_REQUEST["page"] : 1;
     $user_no = !empty($_REQUEST["user_no"]) ? $_REQUEST["user_no"] : 0;
+    $page_size = !empty($_REQUEST["page_size"]) ? $_REQUEST["page_size"] : 20;
 
     if( empty($user_no) )
     {
@@ -23,8 +24,6 @@
     $myUser = new User($myMySQL);
     $myOrderInfo = new OrderInfo($myMySQL);
     $myOrderProduct = new OrderProduct($myMySQL);
-
-    $page_size = 10;
 
     //全部
     if( $order_type == 'all' )

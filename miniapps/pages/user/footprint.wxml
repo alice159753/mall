@@ -4,14 +4,15 @@
 <view class="page app">
 
 <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
-          class="promote-card-list">
+          class="promote-card-list" bindscrolltolower="loadMore">
 
 <view class="ele-container bgf mt20">
     <view class="product_lists fs32">
 
 <!--商品列表开始-->
 <view wx:for="{{user_footprint_lists}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="item">
-      <view class="product_item  {{idx2/2>0 ? 'product_item_right':'product_item_left'}} ">
+      <view class="product_item  {{idx2}} {{idx2%2==0 ? 'product_item_left':'product_item_right'}} ">
+
         <navigator url="../product/product?product_no={{item.product.no}}">
         <view class="inner_content">
             <image src="{{item.product.pic}}"></image>

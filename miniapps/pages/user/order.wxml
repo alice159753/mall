@@ -3,7 +3,7 @@
 
 
 <!--pages/user/order.wxml-->
-<view class="page app">
+<view class="page app bgf2">
 
   <!-- 订单类型 开始 -->
   <scroll-view class="scroll_view_h bgf order-filter" scroll-x="true">
@@ -36,7 +36,7 @@
 
 
   <!-- 订单列表 开始 -->
-  <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="order-list" wx:if="{{!isempty}}">
+  <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="order-list" wx:if="{{!is_empty}}" bindscrolltolower="loadMore">
 
       <view class="list-item" wx:for="{{orderlists}}" wx:for-index="index" wx:key="key">
         <!--订单编号-->
@@ -129,7 +129,7 @@
 
 
 <!-- 没有订单 开始 -->
-<view class="empty_box" wx:if="{{isempty}}">
+<view class="empty_box bgf" wx:if="{{is_empty}}">
   <navigator url="../index/index">
   <image src="/images/empty.png"></image>
   <view class="head_title">您还没有相关的订单</view>

@@ -82,12 +82,18 @@
 
   </view>
 
+  <view class="form-item" wx:if="{{order_confirm.user_cards}}">
+      <view class="item-title">会员卡优惠</view>
+      <view class="item-value colormain">{{order_confirm.user_cards.picker_title}}</view>
+  </view>
+
 
 <view class="preview-goods-order-section discount-way" wx:if="{{order_confirm.discount_coupon}}">
     <view class="preview-section-title">优惠方式</view>
     <image src="/images/arrow_r.png" class="icon-rightarrow"></image>
 
-    <picker bindchange="discountChange" value="{{selectDiscountIndex}}" range="{{order_confirm.discount_coupon}}" range-key="use_type_title" style="margin-bottom:-5px;">
+    <picker bindchange="discountChange" value="{{selectDiscountIndex}}" range="{{order_confirm.discount_coupon}}" range-key="picker_title" style="margin-bottom:-5px;">
+
       <view class="select-discount-title">{{ selectDiscountInfo.use_type_title }}
 
       <text class="pull-right colormain" wx:if="{{ selectDiscountInfo.coupon_type==1}}">-¥{{ selectDiscountInfo.coupon_price}}</text>
@@ -102,17 +108,17 @@
   <view class="confirm-summury">
     <view class="summury-total">
       订单总额
-      <text class="total-price">+¥{{order_confirm.total_fee}}</text>
+      <text class="total-price">+¥{{total_fee}}</text>
     </view>
 
     <view class="summury-detail">
        商品总额
-      <text class="total-price">+¥{{order_confirm.product_fee}}</text>
+      <text class="total-price">+¥{{product_fee}}</text>
     </view>
 
     <view class="summury-detail">
        运费总额
-      <text class="total-price">+¥{{order_confirm.carriage_fee}}</text>
+      <text class="total-price">+¥{{carriage_fee}}</text>
     </view>
   </view>
 
@@ -128,7 +134,7 @@
       <view class="submit-total">
         <view class="total-price">
             合计金额
-            <text class="sepcial_price">¥{{order_confirm.total_fee}}</text>
+            <text class="sepcial_price">¥{{total_fee}}</text>
         </view>
       </view>
 

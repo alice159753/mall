@@ -53,14 +53,13 @@
 
     $result['sales_num'] = ceil($result['sales_num']/10000); //展示单位为万
 
-    if( !empty($user_no) && $user_no == 'undefined' )
+    if( !empty($user_no) && $user_no != 'undefined' )
     {
-        $userCollectRow = $myUserCollect->getRow("*","user_no = ".$user_no." AND product_no = $product_no");
+        $userCollectRow = $myUserCollect->getRow("*","user_no = ".$user_no." AND collect_no = $product_no AND collect_type = 1");
     }
 
     //判断是否收藏
-    $result['is_collect'] = empty($userCollectRow) ? 'N' : 'Y';
-
+    $result['is_collect'] = empty($userCollectRow) ? 0 : 1;
 
     //商品图
     $rows = $myProductImg->getRows("*", "product_no = $product_no order by sort asc");

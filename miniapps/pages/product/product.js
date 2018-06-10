@@ -1,5 +1,5 @@
 import {
-  product_detail, user_carts_add_make
+  product_detail, user_carts_add_make, product_collect
 } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
 
@@ -10,6 +10,15 @@ var app = getApp();
 
 function buy_api(that)
 {
+  console.log("buy_api");
+
+  //如果是立即购买，则跳转到立即购买页面
+  if ( that.data.button_type == 'lijigoumai' )
+  {
+    buy_api_buy_now(that);
+    return '';
+  }
+
   //加入购物车
   user_carts_add_make(app.globalData.userInfo.user_no, that.data.product_no, that.data.product_attr_no, that.data.buy_num).then((res) => {
     let arr = res.data.result.data;
@@ -20,12 +29,18 @@ function buy_api(that)
       app.showToast({ title: '加入购物车成功', icon:'none' });
 
       that.setData({
-        user_carts_num: arr,
+        user_carts_num: arr.count,
       });
 
-      var page = getCurrentPages().pop();
-      if (page == undefined || page == null) return;
-      page.traggle_guige();
+      // var page = getCurrentPages().pop();
+      // if (page == undefined || page == null) return;
+      // page.traggle_guige();
+
+      this.setData({
+        isshowguige: false,
+        isshowcarts: true,
+      })
+
     }
     else
     {
@@ -34,6 +49,30 @@ function buy_api(that)
 
   });
 }
+
+function buy_api_buy_now(that) 
+{
+    //立即购买
+  console.log("buy_api_buy_now");
+
+  //加入购物车
+  user_carts_add_make(app.globalData.userInfo.user_no, that.data.product_no, that.data.product_attr_no, that.data.buy_num,0).then((res) => {
+    let arr = res.data.result.data;
+
+    console.log(arr);
+
+    if ( res.data.result.status.code == 0 ) 
+    {
+      let user_carts_no = arr.no;
+      wx.navigateTo({
+        url: '../user/ordermake?user_carts_nos=' + user_carts_no,
+      })
+    }
+    
+  });
+
+}
+
 
 // pages/product/product.js
 Page({
@@ -101,6 +140,12 @@ Page({
 
     //用户购物车数量
     user_carts_num:0,
+
+    //是否收藏
+    is_collect:false,
+
+    //按钮类型
+    button_type:'jiarugouwuche'
   },
 
   /**
@@ -152,7 +197,9 @@ Page({
         product_specification_price: arr.product_specification_price,
         product_specification_repertory_num: arr.product_specification_repertory_num,
 
-        user_carts_num: arr.user_carts_num
+        user_carts_num: arr.user_carts_num,
+
+        is_collect: arr.is_collect
 
       });
 
@@ -202,6 +249,32 @@ Page({
         var page = getCurrentPages().pop();
         if (page == undefined || page == null) return;
         page.onLoad();
+      }
+    });
+
+  },
+
+  //收藏
+  collect: function () {
+
+    //商品收藏
+    product_collect(app.globalData.userInfo.user_no, this.data.product_no).then((res) => {
+      let arr = res.data.result.data;
+
+      if (res.data.result.status.code != 0) {
+        app.showModal({ content: res.data.result.status.msg });
+      }
+      else {
+        if (arr.is_collect == 1) {
+          app.showToast({ title: '收藏成功', icon: 'none' });
+        }
+        else {
+          app.showToast({ title: '取消收藏成功', icon: 'none' });
+        }
+
+        this.setData({
+          is_collect: arr.is_collect,
+        })
       }
     });
 
@@ -269,7 +342,20 @@ Page({
     })
   },
 
-  traggle_guige:function (){
+  traggle_guige:function (e){
+    console.log("traggle_guige");
+
+    let button_type = e.currentTarget.dataset.button_type;
+
+    console.log("button_type=" + button_type);
+
+    if ( !util.isBlank(button_type) )
+    {
+        this.setData({
+          button_type: button_type,
+        })
+    }
+
     //如果当前展示的是规格页面
     if (this.data.isshowguige)
     {

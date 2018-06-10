@@ -1,11 +1,45 @@
 import {
-  order_info, order_cancel, order_receiving
+  order_info, order_cancel, order_receiving, order_pay, wechat_callback
 } from '../../api/request'
 var CommonEvent = require('../common/commonEvent');
 
 var util = require('../../utils/util');
 
 var app = getApp();
+
+function load_more(that)
+{
+    console.log('下拉刷新～');
+
+    //设置分页数据
+    that.setData({
+      page: that.data.page + 1
+    });
+
+    order_info(that.data.page, app.globalData.userInfo.user_no, that.data.order_type).then((res) => {
+      let arr = res.data.result.data;
+
+      console.log(arr);
+
+      if (util.isBlank(arr)) {
+        that.setData({
+          load_show: false,
+        });
+      }
+      else {
+        that.setData({
+          load_show: true,
+        });
+      }
+
+      let newarr = that.data.orderlists.concat(arr);
+      console.log(newarr);
+      that.setData({
+        orderlists: newarr
+      })
+
+    })
+}
 
 
 // pages/user/order.js
@@ -20,7 +54,9 @@ Page({
     orderlists: [],
     order_type:'all',
     
-    isempty:true,
+    //是否展示空
+    is_empty:false,
+
     load_show: true,
     scrollTop: 0,
     scrollHeight: 0,
@@ -65,17 +101,17 @@ Page({
     order_info(that.data.page, app.globalData.userInfo.user_no, options.order_type).then((res) => {
       let arr = res.data.result.data;
       
-      let isempty = this.data.isempty;
+      let is_empty = this.data.is_empty;
 
-      if ( arr.length >= 1 )
+      if ( arr.length == 0 )
       {
-        isempty = false;
+        is_empty = true;
       }
 
       this.setData({
         orderlists: arr,
         order_type: options.order_type,
-        isempty: isempty,
+        is_empty: is_empty,
       });
 
     });
@@ -91,7 +127,7 @@ Page({
     this.setData({
       page:1,
       order_type: order_type,
-      isempty:true,
+      is_empty:false,
 
     });
 
@@ -99,18 +135,19 @@ Page({
     order_info(1, app.globalData.userInfo.user_no, order_type).then((res) => {
       let arr = res.data.result.data;
 
-      let isempty = this.data.isempty;
+      let is_empty = this.data.is_empty;
 
       console.log("length="+arr.length);
-      console.log("isempty="+isempty);
+      console.log("is_empty=" + is_empty);
 
-      if (arr.length >= 1) {
-        isempty = false;
+      if (arr.length == 0 ) 
+      {
+        is_empty = true;
       }
 
       this.setData({
         orderlists: arr,
-        isempty:isempty,
+        is_empty: is_empty,
 
       });
 
@@ -216,6 +253,37 @@ Page({
 
   },
 
+  //订单信息
+  order_pay:function(e){
+    var order_info_no = e.currentTarget.dataset.order_info_no;
+
+    order_pay(app.globalData.userInfo.user_no, order_info_no).then((res) => {
+      let arr = res.data.result.data;
+
+      var param = arr;
+      console.log(param);
+
+      param.success = function () {
+        console.log("支付成功");
+        app.showModal({ content: '支付成功' });
+        console.log(res);
+        //通知服务器,支付成功
+        wechat_callback(app.globalData.userInfo.user_no, param.order_sn).then((res) => {
+        });
+      };
+
+      param.fail = function () {
+        console.log("支付失败");
+        app.showModal({ content: '支付失败' });
+      };
+
+      app.wxPay(param);
+
+
+    });
+
+  },
+
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -237,42 +305,18 @@ Page({
   
   },
 
+  //下一页
+  loadMore: function () {
+    load_more(this);
+  },
+
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log('下拉刷新～');
-    let that = this;
-
-    //设置分页数据
-    that.setData({
-      page: that.data.page + 1
-    });
-
-    order_info(that.data.page, app.globalData.userInfo.user_no, that.data.order_type).then((res) => {
-      let arr = res.data.result.data;
-
-      console.log(arr);
-
-      if (util.isBlank(arr)) {
-        that.setData({
-          load_show: false,
-        });
-      }
-      else {
-        that.setData({
-          load_show: true,
-        });
-      }
-
-      let newarr = that.data.orderlists.concat(arr);
-      console.log(newarr);
-      that.setData({
-        orderlists: newarr
-      })
-
-    })
+    load_more(this);
   },
+
 
   /**
    * 用户点击右上角分享

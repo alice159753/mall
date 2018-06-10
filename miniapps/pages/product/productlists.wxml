@@ -19,9 +19,9 @@
     <view class="header">
         <view class="tab">
             <view class="tab_single single_one {{istab==0?'active':''}}">
-                <view catchtap="taplist" data-order="real_sales desc" data-id="0" >销量</view>
-                <image class="sort_image_shang1" src="../../images/{{shang0}}" data-order="real_sales asc" data-id="0" catchtap="taplist"></image>
-                <image class="sort_image_xia1" src="../../images/{{xia0}}" data-order="real_sales desc" data-id="0" catchtap="taplist"></image>
+                <view catchtap="taplist" data-order="real_sales desc,virtual_sales desc" data-id="0" >销量</view>
+                <image class="sort_image_shang1" src="../../images/{{shang0}}" data-order="real_sales asc,virtual_sales asc" data-id="0" catchtap="taplist"></image>
+                <image class="sort_image_xia1" src="../../images/{{xia0}}" data-order="real_sales desc,virtual_sales desc" data-id="0" catchtap="taplist"></image>
 
             </view>
             <view class="tab_single single_two {{istab==1?'active':''}}">
@@ -51,39 +51,40 @@
 
 <!--商品列表开始-->
 <view class="app">
-    <view class="ele-container bgf mt20 mb600">
-
-        <view class="product_lists fs32">
-            <view wx:for="{{productlists}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="productItem">
-
-                <view class="product_item  {{idx2/2>0 ? 'product_item_right':'product_item_left'}} ">
-                  <navigator url="../product/product?product_no={{productItem.no}}">
-                  <view class="inner_content">
-                      <image src="{{productItem.pic}}"></image>
-                      <view>
-                          <view class="product_title fs32">{{productItem.title}}</view>
-                          <view class="mt20">
-                              <view class="price">￥{{productItem.sale_price}}</view>
-                              <view class="sales_num color1">销量：{{productItem.sales_num}}</view>
-                              <image src="/images/buy_cars.png" class="buy_cars"></image>
-                          </view>
-
-                      </view>
-                  </view>
-                  </navigator>
-                </view>
-
-          </view>
-        </view>
+    <view class="ele-container bgf mt200 mb600">
 
 
-          <!--下拉刷新-->
-        <template is="load" wx-if="{{load_show}}"/>
+  <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="product_lists fs32" bindscrolltolower="loadMore">
+
+      <view wx:for="{{productlists}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="productItem">
+
+      <view class="product_item  {{idx2}} {{idx2%2==0 ? 'product_item_left':'product_item_right'}} ">
+       <navigator url="../product/product?product_no={{productItem.no}}">
+          <view class="inner_content">
+             <image src="{{productItem.pic}}"></image>
+             <view>
+                <view class="product_title fs32">{{productItem.title}}</view>
+
+                <view class="mt20">
+                    <view class="price">￥{{productItem.sale_price}}</view>
+              <view class="sales_num color1">销量：{{productItem.sales_num}}</view>
+                    <image src="/images/buy_cars.png" class="buy_cars"></image>
+               </view>
+
+           </view>
+         </view>
+      </navigator>
+      </view>
+
+
+      </view>
+
+    </scroll-view>
+
+     <!--下拉刷新-->
+    <template is="load" wx-if="{{load_show}}"/>
   
-
     </view>
-
-
 </view>
 <!--商品列表结束-->
 

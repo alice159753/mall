@@ -6,6 +6,41 @@ var util = require('../../utils/util');
 
 var app = getApp();
 
+function load_more(that)
+{
+  console.log('下拉刷新～');
+
+  //设置分页数据
+  that.setData({
+    page: that.data.page + 1
+  });
+
+  user_collect(that.data.page, app.globalData.userInfo.user_no, that.data.collect_type).then((res) => {
+    let arr = res.data.result.data;
+
+    console.log(arr);
+
+    if (util.isBlank(arr)) {
+      that.setData({
+        load_show: false,
+      });
+    }
+    else {
+      that.setData({
+        load_show: true,
+      });
+    }
+
+    let newarr = that.data.lists.concat(arr);
+    console.log(newarr);
+    that.setData({
+      lists: newarr
+    })
+  })
+
+}
+
+
 // pages/user/collect.js
 Page({
 
@@ -41,7 +76,6 @@ Page({
       })
     }
 
-
     //没有登录则展示登录框
     if (!app.globalData.userInfo) {
       this.setData({
@@ -65,7 +99,6 @@ Page({
       })
     });
 
-
   },
 
   /**
@@ -79,7 +112,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    console.log("collect onShow");
+
+    var page = getCurrentPages().pop();
+    if (page == undefined || page == null) return;
+    let options = {};
+    options.collect_type = 1
+    page.onLoad(options);
   },
 
   /**
@@ -96,40 +135,16 @@ Page({
   
   },
 
+  //下一页
+  loadMore: function () {
+    load_more(this);
+  },
+
   /**
-     * 页面上拉触底事件的处理函数
-     */
+   * 页面上拉触底事件的处理函数
+   */
   onReachBottom: function () {
-    console.log('下拉刷新～');
-    let that = this;
-
-    //设置分页数据
-    that.setData({
-      page: that.data.page + 1
-    });
-
-    user_collect(that.data.page, app.globalData.userInfo.user_no, that.data.collect_type).then((res) => {
-      let arr = res.data.result.data;
-
-      console.log(arr);
-
-      if (util.isBlank(arr)) {
-        that.setData({
-          load_show: false,
-        });
-      }
-      else {
-        that.setData({
-          load_show: true,
-        });
-      }
-
-      let newarr = that.data.lists.concat(arr);
-      console.log(newarr);
-      that.setData({
-        lists: newarr
-      })
-    })
+    load_more(this);
   },
 
   //微信登录
@@ -175,13 +190,6 @@ Page({
 
   },
 
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
 
   /**
    * 用户点击右上角分享

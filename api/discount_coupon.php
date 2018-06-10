@@ -28,6 +28,12 @@
             }
         }
 
+        //发送数量等于0
+        if( $rows[$i]['send_num'] == 0 )
+        {
+            continue;
+        }
+
         //过滤掉发放数量超过限制的
         $total_count = $myDiscountCouponRecord->getCount("discount_coupon_no = ". $rows[$i]['no']);
 

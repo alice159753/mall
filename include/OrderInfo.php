@@ -251,10 +251,10 @@
             $dataArray['best_time']             = $row['best_time'];
             $dataArray['sign_building']         = $row['sign_building'];
             $dataArray['postscript']            = $row['postscript']; //订单附言,由用户提交订单前填写
-            $dataArray['total_fee']             = $row['total_fee']/100;
-            $dataArray['order_fee']             = $row['order_fee']/100;
-            $dataArray['shipping_fee']          = $row['shipping_fee']/100;
-            $dataArray['insure_fee']            = $row['insure_fee']/100;
+            $dataArray['total_fee']             = $row['total_fee'];
+            $dataArray['order_fee']             = $row['order_fee'];
+            $dataArray['shipping_fee']          = $row['shipping_fee'];
+            $dataArray['insure_fee']            = $row['insure_fee'];
             $dataArray['pay_note']              = $row['pay_note']; //付款备注, 在订单管理编辑修改
             $dataArray['to_buyer']              = $row['to_buyer'];  //商家给客户留言
             $dataArray['add_time']              = $row['add_time'];
@@ -487,7 +487,7 @@
                 $dataArray['order_sn']          = $order_sn;
                 $dataArray['product_no']        = $product_no;
                 $dataArray['product_title']     = $product_lists[$i]['title'];
-                $dataArray['product_pic']       = $product_lists[$i]['pic'];
+                $dataArray['product_pic']       = str_replace(FILE_URL, '', $product_lists[$i]['pic']);
                 $dataArray['product_weight_kg'] = $product_lists[$i]['product_weight_kg'];
                 $dataArray['product_weight_g']  = $product_lists[$i]['product_weight_g'];
                 $dataArray['sale_price']        = $product_lists[$i]['sale_price'];

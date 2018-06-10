@@ -224,6 +224,26 @@
             return $dataArray;
         }
 
+        //商品是否在售卖期间
+        function is_sale($productRow)
+        {
+            //判断是否到预售时间
+            $today = date('Y-m-d', strtotime('now'));
+            $today = strtotime($today);
+            if(  !empty($productRow['sales_start_date']) && $productRow['sales_start_date'] != '0000-00-00' && $today <  strtotime($productRow['sales_start_date']) )
+            {
+                return false;
+            }
+
+            if(  !empty($productRow['sales_end_date']) && $productRow['sales_end_date'] != '0000-00-00' && $today >  strtotime($productRow['sales_end_date']) )
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
 	}
 
    

@@ -14,7 +14,7 @@
     $collect_type = !empty($_REQUEST["collect_type"]) ? trim($_REQUEST["collect_type"]) : "1";
     $order = !empty($_REQUEST["order"]) ? $_REQUEST["order"] : 'no desc';  //综合将序
     $page = !empty($_REQUEST["page"]) ? $_REQUEST["page"] : 1;
-    $page_size = !empty($_REQUEST["page_size"]) ? $_REQUEST["page_size"] : 2;
+    $page_size = !empty($_REQUEST["page_size"]) ? $_REQUEST["page_size"] : 20;
 
     if( empty($user_no) )
     {

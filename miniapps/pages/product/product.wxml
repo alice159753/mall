@@ -36,6 +36,10 @@
           <view class="postage_price shop_name" wx:if="{{product_detail.postage_config.postage_price==0}}">运费:免费</view>
           <view class="postage_price shop_name" wx:if="{{product_detail.postage_config.postage_price!=0}}">运费:￥{{product_detail.postage_config.postage_price}}</view>
 
+
+          <image src="../../images/{{is_collect ? 'collect_active.png' : 'collect.png'}}" class="collect" bindtap='collect'></image>
+
+
         </view>
   </view>
 
@@ -179,7 +183,7 @@
 
 
             <view class="dialog-box-item payDialog-normal">
-              <text class="btn btn-block btn-yellow pay-add-to-shoppingcart" bindtap='buy_carts_submit'>加入购物车</text>
+              <text class="btn btn-block btn-yellow pay-add-to-shoppingcart" bindtap='buy_carts_submit'>{{button_type=='lijigoumai'?'立即购买':'加入购物车'}}</text>
             </view>
 
 
@@ -207,9 +211,9 @@
     </navigator>
   </view>
 
-  <view class="product_add_user_cars fl big-btn" catchtap='traggle_guige'>加入购物车     </view>
+  <view class="product_add_user_cars fl big-btn" catchtap='traggle_guige' data-button_type="jiarugouwuche">加入购物车     </view>
 
-  <view class="product_buy_now fl big-btn">立即购买</view>
+  <view class="product_buy_now fl big-btn" catchtap='traggle_guige' data-button_type="lijigoumai">立即购买</view>
 
 </view>
 

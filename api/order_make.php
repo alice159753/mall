@@ -23,6 +23,7 @@
     $discount_coupon_no = !empty($_REQUEST["discount_coupon_no"]) ? $_REQUEST["discount_coupon_no"] : 0;
     $openid = !empty($_REQUEST["openid"]) ? $_REQUEST["openid"] : '';
     $user_address_no = !empty($_REQUEST["user_address_no"]) ? $_REQUEST["user_address_no"] : '0';
+    $postscript = !empty($_REQUEST["postscript"]) ? urldecode($_REQUEST["postscript"]) : '';//卖家留言
 
     if( empty($user_carts_nos) )
     {
@@ -77,6 +78,13 @@
         $productRow = $myProduct->getRow("*", "no = $product_no");
 
         $dataArray = $myProduct->getDataClean($productRow);
+        
+        //检查商品是否在售卖期间
+        if( !$myProduct->is_sale($productRow) )
+        {
+            Output::error($dataArray['title'].'-商品不再售卖期间', '4');
+        }
+
         $dataArray['cost_price'] = $productRow['member_price']; //记录成本价
 
         $dataArray['buy_num'] = $userCartsRows[$i]['buy_num'];
@@ -138,11 +146,11 @@
             //折上折
             if( !empty($product_fee_discount) )
             {
-                $product_fee_discount = ($product_fee_discount * (int)$userCardsRow['discount'])/10;
+                $product_fee_discount = ($product_fee_discount * $userCardsRow['discount'])/10;
             }
             else
             {
-                $product_fee_discount = ($product_fee * (int)$userCardsRow['discount'])/10;
+                $product_fee_discount = ($product_fee * $userCardsRow['discount'])/10;
             }
         }
     }
@@ -157,6 +165,9 @@
     $order_sn = $myOrderInfo->createOrder($user_no, $userAddressRow, $result['product_lists'], $product_fee_discount, $product_fee, $carriage_fee, $postscript, $discount_coupon_no, 1);
 
     $product_fee = !empty($product_fee_discount) ? $product_fee_discount : $product_fee;
+
+    $product_fee = sprintf("%.2f", $product_fee);
+    $carriage_fee = sprintf("%.2f", $carriage_fee);
 
     $product_fee = $product_fee * 100; //转换成分
 

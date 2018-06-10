@@ -149,12 +149,22 @@
                 $dataArray['date_type_title'] = str_replace("$$", $row['valid_day_tomorrow'], $dataArray['date_type_title']);
             }
 
+            if( $row['coupon_type'] == 1 )
+            {
+                $dataArray['picker_title'] = $dataArray['title']."-".$dataArray['use_type_title']."-减".$dataArray['coupon_price']."元";
+            }
+
+            if( $row['coupon_type'] == 2 )
+            {
+                $dataArray['picker_title'] = $dataArray['title']."-".$dataArray['use_type_title']."-打".$dataArray['discount']."折";
+            }
+
             return $dataArray;
         }
 
 
         //计算优惠价格
-        function computerPrice($discount_coupon_no, $product_fee)
+        function computerPrice($discount_coupon_no, $product_fee, $is_update_status = true)
         {
             $myDiscountCouponRecord = new DiscountCouponRecord($this->myMySQL);
 
@@ -184,18 +194,21 @@
 
                 if( $discountCouponRow['coupon_type'] == 2 )
                 {
-                    $product_fee = ($product_fee * (int)$discountCouponRow['discount'])/10;
+                    $product_fee = ($product_fee * $discountCouponRow['discount'])/10;
                 }
             }
 
             //更新优惠券状态
-            $dataArray = array();
-            $dataArray['use_num'] = $discountCouponRow['use_num'] + 1;
-            $this->update($dataArray, "no = ".$discountCouponRecordRow['discount_coupon_no']."");
+            if( $is_update_status )
+            {
+                $dataArray = array();
+                $dataArray['use_num'] = $discountCouponRow['use_num'] + 1;
+                $this->update($dataArray, "no = ".$discountCouponRecordRow['discount_coupon_no']."");
 
-            $dataArray = array();
-            $dataArray['is_use'] = 1;
-            $myDiscountCouponRecord->update($dataArray, "no = ".$discount_coupon_no."");
+                $dataArray = array();
+                $dataArray['is_use'] = 1;
+                $myDiscountCouponRecord->update($dataArray, "no = ".$discount_coupon_no."");
+            }
 
             return $product_fee;
         }
