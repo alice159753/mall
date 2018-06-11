@@ -217,6 +217,22 @@ Page({
 
   },
 
+  //查看物流
+  order_expressage:function(e)
+  {
+    var order_info_no = e.currentTarget.dataset.order_info_no;
+
+      if (util.isBlank(order_info_no)) {
+        app.showModal({ content: '订单编号不能为空' });
+
+        return '';
+      }
+
+      wx.navigateTo({
+        url: '../user/orderexpressage?order_info_no=' + order_info_no,
+      })
+  },
+
   //微信登录
   onGotUserInfo: function (e) {
     CommonEvent.login(e);

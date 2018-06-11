@@ -177,6 +177,16 @@ export function user_carts_add_make(user_no, product_no, product_attr_no, buy_nu
 }
 
 
+//查看物流
+export function order_expressage(user_no, order_info_no) {
+  return newWork({
+    url: '/order_expressage.php',
+    data: {
+      user_no: user_no,
+      order_info_no: order_info_no,
+    }
+  });
+}
 
 //用户购物车列表
 export function user_carts(user_no) {

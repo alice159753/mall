@@ -20,7 +20,8 @@
     "pages/user/footprint",
     "pages/user/cardslists",
     "pages/user/orderrefound",
-    "pages/user/orderreview"
+    "pages/user/orderreview",
+    "pages/user/orderexpressage"
   ],
   "window": {
     "backgroundTextStyle": "light",

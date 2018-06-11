@@ -1,0 +1,42 @@
+
+
+<view class="page app">
+
+<view wx:for="{{order_expressage}}" wx:key="product_key" wx:for-index="idx2" wx:for-item="item">
+<!--物流公司信息 开始-->
+<view class="review-goods">
+    <view class="goods-item">
+        <image src="{{item.product_pic}}" class="item-photo"></image>
+
+      <view class="item-info">
+          <view class="info-name">物流公司：顺丰快递</view>
+          <view class="info-attr colormain">
+          物流单号：{{item.invoice_no}}
+          <view class="default-card" bindtap='copy_order_sn' data-order_sn="{{item.invoice_no}}">复制</view>
+          </view>
+          <view class="info-name">物流电话：9760057641272</view>
+      </view>
+
+    </view>
+</view>
+<!--物流公司信息 结束-->
+
+<view class="bgf2 space"></view>
+
+<view class="g-mohe">
+    <view class="mh-wrap">
+    
+        <view class="route_item">
+            <text>111</text>
+             <text>xxxxxx</text>
+             <view class="before"></view>
+             <image src="http://www.xinghuilvse.com/images/kuaidi_new.png"></image>
+        </view>
+
+    </view>
+</view>
+
+</view>
+
+
+</view>
